@@ -1,5 +1,5 @@
 # SquareHelp-Backend
-NodeJS and Express frontend for Codeup Capstone Project
+Java and Spring Framework Backend for Codeup Capstone Project
 
 Database Diagram:
 https://tinyurl.com/u7dusax
