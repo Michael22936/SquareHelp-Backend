@@ -1,20 +1,18 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private UserRepository userDao;
+    private final UserRepository userDao;
 
 
-//    public HomeController(UserRepository userDao){
-//        this.userDao = userDao;/
-//    }
+    public HomeController(UserRepository userDao){
+        this.userDao = userDao;
+    }
 
     @GetMapping("/")
     public String landingPage(Model model){

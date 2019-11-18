@@ -1,20 +1,20 @@
 
 
 
-package com.squarehelp.squarehelp.controllers;
-
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
-
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController("/")
-public class UserController {
-
-
-
-
-}
+//package com.squarehelp.squarehelp.controllers;
+//
+//
+//import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//@CrossOrigin(origins = "http://localhost:3000")
+//@RestController("/")
+//public class UserController {
+//
+//
+//
+//
+//}
 
 
 //============================ Example Code ===========================
