@@ -2,7 +2,7 @@
 Java and Spring Framework Backend for Codeup Capstone Project
 
 Database Diagram:
-https://tinyurl.com/vxtuwee
+https://tinyurl.com/wedgwcv
 
 Workflow:
 https://tinyurl.com/qunqxb2
