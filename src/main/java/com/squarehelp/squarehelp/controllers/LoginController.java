@@ -2,13 +2,8 @@ package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -29,4 +24,14 @@ public class LoginController {
     public Collection<User> login() {
         return userDao.findAll();
     }
+
+    @PostMapping("/login")
+    public String userLogin(@RequestParam String username, @RequestParam String password, @RequestParam String _csrf){
+       User u = userDao.findByUsername(username);
+       if (u != null){
+           return "valid";
+       }
+       return "not valid";
+    }
+
 }
