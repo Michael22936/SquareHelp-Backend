@@ -37,17 +37,17 @@ insert into smoking_info (user_id, day_quitSmoking, day_relapse, days_smokeFree,
 insert into smoking_info (user_id, day_quitSmoking, day_relapse, days_smokeFree, points, costOfCigs, costOfCigsSaved) values (9, '160', '91161 Northland Place', '50335', 9, '5.84', '6.38');
 insert into smoking_info (user_id, day_quitSmoking, day_relapse, days_smokeFree, points, costOfCigs, costOfCigsSaved) values (10, '63', '94 Rowland Point', '63106', 10, '6.98', '5.86');
 
-
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('rroman0', 'PRvUKfYl', 'mwoolfall0@harvard.edu', '04 Loftsgordon Terrace', 2010, '526-669-7881', '915', '988', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('jzimek1', 'cxBkmiWtER', 'efantone1@foxnews.com', '295 Grayhawk Parkway', 1996, '497-260-9291', '9552', '96', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('kiacapucci2', '8Ru36RC', 'cdeyes2@blog.com', '8 Monica Crossing', 2000, '713-693-3143', '74', '409', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('jcoursor3', 'KFvvoOW', 'rantonopoulos3@clickbank.net', '09 Heffernan Street', 1992, '243-703-7765', '6047', '4', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('cdorkins4', 'qQj78PKoJJS', 'bcottu4@amazon.de', '2 New Castle Junction', 1994, '413-392-6502', '98', '35', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('thellmer5', 'j0kzIO', 'hbeasley5@statcounter.com', '16 Dawn Center', 2001, '407-324-8044', '1160', '449', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('gwhetnall6', 'aumfnC', 'ffiridolfi6@about.com', '3 Fairview Road', 2012, '659-203-5283', '0789', '35858', 'F');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('bmullins7', 'fyG4s8VYFQB', 'kattrill7@sbwire.com', '79 Saint Paul Lane', 2005, '903-751-6175', '1', '97', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('kscamadine8', 'hMVGl5DVuR', 'awitherington8@google.co.jp', '14405 Eastwood Park', 1987, '951-395-4264', '62142', '0525', 'M');
-insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('cterne9', '3LtZETJZ69iz', 'hgarstan9@com.com', '1465 Emmet Point', 2007, '448-218-4025', '5', '2763', 'F');
+DROP TABLE IF EXISTS users;
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('rroman0', 'PRvUKfYl', 'mwoolfall0@harvard.edu', '04 Loftsgordon Terrace', 2010, '5266697881', '915', '988', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('jzimek1', 'cxBkmiWtER', 'efantone1@foxnews.com', '295 Grayhawk Parkway', 1996, '4972609291', '9552', '96', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('kiacapucci2', '8Ru36RC', 'cdeyes2@blog.com', '8 Monica Crossing', 2000, '7136933143', '74', '409', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('jcoursor3', 'KFvvoOW', 'rantonopoulos3@clickbank.net', '09 Heffernan Street', 1992, '2437037765', '6047', '4', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('cdorkins4', 'qQj78PKoJJS', 'bcottu4@amazon.de', '2 New Castle Junction', 1994, '4133926502', '98', '35', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('thellmer5', 'j0kzIO', 'hbeasley5@statcounter.com', '16 Dawn Center', 2001, '4073248044', '1160', '449', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('gwhetnall6', 'aumfnC', 'ffiridolfi6@about.com', '3 Fairview Road', 2012, '6592035283', '0789', '35858', 'F');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('bmullins7', 'fyG4s8VYFQB', 'kattrill7@sbwire.com', '79 Saint Paul Lane', 2005, '9037516175', '1', '97', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('kscamadine8', 'hMVGl5DVuR', 'awitherington8@google.co.jp', '14405 Eastwood Park', 1987, '9513954264', '62142', '0525', 'M');
+insert into users (username, password, email, location, dob, phone, date_created, last_login, gender) values ('cterne9', '3LtZETJZ69iz', 'hgarstan9@com.com', '1465 Emmet Point', 2007, '4482184025', '5', '2763', 'F');
 
 
 
@@ -61,3 +61,9 @@ insert into verifications_req (originator_user_id, recipient_user_id, day_create
 insert into verifications_req (originator_user_id, recipient_user_id, day_created, daysSmokeFree, isApproved) values (8, 8, '91', '70670', false);
 insert into verifications_req (originator_user_id, recipient_user_id, day_created, daysSmokeFree, isApproved) values (9, 9, '4510', '8519', false);
 insert into verifications_req (originator_user_id, recipient_user_id, day_created, daysSmokeFree, isApproved) values (10, 10, '25795', '969', false);
+
+
+SELECT current_user;
+SELECT user, host FROM mysql.user;
+CREATE USER 'matt'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON squareHelp.* TO 'matt'@'localhost';
