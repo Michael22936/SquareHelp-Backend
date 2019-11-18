@@ -12,7 +12,7 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE,
     location VARCHAR(255),
     dob INT,
-    phone INT,
+    phone VARCHAR(15),
     date_created INT,
     last_login INT,
     gender VARCHAR(6)
