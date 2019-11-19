@@ -52,12 +52,29 @@ public class ProfileController {
         return out;
     }
 
+    private String convertUsertoJson(Boolean isUser){
+        if (isUser == false){
+            Map<String, String> temp = new HashMap<>();
+            temp.put("isUser", "false");
+            Gson g = new Gson();
+            String out = g.toJson(temp);
+            return out;
+        }else {
+            return "call this method with a username";
+        }
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public String profileInfo(@RequestParam String username){
         User u = userDao.findByUsername(username);
+        if (u != null){
         SmokerInfo s = smokeDao.getOne(u.getId());
         String total = SmokingCostSaved( s.getCost_of_cigs_saved(), s.getTotal_days_smoke_free());
         String profileToJson = convertSmokeInfoJson(s,u, total);
         return profileToJson;
+        }else {
+            String failedProfile = convertUsertoJson(false);
+            return failedProfile;
+        }
     }
 }
