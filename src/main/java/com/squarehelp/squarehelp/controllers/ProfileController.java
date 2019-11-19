@@ -52,7 +52,7 @@ public class ProfileController {
         return out;
     }
 
-    private String convertUsertoJson(Boolean isUser){
+    private String convertUserToJson(Boolean isUser){
         if (isUser == false){
             Map<String, String> temp = new HashMap<>();
             temp.put("isUser", "false");
@@ -73,7 +73,7 @@ public class ProfileController {
         String profileToJson = convertSmokeInfoJson(s,u, total);
         return profileToJson;
         }else {
-            String failedProfile = convertUsertoJson(false);
+            String failedProfile = convertUserToJson(false);
             return failedProfile;
         }
     }
