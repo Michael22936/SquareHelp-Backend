@@ -1,7 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>SquareHelp - profile</title>
-    <th:block th:replace="partials/head :: main-header"/>
+<th:block th:replace="partials/head :: main-header"/>
+</head>
 <body>
 <div th:replace="partials/navbar :: main-navbar"></div>
     <h1>Profile Page</h1>
@@ -14,6 +15,7 @@
         <h1 th:text="${smoke.points}"></h1>
         <h1 th:text="${smoke.total_days_smoke_free}"></h1>
     </div>
+    <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
 </div>
 <th:block th:replace="partials/footer :: main-footer"/></body>
 </html>
