@@ -18,21 +18,21 @@ public class DashboardController {
         this.userDao = userDao;
     }
 
-    private String convertPersonalStatsJson(SmokerInfo s, User u, String total) {
-        // Create output collection
-        Map<String, String> temp = new HashMap<>();
-
-        // Add values to temp object
-        temp.put("costOfCigsSaved", String.valueOf(s.getCost_of_cigs_saved()));
-        temp.put("totalDaysSmokeFree", String.valueOf(s.getTotal_days_smoke_free()));
-        temp.put("points", String.valueOf(s.getPoints()));
-        temp.put("totalSaved", total);
-
-        // Create new Gson object and add contents and convert to Json
-        Gson g = new Gson();
-        String out = g.toJson(temp);
-
-        return out;
-    }
 
 }
+//    private String convertPersonalStatsJson(SmokerInfo s, User u, String total) {
+//        // Create output collection
+//        Map<String, String> temp = new HashMap<>();
+//
+//        // Add values to temp object
+//        temp.put("costOfCigsSaved", String.valueOf(s.getCost_of_cigs_saved()));
+//        temp.put("totalDaysSmokeFree", String.valueOf(s.getTotal_days_smoke_free()));
+//        temp.put("points", String.valueOf(s.getPoints()));
+//        temp.put("totalSaved", total);
+//
+//        // Create new Gson object and add contents and convert to Json
+//        Gson g = new Gson();
+//        String out = g.toJson(temp);
+//
+//        return out;
+//    }
