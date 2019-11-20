@@ -1,9 +1,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<%- include('partials/head.html') -%>
-<%- include('partials/navbar.html') -%>
+<head>
 <title>SquareHelp - profile</title>
-<div class="wrapper">
+    <th:block th:replace="partials/head :: main-header"/>
+<body>
+<div th:replace="partials/navbar :: main-navbar"></div>
     <h1>Profile Page</h1>
+<div class="wrapper">
+    <div th:each="user : ${users.username}">
+        <h1 th:text="${user}"></h1>
+        <h1 th:text="${users.city}"></h1>
+        <h1 th:text="${users.state}"></h1>
+        <h1 th:text="${moneySaved}"></h1>
+        <h1 th:text="${smoke.points}"></h1>
+        <h1 th:text="${smoke.total_days_smoke_free}"></h1>
+    </div>
 </div>
-<%- include('partials/footer.html') -%>
+<th:block th:replace="partials/footer :: main-footer"/></body>
 </html>
