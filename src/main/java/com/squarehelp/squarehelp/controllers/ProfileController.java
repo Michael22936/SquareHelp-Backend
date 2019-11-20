@@ -1,5 +1,6 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -19,12 +20,12 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(Model model, @PathVariable long id){
-        model.addAttribute("username", userDao.getOne(id));
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
+        int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("moneySaved",moneySaved);
         return "profile";
     }
-
-
-
-
 
 }
