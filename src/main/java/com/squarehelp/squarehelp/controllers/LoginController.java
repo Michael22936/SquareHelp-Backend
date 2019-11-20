@@ -21,7 +21,14 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginToSite() {
+    public String loginToSite(@RequestParam String username, @RequestParam String password) {
+        User u = userDao.findByUsername(username);
+
+        if (password.equalsIgnoreCase(u.getPassword())) {
+            System.out.println("Password verification is successful");
+        } else {
+            System.out.println("no go");
+        }
         return "login";
     }
 }

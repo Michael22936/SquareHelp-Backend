@@ -11,26 +11,23 @@
     <form action="/login" method="post">
       <input id="csrf" value="something">
       <div class="loginWrapper">
-      
-      
-      
+        <div class="row">
+          <label for="username"><h5>Username</h5></label>
+          <input type="text" id="username" name="username" placeholder="Enter Username">
+        </div>
+        <div class="row">
+          <label><h5>Password</h5></label><br>
+          <input type="password" id="password" name="password"><br>
+          <input id="csrf" value="something">
+        </div>
+        <div class="row">
+          <button type="submit">Login</button>
+          <button type="reset">Reset</button>
+        </div>
       </div>
-      
-      
-      
-      
     </form>
-
-      <input id="csrf" value="something">
-      <div class="row">
-        <button class="btn waves-effect waves-light grey darken-4" id="submit">Submit<i class="material-icons right">send</i></button>
-        <button class="btn waves-effect waves-light grey darken-4" type="reset" name="reset" id="reset">reset</button>
-      </div>
-    </div>
-    </div>
-
+    
   </div>
-
-
+  
   <th:block th:replace="partials/footer :: main-footer"/>
 </html>
