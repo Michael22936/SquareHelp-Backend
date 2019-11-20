@@ -1,96 +1,109 @@
-<%- include('partials/head.ejs') -%>
-<%- include('partials/navbar.ejs') -%>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<title>SquareHelp - html</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SquareHelp - Register</title>
+  <!--  <th:block th:replace="fragments/navbar :: main-navbar"/>-->
+  <th:block th:replace="partials/navbar  :: main-navbar"/>
+  <th:block th:replace="partials/head :: main-header"/>
 
-<link href="css/register.css" rel="stylesheet">
+  <link href="css/register.css" rel="stylesheet">
+</head>
 
-<div class="wrapper">
-  <h1>Register page</h1>
 
-  <div class="formWrapper">
-    <form class="col s12" action="https://request-inspector.glitch.me/" method="POST">
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="username">Username</label>
-          <input id="username" type="text" name="username" class="validate">
-          <span class="helper-text" data-error="wrong" data-success="right">This is example of small helper text</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="password">Password</label>
-          <input id="password" type="password" name="password" class="validate">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="email">Email</label>
-          <input id="email" type="email" name="email" class="validate">
-        </div>
-      </div>
-      <%- include('partials/register-cityStatesDropdown') -%>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="dob">Date of Birth</label>
-          <input id="dob" type="date" name="dob" class="validate">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="phone">Phone Number</label>
-          <input id="phone" type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="gender">Enter your gender</label>
-          <div id="genderRadioWrapper">
-            <p>
-              <label>
-                <input name="gender" type="radio" value="male"/>
-                <span>Male</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input name="gender" type="radio" value="female"/>
-                <span>Female</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input name="gender" type="radio" value="na"/>
-                <span>I prefer not to say</span>
-              </label>
-            </p>
+<body>
+  <div class="wrapper">
+    <h1>Register page</h1>
+
+    <div class="formWrapper">
+      <form class="col s12" action="https://request-inspector.glitch.me/" method="POST">
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" class="validate">
+            <span class="helper-text" data-error="wrong"
+                  data-success="right">This is example of small helper text</span>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="dateQuitSmoking">Date to quit smoking</label>
-          <input id="dateQuitSmoking" type="date" name="dateQuitSmoking" class="validate">
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" class="validate">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="costOfCigs">Average cost of a pack of ciggarettes for you</lable>
-          <input id="costOfCigs" type="number" name="costOfCigs" class="validate">
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" class="validate">
+          </div>
         </div>
-      </div>
-      <input id="csrf" value="something">
+        <!--      <%- include('partials/register-cityStatesDropdown') -%>-->
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date" name="dob" class="validate">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="gender">Enter your gender</label>
+            <div id="genderRadioWrapper">
+              <p>
+                <label>
+                  <input name="gender" type="radio" value="male"/>
+                  <span>Male</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="gender" type="radio" value="female"/>
+                  <span>Female</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="gender" type="radio" value="na"/>
+                  <span>I prefer not to say</span>
+                </label>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="dateQuitSmoking">Date to quit smoking</label>
+            <input id="dateQuitSmoking" type="date" name="dateQuitSmoking" class="validate">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <label for="costOfCigs">Average cost of a pack of ciggarettes for you</label>
+              <input id="costOfCigs" type="number" name="costOfCigs" class="validate">
+          </div>
+        </div>
+        <input id="csrf" value="something">
 
-      <div class="row btn-row">
-        <button class="btn waves-effect waves-light grey darken-4" type="submit" id="submit">Submit<i class="material-icons right">send</i></button>
-        <button class="btn waves-effect waves-light grey darken-4" type="reset" name="reset" id="reset">reset</button>
-      </div>
-    </form>
-  </div>
+        <div class="row btn-row">
+          <button class="btn waves-effect waves-light grey darken-4" type="submit" id="submit">Submit<i
+                  class="material-icons right">send</i></button>
+          <button class="btn waves-effect waves-light grey darken-4" type="reset" name="reset" id="reset">reset</button>
+        </div>
+      </form>
+    </div>
 
-  <!-- Required js files -->
-  <!-- Axios -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="js/register/register.js"></script>
+    <!-- Required js files -->
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/register/register.js"></script>
+</body>
 
-<%- include('partials/footer.ejs') -%>
+  <!--<%- include('partials/footer.ejs') -%>-->
+</html>
