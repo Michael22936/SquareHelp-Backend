@@ -14,12 +14,12 @@ public class HomeController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/test")
+    @GetMapping("/home")
     public String landingPage(Model model){
 
         model.addAttribute("users", userDao.findAll());
 
-        return "home";
+        return "index";
     }
 
 }

@@ -1,92 +1,57 @@
-<%- include('partials/head.ejs') -%>
-<%- include('partials/navbar.ejs') -%>
-<link href="css/index.css" rel="stylesheet">
-<title>SquareHelp - index.html</title>
-<h1>Index page</h1>
-
-<div class="wrapper">
-  <img width="85%" src="https://gettravel.com/wp-content/uploads/2018/04/Video-Placeholder.jpg">
-    <div class="fold_content">
-        <p><a href="register">Start your journey</a></p>
-      <a><p>Learn more</p></a>
-
-    </div><!--  end fold-content-->
-<!--==================== continue index page ====================-->
-  <p>-----------------------------------------------------------------------------------------------</p>
-  <div class="what_is">
-    <h1>What is SquareHelp?</h1>
-    <p>SquareHelp is a tool designed for the smoker who needs extra motivation to quit. The app tool will allow a user to sign up for an account where they have full-access to the member community of individuals who are like them. At setup, the system will require the weekly habit of the smoker in order to pinpoint times of the day where smoker is more susceptible to relapse and reminder smoker to keep to their goal. There is also great "buddy system" messaging tool that can support the user to meet goals by verifying the absence of nicotine in the smoker's daily habit. Lastly, a point system is used to keep track of days spent smoke free along with the average cost saved by continuing this newfound habit and a reward store may be accessed after the required period of time. Overall, SquareHelp can meet the smoker where they are at in their journey to quitting and remind them they are not in this alone.</p>
-  <br>
-      <p>-----------------------------------------------------------------------------------------------</p>
-
-      <div class="how_it_helps">
-   <h1>How can it help me?</h1>
-      <p>smoking facts</p>
-      <ul>
-          <li> FACT ONE</li>
-          <li> FACT TWO</li>
-          <li> FACT THREE</li>
-
-      </ul>
-
-
-   </div><!--  end of how_it_helps-->
-  </div><!--end of what_is-->
-
-
-    <p>-----------------------------------------------------------------------------------------------</p>
-
-    <!--  ==============  video scroll by Yael  ===================  -->
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <!--  ==============  video scroll   ==========================  -->
-    <!--  ==============  video scroll   ==========================  -->
-    <!--  ==============  video scroll   ==========================  -->
-    <!--  ==============  video scroll   ==========================  -->
-    <!--  ==============  video scroll   ==========================  -->
-
-    <div class="get_started">
-        <h1>Get Started Today!</h1>
-            <p>Sign Up</p>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>Index Page</title>
+  </head>
+  <th:block th:replace="partials/navbar :: main-navbar"/>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>Index Page</h1>
+      </div>
+  
+      <!-- About Section -->
+      <div class="row">
+        <div class="about">
+          <h1>About Us</h1>
+          <div class="card_view">
+        
+            <!-- Michael -->
+            <div class="card">
+              <img src="https://avatars2.githubusercontent.com/u/52936520?s=460&v=4">
+              <a href="Michael.McDonnell067@gmail.com">Email</a>
+              <a href="https://github.com/Michael22936">GitHub</a>
+              <a href="https://www.linkedin.com/in/michaelvmcdonnell/">LinkedIn</a>
+            </div>
+        
+            <!-- Matt -->
+            <div class="card">
+              <img src="https://avatars3.githubusercontent.com/u/52936441?s=460&v=4">
+              <a href="matthew.lopez4011@gmail.com">Email</a>
+              <a href="https://github.com/mattlopez4011">GitHub</a>
+              <a href="https://www.linkedin.com/in/matt-lopez4011/">LinkedIn</a>
+            </div>
+        
+            <!-- Yael -->
+            <div class="card">
+              <img src="https://avatars0.githubusercontent.com/u/18481811?s=460&v=4">
+              <a href="yaelrbrown@gmail.com">Email</a>
+              <a href="https://github.com/yaelBrown">GitHub</a>
+              <a href="https://www.linkedin.com/in/yaelrbrown/">LinkedIn</a>
+            </div>
+        
+            <!-- Mitchell -->
+            <div class="card">
+              <img src="https://avatars1.githubusercontent.com/u/42749939?s=460&v=4">
+              <a href="mitchell.arnold2019@gmail.com">Email</a>
+              <a href="https://github.com/MitchellArnold">GitHub</a>
+              <a href="https://www.linkedin.com/in/mitchell-g-arnold/">LinkedIn</a>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
     </div>
-    <p>-----------------------------------------------------------------------------------------------</p>
-    <div class="about">
-        <h1>About Us</h1>
-        <div class="card_view">
-<!--            michael-->
-        <div class="card">
-            <img src="https://avatars2.githubusercontent.com/u/52936520?s=460&v=4">
-            <a href="Michael.McDonnell067@gmail.com">Email</a>
-            <a href="https://github.com/Michael22936">GitHub</a>
-            <a href="https://www.linkedin.com/in/michaelvmcdonnell/">LinkedIn</a>
-        </div>
-<!--            matt-->
-        <div class="card">
-            <img src="https://avatars3.githubusercontent.com/u/52936441?s=460&v=4">
-            <a href="matthew.lopez4011@gmail.com">Email</a>
-            <a href="https://github.com/mattlopez4011">GitHub</a>
-            <a href="https://www.linkedin.com/in/matt-lopez4011/">LinkedIn</a>
-        </div>
-<!--            yael-->
-        <div class="card">
-            <img src="https://avatars0.githubusercontent.com/u/18481811?s=460&v=4">
-            <a href="yaelrbrown@gmail.com">Email</a>
-            <a href="https://github.com/yaelBrown">GitHub</a>
-            <a href="https://www.linkedin.com/in/yaelrbrown/">LinkedIn</a>
-        </div>
-<!--            mitchell-->
-        <div class="card">
-            <img src="https://avatars1.githubusercontent.com/u/42749939?s=460&v=4">
-            <a href="mitchell.arnold2019@gmail.com">Email</a>
-            <a href="https://github.com/MitchellArnold">GitHub</a>
-            <a href="https://www.linkedin.com/in/mitchell-g-arnold/">LinkedIn</a>
-        </div>
-        </div>
-    </div>
-</div> <!--end of wrapper -->
-
-
-<%- include('partials/footer.ejs') -%>
+  </body>
+  <th:block th:replace="partials/footer :: main-footer">
+</html>
