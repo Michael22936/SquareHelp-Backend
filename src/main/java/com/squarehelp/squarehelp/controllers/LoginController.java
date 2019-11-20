@@ -10,6 +10,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping("/api/login")
 @Controller
 public class LoginController {
 

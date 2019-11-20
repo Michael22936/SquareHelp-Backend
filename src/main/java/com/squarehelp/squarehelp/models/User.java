@@ -29,6 +29,8 @@ public class User {
     @Column(columnDefinition = "VARCHAR(255)")
     private String lastLogin;
     @Column(columnDefinition = "VARCHAR(255)")
+
+
     private String gender;
 
     public User() {
