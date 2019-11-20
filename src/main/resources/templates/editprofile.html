@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <th:block th:replace="partials/head :: main-header"/>
+</head>
+<body>
+<div th:replace="partials/navbar :: main-navbar"></div>
+
+<h1>Edit Profile</h1>
+
+<div>
+    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post">
+        <div>
+            <label for="username">Edit Username: </label>
+            <input type="text" id="username" th:value="${users.username}">
+        </div>
+    </form>
+</div>
+
+<th:block th:replace="partials/footer :: main-footer"/></body>
+</body>
+</html>
