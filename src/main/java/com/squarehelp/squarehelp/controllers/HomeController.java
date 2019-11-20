@@ -14,7 +14,7 @@ public class HomeController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String landingPage(Model model){
 
         model.addAttribute("users", userDao.findAll());
