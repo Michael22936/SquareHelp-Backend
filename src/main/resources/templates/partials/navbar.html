@@ -1,16 +1,14 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="main-navbar">
-  <div class="navbar-fixed">
-    <nav class="grey darken-4">
+<!--    <nav class="grey darken-4 navbar-fixed navbar">-->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">SquareHelp</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="login">Login</a></li>
-          <li><a href="register">Register</a></li>
+        <a href="/" class="navbar-brand">SquareHelp</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
         </ul>
       </div>
     </nav>
-  </div>
 </th:block>

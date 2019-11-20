@@ -9,16 +9,15 @@
   <th:block th:replace="partials/navbar  :: main-navbar"/>
   <th:block th:replace="partials/head :: main-header"/>
 
-  <link href="css/register.css" rel="stylesheet">
+<!--  <link href="css/register.css" rel="stylesheet">-->
 </head>
 
 
 <body>
   <div class="wrapper">
     <h1>Register page</h1>
-
     <div class="formWrapper">
-      <form class="col s12" action="https://request-inspector.glitch.me/" method="POST">
+      <form class="col s12" th:action="@{/register}" method="POST" th:object="${user}">
         <div class="row">
           <div class="input-field col s6">
             <label for="username">Username</label>
@@ -40,6 +39,7 @@
           </div>
         </div>
         <!--      <%- include('partials/register-cityStatesDropdown') -%>-->
+        <th:block th:replace="partials/register-cityStatesDropdown :: main-statesDropdown"/>
         <div class="row">
           <div class="input-field col s6">
             <label for="dob">Date of Birth</label>
@@ -58,7 +58,7 @@
             <div id="genderRadioWrapper">
               <p>
                 <label>
-                  <input name="gender" type="radio" value="male"/>
+                  <input id="gender" name="gender" type="radio" value="male"/>
                   <span>Male</span>
                 </label>
               </p>
@@ -99,11 +99,9 @@
       </form>
     </div>
 
-    <!-- Required js files -->
-    <!-- Axios -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="js/register/register.js"></script>
-</body>
 
-  <!--<%- include('partials/footer.ejs') -%>-->
+
+
+    <th:block th:replace="partials/footer :: main-footer"/>
+</body>
 </html>
