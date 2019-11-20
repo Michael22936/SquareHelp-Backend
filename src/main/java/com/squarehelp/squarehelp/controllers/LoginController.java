@@ -26,9 +26,10 @@ public class LoginController {
 
         if (password.equalsIgnoreCase(u.getPassword())) {
             System.out.println("Password verification is successful");
+            return "profile/" + u.getId();
         } else {
             System.out.println("no go");
+            return "login";
         }
-        return "login";
     }
 }
