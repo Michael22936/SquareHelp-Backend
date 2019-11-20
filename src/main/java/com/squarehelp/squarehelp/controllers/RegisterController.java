@@ -15,9 +15,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
-@RequestMapping("/api/register")
 public class RegisterController {
 
     @Autowired

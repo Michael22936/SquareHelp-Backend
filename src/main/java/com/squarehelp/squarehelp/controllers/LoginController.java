@@ -11,9 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
-@RequestMapping("/api/login")
 public class LoginController {
 
     private final UserRepository userDao;
