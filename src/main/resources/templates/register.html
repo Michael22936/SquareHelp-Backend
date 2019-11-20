@@ -20,7 +20,7 @@
         <div class="row">
           <div class="input-field col s6">
             <label for="username">Username</label>
-            <input id="username" type="text" name="username" th:field="*{username}" class="validate">
+            <input id="username" type="text" name="username" th:field="*{username}" class="validate text-dark">
             <span class="helper-text" data-error="wrong"
                   data-success="right">This is example of small helper text</span>
           </div>
@@ -28,13 +28,13 @@
         <div class="row">
           <div class="input-field col s6">
             <label for="password">Password</label>
-            <input id="password" type="password" name="password" th:field="*{password}" class="validate">
+            <input id="password" type="password" name="password" th:field="*{password}" class="validate text-dark">
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" th:field="*{email}" class="validate">
+            <input id="email" type="email" name="email" th:field="*{email}" class="validate text-dark">
           </div>
         </div>
         <!--      <%- include('partials/register-cityStatesDropdown') -%>-->
@@ -42,13 +42,13 @@
         <div class="row">
           <div class="input-field col s6">
             <label for="dob">Date of Birth</label>
-            <input id="dob" type="date" name="dob" th:field="*{dob}" class="validate">
+            <input id="dob" type="date" name="dob"  class="validate">
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
             <label for="phone">Phone Number</label>
-            <input id="phone" type="tel" name="phone" th:field="*{phoneNumber}" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10">
+            <input id="phone" type="tel" name="phone" th:field="*{phoneNumber}" placeholder="Only Numbers" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" class="text-dark">
           </div>
         </div>
         <div class="row">
@@ -87,7 +87,7 @@
         <div class="row">
           <div class="input-field col s6">
             <label for="costOfCigs">Average cost of a pack of cigarettes for you</label>
-              <input id="costOfCigs" type="number" name="costOfCigs" class="validate">
+              <input id="costOfCigs" type="text" name="costOfCigs" class="validate text-dark">
           </div>
         </div>
         <input id="csrf" value="something">
