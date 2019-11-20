@@ -10,6 +10,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34e07999ce5e0bb37ef781bf538db57760853e5e
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/login")
