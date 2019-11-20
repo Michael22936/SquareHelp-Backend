@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://206.189.180.13:3000")
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
