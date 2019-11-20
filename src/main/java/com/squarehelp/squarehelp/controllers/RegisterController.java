@@ -1,5 +1,6 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
@@ -22,6 +23,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerPage(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("smokeInfo", new SmokerInfo());
         return "register";
     }
 
