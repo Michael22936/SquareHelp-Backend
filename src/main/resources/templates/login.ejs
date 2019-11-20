@@ -1,0 +1,43 @@
+<%- include('partials/head.ejs') -%>
+<%- include('partials/navbar.ejs') -%>
+
+<title>SquareHelp - login.html</title>
+
+<div class="wrapper">
+  <h1>Login page</h1>
+
+  <div class="formWrapper">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <label for="username">Username</label>
+          <input id="username" type="text" name="username" class="validate">
+          <span class="helper-text" data-error="wrong" data-success="right">This is example of small helper text</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" class="validate">
+        </div>
+      </div>
+      <input id="csrf" value="something">
+      <div class="row">
+        <button class="btn waves-effect waves-light grey darken-4" id="submit">Submit<i class="material-icons right">send</i></button>
+        <button class="btn waves-effect waves-light grey darken-4" type="reset" name="reset" id="reset">reset</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Required js files -->
+<!-- Axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="js/login/login.js"></script>
+
+<%- include('partials/footer.ejs') -%>
+
+
+
+

@@ -1,0 +1,15 @@
+/* Styling is specific to register.ejs page */
+
+#genderRadioWrapper {
+  margin-top: 5rem;
+}
+
+.btn-row {
+  margin-top: 7rem;
+  padding-left: .7rem;
+}
+
+.dropdown-content {
+  width: max-content !important;
+  height:auto !important;
+}

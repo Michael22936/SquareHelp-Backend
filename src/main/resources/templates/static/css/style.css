@@ -1,0 +1,81 @@
+/* This styling is to be used on all pages */
+/* Variables */
+
+:root {
+  --null: "";
+}
+
+/* Borders (for troubleshooting) */
+
+.wborder {
+  border: 1px solid #fff;
+  z-index: 999;
+}
+
+.bborder {
+  border: 1px solid #000;
+  z-index: 999;
+}
+
+/* Basic Page Elements */
+
+* {
+  box-sizing: border-box;
+}
+
+/*
+a:link {
+
+}
+
+a:hover {
+
+}
+
+a:active{
+
+}
+
+a:visited {
+
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+
+}
+*/
+
+main, html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background: url('../img/index-bg.png');
+  color: #fff;
+}
+
+input {
+  color: #fff;
+}
+
+/* Page Content */
+
+.wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.nav-wrapper {
+  width: 95% !important;
+  margin: auto !important;
+}
+
+#csrf {
+  display: none;
+}
