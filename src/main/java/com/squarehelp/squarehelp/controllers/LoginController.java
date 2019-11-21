@@ -6,6 +6,8 @@ import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+
 @Controller
 public class LoginController {
 
@@ -26,7 +28,8 @@ public class LoginController {
 
         if (password.equalsIgnoreCase(u.getPassword())) {
             System.out.println("Password verification is successful");
-            return "profile/" + u.getId();
+
+            return "dashboard/3";
         } else {
             System.out.println("no go");
             return "login";
