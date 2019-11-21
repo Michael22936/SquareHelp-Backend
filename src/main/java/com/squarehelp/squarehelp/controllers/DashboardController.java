@@ -19,13 +19,13 @@ public class DashboardController {
 
     @GetMapping("/dashboard/{user_id}")
     public String showDashboard(Model model, @PathVariable String user_id) {
-        String uid = user_id;
+        Long uid = Long.parseLong(user_id);
 
         SmokerInfo s = smokeDao.getOne(uid);
         User u = userDao.getOne(uid);
 
         // Calculate money saved
-        int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
+        int moneySaved = s.getCost_of_cigs_saved() * s.getTotal_days_smoke_free();
 
         model.addAttribute("users", u);
         model.addAttribute("smoke", s);
