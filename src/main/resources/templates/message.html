@@ -7,7 +7,12 @@
 </head>
 <body>
 <div th:replace="partials/navbar :: main-navbar"></div>
+<h1>Who do you want to send the message to: </h1>
+    <form th:action="'/send/' + ${users.username} + '/message'" method="post">
 
+        <input type="text">
+
+    </form>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
 </html>
