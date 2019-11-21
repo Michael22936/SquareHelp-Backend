@@ -40,12 +40,12 @@ public class ProfileController {
                                 @RequestParam String username,
                                 @RequestParam String city,
                                 @RequestParam String state){
-        User newUserProfile = userDao.getOne(id);
-        newUserProfile.setUsername(username);
-        newUserProfile.setCity(city);
-        newUserProfile.setState(state);
-        userDao.save(newUserProfile);
-        return "redirect: /profile/" + id;
+        User oldUserProfile = userDao.getOne(id);
+        oldUserProfile.setUsername(username);
+        oldUserProfile.setCity(city);
+        oldUserProfile.setState(state);
+        userDao.save(oldUserProfile);
+        return "redirect:/profile/" + id;
     }
 
 }
