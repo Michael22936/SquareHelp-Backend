@@ -38,7 +38,7 @@ public class LoginController {
             }
         } catch (NullPointerException e) {
             // If user is not found, redirect to login page.
-            return "/login";
+            return "login";
         }
 
     }
