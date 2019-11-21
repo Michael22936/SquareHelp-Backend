@@ -1,22 +1,34 @@
 package com.squarehelp.squarehelp.controllers;
-
-import com.google.gson.Gson;
 import com.squarehelp.squarehelp.models.SmokerInfo;
-import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
+@Controller
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
 
-    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao){
+    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
     }
+
+    @GetMapping("/dashboard/{id}")
+    public String showDashboard(Model model, @PathVariable long id) {
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
+        int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("moneySaved", moneySaved);
+        return "dashboard";
+    }
+
+
+
+
 
 
 }
