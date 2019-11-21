@@ -12,9 +12,9 @@ CREATE TABLE users (
     email VARCHAR(255) UNIQUE,
     state VARCHAR(2),
     city VARCHAR(255),
-    dob INT(5),
+    dob DATE,
     phone_number VARCHAR(15),
-    date_created INT,
+    date_created DATE,
     last_login VARCHAR(255),
     gender VARCHAR(255)
 );
@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS smoking_info;
 CREATE TABLE smoking_info (
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     user_id INT UNIQUE,
-    day_quit_smoking INT(5),
-    day_relapse INT(5),
+    day_quit_smoking DATE,
+    day_relapse DATE,
     total_days_smoke_free BIGINT(20),
     points INT(10),
     cost_of_cigs_saved INT(10)
