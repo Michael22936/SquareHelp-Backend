@@ -1,6 +1,7 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Messages;
+import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
@@ -35,10 +36,12 @@ public class MessageController {
     @PostMapping("/send/{id}/message")
     public String sendAMessageToAnotherUser(@PathVariable long id,
                                             @RequestParam String message,
-                                            @RequestParam String recepiantUsername){
+                                            @RequestParam String recipeantUsername){
+        User user = userDao.findByUsername(recipeantUsername);
         Messages sendMessage = messageDao.getOne(id);
-        sendMessage.setRecipient_user_id(recepiantUsername);
+        sendMessage.setRecipient_user_id(String.valueOf(user.getId()));
         sendMessage.setMessage(message);
+        messageDao.save(new Messages("1",recipeantUsername,message));
         return "redirect:/profile/" + id;
     }
 }
