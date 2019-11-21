@@ -1,13 +1,16 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<th:block th:fragment="main-statesDropdown">
+<th:block th:fragment="main-statesDropdown" th:object="${user}">
   <div class="row">
     <div class="input-field col s4">
       <label for="city">City</label>
-      <input id="city" type="text" name="city" class="vaoptiondate text-dark">
+      <input id="city" type="text" name="city" placeholder="City" class=" form-control vaoptiondate text-dark">
     </div>
-    <div class="input-field col wborder stateDropdown">
-      <select id="state">
+  </div>
+  <div class="row">
+    <label for="state">State</label>
+    <div class="input-field col stateDropdown">
+      <select class="form-control" id="state" th:field="*{state}">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>

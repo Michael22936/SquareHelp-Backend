@@ -1,6 +1,7 @@
 package com.squarehelp.squarehelp.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "smoking_info")
@@ -13,11 +14,11 @@ public class SmokerInfo {
     @Column(columnDefinition = "INT UNIQUE")
     private String user_id;
 
-    @Column(columnDefinition = "INT(5)")
-    private int day_quit_smoking;
+    @Column(columnDefinition = "DATE")
+    private String day_quit_smoking;
 
-    @Column(columnDefinition = "INT(5)")
-    private int day_relapse;
+    @Column(columnDefinition = "DATE")
+    private Date day_relapse;
 
     @Column(columnDefinition = "BIGINT(20)")
     private int total_days_smoke_free;
@@ -30,7 +31,7 @@ public class SmokerInfo {
 
     public SmokerInfo() {}
 
-    public SmokerInfo(long id, String user_id, int day_quit_smoking, int day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
+    public SmokerInfo(long id, String user_id, String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
         this.id = id;
         this.user_id = user_id;
         this.day_quit_smoking = day_quit_smoking;
@@ -40,7 +41,7 @@ public class SmokerInfo {
         this.cost_of_cigs_saved = cost_of_cigs_saved;
     }
 
-    public SmokerInfo(String user_id, int day_quit_smoking, int day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
+    public SmokerInfo(String user_id, String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
         this.user_id = user_id;
         this.day_quit_smoking = day_quit_smoking;
         this.day_relapse = day_relapse;
@@ -65,19 +66,19 @@ public class SmokerInfo {
         this.user_id = user_id;
     }
 
-    public int getDay_quit_smoking() {
+    public String getDay_quit_smoking() {
         return day_quit_smoking;
     }
 
-    public void setDay_quit_smoking(int day_quit_smoking) {
+    public void setDay_quit_smoking(String day_quit_smoking) {
         this.day_quit_smoking = day_quit_smoking;
     }
 
-    public int getDay_relapse() {
+    public Date getDay_relapse() {
         return day_relapse;
     }
 
-    public void setDay_relapse(int day_relapse) {
+    public void setDay_relapse(Date day_relapse) {
         this.day_relapse = day_relapse;
     }
 

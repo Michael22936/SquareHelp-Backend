@@ -3,6 +3,7 @@ package com.squarehelp.squarehelp.models;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -20,23 +21,22 @@ public class User {
     private String state;
     @Column(columnDefinition = "VARCHAR(255)")
     private String city;
-    @Column(columnDefinition = "INT(5)")
-    private int dob;
+    @Column(columnDefinition = "DATE")
+    // change to local date
+    private String dob;
     @Column(columnDefinition = "VARCHAR(15) NOT NULL UNIQUE")
     private String phoneNumber;
-    @Column(columnDefinition = "INT(11)")
-    private int dateCreated;
+    @Column(columnDefinition = "DATE")
+    private Date dateCreated;
     @Column(columnDefinition = "VARCHAR(255)")
     private String lastLogin;
     @Column(columnDefinition = "VARCHAR(255)")
-
-
     private String gender;
 
     public User() {
     }
 
-    public User(long id, String username, String password, String email, String state, String city, int dob, String phoneNumber, int dateCreated, String lastLogin, String gender) {
+    public User(long id, String username, String password, String email, String state, String city, String dob, String phoneNumber, Date dateCreated, String lastLogin, String gender) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -50,7 +50,7 @@ public class User {
         this.gender = gender;
     }
 
-    public User(String username, String password, String email, String state, String city, int dob, String phoneNumber, int dateCreated, String lastLogin, String gender) {
+    public User(String username, String password, String email, String state, String city, String dob, String phoneNumber, Date dateCreated, String lastLogin, String gender) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -111,13 +111,9 @@ public class User {
         this.city = city;
     }
 
-    public int getDob() {
-        return dob;
-    }
+    public String getDob() { return dob; }
 
-    public void setDob(int dob) {
-        this.dob = dob;
-    }
+    public void setDob(String dob) { this.dob = dob; }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -127,13 +123,9 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getDateCreated() {
-        return dateCreated;
-    }
+    public Date getDateCreated() { return dateCreated; }
 
-    public void setDateCreated(int dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+    public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
 
     public String getLastLogin() {
         return lastLogin;
@@ -150,4 +142,5 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 }
