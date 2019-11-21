@@ -33,6 +33,15 @@ public class SearchController {
         this.smokeDao = smokeDao;
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String searchUser() {
+        return "Please send a post request to this address";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public List<User> searchUser(@RequestParam String query) {
+        return userDao.findByUsernameContaining(query);
+
     // Used to convert user object to JSON
     // Just returns users.
 //    private String convertUserToJson(User u, SmokerInfo s) {
@@ -110,14 +119,7 @@ public class SearchController {
 //        }
 //    }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String searchUser() {
-        return "Please send a post request to this address";
-    }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public List<User> searchUser(@RequestParam String query) {
-        return userDao.findByUsernameContaining(query);
 //
 //
 //        if (listOfUsers2 != null){
