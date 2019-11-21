@@ -1,5 +1,6 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
@@ -22,16 +23,23 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerPage(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("smokeInfo", new SmokerInfo());
         return "register";
     }
 
     @PostMapping("/register")
-        public String RegisterNewUser(@ModelAttribute User user){
+        public String RegisterNewUser(@ModelAttribute User user, @RequestParam String costOfCigs, @RequestParam String dateQuitSmoking, @RequestParam String dob){
 //        String hash = passwordEncoder.encode(user.getPassword());
 //        user.setPassword(hash);
 //        userDao.save(user);
         System.out.println("username = " + user.getUsername());
-        System.out.println("user.getEmail() = " + user.getEmail());
+        System.out.println("user email = " + user.getEmail());
+        System.out.println("user DOB = " + dob);
+        System.out.println("user phoneNumber = " + user.getPhoneNumber());
+        System.out.println("user Gender = " + user.getGender());
+        System.out.println("user day_quit_smoking = " + dateQuitSmoking);
+        System.out.println("user cost_of_cigs_saved = " + costOfCigs);
+
         return "redirect:/login";
 
 

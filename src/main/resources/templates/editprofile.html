@@ -11,10 +11,21 @@
 <h1>Edit Profile</h1>
 
 <div>
-    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post">
+    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
         <div>
             <label for="username">Edit Username: </label>
-            <input type="text" id="username" th:value="${users.username}">
+            <input type="text" id="username" th:field="*{username}" th:value="${users.username}">
+        </div>
+        <div>
+            <label for="city">Edit City: </label>
+            <input type="text" id="city" th:field="*{city}" th:value="${users.city}">
+        </div>
+        <div>
+            <label for="state">Edit State: </label>
+            <input type="text" id="state" th:field="*{state}" th:value="${users.state}">
+        </div>
+        <div>
+        <button class="btn btn-warning btn-block">Update</button>
         </div>
     </form>
 </div>
