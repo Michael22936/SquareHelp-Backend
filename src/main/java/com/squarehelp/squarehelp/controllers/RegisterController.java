@@ -50,7 +50,7 @@ public class RegisterController {
 
 //        Convert string dob to date date type.
 //        Date convertedDate = new SimpleDateFormat("yyyy/MM/dd/").parse(user.getDob());
-//        System.out.println("convertedDate = " + convertedDate);
+//        System.out.println("convertedDate = " + convertedDate);≈
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date ConvertedDate = sdf.parse("2013-09-18");
