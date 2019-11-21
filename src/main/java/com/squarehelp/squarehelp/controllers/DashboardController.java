@@ -29,10 +29,3 @@ public class DashboardController {
 //        model.addAttribute("moneySaved", moneySaved);
         return "dashboard";
     }
-
-
-
-
-
-
-}
