@@ -1,0 +1,12 @@
+.custom-card-style {
+    background: grey;
+    /*color: grey;*/
+}
+
+.custom-card-style2 {
+    background: darkslategray;
+}
+
+.wrapper {
+    margin: 0 auto;
+}
