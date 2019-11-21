@@ -22,18 +22,9 @@ public class SearchController {
 
 
 
+    public List<User> searchUsers(String query) {
 
-
-    public List<User> searchUser(String query) {
-
-
-        userDao.find
-//        return userDao.findByUsernameContaining(query);
-
-
+        return userDao.findByUsernameContaining(query);
     }
-
-
-
 }
 
