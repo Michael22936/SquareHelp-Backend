@@ -37,6 +37,7 @@ public class RegisterController {
 //        String hash = passwordEncoder.encode(user.getPassword());
 //        user.setPassword(hash);
 //        userDao.save(user);
+        System.out.println("user id = " + user.getId());
         System.out.println("username = " + user.getUsername());
         System.out.println("password = " + user.getPassword());
         System.out.println("user email = " + user.getEmail());
@@ -47,13 +48,16 @@ public class RegisterController {
         System.out.println("user Gender = " + user.getGender());
         System.out.println("user day_quit_smoking = " + smokerInfo.getDay_quit_smoking());
         System.out.println("user cost_of_cigs_saved = " + smokerInfo.getCost_of_cigs_saved());
-
         System.out.println("ConvertStringToDate(user.getDob()) = MIKE!@! " + ConvertStringToDate(user.getDob()));
+//        Pulls last user id and adds 1 to create user_id for smoking_into.
+        int newUserId =  ( (int)userDao.count() + 1);
+        System.out.println("newUserId = " + newUserId);
 
 //        Add new user to users table
         userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), user.getDob(), user.getPhoneNumber(), ConvertStringToDate(user.getDob()), user.getLastLogin(), user.getGender()));
-
 //        public User(String username, String password, String email, String state, String city, String dob, String phoneNumber, Date dateCreated, String lastLogin, String gender) {
+        smokerDao.save( new SmokerInfo(String.valueOf(newUserId),smokerInfo.getDay_quit_smoking(), smokerInfo.getCost_of_cigs_saved()) );
+//        public SmokerInfo(String day_quit_smoking, int cost_of_cigs_saved) {
 
         return "redirect:/login";
 
