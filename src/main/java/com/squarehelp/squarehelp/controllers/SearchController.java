@@ -1,0 +1,39 @@
+package com.squarehelp.squarehelp.controllers;
+
+
+import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
+import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+@Controller
+public class SearchController {
+
+    private final UserRepository userDao;
+    private final SmokerInfoRepository smokeDao;
+
+    public SearchController(UserRepository userDao, SmokerInfoRepository smokeDao) {
+        this.userDao = userDao;
+        this.smokeDao = smokeDao;
+    }
+
+
+
+
+
+    public List<User> searchUser(String query) {
+
+
+        userDao.find
+//        return userDao.findByUsernameContaining(query);
+
+
+    }
+
+
+
+}
+
