@@ -1,5 +1,6 @@
 package com.squarehelp.squarehelp.controllers;
 import com.squarehelp.squarehelp.models.SmokerInfo;
+import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,18 @@ public class DashboardController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/dashboard/{id}")
-    public String showDashboard(Model model, @PathVariable long id) {
-        SmokerInfo smokerInfo = smokeDao.getOne(id);
+    @GetMapping("/dashboard/{user_id}")
+    public String showDashboard(Model model, @PathVariable String user_id) {
+        String uid = user_id;
+
+        SmokerInfo s = smokeDao.getOne(uid);
+        User u = userDao.getOne(uid);
+
+        // Calculate money saved
         int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
-        model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("smoke", smokeDao.getOne(id));
+
+        model.addAttribute("users", u);
+        model.addAttribute("smoke", s);
         model.addAttribute("moneySaved", moneySaved);
         return "dashboard";
     }
