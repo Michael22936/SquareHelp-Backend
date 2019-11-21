@@ -9,7 +9,9 @@
 <body>
 <div class="wrapper">
   <h1>Dashboard</h1>
-  <p>Welcome <span th:text="${users.username}"></span> </p>
+  <h3>Welcome <span th:text="${users.username}"></span> </h3>
+  <h5>Day quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
+
 <!--  <h1 th:text="${user}"></h1>-->
 <!--  <h1 th:text="${users.city}"></h1>-->
 <!--  <h1 th:text="${users.state}"></h1>-->
@@ -17,8 +19,7 @@
 <!--  <div th:each="user : ${users.username}">-->
 <!--    <h1 th:text="${user}"></h1>-->
   <div class="card custom-card-style">
-    <p>Here is the current city:<span th:text="${users.city}"></span><span th:text="${users.state}"></span></p>
-
+    <p>Current city: <span th:text="${users.city}"></span>,<span th:text="${users.state}"></span></p>
   </div>
 
 <!--    <h1 th:text="${moneySaved}"></h1>-->
@@ -34,7 +35,6 @@
 
 <div class="card-group">
   <div class="card custom-card-style2">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><p>Points Earned: </p></h5>
       <p class="card-text"><span th:text="${smoke.points}"></span></p>
@@ -44,7 +44,6 @@
     </div>
   </div>
   <div class="card custom-card-style2">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><p>Total days without smoking: </p></h5>
       <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
@@ -54,7 +53,6 @@
     </div>
   </div>
   <div class="card custom-card-style2">
-    <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Cost of cigs saved: </h5>
       <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
