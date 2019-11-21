@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+
+
 @Controller
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
@@ -24,9 +27,16 @@ public class DashboardController {
         // Calculate money saved
 //        long moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
 
+
+        int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
+
+
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
-//        model.addAttribute("moneySaved", moneySaved);
+        model.addAttribute("moneySaved", moneySaved);
+//        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
+//        System.out.println("smokerInfo.getTotal_days_smoke_free() = " + smokerInfo.getTotal_days_smoke_free());
+//        System.out.println("moneySaved = " + moneySaved);
         return "dashboard";
     }
 }
