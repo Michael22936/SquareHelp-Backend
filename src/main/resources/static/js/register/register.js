@@ -11,4 +11,11 @@ document.querySelector('.test').style.backgroundColor = 'pink';
 alert("I'm active");
 
 
-    // $("#costOfCigs").keyup( );
+const costOfCigs = document.getElementbyById('costOfCigs');
+
+costOfCigs.addEventListener('onkeyup', (e) => {
+    costOfCigs.style.backgroundColor = 'red';
+    console.log("FIRE!!")
+});
+
+// $("#costOfCigs").keyup( );
