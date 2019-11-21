@@ -57,7 +57,6 @@ public class RegisterController {
 
         return "redirect:/login";
 
-
     }
 
     public Date ConvertStringToDate(String string) throws ParseException {
