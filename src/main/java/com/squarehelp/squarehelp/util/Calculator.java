@@ -24,14 +24,9 @@ public class Calculator {
     }
 
 
-//    public static int avgPointsCalculator(int points, int user_id) {
-//
-//        for (int user_count : user_id) {
-//            user_count++;
-//        }
-//
-//        return user_count * points;
-//    }
+    public static int avgPointsCalculator(int points, int totalUsers) {
+        return totalUsers * points;
+    }
 
 
 
