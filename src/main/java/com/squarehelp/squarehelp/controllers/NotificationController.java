@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.Notification;
+import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,23 @@ public class NotificationController {
         this.userDao = userDao;
     }
 
+    // Goto the page to see the actual notifications
     @GetMapping("/notification/{id}")
-    public String show(@PathVariable long id, Model model){
+    public String showNotifications(@PathVariable long id, Model model){
         model.addAttribute("notifications", userDao.getOne(id));
         return "notification";
     }
 
+    // Need post mapping to update boolean
+
+    // Show the number
+    @GetMapping("/notifications/{id}/check")
+    public int numOfNotifications(@PathVariable long id) {
+        Notification n = notiDao.getOne(id);
+
+        System.out.println("n = " + n);
+
+        return 1;
+    };
 
 }
