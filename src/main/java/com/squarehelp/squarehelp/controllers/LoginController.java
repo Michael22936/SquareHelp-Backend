@@ -21,15 +21,25 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String loginToSite(@RequestParam String username, @RequestParam String password) {
-        User u = userDao.findByUsername(username);
+    public String loginToSite(@RequestParam String username, @RequestParam String password) throws NullPointerException {
 
-        if (password.equalsIgnoreCase(u.getPassword())) {
-            System.out.println("Password verification is successful");
-            return "redirect:/dashboard/" + u.getId();
-        } else {
-            System.out.println("no go");
-            return "login";
+        User u = new User();
+
+        try {
+            u = userDao.findByUsername(username);
+
+            // If user is found, perform logic.
+            if (password.equalsIgnoreCase(u.getPassword())) {
+                System.out.println("Password verification is successful");
+                return "redirect:/dashboard/" + u.getId();
+            } else {
+                System.out.println("no go");
+                return "login";
+            }
+        } catch (NullPointerException e) {
+            // If user is not found, redirect to login page.
+            return "/login";
         }
+
     }
 }
