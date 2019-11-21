@@ -48,22 +48,22 @@ public class RegisterController {
         System.out.println("user day_quit_smoking = " + smokerInfo.getDay_quit_smoking());
         System.out.println("user cost_of_cigs_saved = " + smokerInfo.getCost_of_cigs_saved());
 
-//        Convert string dob to date date type.
-//        Date convertedDate = new SimpleDateFormat("yyyy/MM/dd/").parse(user.getDob());
-//        System.out.println("convertedDate = " + convertedDate);≈
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date ConvertedDate = sdf.parse("2013-09-18");
-
-        System.out.println("ConvertedDate = " + ConvertedDate);
+        System.out.println("ConvertStringToDate(user.getDob()) = MIKE!@! " + ConvertStringToDate(user.getDob()));
 
 //        Add new user to users table
-//        userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), ) );
+        userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), user.getDob(), user.getPhoneNumber(), ConvertStringToDate(user.getDob()), user.getLastLogin(), user.getGender()));
 
 //        public User(String username, String password, String email, String state, String city, String dob, String phoneNumber, Date dateCreated, String lastLogin, String gender) {
 
         return "redirect:/login";
 
+
+    }
+
+    public Date ConvertStringToDate(String string) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date ConvertedDate = sdf.parse(string);
+        return ConvertedDate;
 
     }
 
