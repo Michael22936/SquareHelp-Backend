@@ -7,9 +7,14 @@
                 <div class="nav-wrapper">
                     <a href="/" class="navbar-brand">SquareHelp</a>
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{'/login'}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{'/register'}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}" >Profile</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><img style="width:50px;" src="https://bit.ly/2OwkfEY" alt="profile image"></li>
+                        <li class="nav-item"> <a class="nav-link" th:href="@{'/profile/' + ${users.id}}"> <h3>Welcome </h3> <span th:text="${users.username}"></span> </a> </li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}">Points <span th:text="${smoke.points}"></span> </a></li>
                     </ul>
                 </div>
             </nav>
