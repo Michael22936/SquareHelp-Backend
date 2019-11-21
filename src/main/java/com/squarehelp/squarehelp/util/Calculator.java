@@ -25,7 +25,7 @@ public class Calculator {
 
 
     public static int avgPointsCalculator(int points, int totalUsers) {
-        return totalUsers * points;
+        return totalUsers / points;
     }
 
 

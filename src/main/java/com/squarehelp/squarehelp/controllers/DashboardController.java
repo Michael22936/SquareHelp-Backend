@@ -39,9 +39,9 @@ public class DashboardController {
 //        System.out.println("smokerInfo.getTotal_days_smoke_free() = " + smokerInfo.getTotal_days_smoke_free());
 //        System.out.println("moneySaved = " + moneySaved);
         model.addAttribute("communityCount", totalCommunityUsers);
-        System.out.println("totalUsers = " + totalUsers);
-        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
-        System.out.println("totalCommunityUsers = " + totalCommunityUsers);
+//        System.out.println("totalUsers = " + totalUsers);
+//        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
+//        System.out.println("totalCommunityUsers = " + totalCommunityUsers);
         return "dashboard";
     }
 }
