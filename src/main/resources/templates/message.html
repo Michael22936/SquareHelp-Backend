@@ -8,11 +8,16 @@
 <body>
 <div th:replace="partials/navbar :: main-navbar"></div>
 <h1>Who do you want to send the message to: </h1>
-    <form th:action="'/send/' + ${users.username} + '/message'" method="post">
+    <form th:action="'/send/' + ${users.id} + '/message'" method="post" th:object="${users}">
 
-        <input type="text">
-
+        <input type="text" th:field="*{username}">
     </form>
+<h1>What message do you want to send: </h1>
+<form th:action="'/send/' + ${users.id} + '/message'" method="post" th:object="${users}">
+        <textarea th:value="${messages.message}" name="message" id="message" cols="30" rows="10"></textarea>
+    <br>
+    <button type="submit">Send Message</button>
+</form>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
 </html>

@@ -23,12 +23,13 @@ public class MessageController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/send/message")
-    public String getSendMessageView(Model model){
+    @GetMapping("/send/{id}/message")
+    public String getSendMessageView(Model model, @PathVariable long id){
 
-        model.addAttribute("users", userDao);
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("messages", messageDao.getOne(id));
 
-        return "/message";
+        return "message";
     }
 
     @PostMapping("/send/{id}/message")
