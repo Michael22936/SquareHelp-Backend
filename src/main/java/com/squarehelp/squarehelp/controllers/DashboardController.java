@@ -18,40 +18,14 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard/{user_id}")
-    public String showDashboard(Model model, @PathVariable String user_id) {
-        Long uid = Long.parseLong(user_id);
-
-        SmokerInfo s = smokeDao.getOne(uid);
-        User u = userDao.getOne(uid);
+    public String showDashboard(Model model, @PathVariable long user_id) {
+       SmokerInfo smokerInfo = smokeDao.getOne(user_id);
 
         // Calculate money saved
-        int moneySaved = s.getCost_of_cigs_saved() * s.getTotal_days_smoke_free();
+//        long moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
 
-        model.addAttribute("users", u);
-        model.addAttribute("smoke", s);
-        model.addAttribute("moneySaved", moneySaved);
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokerInfo);
+//        model.addAttribute("moneySaved", moneySaved);
         return "dashboard";
     }
-
-
-
-
-
-
-}
-//    private String convertPersonalStatsJson(SmokerInfo s, User u, String total) {
-//        // Create output collection
-//        Map<String, String> temp = new HashMap<>();
-//
-//        // Add values to temp object
-//        temp.put("costOfCigsSaved", String.valueOf(s.getCost_of_cigs_saved()));
-//        temp.put("totalDaysSmokeFree", String.valueOf(s.getTotal_days_smoke_free()));
-//        temp.put("points", String.valueOf(s.getPoints()));
-//        temp.put("totalSaved", total);
-//
-//        // Create new Gson object and add contents and convert to Json
-//        Gson g = new Gson();
-//        String out = g.toJson(temp);
-//
-//        return out;
-//    }

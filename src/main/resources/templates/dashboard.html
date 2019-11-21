@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="wrapper">
+
   <h1>Dashboard</h1>
   <h3>Welcome <span th:text="${users.username}"></span> </h3>
   <h5>Day quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
@@ -36,7 +37,7 @@
 <div class="card-group">
   <div class="card custom-card-style2">
     <div class="card-body">
-      <h5 class="card-title"><p>Points Earned: </p></h5>
+      <h5 class="card-title"><p>Average Points Earned: </p></h5>
       <p class="card-text"><span th:text="${smoke.points}"></span></p>
     </div>
     <div class="card-footer">
@@ -45,7 +46,7 @@
   </div>
   <div class="card custom-card-style2">
     <div class="card-body">
-      <h5 class="card-title"><p>Total days without smoking: </p></h5>
+      <h5 class="card-title"><p>Average of Total Days - Smoke Free </p></h5>
       <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
     </div>
     <div class="card-footer">
@@ -54,7 +55,7 @@
   </div>
   <div class="card custom-card-style2">
     <div class="card-body">
-      <h5 class="card-title">Cost of cigs saved: </h5>
+      <h5 class="card-title">Average Cigarette Cost saved: </h5>
       <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
     </div>
     <div class="card-footer">
