@@ -1,6 +1,7 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.SmokerInfo;
+import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,25 @@ public class ProfileController {
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("moneySaved",moneySaved);
         return "profile";
+    }
+
+    @GetMapping("/profile/{id}/edit")
+    public String edit(@PathVariable long id, Model viewModel) {
+        viewModel.addAttribute("users", userDao.getOne(id));
+        return "editprofile";
+    }
+
+    @PostMapping("/profile/{id}/edit")
+    public String updateProfile(@PathVariable long id,
+                                @RequestParam String username,
+                                @RequestParam String city,
+                                @RequestParam String state){
+        User newUserProfile = userDao.getOne(id);
+        newUserProfile.setUsername(username);
+        newUserProfile.setCity(city);
+        newUserProfile.setState(state);
+        userDao.save(newUserProfile);
+        return "redirect: /profile/" + id;
     }
 
 }
