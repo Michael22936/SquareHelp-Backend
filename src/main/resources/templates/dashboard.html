@@ -3,20 +3,22 @@
   <th:block th:replace="partials/head :: main-header"/>
   <title>SquareHelp - dashboard.html</title>
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-
+  
   <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
 <div class="wrapper">
-<!-- ========== Displays entire user community ========== -->
-  <h1>Community Dashboard</h1>
 
-<!--  <h1 th:text="${user}"></h1>-->
-<!--  <h1 th:text="${users.city}"></h1>-->
-<!--  <h1 th:text="${users.state}"></h1>-->
-
-<!--  <div th:each="user : ${users.username}">-->
-<!--    <h1 th:text="${user}"></h1>-->
+  <h1>Dashboard</h1>
+  <h3>Welcome <span th:text="${users.username}"></span> </h3>
+  <h5>Day quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
+  
+  <!--  <h1 th:text="${user}"></h1>-->
+  <!--  <h1 th:text="${users.city}"></h1>-->
+  <!--  <h1 th:text="${users.state}"></h1>-->
+  
+  <!--  <div th:each="user : ${users.username}">-->
+  <!--    <h1 th:text="${user}"></h1>-->
   <div class="card custom-card-style">
     <p>Current city: <span th:text="${users.city}"></span>,<span th:text="${users.state}"></span></p>
   </div>
@@ -28,6 +30,7 @@
 <!--  <h1 th:text="${smoke.points}"></h1>-->
 <!--  <h1 th:text="${smoke.total_days_smoke_free}"></h1>-->
 <!--  <span th:text="${smoke.points}"></span>-->
+
 
 
 <div class="card-group">
