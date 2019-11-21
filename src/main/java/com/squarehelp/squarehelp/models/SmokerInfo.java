@@ -50,6 +50,12 @@ public class SmokerInfo {
         this.cost_of_cigs_saved = cost_of_cigs_saved;
     }
 
+    public SmokerInfo(String user_id,String day_quit_smoking, int cost_of_cigs_saved) {
+        this.user_id = user_id;
+        this.day_quit_smoking = day_quit_smoking;
+        this.cost_of_cigs_saved = cost_of_cigs_saved;
+    }
+
     public long getId() {
         return id;
     }
