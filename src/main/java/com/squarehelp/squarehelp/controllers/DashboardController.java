@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
@@ -29,4 +32,28 @@ public class DashboardController {
 //        model.addAttribute("moneySaved", moneySaved);
         return "dashboard";
     }
+
+    @PostMapping("/dashboard/{user_id}")
+    public String searchUser(Model model, @RequestParam String searchQuery, @PathVariable long user_id) {
+        List<User> searchResults;
+        searchResults = userDao.findByUsernameContaining(searchQuery);
+
+//        ====================== // For TESTING \\ ============================
+        int counter = 1;
+        for (User user: searchResults) {
+            System.out.println("user " + counter + " = " + user.getUsername());
+            counter++;
+        }
+
+//        ======================================================================
+
+        model.addAttribute("ListOfusers", searchResults ) ;
+
+
+
+        return "redirect:/dashboard/" + user_id;
+
+    }
+
+
 }

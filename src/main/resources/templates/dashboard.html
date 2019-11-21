@@ -66,6 +66,17 @@
 
 
 
+<div class="alert alert-primary" th:if="${ListOfusers != null}">
+  <div class="card" th:each="user : ${ListOfusers}">
+      <div class="card">
+        <h3 th:text="${user.username}"></h3>
+        <br>
+        <p th:text="${user.email}"></p>
+      </div>
+  </div>
+</div>
+
+
 <script src="/js/dashboard/dashboard.js"></script>
 <!--<%- include('partials/footer.html') -%>-->
 
