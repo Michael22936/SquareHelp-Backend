@@ -34,36 +34,35 @@
 </div>
 
 
-<div class="card-group">
-  <div class="card custom-card-style2">
-    <div class="card-body">
-      <h5 class="card-title"><p>Average Points Earned: </p></h5>
-      <p class="card-text"><span th:text="${smoke.points}"></span></p>
+  <div class="card-group">
+    <div class="card custom-card-style2">
+      <div class="card-body">
+        <h5 class="card-title"><p>Average Points Earned: </p></h5>
+        <p class="card-text"><span th:text="${smoke.points}"></span></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated (x) mins ago</small>
+      </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated (x) mins ago</small>
+    <div class="card custom-card-style2">
+      <div class="card-body">
+        <h5 class="card-title"><p>Average of Total Days - Smoke Free </p></h5>
+        <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated (x) mins ago</small>
+      </div>
     </div>
-  </div>
-  <div class="card custom-card-style2">
-    <div class="card-body">
-      <h5 class="card-title"><p>Average of Total Days - Smoke Free </p></h5>
-      <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
+    <div class="card custom-card-style2">
+      <div class="card-body">
+        <h5 class="card-title">Average Cigarette Cost saved: </h5>
+        <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated (x) mins ago</small>
+      </div>
     </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated (x) mins ago</small>
-    </div>
-  </div>
-  <div class="card custom-card-style2">
-    <div class="card-body">
-      <h5 class="card-title">Average Cigarette Cost saved: </h5>
-      <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated (x) mins ago</small>
-    </div>
-  </div>
 </div>
-
 
 
 <script src="/js/dashboard/dashboard.js"></script>
