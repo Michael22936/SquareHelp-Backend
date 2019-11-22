@@ -25,6 +25,12 @@ public class NotificationController {
         this.userDao = userDao;
     }
 
+    // Get number of unread notifications
+    public int getUnreadNotifications(Long id) {
+        List<Notification> n = notiDao.findNotificationsUnread(id);
+        return n.size();
+    }
+
     // Goto the page to see the actual notifications
     @GetMapping("/notifications/{id}")
     public String showNotifications(@PathVariable long id, Model model){
@@ -33,21 +39,16 @@ public class NotificationController {
 
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
 
-        String uidStr = String.valueOf(u.getId());
 
-        System.out.println("uidStr = " + uidStr);
+        // Mark all notifications read and save them.
+        for (Notification noti : n) {
+            noti.setIs_viewed(true);
+            notiDao.save(noti);
+        }
 
-        model.addAttribute("uid", uidStr);
+        model.addAttribute("uid", String.valueOf(u.getId()));
         model.addAttribute("notifications", n);
         return "notification";
     }
-
-    // Need post mapping to update boolean
-//    @PostMapping("/notifications/{id}")
-//    public String updateNotifications(@PathVariable long id, Model model){
-//        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-//        model.addAttribute("notifications", n);
-//        notiDao.save(new )
-//    }
 
 }
