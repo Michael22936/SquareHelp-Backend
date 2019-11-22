@@ -4,17 +4,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
-    height: 15rem;
-}
-
-.wrapper img {
-    display: block;
-    margin: 0 auto;
+    height: 20rem;
 }
 
 .contentBg {
-    background: #212121;
     padding: 1rem 3rem 1rem 3rem;
+    background: #212121;
+}
+
+.cta-btn {
+    margin-top: 2.5rem;
 }
 
 .card_view {

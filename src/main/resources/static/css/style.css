@@ -31,7 +31,7 @@ main, html, body {
 }
 
 body {
-  background: url('../img/index-bg.png');
+  background: url("/img/index-bg.png");
   background: #000;
   color: #fff;
 }
@@ -58,4 +58,32 @@ input {
 
 #csrf {
   display: none;
+}
+
+/* footer */
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem 3rem 1rem 3rem;
+  background: #212121;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+footer ul {
+  padding: 0;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+footer ul li {
+  padding: 0;
+  list-style-type: none;
+}
+
+.footerAlignment {
+
 }
