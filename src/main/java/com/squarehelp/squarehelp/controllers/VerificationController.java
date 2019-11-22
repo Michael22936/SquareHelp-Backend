@@ -27,7 +27,7 @@ public class VerificationController {
 
 
 
-        model.addAttribute("verify", veriDao.getOne(user_id));
+        model.addAttribute("verifications", veriDao.getOne(user_id));
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
 
@@ -40,7 +40,7 @@ public class VerificationController {
 
 
 
-        model.addAttribute("verify", veriDao.getOne(user_id));
+        model.addAttribute("verifications", veriDao.getOne(user_id));
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
 
@@ -49,17 +49,17 @@ public class VerificationController {
 
 
 
-    /// ======= needs to be fixed ======= ///
-//    @PostMapping("verification/{user_id}")
-//    public String postVerifyMessageView(Model model, @PathVariable long user_id){
-//        public String create(
-//                @RequestParam(name = "dropdown") String dropdown;
-//                @RequestParam(name = "description") String description;
-//                )
-//        Verification veri = new Verification();
-//        veri.setTitle(dropdown);
-//        veri.setDescription(description);
-//    }
+    @PostMapping("verification/{user_id}")
+    public String postToVerifyList( @RequestParam(name = "date_request") String drequest,
+                                             @RequestParam(name = "username") String user, Model model){
 
+        int date = Integer.parseInt(drequest);
+
+        Verification veri = new Verification();
+        model.addAttribute("drequest", "Test");
+
+
+        return "verification";
+    }
 
 }
