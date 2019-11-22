@@ -5,6 +5,7 @@
     <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
 
     <link rel="stylesheet" th:href="@{/css/verification.css}" />
+
 </head>
 <body>
 <div class="wrapper">
@@ -13,9 +14,48 @@
     <button><a class="nav-link" th:href="@{'/verification/form/' + ${user_id}}">Create Verification Form</a></button>
 
 
+<!-- ========= Verifications list ========= -->
+
+<!--//   Consists of pending and approved verification requests separated into two boxes.-->
+<!--//      Separated into the two respective boxes where pending will disappear when null.-->
 
 
+<!--Pending-->
+    <section id="pending" class="row">
+        <table class="table table-hover table-dark text-center table-condensed">
+            <thead>
+            <tr>
+                <th scope="col">Verifications Pending</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="verf : ${verifications}">
+                <tr>
+                    <td><p th:text="${verifications.getId()}"></p></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </section>
+</div>
 
+<!--Approved-->
+    <section class="row">
+        <table class="table table-hover table-dark text-center table-condensed">
+            <thead>
+            <tr>
+                <th scope="col">Approved Verifications</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="verf : ${verifications}">
+                <tr>
+                    <td><p th:text="${verifications.getId()}"></p></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </section>
 
 
 </div>

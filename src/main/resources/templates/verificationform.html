@@ -11,40 +11,24 @@
 
     <h1>Verification</h1>
 
-    <form action="/verification/" method="post">
+
+
+
+    <form action="/verification" method="post">
+        <input id="csrf" value="something">
         Request:
         <br />
-        <select name="dropdown" id="s">
-            <option selected="selected" value="one">Did I smoke today?</option>
-            <option value="two">Did I smoke last week</option>
-            <option value="three">Did I smoke on a specific day?</option>
-        </select>
+        <input type="date" name="date_request">
         <br />
-        Description:
+        Please enter username to send to:
         <br />
-        <input name="description" />
+        <input type="text" name="username">
+        <br />
         <br />
         <input type="submit" value="Submit Verification"/>
     </form>
 
 
-
-
-
-    <!--   ============ mobile stuff for this weekend ============-->
-    <br />
-    <br />
-    <h1>Mobile Request: </h1>
-    <form action="" method="get">
-        <input type="number" name="to" />
-        <input type="text" name="message" />
-
-        <!--        <input type="hidden" name="app-id" value="1111111" />-->
-        <!--        <input type="hidden" name="password" value="1111111" />-->
-        <!--        <input type="hidden" name="from" value="TestSender" />-->
-
-        <input type="submit" value="Submit" />
-    </form>
 
 </div>
 
