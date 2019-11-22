@@ -30,6 +30,14 @@ public class MessageController {
         return "message";
     }
 
+    @GetMapping("/search")
+    @ResponseBody
+    public List<User> sendMatchingUser(@RequestParam String username){
+        System.out.println(userDao.findByUsernameContaining(username));
+        return userDao.findByUsernameContaining(username);
+    }
+
+
     @PostMapping("/send/{id}/message")
     public String sendAMessageToAnotherUser(@PathVariable long id,
                                             @RequestParam String message,
@@ -43,27 +51,6 @@ public class MessageController {
         return "redirect:/profile/" + id;
     }
 
-//    ================= Matt built :)
-    @PostMapping("/search/{id}/message")
-    public String FindUser(@PathVariable long id,
-                           @ModelAttribute User users,
-                           @RequestParam String recipientUser,
-                           Model model){
-        //        ============================= Search +++++++++
-        List<User> searchResults;
-        searchResults = userDao.findByUsernameContaining(recipientUser);
 
-        //        ====================== // For TESTING \\ ============================
-        int counter = 1;
-        for (User user: searchResults) {
-            System.out.println("user " + counter + " = " + user.getUsername());
-            counter++;
-        }
-
-//        ======================================================================
-
-        model.addAttribute("ListOfUsers", searchResults);
-        return "redirect:/send/" + id + "/message";
-    }
 
 }
