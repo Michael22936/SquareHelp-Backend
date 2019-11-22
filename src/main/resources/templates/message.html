@@ -11,9 +11,9 @@
 
 
 <h1>Who do you want to send the message to: </h1>
-        <input type="text"  name="username" id="search">
+        <input type="text" placeholder="Enter Username..."  name="username" id="search">
 <ul class="list-group" id="result"></ul>
-    <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>
+<!--    <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>-->
 <form th:action="'/send/' + ${messages.author_user_id} + '/message'" method="post" th:object="${messages}">
 
 
@@ -26,12 +26,6 @@
     <button type="submit">Send Message</button>
 
 </form>
-
-<div th:each="user, iterStat : ${ListOfUsers}">
-    <p scope="row" th:text="${iterStat.count}"></p>
-    <p th:text="${user.username}"></p>
-    <p th:text="${user.email}"></p>
-</div>
 
 <th:block th:replace="partials/footer :: main-footer"/>
 <script th:src="@{/js/message/messages.js}"></script>

@@ -1,26 +1,43 @@
 
 $('#search').keyup(function () {
 let userSearch = $('#search').val();
-    let expression = new RegExp(userSearch, 'i');
     $('#result').html('');
-fetch('/search?username=' + userSearch)
-.then(response => response.json())
 
-.then(users => users.map((user) => {
-    console.log(user.username);
-    $('#result').append('<li class="list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username +'</p></li>')
-}))
+    // If search input is not empty
+if (userSearch !== "" ){
+
+    fetch('/search?username=' + userSearch)
+        .then(response => response.json())
+
+        .then(users => users.map((user) => {
+            if (userSearch === ""){
+                $('#result').hide();
+
+            }else {
+                let url = '/send/' + user.id + '/message';
+                console.log(url);
+                $('#result').append('<a href=' + url + '  ><li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a>');
+                console.log(user.username);
+            }
+        }))
+
+}
 
 });// end of keyup eventlistner
 
 
-$('#searchBtn').click(function () {
-    let userSearch = $('#search').val();
-    fetch('/search?username=' + userSearch)
-        .then(response => response.json())
-        .then(body => console.log(body));
-});
-
-// .then(body => $('#result').html(''),
-// let expression = new RegExp(userSearch, 'i');
-// $('#result').append('<li class="list-group-item">body.</li>'));
+// $('#searchBtn').click(function () {
+//     let userSearch = $('#search').val();
+//     if (userSearch !== ""){
+//         fetch('/search?username=' + userSearch)
+//             .then(response => response.json())
+//             .then(users => users.map((user) => {
+//                 if (userSearch === ""){
+//                     $('#result').hide();
+//                 } else {
+//                     $('#result').html('<a href="/send/${user.id}/message"><li class="list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></th></a>')
+//
+//                 }
+//             }))
+//     }
+// });
