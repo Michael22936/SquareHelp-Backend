@@ -9,6 +9,58 @@
 <body>
 <div class="wrapper">
 
+      <!--    ============= Modal Start======================-->
+<!--  // Checks if users list is NULL-->
+  <th:block th:if="${ListOfusers != null}">
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Pick A User To View Profile</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <table class="table table-hover modal-body table-condensed">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+              </tr>
+              </thead>
+              <tbody th:each="user, iterStat : ${ListOfusers}">
+
+              <tr class="clickable userRow" th:onclick="|window.location.href='/profile/${user.id}'|">
+<!--              <button th:href="@{'/profile/' + ${user.id} }" class="">-->
+
+                <th scope="row" th:text="${iterStat.count}"></th>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+<!--                </button>-->
+              </tr>
+
+              </tbody>
+            </table>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!--            <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--    // Modal End-->
+    <script>
+      setTimeout(function() {
+        $('#exampleModal').modal();
+        console.log("Modal fired!")
+      }, 500);
+    </script>
+  </th:block>
+
+
+
   <h1>Dashboard</h1>
   <h3>Welcome <span th:text="${users.username}"></span> </h3>
   <h5>Day quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
@@ -64,9 +116,12 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
+=======
+<th:block th:replace="partials/footer :: main-footer"/>
+>>>>>>> 3694552740baeda9576c7b196592eae43cf905bb
 <script src="/js/dashboard/dashboard.js"></script>
-<!--<%- include('partials/footer.html') -%>-->
 
 </body>
 </html>

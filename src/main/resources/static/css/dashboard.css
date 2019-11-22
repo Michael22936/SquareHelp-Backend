@@ -10,3 +10,7 @@
 .wrapper {
     margin: 0 auto;
 }
+
+.userRow{
+    cursor: pointer;
+}

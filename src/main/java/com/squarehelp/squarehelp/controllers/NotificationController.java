@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.UserDataHandler;
 
 import java.util.List;
 
@@ -24,20 +25,63 @@ public class NotificationController {
         this.userDao = userDao;
     }
 
+    // Get number of unread notifications
+    public int getUnreadNotifications(Long id) {
+        List<Notification> n = notiDao.findNotificationsUnread(id);
+        return n.size();
+    }
+
+    // Creates a notification.
+    public void createNotification(String username, Long uid, String type) {
+        // Verify all fields are there before running
+        if (username == null || uid == null || type == null) {
+            return;
+        } else if (username == null && uid == null && type == null) {
+            return;
+        } else {
+            Notification n = new Notification();
+
+            User recipient = userDao.findByUsername(username);
+
+            switch(type) {
+                case ("msg"):
+                    n.setRecipient_user_id(String.valueOf(recipient.getId()));
+                    n.setOriginator_user_id(String.valueOf(uid));
+                    n.setNotification("You have a new message from " + username);
+                    break;
+                case ("veri"):
+                    n.setRecipient_user_id(String.valueOf(recipient.getId()));
+                    n.setOriginator_user_id(String.valueOf(uid));
+                    n.setNotification("You have a smoke verification request from" + username);
+                    break;
+                default:
+                    return;
+            }
+
+            n.setIs_viewed(false);
+
+            notiDao.save(n);
+        }
+    }
+
     // Goto the page to see the actual notifications
     @GetMapping("/notifications/{id}")
     public String showNotifications(@PathVariable long id, Model model){
+        //Get current user
+        User u = userDao.findUserById(id);
+
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+
+
+        // Mark all notifications read and save them.
+        for (Notification noti : n) {
+            noti.setIs_viewed(true);
+            notiDao.save(noti);
+        }
+
+        model.addAttribute("uid", String.valueOf(u.getId()));
         model.addAttribute("notifications", n);
         return "notification";
     }
-
-    // Need post mapping to update boolean
-//    @PostMapping("/notifications/{id}")
-//    public String updateNotifications(@PathVariable long id, Model model){
-//        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-//        model.addAttribute("notifications", n);
-//        notiDao.save(new )
-//    }
 
 }

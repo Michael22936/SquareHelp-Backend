@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
 
@@ -43,5 +46,27 @@ public class DashboardController {
 //        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
 //        System.out.println("totalCommunityUsers = " + totalCommunityUsers);
         return "dashboard";
+    }
+
+    @PostMapping("/dashboard/{user_id}")
+    public String searchUser(Model model, @RequestParam String searchQuery, @PathVariable long user_id) {
+        List<User> searchResults;
+        searchResults = userDao.findByUsernameContaining(searchQuery);
+
+//        ====================== // For TESTING \\ ============================
+        int counter = 1;
+        for (User user: searchResults) {
+            System.out.println("user " + counter + " = " + user.getUsername());
+            counter++;
+        }
+
+//        ======================================================================
+//        Sending list of users to front-end
+        model.addAttribute("ListOfusers", searchResults ) ;
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokeDao.getOne(user_id));
+
+        return "dashboard";
+
     }
 }
