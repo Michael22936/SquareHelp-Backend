@@ -45,14 +45,12 @@ public class RegisterController {
         smokerDao.save( new SmokerInfo(String.valueOf(newUserId),smokerInfo.getDay_quit_smoking(), smokerInfo.getCost_of_cigs_saved()) );
 
         return "login";
-
     }
 
     public Date ConvertStringToDate(String string) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date ConvertedDate = sdf.parse(string);
         return ConvertedDate;
-
     }
 
 }
