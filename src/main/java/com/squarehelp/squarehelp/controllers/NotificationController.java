@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -26,25 +27,17 @@ public class NotificationController {
     // Goto the page to see the actual notifications
     @GetMapping("/notifications/{id}")
     public String showNotifications(@PathVariable long id, Model model){
-
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-
-        System.out.println("n.toString() = " + n.toString());
-
-//        model.addAttribute("notifications", notiDao.findNotificationsByRecipient_user_idIs(id));
+        model.addAttribute("notifications", n);
         return "notification";
     }
 
     // Need post mapping to update boolean
-
-    // Show the number
-    @GetMapping("/notifications/{id}/check")
-    public Integer numOfNotifications(@PathVariable long id) {
-        Notification n = notiDao.getOne(id);
-
-        System.out.println("n = " + n.toString());
-
-        return 1;
-    };
+//    @PostMapping("/notifications/{id}")
+//    public String updateNotifications(@PathVariable long id, Model model){
+//        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+//        model.addAttribute("notifications", n);
+//        notiDao.save(new )
+//    }
 
 }
