@@ -13,11 +13,13 @@ public class Verification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @OneToMany(mappedBy = "user_id")
     @Column(columnDefinition = "INT")
-    private int originator_user_id;
+    private long originator_user_id;
 
+    @OneToMany(mappedBy = "user_id")
     @Column(columnDefinition = "INT")
-    private int approver_user_id;
+    private long approver_user_id;
 
     @Column(columnDefinition = "INT")
     private int day_created;
@@ -88,4 +90,5 @@ public class Verification {
     public void setIs_approved(boolean is_approved) {
         this.is_approved = is_approved;
     }
+
 }
