@@ -11,12 +11,14 @@
                         <li class="nav-item"><a class="nav-link" th:href="@{'/register'}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}" >Profile</a></li>
                     </ul>
+<!--                    ============= // Search Bar \\ ===========-->
                     <div class="input-group mb-3">
                         <form th:href="@{'/dashboard/' + ${users.id}}" method="post">
                             <input type="text" class="form-control" name="searchQuery" placeholder="Search Username..."
                                   aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal" type="submit">Search</button>
+<!--                                ==========-->
                             </div>
                         </form>
                     </div>
@@ -26,6 +28,5 @@
                         <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}">Points <span th:text="${smoke.points}"></span> </a></li>
                     </ul>
                 </div>
-            </nav>
 </th:block>
 

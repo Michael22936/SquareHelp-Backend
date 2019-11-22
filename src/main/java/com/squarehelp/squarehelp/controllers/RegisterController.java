@@ -44,7 +44,7 @@ public class RegisterController {
         userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), user.getDob(), user.getPhoneNumber(), ConvertStringToDate(user.getDob()), user.getLastLogin(), user.getGender()));
         smokerDao.save( new SmokerInfo(String.valueOf(newUserId),smokerInfo.getDay_quit_smoking(), smokerInfo.getCost_of_cigs_saved()) );
 
-        return "redirect:/login";
+        return "login";
 
     }
 

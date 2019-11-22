@@ -46,12 +46,13 @@ public class DashboardController {
         }
 
 //        ======================================================================
-
+//        Sending list of users to front-end
         model.addAttribute("ListOfusers", searchResults ) ;
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokeDao.getOne(user_id));
 
 
-
-        return "redirect:/dashboard/" + user_id;
+        return "dashboard";
 
     }
 
