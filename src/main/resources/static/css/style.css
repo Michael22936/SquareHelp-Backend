@@ -36,6 +36,10 @@ body {
   color: #fff;
 }
 
+h3 {
+  margin-bottom: 1.5rem;
+}
+
 input {
   color: #000;
 }
@@ -43,8 +47,8 @@ input {
 /* Page Content */
 
 .wrapper {
-  width: 90%;
   margin: auto;
+  background: #5a5a5a;
 }
 
 .nav-wrapper {

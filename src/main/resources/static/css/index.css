@@ -1,38 +1,20 @@
+/* Styling is specific to index.html */
+.jumbotron {
+    background: url("/img/index/jumbotron-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 15rem;
+}
 
 .wrapper img {
     display: block;
     margin: 0 auto;
 }
 
-.what_is {
-    display: block;
-    font-size: 1.3em;
-}
-
-.how_it_helps {
-    display: block;
-    margin: 0 auto;
-}
-.fold_content {
-    border: 2px solid grey;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.fold_content p {
-    border: 4px solid grey;
-    border-radius: 65% 25%;
-    padding: 15%;
-    font-size: 4em;
-    /*height: 25%;*/
-    /*width: 25%;*/
-}
-
-
-.about {
-
-
+.contentBg {
+    background: #212121;
+    padding: 1rem 3rem 1rem 3rem;
 }
 
 .card_view {
@@ -53,9 +35,12 @@
     justify-content: space-around;
 }
 
-.card img {
-    border-radius: 25%;
+.card-img {
+    border-radius: 50%;
     height: 75%;
     width: 75%;
+}
 
+.whoIs-links {
+    margin-bottom: 1rem;
 }
