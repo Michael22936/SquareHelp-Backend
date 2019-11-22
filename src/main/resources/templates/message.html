@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <title>Message</title>
     <th:block th:replace="partials/head :: main-header"/>
+    <th:block th:replace="partials/navbar :: main-navbar"/>
+    <link rel="stylesheet" th:href="@{/css/messages.css}" />
 </head>
 <body>
-<div th:replace="partials/navbar :: main-navbar"></div>
+
+
 <h1>Who do you want to send the message to: </h1>
-    <form th:action="'/send/' + ${users.username} + '/message'" method="post">
+        <input type="text" placeholder="Enter Username..."  name="username" id="search">
+<ul class="list-group" id="result"></ul>
+<!--    <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>-->
+<form th:action="'/send/' + ${messages.author_user_id} + '/message'" method="post" th:object="${messages}">
 
-        <input type="text">
 
-    </form>
+<h1>What message do you want to send: </h1>
+
+        <textarea th:field="*{message}" name="message" id="message" cols="30" rows="10"></textarea>
+
+    <br>
+
+    <button type="submit">Send Message</button>
+
+</form>
+
 <th:block th:replace="partials/footer :: main-footer"/>
+<script th:src="@{/js/message/messages.js}"></script>
 </body>
 </html>
