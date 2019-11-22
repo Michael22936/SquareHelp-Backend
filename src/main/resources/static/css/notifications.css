@@ -1,0 +1,22 @@
+/* Styling is specific to notifications.html */
+
+table {
+    cursor: pointer;
+}
+
+.td-width-mod {
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#subTableLinks {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+#subTableLinks li {
+    list-style-type: none;
+    margin-right: 1rem;
+}
