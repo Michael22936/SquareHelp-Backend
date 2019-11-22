@@ -36,7 +36,6 @@ public class VerificationController {
 
     @GetMapping("/verification/form/{user_id}")
     public String getVerifyFormView(Model model, @PathVariable long user_id){
-
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
 
 
