@@ -13,15 +13,15 @@ public class Messages {
     private long id;
 
     @Column(columnDefinition = "BIGINT(20)")
-    private String author_user_id;
+    private int author_user_id;
 
     @Column(columnDefinition = "BIGINT(20)")
-    private String recipient_user_id;
+    private int recipient_user_id;
 
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    public Messages(String author_user_id, String recipient_user_id, String message) {
+    public Messages(int author_user_id, int recipient_user_id, String message) {
         this.author_user_id = author_user_id;
         this.recipient_user_id = recipient_user_id;
         this.message = message;
@@ -38,19 +38,19 @@ public class Messages {
         this.id = id;
     }
 
-    public String getAuthor_user_id() {
+    public int getAuthor_user_id() {
         return author_user_id;
     }
 
-    public void setAuthor_user_id(String author_user_id) {
+    public void setAuthor_user_id(int author_user_id) {
         this.author_user_id = author_user_id;
     }
 
-    public String getRecipient_user_id() {
+    public int getRecipient_user_id() {
         return recipient_user_id;
     }
 
-    public void setRecipient_user_id(String recipient_user_id) {
+    public void setRecipient_user_id(int recipient_user_id) {
         this.recipient_user_id = recipient_user_id;
     }
 
