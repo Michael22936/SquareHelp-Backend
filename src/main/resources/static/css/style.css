@@ -60,6 +60,11 @@ input {
   display: none;
 }
 
+.contentBg {
+  padding: 1rem 3rem 1rem 3rem;
+  background: #212121;
+}
+
 /* footer */
 
 footer {
@@ -82,8 +87,4 @@ footer ul {
 footer ul li {
   padding: 0;
   list-style-type: none;
-}
-
-.footerAlignment {
-
 }
