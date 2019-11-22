@@ -18,11 +18,19 @@
 <!--    </div>-->
 
 
+
+
     <form action="/verification" method="post">
         Request:
-        <input name="title"  />
+        <br />
+        <select name="example" id="s">
+            <option selected="selected" value="one">Did I smoke today?</option>
+            <option value="two">Did I smoke last week</option>
+            <option value="three">Did I smoke on a specific day?</option>
+        </select>
         <br />
         Description:
+        <br />
         <input name="description" />
         <br />
         <input type="submit" value="Submit Verification"/>
