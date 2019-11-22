@@ -22,8 +22,7 @@ public class VerificationController {
     }
 
     @GetMapping("/verification/{user_id}")
-    public String getVerifyMessageView(Model model, @PathVariable long user_id){
-
+    public String getVerificationsView(Model model, @PathVariable long user_id) {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
 
 
@@ -35,16 +34,31 @@ public class VerificationController {
         return "verification";
     }
 
-    @PostMapping("verification/{user_id}")
-    public String postVerifyMessageView(Model model, @PathVariable long user_id){
-        public String create(
-                @RequestParam(name = "dropdown") String dropdown;
-                @RequestParam(name = "description") String description;
-                )
-        Verification veri = new Verification();
-        veri.setTitle(dropdown);
-        veri.setDescription(description);
+    @GetMapping("/verification/form/{user_id}")
+    public String getVerifyFormView(Model model, @PathVariable long user_id){
+
+        SmokerInfo smokerInfo = smokeDao.getOne(user_id);
+
+
+
+        model.addAttribute("verify", veriDao.getOne(user_id));
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokerInfo);
+
+        return "verificationform";
     }
+
+
+//    @PostMapping("verification/{user_id}")
+//    public String postVerifyMessageView(Model model, @PathVariable long user_id){
+//        public String create(
+//                @RequestParam(name = "dropdown") String dropdown;
+//                @RequestParam(name = "description") String description;
+//                )
+//        Verification veri = new Verification();
+//        veri.setTitle(dropdown);
+//        veri.setDescription(description);
+//    }
 
 
 }

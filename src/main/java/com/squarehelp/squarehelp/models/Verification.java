@@ -13,13 +13,13 @@ public class Verification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "user_id")
+//    @OneToMany(mappedBy = "user_id")
     @Column(columnDefinition = "INT")
-    private long originator_user_id;
+    private int originator_user_id;
 
-    @OneToMany(mappedBy = "user_id")
+//    @OneToMany(mappedBy = "user_id")
     @Column(columnDefinition = "INT")
-    private long approver_user_id;
+    private int approver_user_id;
 
     @Column(columnDefinition = "INT")
     private int day_created;
