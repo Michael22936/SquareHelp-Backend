@@ -22,15 +22,12 @@
                     <tbody>
                         <div th:each="noti : ${notifications}">
                             <tr>
-                                <td>
-                                    <span th:if="${noti.isIs_viewed() == true}">
-                                        <input class="form-check-input" type="checkbox" value="true"
-                                               th:name="${noti.getId()}" checked>
-                                    </span>
-                                    <span th="${noti.isIs_viewed() == false}">
-                                        <input class="form-check-input" type="checkbox" value="false"
-                                               th:name="${noti.getId()}" checked>
-                                    </span>
+                                <td th:switch="${noti.isIs_viewed()}">
+                                    <input th:case="true" class="form-check-input" type="checkbox" value="true"
+                                           th:name="${noti.getId()}" checked>
+                                    <input th:case="false" class="form-check-input" type="checkbox"
+                                           value="false"
+                                           th:name="${noti.getId()}">
                                 </td>
                                 <td><p th:text="${noti.getOriginator_user_id()}"></p></td>
                                 <td><p th:text="${noti.getNotification()}"></p></td>
@@ -42,6 +39,9 @@
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
+            
+            
+            
             
         </div>
     </body>

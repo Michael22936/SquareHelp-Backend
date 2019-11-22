@@ -28,9 +28,22 @@ public class NotificationController {
     @GetMapping("/notifications/{id}")
     public String showNotifications(@PathVariable long id, Model model){
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+
+        n.get(2).getIs_
+
+
+
+
+
+
         model.addAttribute("notifications", n);
         return "notification";
     }
+
+
+
+
+
 
     // Need post mapping to update boolean
 //    @PostMapping("/notifications/{id}")
