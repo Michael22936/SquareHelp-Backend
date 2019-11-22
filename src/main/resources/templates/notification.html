@@ -30,10 +30,10 @@
             
             <!-- Links to go somewhere from the notification page. -->
             <div class="row">
-                <ul>
-                    <li><a th:href="@{'/dashboard/'+${uid}}"><h4>Dashboard</h4></a></li>
-                    <li><a href="#"><h4>Messages</h4></a></li>
-                    <li><a href="#"><h4>Verifications</h4></a></li>
+                <ul id="subTableLinks">
+                    <li><a th:href="@{'/dashboard/' + ${uid}}"><h4>Dashboard</h4></a></li>
+                    <li><a th:href="@{'/messages' + ${uid}}"><h4>Messages</h4></a></li>
+                    <li><a th:href="@{'/verifications' + ${uid}}"><h4>Verifications</h4></a></li>
                 </ul>
             </div>
             
