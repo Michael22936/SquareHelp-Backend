@@ -31,7 +31,15 @@ public class NotificationController {
         return n.size();
     }
 
-    // Creates a notification.
+    /*
+    *   Creates notification in the notification table.
+    *
+    *   Username - (str) - username of the recipient
+    *   uid - (long) - user ID of the author of the notification
+    *   type - (str) - Type of message depending on the type of notification
+    *       "msg" - For messages
+    *       "veri" - For smoke request verifications
+     */
     public void createNotification(String username, Long uid, String type) {
         // Verify all fields are there before running
         if (username == null || uid == null || type == null) {
@@ -71,7 +79,6 @@ public class NotificationController {
         User u = userDao.findUserById(id);
 
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-
 
         // Mark all notifications read and save them.
         for (Notification noti : n) {
