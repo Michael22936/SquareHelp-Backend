@@ -1,15 +1,44 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Notifications</title>
-</head>
-<body>
-    <h1>Here are your notifications</h1>
-
-    <div th:each="noti : ${notifications}">
-        <h1 th:value="noti.notification"></h1>
-    </div>
-
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:replace="partials/head :: main-header"/>
+    <link rel="stylesheet" th:href="@{/css/notifications.css}" />
+    <title>Notifications Page</title>
+    </head>
+    <th:block th:replace="partials/navbar :: main-navbar"/>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>Notifications Page</h1>
+            </div>
+            
+            <section class="row">
+                <!-- Table to display results-->
+                <table class="table table-hover table-dark text-center table-condensed">
+                    <thead>
+                        <tr>
+                            <th scope="col">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <div th:each="noti : ${notifications}">
+                            <tr>
+                                <td><p th:text="${noti.getNotification()}"></p></td>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Links to go somewhere from the notification page. -->
+            <div class="row">
+                <ul id="subTableLinks">
+                    <li><a th:href="@{'/dashboard/' + ${uid}}"><h4>Dashboard</h4></a></li>
+                    <li><a th:href="@{'/messages' + ${uid}}"><h4>Messages</h4></a></li>
+                    <li><a th:href="@{'/verifications' + ${uid}}"><h4>Verifications</h4></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </body>
+    
+    <th:block th:replace="partials/footer :: main-footer"/>
 </html>

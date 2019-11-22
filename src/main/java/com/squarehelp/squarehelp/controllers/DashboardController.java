@@ -7,6 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
+import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+
+
 @Controller
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
@@ -24,9 +31,42 @@ public class DashboardController {
         // Calculate money saved
 //        long moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
 
+        int totalUsers = (int)userDao.count();
+        int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
+        int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
+
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
-//        model.addAttribute("moneySaved", moneySaved);
+        model.addAttribute("moneySaved", moneySaved);
+//        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
+//        System.out.println("smokerInfo.getTotal_days_smoke_free() = " + smokerInfo.getTotal_days_smoke_free());
+//        System.out.println("moneySaved = " + moneySaved);
+        model.addAttribute("communityCount", totalCommunityUsers);
+//        System.out.println("totalUsers = " + totalUsers);
+//        System.out.println("smokerInfo.getCost_of_cigs_saved() = " + smokerInfo.getCost_of_cigs_saved());
+//        System.out.println("totalCommunityUsers = " + totalCommunityUsers);
         return "dashboard";
+    }
+
+    @PostMapping("/dashboard/{user_id}")
+    public String searchUser(Model model, @RequestParam String searchQuery, @PathVariable long user_id) {
+        List<User> searchResults;
+        searchResults = userDao.findByUsernameContaining(searchQuery);
+
+//        ====================== // For TESTING \\ ============================
+        int counter = 1;
+        for (User user: searchResults) {
+            System.out.println("user " + counter + " = " + user.getUsername());
+            counter++;
+        }
+
+//        ======================================================================
+//        Sending list of users to front-end
+        model.addAttribute("ListOfusers", searchResults ) ;
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokeDao.getOne(user_id));
+
+        return "dashboard";
+
     }
 }
