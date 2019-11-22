@@ -51,10 +51,7 @@ public class DashboardController {
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokeDao.getOne(user_id));
 
-
         return "dashboard";
 
     }
-
-
 }
