@@ -7,7 +7,8 @@ fetch('/search?username=' + userSearch)
 .then(response => response.json())
 
 .then(users => users.map((user) => {
-    user.username
+    console.log(user.username);
+    $('#result').append('<li class="list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username +'</p></li>')
 }))
 
 });// end of keyup eventlistner
