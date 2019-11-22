@@ -29,30 +29,28 @@ public class RegisterController {
     public String registerPage(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("smokeInfo", new SmokerInfo());
+
         return "register";
     }
 
     @PostMapping("/register")
-        public String RegisterNewUser(@ModelAttribute User user, @ModelAttribute SmokerInfo smokerInfo ) throws ParseException {
-//        String hash = passwordEncoder.encode(user.getPassword());
-//        user.setPassword(hash);
-//        Pulls last user id and adds 1 to create user_id for smoking_into.
+    public String RegisterNewUser(@ModelAttribute User user, @ModelAttribute SmokerInfo smokerInfo ) throws ParseException {
+        // Pulls last user id and adds 1 to create user_id for smoking_into.
         int newUserId =  ( (int)userDao.count() + 1);
         System.out.println("newUserId = " + newUserId);
 
-//        Add new user to users table
+        // Add new user to users table
         userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), user.getDob(), user.getPhoneNumber(), ConvertStringToDate(user.getDob()), user.getLastLogin(), user.getGender()));
         smokerDao.save( new SmokerInfo(String.valueOf(newUserId),smokerInfo.getDay_quit_smoking(), smokerInfo.getCost_of_cigs_saved()) );
 
         return "login";
-
     }
 
     public Date ConvertStringToDate(String string) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date ConvertedDate = sdf.parse(string);
-        return ConvertedDate;
 
+        return ConvertedDate;
     }
 
 }
