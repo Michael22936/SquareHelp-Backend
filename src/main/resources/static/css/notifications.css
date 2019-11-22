@@ -1,0 +1,11 @@
+/* Styling is specific to notifications.html */
+
+table {
+    cursor: pointer;
+}
+
+.td-width-mod {
+    width: auto;
+    display: flex;
+    justify-content: center;
+}

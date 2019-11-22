@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.w3c.dom.UserDataHandler;
 
 import java.util.List;
 
@@ -27,23 +28,19 @@ public class NotificationController {
     // Goto the page to see the actual notifications
     @GetMapping("/notifications/{id}")
     public String showNotifications(@PathVariable long id, Model model){
+        //Get current user
+        User u = userDao.findUserById(id);
+
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
 
-        n.get(2).getIs_
+        String uidStr = String.valueOf(u.getId());
 
+        System.out.println("uidStr = " + uidStr);
 
-
-
-
-
+        model.addAttribute("uid", uidStr);
         model.addAttribute("notifications", n);
         return "notification";
     }
-
-
-
-
-
 
     // Need post mapping to update boolean
 //    @PostMapping("/notifications/{id}")
