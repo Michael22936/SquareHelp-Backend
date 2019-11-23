@@ -9,13 +9,24 @@
 </head>
 <body>
 
+<h1 th:text="${users.username}"></h1>
 
+<th:block th:if="${messages.recipient_user_id != null}">
+    <form th:action="'/message'" method="post" th:object="${messages}">
 <h1>Who do you want to send the message to: </h1>
-        <input type="text" placeholder="Enter Username..."  name="username" id="search">
+<input type="text" placeholder="Enter Username..."  name="username" id="search">
 <ul class="list-group" id="result"></ul>
-<!--    <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>-->
-<form th:action="'/send/' + ${messages.author_user_id} + '/message'" method="post" th:object="${messages}">
+        <button class="btn btn-primary" th:type="submit">Next Page</button>
+        <th:block th:object="${users}">
+            <input type="text" name="aId" th:field="*{id}">®
+<!--            <input id="aId" th:field="*{id}" type="text"/>-->
+<!--            <input type="hidden" name="id" value="${post.id}">-->
+        </th:block>
+    </form>
+</th:block>
 
+<th:block th:if="${messages.recipient_user_id == null}">
+<form th:action="'/send/' + ${messages.author_user_id} + '/message/'" method="post" th:object="${messages}">
 
 <h1>What message do you want to send: </h1>
 
@@ -26,6 +37,8 @@
     <button type="submit">Send Message</button>
 
 </form>
+
+</th:block>
 
 <th:block th:replace="partials/footer :: main-footer"/>
 <script th:src="@{/js/message/messages.js}"></script>
