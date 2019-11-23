@@ -1,8 +1,10 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Notification;
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
+import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,12 @@ public class NotificationController {
 
     private final UserRepository userDao;
     private final NotificationRepository notiDao;
+    private final SmokerInfoRepository smokeDao;
 
-    public NotificationController(UserRepository userDao, NotificationRepository notiDao){
+    public NotificationController(UserRepository userDao, NotificationRepository notiDao, SmokerInfoRepository smokeDao){
         this.notiDao = notiDao;
         this.userDao = userDao;
+        this.smokeDao = smokeDao;
     }
 
     // Get number of unread notifications
@@ -86,6 +90,7 @@ public class NotificationController {
             notiDao.save(noti);
         }
 
+        model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("uid", String.valueOf(u.getId()));
         model.addAttribute("notifications", n);
         return "notification";
