@@ -1,3 +1,11 @@
+const getCurrentPageUserId = () => {
+    let currentUserId = window.location.href;
+
+    let tempArr = currentUserId.split("/");
+
+    return tempArr[tempArr.length - 1]
+};
+
 
 $('#search').keyup(function () {
 let userSearch = $('#search').val();
@@ -14,9 +22,12 @@ if (userSearch !== "" ){
                 $('#result').hide();
 
             }else {
-                let url = '/message/' + user.id ;
+                // let url = '/message/' + user.id ;
+                let url = '/message/' + user.id + '/' + getCurrentPageUserId() ;
                 console.log(url);
-                $('#result').append('<a href=' + url + '  ><li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a>');
+                $('#result').append('<form action="'+url+'" method="post">' +
+                    '<a href=' + url + '  >' +
+                    '<li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a></form>');
                 console.log(user.username);
             }
         }))
