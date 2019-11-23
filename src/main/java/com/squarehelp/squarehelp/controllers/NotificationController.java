@@ -29,6 +29,27 @@ public class NotificationController {
         this.smokeDao = smokeDao;
     }
 
+    // Goto the page to see the actual notifications
+    @GetMapping("/notifications/{id}")
+    public String showNotifications(@PathVariable long id, Model model){
+        //Get current user
+        User u = userDao.findUserById(id);
+
+        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+
+        // Mark all notifications read and save them.
+        for (Notification noti : n) {
+            noti.setIs_viewed(true);
+            notiDao.save(noti);
+        }
+
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("users", u);
+        model.addAttribute("uid", String.valueOf(u.getId()));
+        model.addAttribute("notifications", n);
+        return "notification";
+    }
+
     // Get number of unread notifications
     public int getUnreadNotifications(Long id) {
         List<Notification> n = notiDao.findNotificationsUnread(id);
@@ -64,7 +85,7 @@ public class NotificationController {
                 case ("veri"):
                     n.setRecipient_user_id(String.valueOf(recipient.getId()));
                     n.setOriginator_user_id(String.valueOf(uid));
-                    n.setNotification("You have a smoke verification request from" + username);
+                    n.setNotification("You have a smoke verification request from " + username);
                     break;
                 default:
                     return;
@@ -74,26 +95,6 @@ public class NotificationController {
 
             notiDao.save(n);
         }
-    }
-
-    // Goto the page to see the actual notifications
-    @GetMapping("/notifications/{id}")
-    public String showNotifications(@PathVariable long id, Model model){
-        //Get current user
-        User u = userDao.findUserById(id);
-
-        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-
-        // Mark all notifications read and save them.
-        for (Notification noti : n) {
-            noti.setIs_viewed(true);
-            notiDao.save(noti);
-        }
-
-        model.addAttribute("smoke", smokeDao.getOne(id));
-        model.addAttribute("uid", String.valueOf(u.getId()));
-        model.addAttribute("notifications", n);
-        return "notification";
     }
 
 }

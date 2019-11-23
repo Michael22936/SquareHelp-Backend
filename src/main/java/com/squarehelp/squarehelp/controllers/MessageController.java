@@ -48,6 +48,7 @@ public class MessageController {
     public String sendMessage(Model model, @PathVariable long rId, @PathVariable String aId) {
         model.addAttribute("smoke", smokeDao.getOne(Long.parseLong(aId)));
         model.addAttribute("user", userDao.getOne(Long.parseLong(aId)));
+        model.addAttribute("users", userDao.getOne(Long.parseLong(aId)));
         model.addAttribute("recipient", userDao.getOne(rId));
 
         return "sendMessage";

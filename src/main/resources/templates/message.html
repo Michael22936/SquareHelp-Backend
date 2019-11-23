@@ -14,7 +14,7 @@
 
     <form th:action="'/message'" method="post" th:object="${messages}">
 <h1>Who do you want to send the message to: </h1>
-<input type="text" placeholder="Enter Username..."  name="username" id="search">
+<input type="text" placeholder="Enter Username..."  name="username" id="search" required>
 <ul class="list-group" id="result">
 
         <button class="btn btn-primary" th:value="${users.id}" name="aId" th:type="submit">Next Page</button>

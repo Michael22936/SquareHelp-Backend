@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface VerificationRepository extends JpaRepository<Verification, Long> {
     // Find all verifications for a particular user
-    @Query(value = "SELECT id, originator_user_id, approver_name, day_created, days_smoke_free, is_approved FROM verifications_req WHERE originator_user_id = :id", nativeQuery = true)
+    @Query(value = "SELECT id, originator_user_id, approver_name, day_created, days_smoke_free, is_approved FROM verifications_req WHERE originator_user_id = :id ORDER BY id DESC LIMIT 30", nativeQuery = true)
     List<Verification> findAllByOriginator_user_id(@Param("id") Long id);
 }
