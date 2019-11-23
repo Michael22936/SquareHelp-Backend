@@ -13,38 +13,28 @@ import javax.persistence.Id;
 public class Calculator {
 
     private long id;
-    //    private String user_id /// @Column annotation generated
     private int points;
     private int total_days_smoke_free;
     private int cost_of_cigs_saved;
 
 
+// ====  Methods are intended for the dashboard and profile controllers  ==== //
     public static int calcMoneySaved(int cigCost, int totSmokeFree) {
-        return cigCost * totSmokeFree;
+        return (cigCost * totSmokeFree);
     }
 
 
     public static int avgPointsCalculator(int points, int totalUsers) {
-        return totalUsers / points;
+        if(points == 0){
+            return 0;
+        }
+        return (totalUsers / points);
     }
 
 
+    public static void main(String[] args) {
+        System.out.println("avgPointsCalculator(45, 4) = " + avgPointsCalculator(45, 4));
+        System.out.println("calcMoneySaved(45, 4) = " + calcMoneySaved(45, 4));
+    }
 
-
-
-
-
-
-//    @GetMapping("/dashboard/{user_id}")
-//    public String showDashboard(Model model, @PathVariable long user_id) {
-//        SmokerInfo smokerInfo = smokeDao.getOne(user_id);
-//
-//        // Calculate money saved
-////        long moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
-//
-//        model.addAttribute("users", userDao.getOne(user_id));
-//        model.addAttribute("smoke", smokerInfo);
-////        model.addAttribute("moneySaved", moneySaved);
-//        return "dashboard";
-//    }
 }
