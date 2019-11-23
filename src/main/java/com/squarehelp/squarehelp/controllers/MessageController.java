@@ -21,11 +21,12 @@ public class MessageController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/send/{id}/message")
-    public String getSendMessageView(Model model, @PathVariable long id){
+    @GetMapping("/message")
+    public String getSendMessageView(Model model){
+        long hardCodedUserId = 1L;
 
-        model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("messages", messageDao.getOne(id));
+        model.addAttribute("users", userDao.getOne(hardCodedUserId));
+        model.addAttribute("messages", messageDao.getOne(hardCodedUserId));
 
         return "message";
     }
@@ -37,18 +38,27 @@ public class MessageController {
         return userDao.findByUsernameContaining(username);
     }
 
+//    @PostMapping("/message/{rId}")
+//    public String SaveMessage( @PathVariable long rId,
+//                               @RequestParam String aId,
+//                               @ModelAttribute Messages messages,
+//                               @ModelAttribute User users){
+////        messageDao.save(new Messages( (int)aId, rID, message));
+//    }
 
-    @PostMapping("/send/{id}/message")
-    public String sendAMessageToAnotherUser(@PathVariable long id,
-                                            @RequestParam String message,
-                                            @ModelAttribute Messages messages,
-                                            @ModelAttribute User users){
+    @GetMapping("/message/{rId}")
+    public String sendAMessageToAnotherUser(@PathVariable long rId,
+                                            @RequestParam(name = "aId") String aId,
+                                            @RequestParam String message
+                                            ){
 //        List<Messages> listOfMessages = messageDao.findMessagesByRecipient_user_idIs(id);
-
-        Messages sendMessage = messageDao.getOne(id);
-        sendMessage.setMessage(message);
-        messageDao.save(new Messages((int) id, messages.getRecipient_user_id(), message));
-        return "redirect:/profile/" + id;
+        System.out.println("aId = " + aId);
+        System.out.println("rId = " + rId);
+        System.out.println("message = " + message);
+//        Messages sendMessage = messageDao.getOne(id);
+//        sendMessage.setMessage(message);
+        messageDao.save(new Messages(Integer.parseInt(aId),(int) rId, message));
+        return "redirect:/profile/" + aId;
     }
 
 

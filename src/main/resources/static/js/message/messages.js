@@ -14,7 +14,7 @@ if (userSearch !== "" ){
                 $('#result').hide();
 
             }else {
-                let url = '/send/' + user.id + '/message';
+                let url = '/message/' + user.id ;
                 console.log(url);
                 $('#result').append('<a href=' + url + '  ><li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a>');
                 console.log(user.username);
