@@ -8,11 +8,20 @@
   <body>
     <main class="container">
       <div class="row contentBg">
-        <h1>Verifications</h1>
+        <h1>Verification Request</h1>
       </div>
       
       <section class="row contentBg">
-      
+        
+        <form
+                th:action="@{/verification/{uid}/form/send/{rid}(uid=${users.getId()},rid=${recipient.getId()})}"
+              method="post">
+            <input type="text" name="user_id" th:value="${users.getId()}" class="d-none"/>
+            <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" required>
+            <button type="submit" id="submit">Submit</button>
+        </form>
       
       </section>
       

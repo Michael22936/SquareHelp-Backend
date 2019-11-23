@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
@@ -27,17 +26,13 @@ public class VerificationController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/verification/{user_id}/")
+    @GetMapping("/verification/{user_id}")
     public String getVerificationsView(Model model, @PathVariable long user_id) {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Get all verification requests
         List<Verification> temp = veriDao.findAllByOriginator_user_id(user_id);
-
-        for(Verification t : temp) {
-            System.out.println(t.getApprover_name());
-        }
 
         model.addAttribute("verifications", temp);
         model.addAttribute("users", userDao.getOne(user_id));
@@ -76,6 +71,7 @@ public class VerificationController {
         User ru = userDao.findUserById(recip);
 
         model.addAttribute("recipient", ru);
+        model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
         return "verification-form-create";
@@ -94,13 +90,13 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, smokerInfo.getTotal_days_smoke_free(), false);
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false);
 
         veriDao.save(v);
 
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
-        return "redirect:/verifications";
+        return "redirect:/verification/" + user_id;
     }
 
 }
