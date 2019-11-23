@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+
 @Controller
 public class VerificationController {
     private final SmokerInfoRepository smokeDao;
@@ -24,40 +29,19 @@ public class VerificationController {
     @GetMapping("/verification/{user_id}")
     public String getVerificationsView(Model model, @PathVariable long user_id) {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
+        int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
+        // Get all verification requests
+        List<Verification> temp = veriDao.findAllByOriginator_user_id(user_id);
 
+        for(Verification t : temp) {
+            System.out.println(t.getApprover_name());
+        }
 
-        model.addAttribute("verifications", veriDao.getOne(user_id));
+        model.addAttribute("verifications", temp);
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
-
-        return "verification";
-    }
-
-    @GetMapping("/verification/form/{user_id}")
-    public String getVerifyFormView(Model model, @PathVariable long user_id){
-        SmokerInfo smokerInfo = smokeDao.getOne(user_id);
-
-
-
-        model.addAttribute("verifications", veriDao.getOne(user_id));
-        model.addAttribute("users", userDao.getOne(user_id));
-        model.addAttribute("smoke", smokerInfo);
-
-        return "verificationform";
-    }
-
-
-
-    @PostMapping("verification/{user_id}")
-    public String postToVerifyList( @RequestParam(name = "date_request") String drequest,
-                                             @RequestParam(name = "username") String user, Model model){
-
-        int date = Integer.parseInt(drequest);
-
-        Verification veri = new Verification();
-        model.addAttribute("drequest", "Test");
-
+        model.addAttribute("moneySaved", moneySaved);
 
         return "verification";
     }

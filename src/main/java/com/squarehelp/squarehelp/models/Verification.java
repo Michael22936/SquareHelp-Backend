@@ -1,9 +1,6 @@
 package com.squarehelp.squarehelp.models;
-
 import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
-
 
 @Entity
 @Table(name = "verifications_req")
@@ -13,16 +10,14 @@ public class Verification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @OneToMany(mappedBy = "user_id")
     @Column(columnDefinition = "INT")
     private int originator_user_id;
 
-//    @OneToMany(mappedBy = "user_id")
-    @Column(columnDefinition = "INT")
-    private int approver_user_id;
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String approver_name;
 
-    @Column(columnDefinition = "INT")
-    private int day_created;
+    @Column(columnDefinition = "DATE")
+    private String day_created;
 
     @Column(columnDefinition = "INT")
     private int days_smoke_free;
@@ -30,17 +25,7 @@ public class Verification {
     @Column(columnDefinition = "BOOLEAN")
     private boolean is_approved;
 
-
-    public Verification(int originator_user_id, int approver_user_id, int day_created, int days_smoke_free, boolean is_approved) {
-        this.originator_user_id = originator_user_id;
-        this.approver_user_id = approver_user_id;
-        this.day_created = day_created;
-        this.days_smoke_free = days_smoke_free;
-        this.is_approved = is_approved;
-    }
-
     public Verification() {
-
     }
 
     public int getId() {
@@ -59,19 +44,19 @@ public class Verification {
         this.originator_user_id = originator_user_id;
     }
 
-    public int getApprover_user_id() {
-        return approver_user_id;
+    public String getApprover_name() {
+        return approver_name;
     }
 
-    public void setApprover_user_id(int approver_user_id) {
-        this.approver_user_id = approver_user_id;
+    public void setApprover_name(String approver_name) {
+        this.approver_name = approver_name;
     }
 
-    public int getDay_created() {
+    public String getDay_created() {
         return day_created;
     }
 
-    public void setDay_created(int day_created) {
+    public void setDay_created(String day_created) {
         this.day_created = day_created;
     }
 
@@ -91,4 +76,11 @@ public class Verification {
         this.is_approved = is_approved;
     }
 
+    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, boolean is_approved) {
+        this.originator_user_id = originator_user_id;
+        this.approver_name = approver_name;
+        this.day_created = day_created;
+        this.days_smoke_free = days_smoke_free;
+        this.is_approved = is_approved;
+    }
 }

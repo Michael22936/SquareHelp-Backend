@@ -41,10 +41,10 @@ CREATE TABLE notifications (
 
 DROP TABLE IF EXISTS verifications_req;
 CREATE TABLE verifications_req (
-    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     originator_user_id INT,
-    approver_user_id BIGINT(20),
-    day_created BIGINT(20),
+    approver_name VARCHAR(255),
+    day_created DATE,
     days_smoke_free INT(10),
     is_approved BOOLEAN
 );

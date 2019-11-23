@@ -1,68 +1,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <th:block th:replace="partials/head :: main-header"/>
-    <title>SquareHelp - verification.html</title>
     <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-
+    <title>SquareHelp - Verifications For User</title>
     <link rel="stylesheet" th:href="@{/css/verification.css}" />
-
-</head>
-<body>
-<div class="wrapper">
-
-    <h1>Verifications</h1>
-    <button><a class="nav-link" th:href="@{'/verification/form/' + ${user_id}}">Create Verification Form</a></button>
-
-
-<!-- ========= Verifications list ========= -->
-
-<!--//   Consists of pending and approved verification requests separated into two boxes.-->
-<!--//      Separated into the two respective boxes where pending will disappear when null.-->
-
-
-<!--Pending-->
-    <section id="pending" class="row">
-        <table class="table table-hover table-dark text-center table-condensed">
-            <thead>
-            <tr>
-                <th scope="col">Verifications Pending</th>
-            </tr>
-            </thead>
-            <tbody>
-            <div th:each="verf : ${verifications}">
+  </head>
+  <body>
+    <main class="container">
+        <div class="row contentBg">
+          <h1>Verifications</h1>
+        </div>
+        
+        <!-- Button to create verification form -->
+        <div class="row contentBg">
+          <a class="btn btn-primary" role="button" th:href="@{'/verification/form/' + ${users}}">Create Verification
+              Form</a>
+        </div>
+        
+          <section class="row contentBg">
+            
+            <!-- Table to display results -->
+            <table class="table table-hover table-dark text-center table-condensed">
+              <thead>
                 <tr>
-                    <td><p th:text="${verifications.getId()}"></p></td>
+                  <th scope="col">Date Created</th>
+                  <th scope="col">Approver Name</th>
+                  <th scope="col">Days Smoke free</th>
                 </tr>
-            </div>
-            </tbody>
-        </table>
-    </section>
-</div>
-
-<!--Approved-->
-    <section class="row">
-        <table class="table table-hover table-dark text-center table-condensed">
-            <thead>
-            <tr>
-                <th scope="col">Approved Verifications</th>
-            </tr>
-            </thead>
-            <tbody>
-            <div th:each="verf : ${verifications}">
-                <tr>
-                    <td><p th:text="${verifications.getId()}"></p></td>
-                </tr>
-            </div>
-            </tbody>
-        </table>
-    </section>
-
-
-</div>
-
-
-
-<script src="/js/dashboard/dashboard.js"></script>
-
-</body>
+              </thead>
+              <tbody>
+                <div th:each="veri : ${verifications}">
+                  <tr>
+                    <td><p th:text="${veri.getDay_created()}"></p></td>
+                    <td><p th:text="${veri.getApprover_name()}"</td>
+                    <td><p th:text="${veri.getDays_smoke_free()}"></p></td>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
+            
+          </section>
+          
+          <!-- Footer -->
+          <div class="row">
+            <script src="/js/dashboard/dashboard.js"></script>
+            <th:block th:replace="partials/footer :: main-footer"/>
+          </div>
+            
+    </main>
+  
+  </body>
 </html>
