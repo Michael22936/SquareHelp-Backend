@@ -21,8 +21,9 @@ public class MessageController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/send/{id}/message")
+    @GetMapping("/message/{id}")
     public String getSendMessageView(Model model, @PathVariable long id){
+
 
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.getOne(id));
@@ -38,19 +39,36 @@ public class MessageController {
     }
 
 
-    @PostMapping("/send/{id}/message")
-    public String sendAMessageToAnotherUser(@PathVariable long id,
-                                            @RequestParam String message,
-                                            @ModelAttribute Messages messages,
-                                            @ModelAttribute User users){
-//        List<Messages> listOfMessages = messageDao.findMessagesByRecipient_user_idIs(id);
 
-        Messages sendMessage = messageDao.getOne(id);
-        sendMessage.setMessage(message);
-        messageDao.save(new Messages((int) id, messages.getRecipient_user_id(), message));
-        return "redirect:/profile/" + id;
+    @GetMapping("/message/{rId}/{aId}")
+    public String sendAMessageToAnotherUser(@PathVariable long rId,
+                                            @PathVariable String aId
+
+                                            ){
+
+
+        return "redirect:/message/" + rId + "/" + aId + "/send";
     }
 
+    @GetMapping("/message/{rId}/{aId}/send")
+    public String sendMessage( Model model,
+                               @PathVariable long rId,
+                               @PathVariable String aId){
+
+        model.addAttribute("user", userDao.getOne(Long.parseLong(aId)));
+        model.addAttribute("recipient", userDao.getOne(rId));
+        return "sendMessage";
+    }
+
+    @PostMapping("/message/{rId}/{aId}/send")
+    public String SaveMessage( @PathVariable long rId,
+                               @PathVariable String aId,
+                               @RequestParam String message
+                               ){
+
+                messageDao.save(new Messages(Integer.parseInt(aId),(int) rId, message));
+        return "redirect:/profile/" + aId;
+    }
 
 
 }

@@ -9,23 +9,22 @@
 </head>
 <body>
 
+<h1 th:text="${users.username}"></h1>
 
+
+    <form th:action="'/message'" method="post" th:object="${messages}">
 <h1>Who do you want to send the message to: </h1>
-        <input type="text" placeholder="Enter Username..."  name="username" id="search">
-<ul class="list-group" id="result"></ul>
-<!--    <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>-->
-<form th:action="'/send/' + ${messages.author_user_id} + '/message'" method="post" th:object="${messages}">
+<input type="text" placeholder="Enter Username..."  name="username" id="search">
+<ul class="list-group" id="result">
 
+        <button class="btn btn-primary" th:value="${users.id}" name="aId" th:type="submit">Next Page</button>
+        <th:block th:object="${users}">
 
-<h1>What message do you want to send: </h1>
+                        <input type="text" name="aId" th:field="*{id}">
 
-        <textarea th:field="*{message}" name="message" id="message" cols="30" rows="10"></textarea>
-
-    <br>
-
-    <button type="submit">Send Message</button>
-
-</form>
+        </th:block>
+</ul>
+    </form>
 
 <th:block th:replace="partials/footer :: main-footer"/>
 <script th:src="@{/js/message/messages.js}"></script>
