@@ -1,9 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
   <th:block th:replace="partials/head :: main-header"/>
   <title>SquareHelp - dashboard.html</title>
+  </head>
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-  
   <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
@@ -117,12 +116,7 @@
 </div>
 
 <a class="btn btn-primary" th:href="@{'/message/'+ ${users.id}}"> Go to Message Page</a>
-
-<<<<<<< HEAD
-
-=======
 <th:block th:replace="partials/footer :: main-footer"/>
->>>>>>> 3694552740baeda9576c7b196592eae43cf905bb
 <script src="/js/dashboard/dashboard.js"></script>
 
 </body>
