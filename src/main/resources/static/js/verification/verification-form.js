@@ -1,3 +1,9 @@
+const getCurrentPageUserId = () => {
+    let currentUserId = window.location.href;
+    let tempArr = currentUserId.split("/");
+    return tempArr[tempArr.length - 2];
+}
+
 console.log("verification-form.js loaded");
 $('#search').keyup(function () {
     let userSearch = $('#search').val();
@@ -14,7 +20,7 @@ $('#search').keyup(function () {
             $('#result').hide();
 
         }else {
-            let url = '/send/' + user.id + '/message';
+            let url = '/verification/' + getCurrentPageUserId() + '/form/send/' + user.id;
             console.log(url);
             $('#result').append('<a href=' + url + '  ><li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a>');
             console.log(user.username);

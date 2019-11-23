@@ -46,9 +46,9 @@ public class MessageController {
 ////        messageDao.save(new Messages( (int)aId, rID, message));
 //    }
 
-    @GetMapping("/message/{rId}")
+    @GetMapping("/message/{rId}/{aId}")
     public String sendAMessageToAnotherUser(@PathVariable long rId,
-                                            @RequestParam(name = "aId") String aId,
+                                            @PathVariable(name = "aId") String aId,
                                             @RequestParam String message
                                             ){
 //        List<Messages> listOfMessages = messageDao.findMessagesByRecipient_user_idIs(id);
@@ -60,7 +60,5 @@ public class MessageController {
         messageDao.save(new Messages(Integer.parseInt(aId),(int) rId, message));
         return "redirect:/profile/" + aId;
     }
-
-
 
 }
