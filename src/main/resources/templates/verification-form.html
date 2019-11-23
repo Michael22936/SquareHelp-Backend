@@ -1,25 +1,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <th:block th:replace="partials/head :: main-header"/>
     <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <title>SquareHelp - Create New Verification</title>
     <link rel="stylesheet" th:href="@{/css/verification.css}" />
-</head>
-<body>
-<main class="container">
-    <div class="row contentBg">
+  </head>
+  <body>
+    <main class="container">
+      <section class="row contentBg">
         <h1>Create new Verification</h1>
-    </div>
-    
-
-    
-    <!-- Footer -->
-    <div class="row">
-        <script src="/js/dashboard/dashboard.js"></script>
+      </section>
+      
+      <section class="row contentBg">
+        <h3>Who do you want to send the verification request to?</h3><br/>
+        <input type="text" placeholder="Enter Username..."  name="username" id="search">
+        
+      </section>
+      
+      <!-- Footer -->
+      <div class="row">
+        <script src="/js/verification/verification-form.js"></script>
         <th:block th:replace="partials/footer :: main-footer"/>
-    </div>
-
-</main>
-
-</body>
+      </div>
+    
+    </main>
+    
+  </body>
 </html>

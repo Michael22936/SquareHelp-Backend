@@ -26,7 +26,7 @@ public class VerificationController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/verification/{user_id}")
+    @GetMapping("/verification/{user_id}/")
     public String getVerificationsView(Model model, @PathVariable long user_id) {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
@@ -44,6 +44,17 @@ public class VerificationController {
         model.addAttribute("moneySaved", moneySaved);
 
         return "verification";
+    }
+
+    @GetMapping("/verification/{user_id}/form")
+    public String getVerificationForm(Model model, @PathVariable long user_id) {
+        SmokerInfo smokerInfo = smokeDao.getOne(user_id);
+        int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
+
+        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokerInfo);
+        model.addAttribute("moneySaved", moneySaved);
+        return "verification-form";
     }
 
 }
