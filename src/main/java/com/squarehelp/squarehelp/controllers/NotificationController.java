@@ -1,8 +1,10 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Notification;
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
+import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,33 @@ public class NotificationController {
 
     private final UserRepository userDao;
     private final NotificationRepository notiDao;
+    private final SmokerInfoRepository smokeDao;
 
-    public NotificationController(UserRepository userDao, NotificationRepository notiDao){
+    public NotificationController(UserRepository userDao, NotificationRepository notiDao, SmokerInfoRepository smokeDao){
         this.notiDao = notiDao;
         this.userDao = userDao;
+        this.smokeDao = smokeDao;
+    }
+
+    // Goto the page to see the actual notifications
+    @GetMapping("/notifications/{id}")
+    public String showNotifications(@PathVariable long id, Model model){
+        //Get current user
+        User u = userDao.findUserById(id);
+
+        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+
+        // Mark all notifications read and save them.
+        for (Notification noti : n) {
+            noti.setIs_viewed(true);
+            notiDao.save(noti);
+        }
+
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("users", u);
+        model.addAttribute("uid", String.valueOf(u.getId()));
+        model.addAttribute("notifications", n);
+        return "notification";
     }
 
     // Get number of unread notifications
@@ -60,7 +85,7 @@ public class NotificationController {
                 case ("veri"):
                     n.setRecipient_user_id(String.valueOf(recipient.getId()));
                     n.setOriginator_user_id(String.valueOf(uid));
-                    n.setNotification("You have a smoke verification request from" + username);
+                    n.setNotification("You have a smoke verification request from " + username);
                     break;
                 default:
                     return;
@@ -70,25 +95,6 @@ public class NotificationController {
 
             notiDao.save(n);
         }
-    }
-
-    // Goto the page to see the actual notifications
-    @GetMapping("/notifications/{id}")
-    public String showNotifications(@PathVariable long id, Model model){
-        //Get current user
-        User u = userDao.findUserById(id);
-
-        List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
-
-        // Mark all notifications read and save them.
-        for (Notification noti : n) {
-            noti.setIs_viewed(true);
-            notiDao.save(noti);
-        }
-
-        model.addAttribute("uid", String.valueOf(u.getId()));
-        model.addAttribute("notifications", n);
-        return "notification";
     }
 
 }

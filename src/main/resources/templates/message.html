@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <title>Message</title>
     <th:block th:replace="partials/head :: main-header"/>
+    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <link rel="stylesheet" th:href="@{/css/messages.css}" />
 </head>
 <body>
-<div th:replace="partials/navbar :: main-navbar"></div>
+
+<h1 th:text="${users.username}"></h1>
+
+
+    <form th:action="'/message'" method="post" th:object="${messages}">
 <h1>Who do you want to send the message to: </h1>
-    <form th:action="'/send/' + ${users.username} + '/message'" method="post">
+<input type="text" placeholder="Enter Username..."  name="username" id="search" required>
+<ul class="list-group" id="result">
 
-        <input type="text">
+        <button class="btn btn-primary" th:value="${users.id}" name="aId" th:type="submit">Next Page</button>
+        <th:block th:object="${users}">
 
+                        <input type="text" name="aId" th:field="*{id}">
+
+        </th:block>
+</ul>
     </form>
+
 <th:block th:replace="partials/footer :: main-footer"/>
+<script th:src="@{/js/message/messages.js}"></script>
 </body>
 </html>

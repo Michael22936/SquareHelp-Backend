@@ -14,37 +14,43 @@ public class ProfileController {
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
 
-    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao){
+    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
     }
 
     @GetMapping("/profile/{id}")
-    public String showProfile(Model model, @PathVariable long id){
+    public String showProfile(Model model, @PathVariable long id) {
         SmokerInfo smokerInfo = smokeDao.getOne(id);
         int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
+
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("moneySaved",moneySaved);
+
         return "profile";
     }
 
     @GetMapping("/profile/{id}/edit")
-    public String edit(@PathVariable long id, Model viewModel) {
+    public String edit(Model model, @PathVariable long id, Model viewModel) {
         viewModel.addAttribute("users", userDao.getOne(id));
+
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("smoke", smokeDao.getOne(id));
+
         return "editprofile";
     }
 
     @PostMapping("/profile/{id}/edit")
-    public String updateProfile(@PathVariable long id,
-                                @RequestParam String username,
-                                @RequestParam String city,
-                                @RequestParam String state){
+    public String updateProfile(@PathVariable long id, @RequestParam String username, @RequestParam String city, @RequestParam String state) {
         User oldUserProfile = userDao.getOne(id);
+
         oldUserProfile.setUsername(username);
         oldUserProfile.setCity(city);
         oldUserProfile.setState(state);
+
         userDao.save(oldUserProfile);
+
         return "redirect:/profile/" + id;
     }
 

@@ -1,0 +1,8 @@
+navbar-fixed {
+    width: 100% !important;
+}
+
+nav-wrapper {
+    width: 100% !important;
+    display: flex !important;
+}
