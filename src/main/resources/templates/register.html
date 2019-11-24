@@ -62,7 +62,7 @@
             <div class="form-group">
               <label class="col-md-6 control-label" for="email">Date of Birth</label>
               <div class="col-md-6">
-                <input id="dob" name="dob" type="date" placeholder="" class="form-control input-md" th:field="*{dob}"
+                <input id="dob" type="date" placeholder="" class="form-control input-md" th:field="*{dob}"
                        required="">
                 <span class="help-block">Enter your birthday</span>
               </div>
@@ -177,8 +177,8 @@
               <div class="form-group">
                 <label class="col-md-6 control-label" for="email">Date Quit Smoking</label>
                 <div class="col-md-6">
-                  <input id="dateQuitSmoking" name="dob" type="date" placeholder="" class="form-control input-md"
-                         required="">
+                  <input id="dateQuitSmoking" name="dateQuitSmoking" type="date" placeholder="" class="form-control input-md"
+                         required="" th:field="*{Day_quit_smoking}">
                   <span class="help-block">Enter the date you quit smoking</span>
                 </div>
               </div>
@@ -187,7 +187,8 @@
               <div class="form-group">
                 <label class="col-md-6 control-label" for="costOfCigs">Average Cost of Cigarettes</label>
                 <div class="col-md-6">
-                  <input id="costOfCigs" name="costOfCigs" type="number" placeholder="" class="form-control input-md">
+                  <input id="costOfCigs" name="costOfCigs" type="number" placeholder="" class="form-control input-md"
+                         th:field="*{Cost_of_cigs_saved}">
                   <span class="help-block">The average amount you pay for cigarettes a day</span>
                 </div>
               </div>
