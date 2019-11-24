@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+  <th:block th:replace="partials/head :: main-header"/>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SquareHelp - Register</title>
-    <th:block th:replace="partials/head :: main-header"/>
-    <th:block th:replace="partials/navbar  :: main-navbar"/>
+  <title>SquareHelp - Register Page</title>
   </head>
-  
   <body>
-    <div class="wrapper">
-      <h1 id="test">Register page</h1>
-      <div class="formWrapper">
+
+    <!-- Navbar -->
+    <th:block th:replace="partials/navbar :: main-navbar"/>
+
+    <main class="container">
+      <section class="row contentBg">
+      
+      
+      
+      
+      
+      
+      </section>
         <form class="col s12 needs-validation" th:action="@{/register}" method="POST" th:object="${user}" >
           <div class="row">
             <div class="input-field col s6">
@@ -89,7 +93,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </main>
     <th:block th:replace="partials/footer :: main-footer"/>
     <script src="js/register/register.js"></script>
   </body>
