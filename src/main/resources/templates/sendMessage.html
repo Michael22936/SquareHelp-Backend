@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="partials/head :: main-header"/>
     <link rel="stylesheet" th:href="@{/css/messages.css}" />
     <title>SquareHelp - Create a message</title>
@@ -28,7 +28,7 @@
                         <h3>From: <span th:text="${user.username}"></span></h3>
                     </div>
                 
-                    <form th:action="'/message/' + ${recipient.id} + '/' + ${user.id} + '/send'" method="post" >
+                    <form th:action="'/message/' + ${recipient.id} + '/send'" method="post" >
                         <h5>Message:</h5>
                         <textarea name="message" id="message" cols="10" rows="3" maxlength="255" class="mb-4"
                                   minlength="1" required="" style="width: 100%;"></textarea>
