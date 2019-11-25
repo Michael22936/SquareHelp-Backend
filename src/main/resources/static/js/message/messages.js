@@ -8,31 +8,31 @@ const getCurrentPageUserId = () => {
 
 
 $('#search').keyup(function () {
-let userSearch = $('#search').val();
+    let userSearch = $('#search').val();
     $('#result').html('');
 
     // If search input is not empty
-if (userSearch !== "" ){
+    if (userSearch !== "" ){
 
-    fetch('/search?username=' + userSearch)
-        .then(response => response.json())
+        fetch('/search?username=' + userSearch)
+            .then(response => response.json())
 
-        .then(users => users.map((user) => {
-            if (userSearch === ""){
-                $('#result').hide();
+            .then(users => users.map((user) => {
+                if (userSearch === ""){
+                    $('#result').hide();
 
-            }else {
-                // let url = '/message/' + user.id ;
-                let url = '/message/' + user.id + '/send' ;
-                console.log(url);
-                $('#result').append('<form action="'+url+'" method="post">' +
-                    '<a href=' + url + '  >' +
-                    '<li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a></form>');
-                console.log(user.username);
-            }
-        }))
+                }else {
+                    // let url = '/message/' + user.id ;
+                    let url = '/message/' + user.id + '/send' ;
+                    console.log(url);
+                    $('#result').append('<form action="'+url+'" method="post">' +
+                        '<a href=' + url + '  >' +
+                        '<li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a></form>');
+                    console.log(user.username);
+                }
+            }))
 
-}
+    }
 
 });// end of keyup eventlistner
 
