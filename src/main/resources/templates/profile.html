@@ -33,11 +33,9 @@
             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
     </div>
-
-</div>
-
+    <th:block th:if="${users.id == #authentication.principal.id}">
     <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
-
+    </th:block>
 </div>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
