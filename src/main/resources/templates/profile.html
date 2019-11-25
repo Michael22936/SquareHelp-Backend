@@ -7,8 +7,7 @@
 <body>
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <h1>Profile Page</h1>
-<div class="wrapper">
-
+<section class="row contentBg">
     <div class="card mb-3">
         <div class="row no-gutters contentBg">
             <div class="col-md-4">
@@ -19,14 +18,20 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card-body border-primary stats">
+                <div class="card-body">
                     <h2 class="card-header">Statistics: </h2>
-                    <div class="card-text">
-                        <h4>User points: <span style="font-size: 4em" th:text="${smoke.points}"></span></h4>
-                        <p>The current points reflect that the user has stayed "smoke-free" for <span th:text="${smoke.total_days_smoke_free}"></span> days.</p>
-
-                        <h5>Habit savings: <span th:text="${moneySaved}"></span></h5>
-                    </div>
+                        <div class="stats-start">
+                            <div class="card-text col-md-6">
+                                <h4>User points: </h4><p style="font-size: 4em" th:text="${smoke.points}"></p>
+                                <p><i>**The current points reflect that the user has stayed "smoke-free" for <strong><span
+                                        th:text="${smoke.total_days_smoke_free}"></span></strong> days.</i></p>
+                            </div>
+                        </div>
+                        <div class="stats-end">
+                            <div class="card-text col-md-6">
+                                <h5>Habit savings: <span th:text="${moneySaved}"></span></h5>
+                            </div>
+                        </div>
                 </div>
             </div>
 
@@ -36,7 +41,7 @@
     <th:block th:if="${users.id == #authentication.principal.id}">
     <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
     </th:block>
-</div>
+</section>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
 </html>

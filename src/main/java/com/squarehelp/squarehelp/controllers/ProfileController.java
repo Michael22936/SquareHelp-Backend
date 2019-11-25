@@ -8,6 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
+import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
+import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+
 @Controller
 public class ProfileController {
 
@@ -22,11 +27,12 @@ public class ProfileController {
     @GetMapping("/profile/{id}")
     public String showProfile(Model model, @PathVariable long id) {
         SmokerInfo smokerInfo = smokeDao.getOne(id);
-        int moneySaved = smokerInfo.getCost_of_cigs_saved() * smokerInfo.getTotal_days_smoke_free();
+        int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("moneySaved",moneySaved);
+//        model.addAttribute("")
 
         return "profile";
     }
