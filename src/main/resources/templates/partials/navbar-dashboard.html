@@ -8,13 +8,13 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="navbar-fixed">
             <ul class="nav">
-                <li class="nav-item"><a class="text-decoration-none" th:href="@{'/dashboard/' + ${users.id}}"><h4>SquareHelp</h4></a></li>
+                <li class="nav-item"><a class="text-decoration-none" th:href="@{'/dashboard'}"><h4>SquareHelp</h4></a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}"><i
                         class="fas fa-smoking-ban"></i> <span th:text="${smoke.points}"></span></a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}"><i class="fas fa-user"></i></a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{'/verification/' + ${users.id}}"><i class="far fa-file-alt"></i></a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{'/message/' + ${users.id}}"><i class="far fa-envelope"></i></a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{'/notifications/' + ${users.id}}"><i class="far fa-bell"></i></a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/verification'}"><i class="far fa-file-alt"></i></a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/message'}"><i class="far fa-envelope"></i></a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{'/notifications'}"><i class="far fa-bell"></i></a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{'/logout'}"><i class="fas fa-sign-out-alt"></i></a></li>
                 <li class="nav-item">
                     <div class="input-group">

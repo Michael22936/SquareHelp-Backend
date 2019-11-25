@@ -6,12 +6,14 @@ import com.squarehelp.squarehelp.models.Verification;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import com.squarehelp.squarehelp.repositories.VerificationRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
 
 @Controller
@@ -26,16 +28,18 @@ public class VerificationController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/verification/{user_id}")
-    public String getVerificationsView(Model model, @PathVariable long user_id) {
-        SmokerInfo smokerInfo = smokeDao.getOne(user_id);
+    @GetMapping("/verification")
+    public String passingDashboard(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Get all verification requests
-        List<Verification> temp = veriDao.findAllByOriginator_user_id(user_id);
+        List<Verification> temp = veriDao.findAllByOriginator_user_id(id);
 
         model.addAttribute("verifications", temp);
-        model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
 

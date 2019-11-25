@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
   <title>Login Page</title>
   <link rel="stylesheet" th:href="@{/css/login.css}" />
@@ -7,9 +7,14 @@
 
   <div class="container">
     <h1>Login page</h1>
+    <div th:if="${param.error}">
+      Invalid Username and Password.
+    </div>
+    <div th:if="${param.logout}">
+      You have been logged out.
+    </div>
     
-    <form action="/login" method="post">
-      <input id="csrf" value="something">
+    <form th:action="@{/login}" method="post">
       <div class="loginWrapper">
         <div class="row">
           <label for="username"><h5>Username</h5></label>
@@ -18,7 +23,6 @@
         <div class="row">
           <label><h5>Password</h5></label><br>
           <input type="password" id="password" name="password" required>
-          <input id="csrf" value="something">
         </div>
         <div class="row">
           <button type="submit">Login</button>

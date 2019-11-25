@@ -14,7 +14,7 @@
 <h1>To:</h1>
 <h2 th:text="${recipient.username}"></h2>
 
-    <form th:action="'/message/' + ${recipient.id} + '/' + ${user.id} + '/send'" method="post" >
+    <form th:action="'/message/' + ${recipient.id} +'/send'" method="post" >
 
         <h1>What message do you want to send: </h1>
 
