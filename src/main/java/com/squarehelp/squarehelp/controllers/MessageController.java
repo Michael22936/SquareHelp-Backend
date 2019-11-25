@@ -57,7 +57,7 @@ public class MessageController {
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("recipient", userDao.getOne(rId));
 
-        return "sendMessage";
+        return "message-send";
     }
 
     @PostMapping("/message/{rId}/send")
