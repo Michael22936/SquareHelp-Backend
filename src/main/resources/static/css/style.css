@@ -60,6 +60,11 @@ input {
   display: none;
 }
 
+.contentBg {
+  padding: 1rem 3rem 1rem 3rem;
+  background: #212121;
+}
+
 /* footer */
 
 footer {
