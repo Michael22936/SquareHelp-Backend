@@ -1,36 +1,71 @@
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
   <th:block th:replace="partials/head :: main-header"/>
-  <title>Login Page</title>
-  <link rel="stylesheet" th:href="@{/css/login.css}" />
-  </head>
-  <th:block th:replace="partials/navbar :: main-navbar"/>
-
-  <div class="container">
-    <h1>Login page</h1>
-    
-    <form action="/login" method="post">
-      <input id="csrf" value="something">
-      <div class="loginWrapper">
-        <div class="row">
-          <label for="username"><h5>Username</h5></label>
-          <input type="text" id="username" name="username" placeholder="Enter Username" required>
-        </div>
-        <div class="row">
-          <label><h5>Password</h5></label><br>
-          <input type="password" id="password" name="password" required>
-          <input id="csrf" value="something">
-        </div>
-        <div class="row">
-          <button type="submit">Login</button>
-          <button type="reset">Reset</button>
-        </div>
-        
-      </div>
-    </form>
-    
-  </div>
+  <style>
+    .loginWrapper {
+      margin: auto;
+      width: 100%;
+    }
   
-  <th:block th:replace="partials/footer :: main-footer"/>
+    .login-form-1{
+      padding: 5%;
+      margin: auto;
+    }
+  
+    .login-form-1 h3{
+      text-align: center;
+      color: #333;
+    }
+  
+    form h3 {
+      margin-bottom: 0;
+    }
+    
+    input {
+      color: #000;
+    }
+    
+    .btn {
+      width: 100%;
+    }
+  </style>
+  
+  <title>Login Page</title>
+  </head>
+  
+  <body>
+  
+  <!-- Navbar -->
+  <th:block th:replace="partials/navbar :: main-navbar"/>
+  
+    <main class="container">
+      
+      <!-- Login Form -->
+      <section class="row contentBg">
+        <div class="loginWrapper contentBg">
+          <form action="/login" method="post">
+            <h3 class="text-center">Login</h3>
+            <input id="csrf" value="something">
+            <div class="col-md-6 login-form-1">
+              <div class="form-group">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required/>
+              </div>
+              <div class="form-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      <!-- Footer -->
+      <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+      </div>
+      
+    </main>
+  
+  </body>
 </html>
-
-
