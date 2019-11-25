@@ -2,21 +2,46 @@
 <head>
 <title>SquareHelp - profile</title>
 <th:block th:replace="partials/head :: main-header"/>
+    <link rel="stylesheet" th:href="@{/css/profile.css}" />
 </head>
 <body>
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <h1>Profile Page</h1>
 <div class="wrapper">
-    <div th:each="user : ${users.username}">
-        <h1 th:text="${user}"></h1>
-        <h1 th:text="${users.city}"></h1>
-        <h1 th:text="${users.state}"></h1>
-        <h1 th:text="${moneySaved}"></h1>
-        <h1 th:text="${smoke.points}"></h1>
-        <h1 th:text="${smoke.total_days_smoke_free}"></h1>
+
+    <div class="card mb-3">
+        <div class="row no-gutters contentBg">
+            <div class="col-md-4">
+                <div class="headline">
+                    <h1> Welcome <span th:text="${users.username}"></span></h1>
+                    <img src="/img/profile/user_avatar.png" alt="Avatar Image">
+                    <h5>Current city: <span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body border-primary stats">
+                    <h2 class="card-header">Statistics: </h2>
+                    <div class="card-text">
+                        <h4>User points: <h3 style="font-size: 4em" th:text="${smoke.points}"></h3></h4>
+                        <p>The current points reflect that the user has stayed "smoke-free" for <span th:text="${smoke.total_days_smoke_free}"></span> days.</p>
+
+                        <h5>Habit savings: <span th:text="${moneySaved}"></span></h5>
+                    </div>
+                </div>
+            </div>
+
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
     </div>
+
+</div>
+
     <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
+
 </div>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
 </html>
+
+
+
