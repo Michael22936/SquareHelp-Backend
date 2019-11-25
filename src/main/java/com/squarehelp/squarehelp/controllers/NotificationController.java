@@ -6,6 +6,7 @@ import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.UserDataHandler;
 
 import java.util.List;
+
+import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
+import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
 
 @Controller
 public class NotificationController {
@@ -29,11 +33,10 @@ public class NotificationController {
         this.smokeDao = smokeDao;
     }
 
-    // Goto the page to see the actual notifications
-    @GetMapping("/notifications/{id}")
-    public String showNotifications(@PathVariable long id, Model model){
-        //Get current user
-        User u = userDao.findUserById(id);
+    @GetMapping("/notifications")
+    public String passingDashboard(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
 
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
 
@@ -44,8 +47,8 @@ public class NotificationController {
         }
 
         model.addAttribute("smoke", smokeDao.getOne(id));
-        model.addAttribute("users", u);
-        model.addAttribute("uid", String.valueOf(u.getId()));
+        model.addAttribute("users", user);
+        model.addAttribute("uid", String.valueOf(user.getId()));
         model.addAttribute("notifications", n);
         return "notification";
     }
@@ -64,7 +67,7 @@ public class NotificationController {
     *   type - (str) - Type of message depending on the type of notification
     *       "msg" - For messages
     *       "veri" - For smoke request verifications
-     */
+    */
     public void createNotification(String username, Long uid, String type) {
         // Verify all fields are there before running
         if (username == null || uid == null || type == null) {
