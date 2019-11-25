@@ -14,14 +14,17 @@ let userSearch = $('#search').val();
     // If search input is not empty
 if (userSearch !== "" ){
 
-    fetch('/search?username=' + userSearch)
-        .then(response => response.json())
+    fetch('/searchAll')
+        .then(response => response.json() )
 
         .then(users => users.map((user) => {
+
             if (userSearch === ""){
                 $('#result').hide();
 
             }else {
+
+
                 // let url = '/message/' + user.id ;
                 let url = '/message/' + user.id + '/send' ;
                 console.log(url);

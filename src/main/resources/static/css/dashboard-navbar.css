@@ -6,3 +6,9 @@ nav-wrapper {
     width: 100% !important;
     display: flex !important;
 }
+
+#result{
+    z-index: 2;
+    position: absolute;
+    top: 38px;
+}
