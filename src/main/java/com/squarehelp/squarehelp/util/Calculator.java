@@ -23,20 +23,4 @@ public class Calculator {
         }
     }
 
-
-    public static void main(String[] args) {
-        System.out.println("calcMoneySaved(45, 4) = " + calcMoneySaved(45, 4));
-        System.out.println("avgPointsCalculator(45, 4) = " + avgPointsCalculator(45, 4));
-
-
-    }
 }
-
-
-
-
-//        if(points == 0){
-//                return 0;
-//                }
-//                return (totalUsers / points);
-//                }
