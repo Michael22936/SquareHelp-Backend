@@ -27,18 +27,17 @@ public class AuthenticationController {
         try {
             u = userDao.findByUsername(username);
 
-            // If user is found, perform logic.
-//            if (password.equalsIgnoreCase(u.getPassword())) {
                 System.out.println("Password verification is successful");
-//            } else {
-//                System.out.println("no go");
-//                return "login";
-//            }
         } catch (NullPointerException e) {
             // If user is not found, redirect to login page.
-//            return "login";
+            return "login";
         }
 
                 return "redirect:/dashboard/" + u.getId();
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/login";
     }
 }

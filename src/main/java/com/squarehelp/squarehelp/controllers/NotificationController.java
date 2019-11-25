@@ -67,7 +67,7 @@ public class NotificationController {
     *   type - (str) - Type of message depending on the type of notification
     *       "msg" - For messages
     *       "veri" - For smoke request verifications
-     */
+    */
     public void createNotification(String username, Long uid, String type) {
         // Verify all fields are there before running
         if (username == null || uid == null || type == null) {
