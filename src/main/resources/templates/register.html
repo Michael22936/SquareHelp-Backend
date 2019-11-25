@@ -1,108 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SquareHelp - Register</title>
-  <th:block th:replace="partials/navbar  :: main-navbar"/>
-  <th:block th:replace="partials/head :: main-header"/>
-
-<!--  <link href="css/register.css" rel="stylesheet">-->
-
-</head>
-
-
-<body>
-  <div class="wrapper">
-    <h1 id="test">Register page</h1>
-    <div class="formWrapper">
-      <form class="col s12 needs-validation" th:action="@{/register}" method="POST" th:object="${user}" >
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="validationTooltipUsername">Username</label>
-            <input id="validationTooltipUsername" type="text" name="username" placeholder="Username" th:field="*{username}" class=" form-control validate text-dark" required aria-describedby="validationTooltipUsernamePrepend">
-              <div class="invalid-tooltip">
-                  Please choose a unique and valid username.
-              </div>
-<!--            <span class="helper-text" data-error="wrong"-->
-<!--                  data-success="right">This is example of small helper text</span>-->
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="password" th:field="*{password}" class=" form-control validate text-dark" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Email" th:field="*{email}" class=" form-control validate text-dark" required>
-          </div>
-        </div>
-        <!--      <%- include('partials/register-cityStatesDropdown') -%>-->
-        <th:block th:replace="partials/register-cityStatesDropdown :: main-statesDropdown"/>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="dob">Date of Birth</label>
-            <input id="dob" type="date" name="dob" th:field="*{dob}" class="validate">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="phone">Phone Number</label>
-            <input id="phone" type="tel" name="phone" th:field="*{phoneNumber}" placeholder="Format: 1234567890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" class="form-control text-dark">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="genderRadioWrapper">Enter your gender</label>
-            <div id="genderRadioWrapper">
-                <div class="form-check">
-<!--                  th:field="*{radioButtonSelectedValue}"-->
-<!--                  th:value="${radioValue}"-->
-                  <input class="form-check-input" id="radio1" name="gender" th:field="*{gender}"  type="radio" value="male"/>
-                  <label class="form-check-label" for="radio1">Male</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" id="radio2" name="gender" th:field="*{gender}" type="radio" value="female"/>
-                  <label class="form-check-label" for="radio2">Female</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" id="radio3"  name="gender" th:field="*{gender}" type="radio" value="I prefer not to say"/>
-                  <label class="form-check-label" for="radio3">I prefer not to say</label>
-                </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SquareHelp - Register</title>
+    <th:block th:replace="partials/head :: main-header"/>
+    <th:block th:replace="partials/navbar  :: main-navbar"/>
+  </head>
+  
+  <body>
+    <div class="wrapper">
+      <h1 id="test">Register page</h1>
+      <div class="formWrapper">
+        <form class="col s12 needs-validation" th:action="@{/register}" method="POST" th:object="${user}" >
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="validationTooltipUsername">Username</label>
+              <input id="validationTooltipUsername" type="text" name="username" placeholder="Username" th:field="*{username}" class=" form-control validate text-dark" required aria-describedby="validationTooltipUsernamePrepend">
+              <div class="invalid-tooltip">Please choose a unique and valid username.</div>
             </div>
           </div>
-        </div>
-
-          <div th:object="${smokeInfo}" >
-              <div class="row">
-                  <div class="input-field col s6">
-                      <label for="dateQuitSmoking">Date to quit smoking</label>
-                      <input id="dateQuitSmoking" type="date" name="dateQuitSmoking" th:field="*{day_quit_smoking}"  class="form-control validate">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="input-field col s6">
-                      <label for="costOfCigs">Average cost of a pack of cigarettes for you</label>
-                      <input id="costOfCigs" type="text"  name="costOfCigs" placeholder="$0.00" th:field="*{cost_of_cigs_saved}" class=" form-control validate text-dark">
-                  </div>
-              </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="password">Password</label>
+              <input id="password" type="password" name="password" placeholder="password" th:field="*{password}" class=" form-control validate text-dark" required>
+            </div>
           </div>
-
-
-        <input id="csrf" value="something">
-
-        <div class="row btn-row">
-          <button class="btn  waves-effect waves-light btn-primary" type="submit" id="submit">Submit</button>
-          <button class="btn waves-effect waves-light btn-danger" type="reset" name="reset" id="reset">reset</button>
-        </div>
-      </form>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" placeholder="Email" th:field="*{email}" class=" form-control validate text-dark" required>
+            </div>
+          </div>
+          <th:block th:replace="partials/register-cityStatesDropdown :: main-statesDropdown"/>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="dob">Date of Birth</label>
+              <input id="dob" type="date" name="dob" th:field="*{dob}" class="validate">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="number" size="10" name="phone" th:field="*{phoneNumber}"
+                     placeholder="Format: 1234567890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" class="form-control text-dark">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <label for="genderRadioWrapper">Enter your gender</label>
+              <div id="genderRadioWrapper">
+                  <div class="form-check">
+                    <input class="form-check-input" id="radio1" name="gender" th:field="*{gender}"  type="radio" value="male"/>
+                    <label class="form-check-label" for="radio1">Male</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="radio2" name="gender" th:field="*{gender}" type="radio" value="female"/>
+                    <label class="form-check-label" for="radio2">Female</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" id="radio3"  name="gender" th:field="*{gender}" type="radio" value="I prefer not to say"/>
+                    <label class="form-check-label" for="radio3">I prefer not to say</label>
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+            <div th:object="${smokeInfo}" >
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="dateQuitSmoking">Date to quit smoking</label>
+                        <input id="dateQuitSmoking" type="date" name="dateQuitSmoking" th:field="*{day_quit_smoking}"  class="form-control validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="costOfCigs">Average cost of a pack of cigarettes for you</label>
+                        <input id="costOfCigs" type="number"  name="costOfCigs" placeholder="$0.00"
+                               th:field="*{cost_of_cigs_saved}" class=" form-control validate text-dark">
+                    </div>
+                </div>
+            </div>
+          <input id="csrf" value="something">
+          <div class="row btn-row">
+            <button class="btn  waves-effect waves-light btn-primary" type="submit" id="submit">Submit</button>
+            <button class="btn waves-effect waves-light btn-danger" type="reset" name="reset" id="reset">reset</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
     <th:block th:replace="partials/footer :: main-footer"/>
-<!--  <script type="text/javascript" th:src="@{../static/js/register/register.js}"></script>-->
-  <script src="js/register/register.js"></script>
-</body>
+    <script src="js/register/register.js"></script>
+  </body>
+</html>

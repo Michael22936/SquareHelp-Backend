@@ -1,58 +1,120 @@
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
   <th:block th:replace="partials/head :: main-header"/>
+  <link rel="stylesheet" th:href="@{/css/index.css}"/>
   <title>Index Page</title>
   </head>
-  <th:block th:replace="partials/navbar :: main-navbar"/>
-  <body>
-    <div class="container">
-      <div class="row">
-        <h1>Index Page</h1>
-      </div>
+
+  <!-- Navbar (specific for index) -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="navbar-fixed">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="text-decoration-none" href="/"><h4>SquareHelp</h4></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#aboutus">About Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   
-      <!-- About Section -->
-      <div class="row">
-        <div class="about">
-          <h1>About Us</h1>
-          <div class="card_view">
-        
-            <!-- Michael -->
-            <div class="card">
-              <img src="https://avatars2.githubusercontent.com/u/52936520?s=460&v=4">
-              <a href="Michael.McDonnell067@gmail.com">Email</a>
-              <a href="https://github.com/Michael22936">GitHub</a>
-              <a href="https://www.linkedin.com/in/michaelvmcdonnell/">LinkedIn</a>
-            </div>
-        
-            <!-- Matt -->
-            <div class="card">
-              <img src="https://avatars3.githubusercontent.com/u/52936441?s=460&v=4">
-              <a href="matthew.lopez4011@gmail.com">Email</a>
-              <a href="https://github.com/mattlopez4011">GitHub</a>
-              <a href="https://www.linkedin.com/in/matt-lopez4011/">LinkedIn</a>
-            </div>
-        
-            <!-- Yael -->
-            <div class="card">
-              <img src="https://avatars0.githubusercontent.com/u/18481811?s=460&v=4">
-              <a href="yaelrbrown@gmail.com">Email</a>
-              <a href="https://github.com/yaelBrown">GitHub</a>
-              <a href="https://www.linkedin.com/in/yaelrbrown/">LinkedIn</a>
-            </div>
-        
-            <!-- Mitchell -->
-            <div class="card">
-              <img src="https://avatars1.githubusercontent.com/u/42749939?s=460&v=4">
-              <a href="mitchell.arnold2019@gmail.com">Email</a>
-              <a href="https://github.com/MitchellArnold">GitHub</a>
-              <a href="https://www.linkedin.com/in/mitchell-g-arnold/">LinkedIn</a>
-            </div>
-      
-          </div>
+  <body>
+    <!-- Jumbotron-->
+    <div class="jumbotron jumbotron-fluid mb-0">
+      <div class="container">
+        <h1 class="display-4">SquareHelp</h1>
+        <p class="lead">Begin your journey today.</p>
+        <div class="cta-btn">
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
+          </p>
         </div>
       </div>
-      
     </div>
+    
+      <main class="container">
+        
+        <!-- Headline (whatIs) -->
+        <section class="row">
+          <div class="whatIs contentBg">
+            <h3>What is SquareHelp?</h3>
+            <p>SquareHelp is a tool designed for the smoker who needs extra motivation to quit smoking. SquareHelp will
+              allow a
+              user to have full-access to the member community of individuals who are on also on the same journey.
+              SquareHelp can meet the smoker where they are at in their journey to quitting and remind them they are not in this alone.</p>
+          </div>
+        </section>
+        
+        <!-- Help me -->
+        <section class="row">
+          <div class="helpMe contentBg">
+            <h3>How can SquareHelp help me?</h3>
+            <p>When a user signs up for SquareHelp, they will be required to enter their weekly smoking habits. This
+              information is used to remind them how much money they saved on cigarettes.
+            <p>As a user of SquareHelp
+              they will be able to make verification requests to other users to verify that they are still nicotine
+              free.</p>
+            <p>After a number of days of positive verifications of request, the user will collect points and these
+              points will be used to redeem for gift cards and other perks at retailers.</p>
+          </div>
+        </section>
+      
+        <!-- About Section -->
+        <section class="row">
+          <div class="whoIs contentBg">
+            <a name="aboutus"></a>
+            <h3>About Us</h3>
+            <div class="card_view">
+          
+              <!-- Michael -->
+              <div class="card">
+                <img class="card-img mb-4" src="/img/index/member-michael.jpg">
+                <a class="whoIs-links" href="mailto:Michael.McDonnell067@gmail.com">Email</a>
+                <a class="whoIs-links" href="https://github.com/Michael22936">GitHub</a>
+                <a class="whoIs-links" href="https://www.linkedin.com/in/michaelvmcdonnell/">LinkedIn</a>
+              </div>
+          
+              <!-- Matt -->
+              <div class="card">
+                <img class="card-img mb-4" src="/img/index/member-matt.jpeg">
+                <a class="whoIs-links" href="mailto:matthew.lopez4011@gmail.com">Email</a>
+                <a class="whoIs-links" href="https://github.com/mattlopez4011">GitHub</a>
+                <a class="whoIs-links" href="https://www.linkedin.com/in/matt-lopez4011/">LinkedIn</a>
+              </div>
+          
+              <!-- Yael -->
+              <div class="card">
+                <img class="card-img mb-4" src="/img/index/member-yael.jpeg">
+                <a class="whoIs-links" href="mailto:yaelrbrown@gmail.com">Email</a>
+                <a class="whoIs-links" href="https://github.com/yaelBrown">GitHub</a>
+                <a class="whoIs-links" href="https://www.linkedin.com/in/yaelrbrown/">LinkedIn</a>
+              </div>
+          
+              <!-- Mitchell -->
+              <div class="card">
+                <img class="card-img mb-4" src="/img/index/member-mitchell.jpeg">
+                <a class="whoIs-links" href="mailto:mitchell.arnold2019@gmail.com">Email</a>
+                <a class="whoIs-links" href="https://github.com/MitchellArnold">GitHub</a>
+                <a class="whoIs-links" href="https://www.linkedin.com/in/mitchell-g-arnold/">LinkedIn</a>
+              </div>
+        
+            </div>
+          </div>
+        </section>
+        
+        <!-- Footer -->
+        <div class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+        </div>
+        
+      </main>
+  
   </body>
-  <th:block th:replace="partials/footer :: main-footer"/>
 </html>
 
