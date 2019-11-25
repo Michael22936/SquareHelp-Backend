@@ -29,6 +29,8 @@ public class DashboardController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         int totalUsers = (int)userDao.count();
+        System.out.println("totalUsers = " + totalUsers);
+        System.out.println("totalPoints = " + totalPoints);
         SmokerInfo smokerInfo = smokeDao.getOne(id);
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
@@ -50,4 +52,5 @@ public class DashboardController {
 
         return "dashboard";
     }
+
 }
