@@ -5,6 +5,7 @@ import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,13 @@ public class MessageController {
         this.smokeDao = smokeDao;
     }
 
-    @GetMapping("/message/{id}")
-    public String getSendMessageView(Model model, @PathVariable long id) {
+    @GetMapping("/message")
+    public String getSendMessageView(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.getOne(id));
-
         return "message";
     }
 
@@ -39,24 +41,30 @@ public class MessageController {
         return userDao.findByUsernameContaining(username);
     }
 
-    @GetMapping("/message/{rId}/{aId}")
-    public String sendAMessageToAnotherUser(@PathVariable long rId, @PathVariable String aId) {
-        return "redirect:/message/" + rId + "/" + aId + "/send";
+    @GetMapping("/message/{rId}")
+    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        return "redirect:/message/" + rId + "/" + id + "/send";
     }
 
-    @GetMapping("/message/{rId}/{aId}/send")
-    public String sendMessage(Model model, @PathVariable long rId, @PathVariable String aId) {
-        model.addAttribute("smoke", smokeDao.getOne(Long.parseLong(aId)));
-        model.addAttribute("user", userDao.getOne(Long.parseLong(aId)));
-        model.addAttribute("users", userDao.getOne(Long.parseLong(aId)));
+    @GetMapping("/message/{rId}/send")
+    public String sendMessage(Model model, @PathVariable long rId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("user", userDao.getOne(id));
+        model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("recipient", userDao.getOne(rId));
 
         return "message-send";
     }
 
-    @PostMapping("/message/{rId}/{aId}/send")
-    public String SaveMessage( @PathVariable long rId, @PathVariable String aId, @RequestParam String message) {
-        messageDao.save(new Messages(Integer.parseInt(aId),(int) rId, message));
-        return "redirect:/profile/" + aId;
+    @PostMapping("/message/{rId}/send")
+    public String SaveMessage( @PathVariable long rId, @RequestParam String message) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        messageDao.save(new Messages((int)id,(int) rId, message));
+        return "redirect:/profile/" + id;
     }
 }

@@ -6,6 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/verification.css}" />
   </head>
   <body>
+  <th:block th:else="${users.id != #authentication.principal.id}">
+
+<th:block th:if="${users.id == #authentication.principal.id}">
   <main class="container">
     <div class="row contentBg">
       <h1>Verifications</h1>
@@ -49,6 +52,7 @@
     </div>
   
   </main>
-  
+</th:block>
+</th:block>
   </body>
 </html>
