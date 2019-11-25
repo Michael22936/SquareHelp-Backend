@@ -1,5 +1,19 @@
 /* Styling is specific to login.html */
 
+.loginWrapper {
+    margin: auto;
+    width: 100%;
+}
+
+.login-form-1{
+    padding: 5%;
+}
+
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+
 input {
     color: #000;
 }
