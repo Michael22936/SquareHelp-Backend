@@ -11,4 +11,5 @@ nav-wrapper {
     z-index: 2;
     position: absolute;
     top: 38px;
+    background: white;
 }
