@@ -6,3 +6,8 @@
 .custom-card-style2 {
     background: darkslategray;
 }
+
+.verification-form-wrapper {
+    display: flex;
+    flex-direction: column;
+}
