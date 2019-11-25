@@ -23,7 +23,7 @@ if (userSearch !== "" ){
 
             }else {
                 // let url = '/message/' + user.id ;
-                let url = '/message/' + user.id + '/' + getCurrentPageUserId() ;
+                let url = '/message/' + user.id + '/send' ;
                 console.log(url);
                 $('#result').append('<form action="'+url+'" method="post">' +
                     '<a href=' + url + '  >' +
