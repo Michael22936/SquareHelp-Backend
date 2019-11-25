@@ -1,108 +1,222 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SquareHelp - Register</title>
-  <th:block th:replace="partials/navbar  :: main-navbar"/>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
   <th:block th:replace="partials/head :: main-header"/>
+  <style>
+    form {
+      width: 100%;
+      margin: auto;
+    }
+    
+    fieldset {
+      width: content-box;
+      margin: auto;
+    }
+  </style>
+  <title>SquareHelp - Register Page</title>
+  </head>
+  <body>
 
-<!--  <link href="css/register.css" rel="stylesheet">-->
+    <!-- Navbar -->
+    <th:block th:replace="partials/navbar :: main-navbar"/>
 
-</head>
-
-
-<body>
-  <div class="wrapper">
-    <h1 id="test">Register page</h1>
-    <div class="formWrapper">
-      <form class="col s12 needs-validation" th:action="@{/register}" method="POST" th:object="${user}" >
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="validationTooltipUsername">Username</label>
-            <input id="validationTooltipUsername" type="text" name="username" placeholder="Username" th:field="*{username}" class=" form-control validate text-dark" required aria-describedby="validationTooltipUsernamePrepend">
-              <div class="invalid-tooltip">
-                  Please choose a unique and valid username.
+    <main class="container">
+      <section class="row contentBg">
+        
+        <!-- Register Form -->
+        <form th:action="@{/register}" method="POST" th:object="${user}">
+          <fieldset>
+      
+            <!-- Form Name -->
+            <legend>Register</legend>
+      
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="Username">Username</label>
+              <div class="col-md-6">
+                <input id="Username" name="Username" type="text" placeholder="" class="form-control input-md"
+                       th:field="*{username}" required="">
+                <span class="help-block">Enter a username</span>
               </div>
-<!--            <span class="helper-text" data-error="wrong"-->
-<!--                  data-success="right">This is example of small helper text</span>-->
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="password" th:field="*{password}" class=" form-control validate text-dark" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Email" th:field="*{email}" class=" form-control validate text-dark" required>
-          </div>
-        </div>
-        <!--      <%- include('partials/register-cityStatesDropdown') -%>-->
-        <th:block th:replace="partials/register-cityStatesDropdown :: main-statesDropdown"/>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="dob">Date of Birth</label>
-            <input id="dob" type="date" name="dob" th:field="*{dob}" class="validate">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="phone">Phone Number</label>
-            <input id="phone" type="tel" name="phone" th:field="*{phoneNumber}" placeholder="Format: 1234567890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" class="form-control text-dark">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <label for="genderRadioWrapper">Enter your gender</label>
-            <div id="genderRadioWrapper">
-                <div class="form-check">
-<!--                  th:field="*{radioButtonSelectedValue}"-->
-<!--                  th:value="${radioValue}"-->
-                  <input class="form-check-input" id="radio1" name="gender" th:field="*{gender}"  type="radio" value="male"/>
-                  <label class="form-check-label" for="radio1">Male</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" id="radio2" name="gender" th:field="*{gender}" type="radio" value="female"/>
-                  <label class="form-check-label" for="radio2">Female</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" id="radio3"  name="gender" th:field="*{gender}" type="radio" value="I prefer not to say"/>
-                  <label class="form-check-label" for="radio3">I prefer not to say</label>
-                </div>
             </div>
-          </div>
-        </div>
-
-          <div th:object="${smokeInfo}" >
-              <div class="row">
-                  <div class="input-field col s6">
-                      <label for="dateQuitSmoking">Date to quit smoking</label>
-                      <input id="dateQuitSmoking" type="date" name="dateQuitSmoking" th:field="*{day_quit_smoking}"  class="form-control validate">
-                  </div>
+      
+            <!-- Password input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="password">Password</label>
+              <div class="col-md-6">
+                <input id="password" name="password" type="password" placeholder="" class="form-control input-md"
+                       th:field="*{password}" required="">
+                <span class="help-block">Enter a password</span>
               </div>
-              <div class="row">
-                  <div class="input-field col s6">
-                      <label for="costOfCigs">Average cost of a pack of cigarettes for you</label>
-                      <input id="costOfCigs" type="text"  name="costOfCigs" placeholder="$0.00" th:field="*{cost_of_cigs_saved}" class=" form-control validate text-dark">
-                  </div>
+            </div>
+      
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="email">Email</label>
+              <div class="col-md-6">
+                <input id="email" name="email" type="email" placeholder="" class="form-control input-md"
+                       th:field="*{email}" required="">
+                <span class="help-block">Enter a valid email</span>
               </div>
-          </div>
+            </div>
+            
+            <!-- Date input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="email">Date of Birth</label>
+              <div class="col-md-6">
+                <input id="dob" type="date" placeholder="" class="form-control input-md" th:field="*{dob}"
+                       required="">
+                <span class="help-block">Enter your birthday</span>
+              </div>
+            </div>
+      
+            <!-- Number input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="phone">Phone Number</label>
+              <div class="col-md-6">
+                <input id="phone" name="phone" type="number" placeholder="" class="form-control input-md"
+                       th:field="*{phoneNumber}" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10">
+                <span class="help-block">Enter a phone number</span>
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="city">City</label>
+              <div class="col-md-6">
+                <input id="city" name="city" type="text" placeholder="" class="form-control input-md" required="">
+                <span class="help-block">Enter a city</span>
+              </div>
+            </div>
+      
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="state">State</label>
+              <div class="col-md-6">
+                <select id="state" name="state" class="form-control" th:field="*{state}">
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX" selected>Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Multiple Radios -->
+            <div class="form-group">
+              <label class="col-md-6 control-label" >Gender</label>
+              <div class="col-md-6">
+                <div class="radio">
+                  <label for="gender-0">
+                    <input type="radio" name="gender" id="gender-0" value="Male" th:field="*{gender}">
+                    Male
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="gender-1">
+                    <input type="radio" name="gender" id="gender-1" value="Female" th:field="*{gender}">
+                    Female
+                  </label>
+                </div>
+                <div class="radio">
+                  <label for="gender-2">
+                    <input type="radio" name="gender" id="gender-2" value="NA" th:field="*{gender}">
+                    I prefer not to say
+                  </label>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Date input-->
+            <div th:object="${smokeInfo}" >
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="email">Date Quit Smoking</label>
+                <div class="col-md-6">
+                  <input id="dateQuitSmoking" name="dateQuitSmoking" type="date" placeholder="" class="form-control input-md"
+                         required="" th:field="*{Day_quit_smoking}">
+                  <span class="help-block">Enter the date you quit smoking</span>
+                </div>
+              </div>
+              
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-6 control-label" for="costOfCigs">Average Cost of Cigarettes</label>
+                <div class="col-md-6">
+                  <input id="costOfCigs" name="costOfCigs" type="number" placeholder="" class="form-control input-md"
+                         th:field="*{Cost_of_cigs_saved}">
+                  <span class="help-block">The average amount you pay for cigarettes a day</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- csrf -->
+            <input id="csrf" value="JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1">
+            
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-6 control-label" for="submit"></label>
+              <div class="col-md-6">
+                <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+    
+          </fieldset>
+        </form>
 
+      </section>
+      
+      <!-- Footer -->
+      <section class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+        <script src="js/register/register.js"></script>
+      </section>
+      </div>
+    </main>
 
-        <input id="csrf" value="something">
-
-        <div class="row btn-row">
-          <button class="btn  waves-effect waves-light btn-primary" type="submit" id="submit">Submit</button>
-          <button class="btn waves-effect waves-light btn-danger" type="reset" name="reset" id="reset">reset</button>
-        </div>
-      </form>
-    </div>
-  </div>
-    <th:block th:replace="partials/footer :: main-footer"/>
-<!--  <script type="text/javascript" th:src="@{../static/js/register/register.js}"></script>-->
-  <script src="js/register/register.js"></script>
-</body>
+  </body>
+</html>

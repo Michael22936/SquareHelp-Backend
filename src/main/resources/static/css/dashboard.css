@@ -1,6 +1,14 @@
+main {
+    height: auto;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+}
+
 .custom-card-style {
     background: grey;
-    /*color: grey;*/
 }
 
 .custom-card-style2 {
@@ -9,4 +17,8 @@
 
 .wrapper {
     margin: 0 auto;
+}
+
+.userRow{
+    cursor: pointer;
 }

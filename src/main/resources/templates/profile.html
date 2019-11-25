@@ -2,21 +2,49 @@
 <head>
 <title>SquareHelp - profile</title>
 <th:block th:replace="partials/head :: main-header"/>
+    <link rel="stylesheet" th:href="@{/css/profile.css}" />
 </head>
 <body>
-<div th:replace="partials/navbar :: main-navbar"></div>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <h1>Profile Page</h1>
-<div class="wrapper">
-    <div th:each="user : ${users.username}">
-        <h1 th:text="${user}"></h1>
-        <h1 th:text="${users.city}"></h1>
-        <h1 th:text="${users.state}"></h1>
-        <h1 th:text="${moneySaved}"></h1>
-        <h1 th:text="${smoke.points}"></h1>
-        <h1 th:text="${smoke.total_days_smoke_free}"></h1>
+<section class="row contentBg">
+    <div class="card mb-3">
+        <div class="row no-gutters contentBg">
+            <div class="col-md-4">
+                <div class="headline">
+                    <h1> Welcome <span th:text="${users.username}"></span></h1>
+                    <img src="/img/profile/user_avatar.png" alt="Avatar Image">
+                    <h5>Current city: <span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-header">Statistics: </h2>
+                        <div class="stats-start">
+                            <div class="card-text col-md-6">
+                                <h4>User points: </h4><p style="font-size: 4em" th:text="${smoke.points}"></p>
+                                <p><i>**The current points reflect that the user has stayed "smoke-free" for <strong><span
+                                        th:text="${smoke.total_days_smoke_free}"></span></strong> days.</i></p>
+                            </div>
+                        </div>
+                        <div class="stats-end">
+                            <div class="card-text col-md-6">
+                                <h5>Habit savings: <span th:text="${moneySaved}"></span></h5>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
     </div>
+    <th:block th:if="${users.id == #authentication.principal.id}">
     <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
-</div>
+    </th:block>
+</section>
 <th:block th:replace="partials/footer :: main-footer"/>
 </body>
 </html>
+
+
+
