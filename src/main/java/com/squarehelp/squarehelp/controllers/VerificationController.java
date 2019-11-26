@@ -100,7 +100,7 @@ public class VerificationController {
 
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
-        return "redirect:/verification/" + user_id;
+        return "redirect:/verification/";
     }
 
 }
