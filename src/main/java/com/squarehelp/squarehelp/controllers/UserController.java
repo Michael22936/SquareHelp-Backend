@@ -35,8 +35,9 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, @ModelAttribute SmokerInfo smokerInfo ){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        SmokerInfo si = smokeDao.save(smokerInfo);
+        user.setSmokerInfo(si);
         userDao.save(user);
-        smokeDao.save(smokerInfo);
         return "redirect:/login";
     }
 }
