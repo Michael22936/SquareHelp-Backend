@@ -1,5 +1,6 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.Messages;
 import com.squarehelp.squarehelp.models.Notification;
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
@@ -42,6 +43,7 @@ public class NotificationController {
         long id = user.getId();
 
         List<Notification> n = notiDao.findNotificationsByRecipient_user_idIs(id);
+        List<Messages> m = messageDao.findMessagesByRecipient_user_idIs(id);
 
         // Mark all notifications read and save them.
         for (Notification noti : n) {
@@ -51,9 +53,10 @@ public class NotificationController {
 
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", user);
+        model.addAttribute("authorId", userDao.getOne(id));
         model.addAttribute("uid", String.valueOf(user.getId()));
         model.addAttribute("notifications", n);
-        model.addAttribute("messages", messageDao.getOne(id));
+        model.addAttribute("messages", m);
         return "notification";
     }
 
