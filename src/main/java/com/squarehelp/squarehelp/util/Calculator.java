@@ -12,7 +12,6 @@ public class Calculator {
         return (cigCost * totSmokeFree);
     }
 
-
     public static int relapseCheck(Date relapseDate, int days){
         if(relapseDate != null){
             int reset = 0;

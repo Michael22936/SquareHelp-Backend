@@ -30,7 +30,7 @@ public class DashboardController {
     public String passingDashboard(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        int totalUsers = (int)userDao.count();
+        int totalUsers = (int) userDao.count();
         System.out.println("totalUsers = " + totalUsers);
 //        System.out.println("totalPoints = " + totalPoints);
         SmokerInfo smokerInfo = smokeDao.getOne(id);
@@ -53,10 +53,6 @@ public class DashboardController {
         // Get points for user (5 points per day)
         int userPointsTotal = userPointsCalculator(rCheck);
 
-        
-        
-
-    
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
         model.addAttribute("users", userDao.getOne(id));
