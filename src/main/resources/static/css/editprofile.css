@@ -1,16 +1,16 @@
-.profileWrapper {
+.editProfileWrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-.profileWrapper-left {
+.editProfileWrapper-left {
     display: flex;
     flex-direction: column;
     max-width: 255px;
 }
 
-.profileWrapper-right {
+.editProfileWrapper-right {
     width: 100%;
 }
 

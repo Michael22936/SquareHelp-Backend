@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="partials/head :: main-header"/>
-    <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    <link rel="stylesheet" th:href="@{/css/profile.css}"/>
     <title>Profile Page</title>
     </head>
     
@@ -11,39 +11,46 @@
         <main class="container">
             
             <section class="row contentBg">
-                <div class="card mb-3">
-                    <div class="row no-gutters contentBg">
-                        <div class="col-md-4">
-                            <div class="headline">
-                                <h1> Welcome <span th:text="${users.username}"></span></h1>
-                                <img src="/img/profile/user_avatar.png" alt="Avatar Image">
-                                <h5>Current city: <span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h2 class="card-header">Statistics: </h2>
-                                <div class="stats-start">
-                                    <div class="card-text col-md-6">
-                                        <h4>User points: </h4><p style="font-size: 4em" th:text="${smoke.points}"></p>
-                                        <p><i>**The current points reflect that the user has stayed "smoke-free" for <strong><span
-                                                th:text="${smoke.total_days_smoke_free}"></span></strong> days.</i></p>
-                                    </div>
-                                </div>
-                                <div class="stats-end">
-                                    <div class="card-text col-md-6">
-                                        <h5>Habit savings: <span th:text="${moneySaved}"></span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="profileWrapper">
+                    <div class="profileWrapper-left col-md-4">
+                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+    
+                        <th:block th:if="${users.id == #authentication.principal.id}">
+                            <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-outline-warning">Edit Profile</a>
+                        </th:block>
+                        
+                    </div>
+                    <div class="profileWrapper-right">
+                        <h1><span th:text="${users.username}"></span></h1>
+                        <h3><span th:text="${smoke.points}"></span> points</h3>
+                        <h5><span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
+            
+                        <div class="divideDiv mb-2"></div>
+            
+                        <table class="table table-dark">
+                            <tbody>
+                                <tr>
+                                    <td class="col tdLeft">Day quit smoking:</td>
+                                    <td class="col"><span th:text="${smoke.day_quit_smoking}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total days smoke free:</td>
+                                    <td><span th:text="${smoke.total_days_smoke_free}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Average price of cigs:</td>
+                                    <td>$<span th:text="${smoke.cost_of_cigs_saved}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total amount saved:</td>
+                                    <td><span th:text="${moneySaved}"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
                     </div>
                 </div>
-                <th:block th:if="${users.id == #authentication.principal.id}">
-                    <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning btn-block">Edit Profile</a>
-                </th:block>
+
             </section>
             
             <!-- Footer -->

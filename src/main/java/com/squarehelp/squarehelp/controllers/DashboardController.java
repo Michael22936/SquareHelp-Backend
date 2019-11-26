@@ -30,18 +30,15 @@ public class DashboardController {
     public String passingDashboard(Model model){
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        long id = user.getId();
-//        int totalUsers = (int) userDao.count();
+        int totalUsers = (int) userDao.count();
 //        System.out.println("totalUsers = " + totalUsers);
 //        User userInfo = userDao.getOne(id);
-//        SmokerInfo smokerInfo = smokeDao.getOne(id);
 
 
 
 //        tests
         User userInfo = userDao.getOne(6L);
-        userInfo.
 
-        System.out.println("userInfo = " + userInfo);
         // Day counter (int)
 
         // if date_relapsed is not null
@@ -49,7 +46,11 @@ public class DashboardController {
             // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
 
 
-//        if()
+        if(userInfo.getSmokerInfo().getDay_relapse() != null){
+            if(userInfo.getSmokerInfo().getDay_relapse() > userInfo.getSmokerInfo().getDay_quit_smoking()){
+
+            }
+        }
 
 
 
@@ -95,7 +96,7 @@ public class DashboardController {
         System.out.println("days = " + days);
 
         // Relapse check (int)
-        Date relapseDate = smokerInfo.getDay_relapse();
+        Date relapseDate = userInfo.getSmokerInfo().getDay_relapse();
         int rCheck = relapseCheck(relapseDate, days);
         if(rCheck == 0){
             days = 0;
@@ -107,17 +108,17 @@ public class DashboardController {
 
 
         // Save to DB
-        smokerInfo.setTotal_days_smoke_free(rCheck);
-        smokeDao.save(smokerInfo);
+        userInfo.getSmokerInfo().setTotal_days_smoke_free(rCheck);
+        smokeDao.save(userInfo.getSmokerInfo());
 
 
         // User community stats
-        int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
+        int totalCommunityUsers = avgPointsCalculator(userInfo.getSmokerInfo().getPoints(),totalUsers);
 
         model.addAttribute("users", userInfo);
-        model.addAttribute("smoke", smokerInfo);
+        model.addAttribute("smoke", userInfo.getSmokerInfo());
         model.addAttribute("user-points", userPointsTotal);
-        model.addAttribute("moneySaved", calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free()));
+        model.addAttribute("moneySaved", calcMoneySaved(userInfo.getSmokerInfo().getCost_of_cigs_saved(), userInfo.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";
     }
