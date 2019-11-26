@@ -2,8 +2,11 @@ package com.squarehelp.squarehelp.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -32,6 +35,16 @@ public class User {
     private String lastLogin;
     @Column(columnDefinition = "VARCHAR(255)")
     private String gender;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Messages> messages;
+    @OneToMany(mappedBy = "user_veq", cascade = CascadeType.ALL)
+    private List<Verification> verifications;
+    @OneToMany(mappedBy = "user_noti", cascade = CascadeType.ALL)
+    private List<Notification> notifications;
+    @OneToOne
+    @JsonManagedReference
+    private SmokerInfo smokerInfo;
+
 
     public User() {
     }
@@ -150,4 +163,32 @@ public class User {
         this.gender = gender;
     }
 
+    public List<Messages> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Messages> messages) {
+        this.messages = messages;
+    }
+    public SmokerInfo getSmokerInfo() {
+        return smokerInfo;
+    }
+
+    public void setSmokerInfo(SmokerInfo smokerInfo) {
+        this.smokerInfo = smokerInfo;
+    }
+    public List<Verification> getVerifications() {
+        return verifications;
+    }
+
+    public void setVerifications(List<Verification> verifications) {
+        this.verifications = verifications;
+    }
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 }

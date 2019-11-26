@@ -37,6 +37,7 @@ public class MessageController {
     @GetMapping("/search")
     @ResponseBody
     public List<User> sendMatchingUser(@RequestParam String username){
+        System.out.println(username);
         System.out.println(userDao.findByUsernameContaining(username));
         return userDao.findByUsernameContaining(username);
     }
@@ -64,7 +65,7 @@ public class MessageController {
     public String SaveMessage( @PathVariable long rId, @RequestParam String message) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        messageDao.save(new Messages((int)id,(int) rId, message));
+        messageDao.save(new Messages((int)id,(int) rId, message, user));
         return "redirect:/profile/" + id;
     }
 }

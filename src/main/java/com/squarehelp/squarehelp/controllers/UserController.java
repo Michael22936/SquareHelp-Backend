@@ -4,6 +4,7 @@ import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,30 +34,10 @@ public class UserController {
     @PostMapping("/register")
     public String saveUser(@ModelAttribute User user, @ModelAttribute SmokerInfo smokerInfo ){
         String hash = passwordEncoder.encode(user.getPassword());
-        int newUserId =  ( (int)userDao.count() + 1);
         user.setPassword(hash);
+        SmokerInfo si = smokeDao.save(smokerInfo);
+        user.setSmokerInfo(si);
         userDao.save(user);
-        smokeDao.save( new SmokerInfo(String.valueOf(newUserId),smokerInfo.getDay_quit_smoking(), smokerInfo.getCost_of_cigs_saved()) );
         return "redirect:/login";
     }
-
-    //    @PostMapping("/register")
-//    public String RegisterNewUser(@ModelAttribute User user, ) throws ParseException {
-//        // Pulls last user id and adds 1 to create user_id for smoking_into.
-//
-//        System.out.println("newUserId = " + newUserId);
-//
-//        // Add new user to users table
-//        userDao.save(new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getState(), user.getCity(), user.getDob(), user.getPhoneNumber(), ConvertStringToDate(user.getDob()), user.getLastLogin(), user.getGender()));
-//
-//
-//        return "login";
-//    }
-//
-//    public Date ConvertStringToDate(String string) throws ParseException {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Date ConvertedDate = sdf.parse(string);
-//
-//        return ConvertedDate;
-//    }
 }

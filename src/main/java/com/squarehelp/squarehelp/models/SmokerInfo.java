@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,9 +12,6 @@ public class SmokerInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(columnDefinition = "INT UNIQUE")
-    private String user_id;
 
     @Column(columnDefinition = "DATE")
     private String day_quit_smoking;
@@ -29,11 +28,15 @@ public class SmokerInfo {
     @Column(columnDefinition = "INT(10)")
     private int cost_of_cigs_saved;
 
+    @OneToOne(mappedBy = "smokerInfo")
+    @JsonBackReference
+    private User user;
+
+
     public SmokerInfo() {}
 
-    public SmokerInfo(long id, String user_id, String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
+    public SmokerInfo(long id, String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
         this.id = id;
-        this.user_id = user_id;
         this.day_quit_smoking = day_quit_smoking;
         this.day_relapse = day_relapse;
         this.total_days_smoke_free = total_days_smoke_free;
@@ -41,8 +44,7 @@ public class SmokerInfo {
         this.cost_of_cigs_saved = cost_of_cigs_saved;
     }
 
-    public SmokerInfo(String user_id, String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
-        this.user_id = user_id;
+    public SmokerInfo(String day_quit_smoking, Date day_relapse, int total_days_smoke_free, int points, int cost_of_cigs_saved) {
         this.day_quit_smoking = day_quit_smoking;
         this.day_relapse = day_relapse;
         this.total_days_smoke_free = total_days_smoke_free;
@@ -50,10 +52,10 @@ public class SmokerInfo {
         this.cost_of_cigs_saved = cost_of_cigs_saved;
     }
 
-    public SmokerInfo(String user_id,String day_quit_smoking, int cost_of_cigs_saved) {
-        this.user_id = user_id;
+    public SmokerInfo(String day_quit_smoking, int cost_of_cigs_saved, User user) {
         this.day_quit_smoking = day_quit_smoking;
         this.cost_of_cigs_saved = cost_of_cigs_saved;
+        this.user = user;
     }
 
     public long getId() {
@@ -62,14 +64,6 @@ public class SmokerInfo {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public String getDay_quit_smoking() {
@@ -110,5 +104,12 @@ public class SmokerInfo {
 
     public void setCost_of_cigs_saved(int cost_of_cigs_saved) {
         this.cost_of_cigs_saved = cost_of_cigs_saved;
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

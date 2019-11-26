@@ -25,6 +25,12 @@
                                 <td><p th:text="${noti.getNotification()}"></p></td>
                             </tr>
                         </div>
+                        <div th:each="message : ${messages}">
+                            <tr>
+                                <td><p th:text="${message.message}"></p></td>
+                                <td><p th:text="${authorId.username}"></p></td>
+                            </tr>
+                        </div>
                     </tbody>
                 </table>
             </section>
