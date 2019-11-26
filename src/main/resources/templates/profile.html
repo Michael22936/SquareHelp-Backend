@@ -13,40 +13,41 @@
             <section class="row contentBg">
                 <div class="profileWrapper">
                     <div class="profileWrapper-left col-md-4">
-                        <img id="profileImg" class="mb-2" src="/img/profile/225x225.png">
+                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
             
                         <a href="/profile/5/edit" id="editBtn" class="btn btn-outline-warning">Edit
                             Profile</a>
         
         
                     </div>
-                    <div class="profileWrapper-right col-md-8">
-                        <h1 value="test"></h1>
-                        <h3><span th:text="{smoke.points}"></span> points.</h3>
+                    <div class="profileWrapper-right">
+                        <h1><span th:text="${users.username}"></span></h1>
+                        <h3><span th:text="${smoke.points}"></span> points</h3>
                         <h5><span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
             
-                        <div class="divideDiv"></div>
+                        <div class="divideDiv mb-2"></div>
             
-                        <table class="table table-sm table-dark">
+                        <table class="table table-dark">
                             <tbody>
-                            <tr>
-                                <td class="col">Day quit smoking:</td>
-                                <td class="col"><span th:text="${smoke.day_quit_smoking}"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Total days smoke free:</td>
-                                <td><span th:text="${smoke.total_days_smoke_free}"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Average price of cigs:</td>
-                                <td><span th:text="${smoke.cost_of_cigs_saved}"></span></td>
-                            </tr>
-                            <tr>
-                                <td>Total amount saved:</td>
-                                <td><span th:text="${moneySaved}"></span></td>
-                            </tr>
+                                <tr>
+                                    <td class="col tdLeft">Day quit smoking:</td>
+                                    <td class="col"><span th:text="${smoke.day_quit_smoking}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total days smoke free:</td>
+                                    <td><span th:text="${smoke.total_days_smoke_free}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Average price of cigs:</td>
+                                    <td>$<span th:text="${smoke.cost_of_cigs_saved}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Total amount saved:</td>
+                                    <td><span th:text="${moneySaved}"></span></td>
+                                </tr>
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
 
