@@ -4,8 +4,8 @@ import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
-import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.LocalDate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,37 +28,93 @@ public class DashboardController {
 
     @GetMapping("/dashboard")
     public String passingDashboard(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long id = user.getId();
-        int totalUsers = (int) userDao.count();
-        System.out.println("totalUsers = " + totalUsers);
-        SmokerInfo smokerInfo = smokeDao.getOne(id);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long id = user.getId();
+//        int totalUsers = (int) userDao.count();
+//        System.out.println("totalUsers = " + totalUsers);
+//        User userInfo = userDao.getOne(id);
+//        SmokerInfo smokerInfo = smokeDao.getOne(id);
 
-        // Get lapse of days (from day quit smoking to current date)
-        DateTime start = new DateTime(smokerInfo.getDay_quit_smoking());
-        DateTime end = new DateTime(DateTime.now());
+
+
+//        tests
+        User userInfo = userDao.getOne(6L);
+        userInfo.
+
+        System.out.println("userInfo = " + userInfo);
+        // Day counter (int)
+
+        // if date_relapsed is not null
+
+            // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
+
+
+        if()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        LocalDate start = new LocalDate(userInfo.getDateCreated());
+        // if date_quit_smoking is after date_created, start should be date_quit_smoking
+        // else start is date_created
+
+        LocalDate end = new LocalDate(LocalDate.now());
+//        System.out.println("start = " + start.toString());
+//        System.out.println("end.toString() = " + end.toString());
+
+
+
+        System.out.println("LocalDate.now().toString() = " + LocalDate.now().toString());
+//        if(LocalDate.now().toString().equals("2019-11-26")){
+//            System.out.println("\"It's true\" = " + "It's true");
+//        }else{
+//            System.out.println("wrong");
+//        }
+
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
 
-        // Relapse check
+        // Relapse check (int)
         Date relapseDate = smokerInfo.getDay_relapse();
         int rCheck = relapseCheck(relapseDate, days);
-        System.out.println("days now = " + days);
+        if(rCheck == 0){
+            days = 0;
+        }
+        System.out.println("rCheck = " + rCheck);
 
-
-        // Get points for user (5 points per day)
+        // User points  (clean; 5 per diem)
         int userPointsTotal = userPointsCalculator(rCheck);
 
 
         // Save to DB
-        smokerInfo.setTotal_days_smoke_free(days);
+        smokerInfo.setTotal_days_smoke_free(rCheck);
         smokeDao.save(smokerInfo);
 
 
         // User community stats
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
-        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("users", userInfo);
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("user-points", userPointsTotal);
         model.addAttribute("moneySaved", calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free()));
