@@ -9,14 +9,11 @@
     
     <main class="container">
       
-      <section class="row contentBg">
+      <section class="row contentBg d-flex">
         <form th:action="'/message'" method="post" th:object="${messages}">
           <h1 class="mb-2">Who do you want to send the message to: </h1>
-          <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class="mb-2" required>
-          <ul class="list-group" id="messageUserResults">
-            <button class="btn btn-primary" th:value="${users.id}" name="aId" th:type="submit"
-                    style="max-width: 170px;">Next
-              Page</button>
+          <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class=" justify-content-center w-75 mb-2" required>
+          <ul class="list-group w-75" id="messageUserResults">
             <th:block th:object="${users}">
               <input type="text" name="aId" th:field="*{id}" class="d-none">
             </th:block>
