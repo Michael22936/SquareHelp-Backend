@@ -12,22 +12,21 @@ public class Calculator {
         return (cigCost * totSmokeFree);
     }
 
-    public static int userDayLapse(){
-        // start with date_quit smoking (or sign-up day), add each calendar day
-        return 0;
+
+    public static int relapseCheck(Date relapseDate, int days){
+        if(relapseDate != null){
+            int reset = 0;
+            return reset;
+        }else {
+            return days;
+        }
     }
 
-//    public static int relapseCheck(Date relapseDate){
-//        if(relapseDate != null){
-//            int reset = 0;
-//            return
-//        }
-//    }
 
-    public static int userPointsCalculator(int day, int relapse){
+    public static int userPointsCalculator(int day){
         int dailyPoints = 5;
 
-        if(day != 0 && relapse == 0){
+        if(day != 0){
             int out = dailyPoints * day;
 
             return out;

@@ -43,19 +43,15 @@ public class DashboardController {
 
         // Get relapse day (if needed)
         Date relapseDate = smokerInfo.getDay_relapse();
-        DateTime rStart = new DateTime(relapseDate);
-        int resetDays = Days.daysBetween(rStart, end).getDays();
+//        DateTime rStart = new DateTime(relapseDate);
+//        int resetDays = Days.daysBetween(rStart, end).getDays();
 
-        // relapse check
-        if(relapseDate != null){
-            days = 0;
-        }
-
-
+        int rCheck = relapseCheck(relapseDate, days);
+        System.out.println("days now = " + days);
 
 
         // Get points for user (5 points per day)
-        userPointsCalculator(days, resetDays);
+        int userPointsTotal = userPointsCalculator(rCheck);
 
         
         
@@ -65,6 +61,7 @@ public class DashboardController {
 
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
+        model.addAttribute("user-points", userPointsTotal);
         model.addAttribute("moneySaved", calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";
