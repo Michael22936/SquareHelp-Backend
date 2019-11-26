@@ -22,6 +22,9 @@
                     <tbody>
                         <div th:each="noti : ${notifications}">
                             <tr>
+                    <th:block th:each="message : ${messages.message}">
+                            <td><p th:value="${message}"></p></td>
+                    </th:block>
                                 <td><p th:text="${noti.getNotification()}"></p></td>
                             </tr>
                         </div>

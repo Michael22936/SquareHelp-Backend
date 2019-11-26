@@ -3,6 +3,7 @@ package com.squarehelp.squarehelp.controllers;
 import com.squarehelp.squarehelp.models.Notification;
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
@@ -26,11 +27,13 @@ public class NotificationController {
     private final UserRepository userDao;
     private final NotificationRepository notiDao;
     private final SmokerInfoRepository smokeDao;
+    private final MessagesRepository messageDao;
 
-    public NotificationController(UserRepository userDao, NotificationRepository notiDao, SmokerInfoRepository smokeDao){
+    public NotificationController(UserRepository userDao, NotificationRepository notiDao, SmokerInfoRepository smokeDao, MessagesRepository messageDao){
         this.notiDao = notiDao;
         this.userDao = userDao;
         this.smokeDao = smokeDao;
+        this.messageDao = messageDao;
     }
 
     @GetMapping("/notifications")
@@ -50,6 +53,7 @@ public class NotificationController {
         model.addAttribute("users", user);
         model.addAttribute("uid", String.valueOf(user.getId()));
         model.addAttribute("notifications", n);
+        model.addAttribute("messages", messageDao.getOne(id));
         return "notification";
     }
 
