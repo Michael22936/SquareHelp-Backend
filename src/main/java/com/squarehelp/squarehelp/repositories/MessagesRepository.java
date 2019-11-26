@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MessagesRepository extends JpaRepository<Messages, Long> {
-    @Query(value = "select id, author_user_id, recipient_user_id, message FROM messages where user_id = :id", nativeQuery = true)
+    @Query(value = "select id, author_user_id, recipient_user_id, message, user_id FROM messages where recipient_user_id = :id", nativeQuery = true)
     List<Messages> findMessagesByRecipient_user_idIs(@Param("id") Long id);
 }
