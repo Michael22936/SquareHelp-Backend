@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.Table;
@@ -22,6 +24,7 @@ public class Messages {
     private String message;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
 
