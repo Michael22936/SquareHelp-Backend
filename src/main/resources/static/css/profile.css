@@ -12,3 +12,28 @@
     justify-content: flex-end;
     flex-direction: row;
 }
+
+.profileWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.profileWrapper-left {
+    display: flex;
+    flex-direction: column;
+    max-width: 255px;
+}
+
+#profileImg {
+
+}
+
+#editBtn {
+
+}
+
+divideDiv {
+    height: 3px;
+    border: gray 2px solid;
+}
