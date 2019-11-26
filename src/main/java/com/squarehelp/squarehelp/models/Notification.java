@@ -21,6 +21,11 @@ public class Notification {
     @Column(columnDefinition = "BOOLEAN")
     private boolean is_viewed;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user_noti;
+
+
     public Notification(String recipient_user_id, String originator_user_id, String notification, boolean is_viewed) {
         this.recipient_user_id = recipient_user_id;
         this.originator_user_id = originator_user_id;
@@ -69,5 +74,12 @@ public class Notification {
 
     public void setIs_viewed(boolean is_viewed) {
         this.is_viewed = is_viewed;
+    }
+    public User getUser_noti() {
+        return user_noti;
+    }
+
+    public void setUser_noti(User user_noti) {
+        this.user_noti = user_noti;
     }
 }

@@ -49,7 +49,7 @@ public class DashboardController {
             // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
 
 
-        if()
+//        if()
 
 
 
@@ -138,7 +138,6 @@ public class DashboardController {
     @GetMapping("/searchAll")
     @ResponseBody
     public List<User> sendAllUsers(){
-//        System.out.println(userDao.findByUsernameContaining(username));
         System.out.println(userDao.findAll());
         System.out.println("Json of all USERS sent to JS!");
         return userDao.findAll();
