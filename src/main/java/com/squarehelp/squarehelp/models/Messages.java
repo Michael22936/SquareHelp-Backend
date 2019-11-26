@@ -21,10 +21,22 @@ public class Messages {
     @Column(columnDefinition = "TEXT")
     private String message;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
     public Messages(int author_user_id, int recipient_user_id, String message) {
         this.author_user_id = author_user_id;
         this.recipient_user_id = recipient_user_id;
         this.message = message;
+    }
+
+    public Messages(int author_user_id, int recipient_user_id, String message, User user) {
+        this.author_user_id = author_user_id;
+        this.recipient_user_id = recipient_user_id;
+        this.message = message;
+        this.user = user;
     }
 
     public Messages() {
@@ -60,5 +72,12 @@ public class Messages {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
