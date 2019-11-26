@@ -12,8 +12,8 @@
       <section class="row contentBg">
         <form th:action="'/message'" method="post" th:object="${messages}">
           <h1 class="mb-2">Who do you want to send the message to: </h1>
-          <input type="text" placeholder="Enter Username..."  name="username" id="search" class="mb-2" required>
-          <ul class="list-group" id="result">
+          <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class="mb-2" required>
+          <ul class="list-group" id="messageUserResults">
             <button class="btn btn-primary" th:value="${users.id}" name="aId" th:type="submit"
                     style="max-width: 170px;">Next
               Page</button>
