@@ -27,7 +27,7 @@ const getCurrentPageUserId = () => {
 $('#search').keyup(function () {
     let userSearch = $('#search').val();
 
-    $('#result').html('');
+    $('#dashboardResult').html('');
 
     // If search input is not empty
     if (userSearch !== "" ){
