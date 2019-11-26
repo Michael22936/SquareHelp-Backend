@@ -46,10 +46,15 @@ public class DashboardController {
         // Get points for user (5 points per day)
         int userPoints = 5 * days;
         System.out.println("userPoints = " + userPoints);
-        
-        
 
-    
+
+        // Save to DB
+        smokerInfo.setTotal_days_smoke_free(days);
+        smokeDao.save(smokerInfo);
+
+
+
+        // User community stats
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
         model.addAttribute("users", userDao.getOne(id));
