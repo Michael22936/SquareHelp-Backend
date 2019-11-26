@@ -70,5 +70,14 @@ public class DashboardController {
 
         return "dashboard";
     }
-    
+
+
+    @GetMapping("/searchAll")
+    @ResponseBody
+    public List<User> sendAllUsers(){
+//        System.out.println(userDao.findByUsernameContaining(username));
+        System.out.println(userDao.findAll());
+        System.out.println("Json of all USERS sent to JS!");
+        return userDao.findAll();
+    }
 }
