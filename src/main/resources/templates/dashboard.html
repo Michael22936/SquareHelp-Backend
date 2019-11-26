@@ -1,46 +1,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <th:block th:replace="partials/head :: main-header"/>
-  <title>SquareHelp - Dashboard</title>
-  <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
-  </head>
-  <body>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <main class="container contentBg">
-      
-      <!-- Search Modal - (Checks if users list is not Null, then prints the modal) -->
-      <th:block th:if="${ListOfusers != null}">
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Pick A User To View Profile</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <table class="table table-hover modal-body table-condensed">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Email</th>
-                </tr>
-              </thead>
-              <tbody th:each="user, iterStat : ${ListOfusers}">
-                <tr class="clickable userRow" th:onclick="|window.location.href='/profile/${user.id}'|">
-                  <th scope="row" th:text="${iterStat.count}"></th>
-                  <td th:text="${user.username}"></td>
-                  <td th:text="${user.email}"></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - Dashboard</title>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg">
+
+  <!-- Search Modal - (Checks if users list is not Null, then prints the modal) -->
+  <th:block th:if="${ListOfusers != null}">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pick A User To View Profile</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <table class="table table-hover modal-body table-condensed">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+            </tr>
+            </thead>
+            <tbody th:each="user, iterStat : ${ListOfusers}">
+            <tr class="clickable userRow" th:onclick="|window.location.href='/profile/${user.id}'|">
+              <th scope="row" th:text="${iterStat.count}"></th>
+              <td th:text="${user.username}"></td>
+              <td th:text="${user.email}"></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-      
+    </div>
+
     <!-- Script to launch modal -->
     <script>
       setTimeout(function() {
@@ -50,67 +50,67 @@
     </script>
   </th:block>
 
-    <!-- Dashboard Content -->
-    <section class="row contentBg">
-      <div class="headline">
-        <h1>Welcome <span th:text="${users.username}"></span></h1>
-        <h3>You are <span th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h3>
-        <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-        <h5>Day you quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
-      </div>
-    </section>
-    <section class="row contentBg">
-      <div class="actions">
-        <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary">Create a
-          verification
-          request</button></a>
-        <a th:href="@{'/message'}"><button type="button" class="btn btn-outline-primary">View your
-          messages</button></a>
-        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-outline-primary">Check for
-          notifications
-        </button></a>
-      </div>
-    </section>
-    
-    <!-- Statistic cards -->
-    <section class="row contentBg">
-      <div class="card-group">
-        <div class="card custom-card-style2">
-          <div class="card-body">
-            <h5 class="card-title"><p>Average Points Earned: </p></h5>
-            <p class="card-text"><span th:text="${smoke.points}"></span></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated (x) mins ago</small>
-          </div>
+  <!-- Dashboard Content -->
+  <section class="row contentBg">
+    <div class="headline">
+      <h1>Welcome <span th:text="${users.username}"></span></h1>
+      <h3>You are <span th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h3>
+      <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
+      <h5>Day you quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
+    </div>
+  </section>
+  <section class="row contentBg">
+    <div class="actions">
+      <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary">Create a
+        verification
+        request</button></a>
+      <a th:href="@{'/message'}"><button type="button" class="btn btn-outline-primary">View your
+        messages</button></a>
+      <a th:href="@{'/notifications'}"><button type="button" class="btn btn-outline-primary">Check for
+        notifications
+      </button></a>
+    </div>
+  </section>
+
+  <!-- Statistic cards -->
+  <section class="row contentBg">
+    <div class="card-group">
+      <div class="card custom-card-style2">
+        <div class="card-body">
+          <h5 class="card-title"><p>Average Points Earned: </p></h5>
+          <p class="card-text"><span th:text="${smoke.points}"></span></p>
         </div>
-        <div class="card custom-card-style2">
-          <div class="card-body">
-            <h5 class="card-title"><p>Average of Total Days - Smoke Free </p></h5>
-            <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated (x) mins ago</small>
-          </div>
-        </div>
-        <div class="card custom-card-style2">
-          <div class="card-body">
-            <h5 class="card-title">Average Cigarette Cost saved: </h5>
-            <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated (x) mins ago</small>
-          </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated (x) mins ago</small>
         </div>
       </div>
-    </section>
-  
-    <!-- Footer -->
-    <section class="row">
-      <th:block th:replace="partials/footer :: main-footer"/>
-      <script src="/js/dashboard/dashboard.js"></script>
-    </section>
-    
-    </main>
-  </body>
+      <div class="card custom-card-style2">
+        <div class="card-body">
+          <h5 class="card-title"><p>Average of Total Days - Smoke Free </p></h5>
+          <p class="card-text"><span th:text="${smoke.total_days_smoke_free}"></span></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated (x) mins ago</small>
+        </div>
+      </div>
+      <div class="card custom-card-style2">
+        <div class="card-body">
+          <h5 class="card-title">Average Cigarette Cost saved: </h5>
+          <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated (x) mins ago</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section class="row">
+    <th:block th:replace="partials/footer :: main-footer"/>
+    <script src="/js/dashboard/dashboard.js"></script>
+  </section>
+
+</main>
+</body>
 </html>
