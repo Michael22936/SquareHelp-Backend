@@ -14,11 +14,11 @@
                 <div class="profileWrapper">
                     <div class="profileWrapper-left col-md-4">
                         <img id="profileImg" class="mb-2" src="/img/profile/225.png">
-            
-                        <a href="/profile/5/edit" id="editBtn" class="btn btn-outline-warning">Edit
-                            Profile</a>
-        
-        
+    
+                        <th:block th:if="${users.id == #authentication.principal.id}">
+                            <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-outline-warning">Edit Profile</a>
+                        </th:block>
+                        
                     </div>
                     <div class="profileWrapper-right">
                         <h1><span th:text="${users.username}"></span></h1>
