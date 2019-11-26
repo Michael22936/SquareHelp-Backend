@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -27,6 +29,7 @@ public class SmokerInfo {
     private int cost_of_cigs_saved;
 
     @OneToOne(mappedBy = "smokerInfo")
+    @JsonBackReference
     private User user;
 
 

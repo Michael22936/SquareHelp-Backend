@@ -2,6 +2,8 @@ package com.squarehelp.squarehelp.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user_noti", cascade = CascadeType.ALL)
     private List<Notification> notifications;
     @OneToOne
+    @JsonManagedReference
     private SmokerInfo smokerInfo;
 
 
