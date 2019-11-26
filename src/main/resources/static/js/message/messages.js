@@ -18,6 +18,7 @@ $('#searchUserMessage').keyup(function () {
             .then(response => response.json())
 
             .then(users => users.map((user) => {
+                console.log(users);
                 if (userSearch === ""){
                     $('#messageUserResults').hide();
 
