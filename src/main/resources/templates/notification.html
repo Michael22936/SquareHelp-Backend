@@ -28,7 +28,7 @@
                         <div th:each="message : ${messages}">
                             <tr>
                                 <td><p th:text="${message.message}"></p></td>
-                                <td><p th:text="${authorId.username}"></p></td>
+                                <td><p th:text="${message.user.username}"></p></td>
                             </tr>
                         </div>
                     </tbody>
@@ -38,6 +38,7 @@
             <!-- Footer -->
             <div class="row">
                 <th:block th:replace="partials/footer :: main-footer"/>
+                <th:block th:replace="partials/searchbar :: navbar-search"/>
             </div>
             
         </main>

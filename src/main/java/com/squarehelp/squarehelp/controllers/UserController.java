@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Date;
+
 @Controller
 public class UserController {
     private UserRepository userDao;
@@ -35,6 +37,8 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, @ModelAttribute SmokerInfo smokerInfo ){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        Date d = new Date();
+        user.setDateCreated(d);
         SmokerInfo si = smokeDao.save(smokerInfo);
         user.setSmokerInfo(si);
         userDao.save(user);

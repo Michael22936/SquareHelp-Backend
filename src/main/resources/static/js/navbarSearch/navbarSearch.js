@@ -1,5 +1,6 @@
 
-let tempArray ="";
+let tempArray =[];
+
 
 const getCurrentPageUserId = () => {
     let currentUserId = window.location.href;
