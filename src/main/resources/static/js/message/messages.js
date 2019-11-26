@@ -7,10 +7,10 @@ const getCurrentPageUserId = () => {
 };
 
 
-$('#search').keyup(function () {
-    let userSearch = $('#search').val();
-    $('#result').html('');
-
+$('#searchUserMessage').keyup(function () {
+    let userSearch = $('#searchUserMessage').val();
+    console.log("fire 🔥🔥🔥🔥🔥🔥🔥");
+    $('#messageUserResults').html('');
     // If search input is not empty
     if (userSearch !== "" ){
 
@@ -19,15 +19,14 @@ $('#search').keyup(function () {
 
             .then(users => users.map((user) => {
                 if (userSearch === ""){
-                    $('#result').hide();
+                    $('#messageUserResults').hide();
 
                 }else {
                     // let url = '/message/' + user.id ;
                     let url = '/message/' + user.id + '/send' ;
                     console.log(url);
-                    $('#result').append('<form action="'+url+'" method="post">' +
-                        '<a href=' + url + '  >' +
-                        '<li class=" searchResultItem list-group-item link-class"><p class="messageLi">' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</p></li></a></form>');
+                    $('#messageUserResults').append('<form class=" searchResultItem list-group-item list-group-item-action link-class" action="'+url+'" method="post">' +
+                        '<a class=" text-decoration-none messageLi"' + ' href=' + url + '  >' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</a></form>');
                     console.log(user.username);
                 }
             }))

@@ -5,3 +5,7 @@
 .searchResultItem{
     cursor: pointer;
 }
+
+#messageUserResults{
+    background: white;
+}
