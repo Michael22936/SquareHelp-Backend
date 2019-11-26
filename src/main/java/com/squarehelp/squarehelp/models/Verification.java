@@ -25,6 +25,10 @@ public class Verification {
     @Column(columnDefinition = "BOOLEAN")
     private boolean is_approved;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user_veq;
+
     public Verification() {
     }
 
@@ -82,5 +86,13 @@ public class Verification {
         this.day_created = day_created;
         this.days_smoke_free = days_smoke_free;
         this.is_approved = is_approved;
+    }
+
+    public User getUser_veq() {
+        return user_veq;
+    }
+
+    public void setUser_veq(User user_veq) {
+        this.user_veq = user_veq;
     }
 }
