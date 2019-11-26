@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.util;
 
+import java.util.Date;
+
 /*
  * Calculator class is used to compute calculations throughout the site.
  */
@@ -9,6 +11,30 @@ public class Calculator {
     public static int calcMoneySaved(int cigCost, int totSmokeFree) {
         return (cigCost * totSmokeFree);
     }
+
+    public static int relapseCheck(Date relapseDate, int days){
+        if(relapseDate != null){
+            int reset = 0;
+            return reset;
+        }else {
+            return days;
+        }
+    }
+
+
+    public static int userPointsCalculator(int day){
+        int dailyPoints = 5;
+
+        if(day != 0){
+            int out = dailyPoints * day;
+
+            return out;
+        }else {
+            // resets user points to zero
+            return 0;
+        }
+    }
+
 
     public static int avgPointsCalculator(int totalPoints, int totalUsers) {
         double d1 = totalPoints;
@@ -22,4 +48,5 @@ public class Calculator {
             return totalPoints;
         }
     }
+
 }
