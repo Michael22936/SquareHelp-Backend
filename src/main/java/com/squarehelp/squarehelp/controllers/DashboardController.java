@@ -4,21 +4,17 @@ import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.base.BaseLocal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
-import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.Calculator.*;
 
 @Controller
 public class DashboardController {
@@ -44,10 +40,23 @@ public class DashboardController {
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
-        
+
+        // Get relapse day (if needed)
+        Date relapseDate = smokerInfo.getDay_relapse();
+        DateTime rStart = new DateTime(relapseDate);
+        int resetDays = Days.daysBetween(rStart, end).getDays();
+
+        // relapse check
+        if(relapseDate != null){
+            days = 0;
+        }
+
+
+
+
         // Get points for user (5 points per day)
-        int userPoints = 5 * days;
-        System.out.println("userPoints = " + userPoints);
+        userPointsCalculator(days, resetDays);
+
         
         
 
