@@ -1,0 +1,24 @@
+.editProfileWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.editProfileWrapper-left {
+    display: flex;
+    flex-direction: column;
+    max-width: 255px;
+}
+
+.editProfileWrapper-right {
+    width: 100%;
+}
+
+.divideDiv {
+    height: 3px;
+    border: gray 2px solid;
+}
+
+.tdLeft {
+    width: 50%;
+}

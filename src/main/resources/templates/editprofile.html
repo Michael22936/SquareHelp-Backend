@@ -1,35 +1,49 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Profile</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="partials/head :: main-header"/>
-</head>
-<body>
-<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-
-<h1>Edit Profile</h1>
-
-<div>
-    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
-        <div>
-            <label for="username">Edit Username: </label>
-            <input type="text" id="username" th:field="*{username}" th:value="${users.username}">
-        </div>
-        <div>
-            <label for="city">Edit City: </label>
-            <input type="text" id="city" th:field="*{city}" th:value="${users.city}">
-        </div>
-        <div>
-            <label for="state">Edit State: </label>
-            <input type="text" id="state" th:field="*{state}" th:value="${users.state}">
-        </div>
-        <div>
-        <button class="btn btn-warning btn-block">Update</button>
-        </div>
-    </form>
-</div>
-
-<th:block th:replace="partials/footer :: main-footer"/></body>
-</body>
+    <link rel="stylesheet" th:href="@{/css/editprofile.css}"/>
+    <title>SquareHelp - Edit Profile Page</title>
+    </head>
+    <body>
+        <!-- Navbar -->
+        <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+        
+        <main class="container">
+            <section class="row contentBg">
+                <div class="editProfileWrapper">
+                    <div class="editProfileWrapper-left col-md-4">
+                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+                        <input type="file" id="updatePictures" name="pictures" accept="image/jpeg, image/png">
+                    </div>
+                    <div class="editProfileWrapper-right">
+                        <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
+                            <h1>Edit Profile</h1>
+                            <div>
+                                <label for="username">Edit Username: </label>
+                                <input type="text" id="username" th:field="*{username}" th:value="${users.username}">
+                            </div>
+                            <div>
+                                <label for="city">Edit City: </label>
+                                <input type="text" id="city" th:field="*{city}" th:value="${users.city}">
+                            </div>
+                            <div>
+                                <label for="state">Edit State: </label>
+                                <input type="text" id="state" th:field="*{state}" th:value="${users.state}">
+                            </div>
+                
+                            <div class="divideDiv mb-2"></div>
+    
+                            <button class="btn btn-outline-warning">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <div class="row">
+                <th:block th:replace="partials/footer :: main-footer"/>
+            </div>
+        
+        </main>
+    
+    </body>
 </html>
