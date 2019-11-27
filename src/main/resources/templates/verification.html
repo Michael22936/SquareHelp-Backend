@@ -32,20 +32,20 @@
         <div class="collapsible" id="recRec">
           <table class="table table-hover table-dark text-center table-condensed">
             <thead>
-            <tr>
-              <th scope="col">Date Created</th>
-              <th scope="col">Approver Name</th>
-              <th scope="col">Days Smoke free</th>
-            </tr>
+              <tr>
+                <th scope="col">Date Created</th>
+                <th scope="col">Approver Name</th>
+                <th scope="col">Days Smoke free</th>
+              </tr>
             </thead>
             <tbody>
-            <div th:each="veri : ${verifications}">
-              <tr>
-                <td><p th:text="${veri.getDay_created()}"></p></td>
-                <td><p th:text="${veri.getApprover_name()}"</td>
-                <td><p th:text="${veri.getDays_smoke_free()}"></p></td>
-              </tr>
-            </div>
+              <div th:each="rv : ${recVeri}">
+                <tr>
+                  <td><p th:text="${rv.getDay_created()}"></p></td>
+                  <td><p th:text="${rv.getApprover_name()}"</td>
+                  <td><p th:text="${rv.getDays_smoke_free()}"></p></td>
+                </tr>
+              </div>
             </tbody>
           </table>
         </div>
@@ -67,11 +67,11 @@
             </tr>
             </thead>
             <tbody>
-              <div th:each="veri : ${verifications}">
+              <div th:each="sv : ${sentVeri}">
                 <tr>
-                  <td><p th:text="${veri.getDay_created()}"></p></td>
-                  <td><p th:text="${veri.getApprover_name()}"</td>
-                  <td><p th:text="${veri.getDays_smoke_free()}"></p></td>
+                  <td><p th:text="${sv.getDay_created()}"></p></td>
+                  <td><p th:text="${sv.getApprover_name()}"</td>
+                  <td><p th:text="${sv.getDays_smoke_free()}"></p></td>
                 </tr>
               </div>
             </tbody>

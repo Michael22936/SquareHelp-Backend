@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - View Verification Page</title>
+  </head>
+  <body>
+  <!-- Navbar -->
+  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container">
+      
+      <section class="row contentBg">
+        <h1>View verification</h1>
+        
+        <form th:action="'/verification/' + ${veri.id} + '/view'" method="post">
+          <h3>Approver request from: <span th:text="${from.username}"></span></h3>
+          <h3>Approver Name: <span th:text="${veri.getApprover_name()}"></span></h3>
+          <h3>Date Requesting: <span th:text="${veri.getDay_created()}"></span></h3>
+          <input type="checkbox" checked data-toggle="toggle" id="isApproved" name="isApproved">
+          <button class="btn btn-outline-danger">Save <i class="far fa-save"></i></button>
+        </form>
+
+      </section>
+      
+      <!-- Footer -->
+      <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+      </div>
+    
+    </main>
+  
+  </body>
+</html>

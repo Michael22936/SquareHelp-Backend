@@ -12,7 +12,7 @@
     flex-direction: column;
 }
 
-.sentReq {
+.sentReq, .recRec {
     display: flex;
     flex-direction: column;
     width: 100%;
