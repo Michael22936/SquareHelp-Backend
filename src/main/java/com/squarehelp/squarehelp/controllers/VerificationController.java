@@ -131,6 +131,7 @@ public class VerificationController {
     // Generate the form and send
     @PostMapping("/verification/{user_id}/form/send/{recip}")
     public String postVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip, @RequestParam String date) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
@@ -141,7 +142,7 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, false);
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user);
 
         veriDao.save(v);
 
