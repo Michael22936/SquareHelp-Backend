@@ -18,7 +18,5 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     @Query(value = "SELECT id, recipient_user_id, originator_user_id, notification, is_viewed, user_id FROM notifications WHERE originator_user_id = :id AND is_viewed = false;", nativeQuery = true)
     List<Notification> findNotificationsUnread(@Param("id") Long id);
 
-    @Query(value = "SELECT id, recipient_user_id, originator_user_id, notification, is_viewed,user_id FROM notifications WHERE recipient_user_id = :id AND is_viewed = false;", nativeQuery = true)
-    List<Notification> countUnreadNotifications(@Param("id") Long id);
 
 }
