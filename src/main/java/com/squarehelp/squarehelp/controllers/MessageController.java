@@ -52,7 +52,17 @@ public class MessageController {
     public List<Notification> sendMessageCount(){
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // User logged in
 //        long id = user.getId();
-        System.out.println("notifyDao.findNotificationsUnread(id) = " + notifyDao.countUnreadNotifications( 1L));
+        List<Notification> listUnreadAlerts = notifyDao.countUnreadNotifications( 1L); // Matt
+        List<Notification> yaelUnreadAlertList = notifyDao.findNotificationsUnread(1L); // Yael
+        System.out.println("Yaels list count = " + yaelUnreadAlertList.size());
+        System.out.println("Matt list count = " + listUnreadAlerts.size());
+        for (Notification alert: listUnreadAlerts) {
+            System.out.println("alert boolean = " + alert.getIs_viewed());
+            System.out.println("alert Recipient = " + alert.getRecipient_user_id());
+            System.out.println("alert Recipient = " + alert.getUser_noti().getUsername());
+            System.out.println(alert);
+
+        }
 //        System.out.println("notifyDao.findNotificationsUnread(id) size = " + notifyDao.findNotificationsUnread(1L).size());
 //        System.out.println("notifyDao.findAllById(Collections.singleton(id)) = " + notifyDao.findAllById(Collections.singleton(id)));
         return notifyDao.findAll();
