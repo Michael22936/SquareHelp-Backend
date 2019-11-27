@@ -32,23 +32,21 @@ public class MessageController {
         this.notiDao = notiDao;
     }
 
+    // View all messages and shows unique authors
     @GetMapping("/message")
     public String getSendMessageView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+
+        List<Messages> m = messageDao.findMessagesByRecipient_user_idIs(id);
+
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("messages", messageDao.getOne(id));
-        return "message";
+        model.addAttribute("uniqueMsgs", m);
+
+        return "message-view-all";
     }
 
-    @GetMapping("/search")
-    @ResponseBody
-    public List<User> sendMatchingUser(@RequestParam String username){
-        System.out.println(username);
-        System.out.println(userDao.findByUsernameContaining(username));
-        return userDao.findByUsernameContaining(username);
-    }
 
     @GetMapping("/message/{rId}")
     public String sendAMessageToAnotherUser(@PathVariable long rId) {
@@ -93,6 +91,13 @@ public class MessageController {
         return "messagechat";
     }
 
+    @GetMapping("/search")
+    @ResponseBody
+    public List<User> sendMatchingUser(@RequestParam String username){
+        System.out.println(username);
+        System.out.println(userDao.findByUsernameContaining(username));
+        return userDao.findByUsernameContaining(username);
+    }
 }
 
 
