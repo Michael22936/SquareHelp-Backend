@@ -7,6 +7,7 @@ import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import com.squarehelp.squarehelp.services.NotificationServices;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ public class MessageController {
     private final MessagesRepository messageDao;
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
+<<<<<<< HEAD
     private final NotificationRepository notifyDao;
 
     public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationRepository notifyDao){
@@ -27,6 +29,15 @@ public class MessageController {
         this.userDao = userDao;
         this.smokeDao = smokeDao;
         this.notifyDao = notifyDao;
+=======
+    private final NotificationServices notiServices;
+
+    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices){
+        this.messageDao = messageDao;
+        this.userDao = userDao;
+        this.smokeDao = smokeDao;
+        this.notiServices = notiServices;
+>>>>>>> d76738822d5a5d63549a5ece583da91843c813b7
     }
 
     @GetMapping("/message")
@@ -92,6 +103,7 @@ public class MessageController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         messageDao.save(new Messages((int)id,(int) rId, message, user));
+        notiServices.createNotification(user.getUsername(), rId, "msg");
         return "redirect:/profile/" + id;
     }
 }
