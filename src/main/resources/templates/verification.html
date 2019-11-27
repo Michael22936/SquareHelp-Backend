@@ -7,8 +7,7 @@
   </head>
   <body>
   <th:block th:else="${users.id != #authentication.principal.id}">
-
-<th:block th:if="${users.id == #authentication.principal.id}">
+  <th:block th:if="${users.id == #authentication.principal.id}">
   <main class="container">
     <div class="row contentBg">
       <h1>Verifications</h1>
@@ -41,9 +40,10 @@
               <div th:each="rv : ${recVeri}">
                 <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
                   <td><p th:text="${rv.day_created}"></p></td>
-                  <td><p th:text="${rv.approver_name}"</td>
+                  <td><p th:text="${rv.approver_name}"></p></td>
                   <td><p th:text="${rv.days_smoke_free}"></p></td>
-                  <td><p th:text="${rv.is_approved}"</td>
+                  <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
+                  <td th:if="${rv.is_approved == false}"><p>No</p></td>
                 </tr>
               </div>
             </tbody>
@@ -94,6 +94,3 @@
   </th:block>
   </body>
 </html>
-
-<!-- create links to view individual requests -->
-<!-- Style the request page better -->
