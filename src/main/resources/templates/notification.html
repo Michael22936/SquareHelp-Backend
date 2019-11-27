@@ -22,7 +22,15 @@
                     <tbody>
                         <div th:each="noti : ${notifications}">
                             <tr>
-                                <td><p th:text="${noti.notification}"></p></td>
+
+                                <td>
+                                    <form th:action="@{'/messagechat'}" method="post">
+                                        <a href="/messagechat" th:text="${noti.notification}">
+                                            <input type="hidden" th:value="${}">
+                                        </a>
+                                    </form>
+                                </td>
+
                             </tr>
                         </div>
                     </tbody>

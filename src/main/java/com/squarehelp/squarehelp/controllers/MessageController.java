@@ -1,6 +1,7 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Messages;
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
@@ -72,4 +73,17 @@ public class MessageController {
         notiServices.createNotification(user.getUsername(), rId, "msg");
         return "redirect:/profile/" + id;
     }
+
+    @GetMapping("/messagechat")
+    public String getMessageChat(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("messages", messageDao.findMessagesByRecipient_user_idIs(id));
+        model.addAttribute("smoke", smokerInfo);
+
+        return "messagechat";
+    }
+
 }
