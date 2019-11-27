@@ -11,3 +11,13 @@
     display: flex;
     flex-direction: column;
 }
+
+.sentReq {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.expandBtn {
+    max-width: 100px;
+}
