@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,44 +19,47 @@ import static com.squarehelp.squarehelp.util.Calculator.*;
 
 @Controller
 public class DashboardController {
-    private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
 
     public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao) {
-        this.smokeDao = smokeDao;
         this.userDao = userDao;
     }
 
     @GetMapping("/dashboard")
     public String passingDashboard(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long id = user.getId();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
         int totalUsers = (int) userDao.count();
 //        System.out.println("totalUsers = " + totalUsers);
-//        User userInfo = userDao.getOne(id);
+        User userInfo = userDao.getOne(id);
 
+        int days = 0;
 
-
-//        tests
-        User userInfo = userDao.getOne(6L);
 
         // Day counter (int)
 
         // if date_relapsed is not null
-
             // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
 
 
-        if(userInfo.getSmokerInfo().getDay_relapse() != null){
-            if(userInfo.getSmokerInfo().getDay_relapse() > userInfo.getSmokerInfo().getDay_quit_smoking()){
 
-            }
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
+        System.out.println("userInfo.getSmokerInfo().getDay_relapse() = " + userInfo.getSmokerInfo().getDay_relapse());
+//        Date relapseDate = sdf.parse(userInfo.getSmokerInfo().getDay_relapse());
+
+
+
+        if(userInfo.getSmokerInfo().getDay_relapse() != null) {
+
+//            if (userInfo.getSmokerInfo().getDay_relapse().after( (userInfo.getSmokerInfo().getDay_quit_smoking())) ){
+//                days = 0;
+//            }
         }
 
 
 
 
-
+        // if date_quit_smoking is effected by date_relapsed, then date_relapsed and date_quit_smoking should be identical
 
 
 
@@ -92,7 +96,7 @@ public class DashboardController {
 //            System.out.println("wrong");
 //        }
 
-        int days = Days.daysBetween(start, end).getDays();
+        days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
 
         // Relapse check (int)
@@ -109,7 +113,9 @@ public class DashboardController {
 
         // Save to DB
         userInfo.getSmokerInfo().setTotal_days_smoke_free(rCheck);
-        smokeDao.save(userInfo.getSmokerInfo());
+//        smokeDao.save(userInfo.getSmokerInfo());
+//        userDao.save(userInfo.getSmokerInfo());
+
 
 
         // User community stats
@@ -130,7 +136,6 @@ public class DashboardController {
 
         model.addAttribute("ListOfusers", searchResults ) ;
         model.addAttribute("users", userDao.getOne(user_id));
-        model.addAttribute("smoke", smokeDao.getOne(user_id));
 
         return "dashboard";
     }
