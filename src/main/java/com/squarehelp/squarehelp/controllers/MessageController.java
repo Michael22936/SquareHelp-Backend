@@ -1,9 +1,11 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Messages;
+import com.squarehelp.squarehelp.models.Notification;
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import com.squarehelp.squarehelp.services.NotificationServices;
@@ -20,12 +22,14 @@ public class MessageController {
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
     private final NotificationServices notiServices;
+    private final NotificationRepository notiDao;
 
-    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices){
+    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices, NotificationRepository notiDao){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.smokeDao = smokeDao;
         this.notiServices = notiServices;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/message")
@@ -74,14 +78,17 @@ public class MessageController {
         return "redirect:/profile/" + id;
     }
 
-    @GetMapping("/messagechat")
-    public String getMessageChat(Model model){
+    @PostMapping("/messagechat/{oId}")
+    public String getMessageChat(Model model, @PathVariable long oId){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        Long notification = notiDao.findNotificationsByOriginator_user_idIs(oId);
+        User recip =  userDao.getOne(notification);
         SmokerInfo smokerInfo = smokeDao.getOne(id);
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.findMessagesByRecipient_user_idIs(id));
         model.addAttribute("smoke", smokerInfo);
+        model.addAttribute("recipId", recip);
 
         return "messagechat";
     }
