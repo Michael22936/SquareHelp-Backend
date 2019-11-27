@@ -12,4 +12,5 @@ nav-wrapper {
     position: absolute;
     top: 38px;
     background: white;
+    width: max-content;
 }
