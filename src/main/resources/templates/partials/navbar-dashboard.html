@@ -14,7 +14,8 @@
         <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}"><i class="fas fa-user"></i></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{'/verification'}"><i class="far fa-file-alt"></i></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{'/message'}"><i class="far fa-envelope"></i></a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{'/notifications'}"><i class="far fa-bell"></i></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{'/notifications'}"><i class="far fa-bell"></i></a><span class=" badge badge-primary " id="notifyResult"></span></li>
+
         <li class="nav-item"><a class="nav-link" th:href="@{'/logout'}"><i class="fas fa-sign-out-alt"></i></a></li>
         <li class="nav-item">
           <div class="input-group">

@@ -1,8 +1,10 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Messages;
+import com.squarehelp.squarehelp.models.Notification;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -17,11 +20,13 @@ public class MessageController {
     private final MessagesRepository messageDao;
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
+    private final NotificationRepository notifyDao;
 
-    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao){
+    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationRepository notifyDao){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.smokeDao = smokeDao;
+        this.notifyDao = notifyDao;
     }
 
     @GetMapping("/message")
@@ -40,6 +45,17 @@ public class MessageController {
         System.out.println(username);
         System.out.println(userDao.findByUsernameContaining(username));
         return userDao.findByUsernameContaining(username);
+    }
+//=========== Address for notification fetch
+    @GetMapping("/unreadAlert")
+    @ResponseBody
+    public List<Notification> sendMessageCount(){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // User logged in
+//        long id = user.getId();
+        System.out.println("notifyDao.findNotificationsUnread(id) = " + notifyDao.countUnreadNotifications( 1L));
+//        System.out.println("notifyDao.findNotificationsUnread(id) size = " + notifyDao.findNotificationsUnread(1L).size());
+//        System.out.println("notifyDao.findAllById(Collections.singleton(id)) = " + notifyDao.findAllById(Collections.singleton(id)));
+        return notifyDao.findAll();
     }
 
     @GetMapping("/message/{rId}")
