@@ -70,14 +70,19 @@ public class VerificationController {
 
     // Used to save individual verification request
     @PostMapping("/verification/{veriId}/view")
-    public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam boolean isApproved) {
+    public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam String isApproved) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
         Verification v = veriDao.findById(veriId);
 
-        if (isApproved) {
-            v.setIs_approved(true);
+        // Take in string from the form and convert on to boolean of true and save the request.
+        // Do nothing otherwise. (remain false)
+        boolean isApprovedBool = false;
+        if (isApproved.equalsIgnoreCase("on")) isApprovedBool = true;
+
+        if (isApprovedBool) {
+            v.setIs_approved(isApprovedBool);
             veriDao.save(v);
         }
 

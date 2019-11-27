@@ -21,3 +21,12 @@
 .expandBtn {
     max-width: 100px;
 }
+
+.verification-view-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.approve-veri {
+    margin-top: 1rem;
+}

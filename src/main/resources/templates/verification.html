@@ -26,10 +26,8 @@
       <!-- Table to display received results results -->
       <div class="recRec">
         <h3>Recieved requests</h3>
-        <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button"
-           aria-expanded="false"
-           aria-controls="collapseExample">Expand</a>
-        <div class="collapsible" id="recRec">
+        <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Expand</a>
+        <div class="collapse show" id="recReqs">
           <table class="table table-hover table-dark text-center table-condensed">
             <thead>
               <tr>
@@ -41,11 +39,11 @@
             </thead>
             <tbody>
               <div th:each="rv : ${recVeri}">
-                <tr th:data="'verification' + ${rv.getId()} + /view" style="cursor: pointer;">
-                  <td><p th:text="${rv.getDay_created()}"></p></td>
-                  <td><p th:text="${rv.getApprover_name()}"</td>
-                  <td><p th:text="${rv.getDays_smoke_free()}"></p></td>
-                  <td><p th:text="${rv.isIs_approved()}"</td>
+                <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
+                  <td><p th:text="${rv.day_created}"></p></td>
+                  <td><p th:text="${rv.approver_name}"</td>
+                  <td><p th:text="${rv.days_smoke_free}"></p></td>
+                  <td><p th:text="${rv.is_approved}"</td>
                 </tr>
               </div>
             </tbody>
@@ -72,10 +70,10 @@
             <tbody>
               <div th:each="sv : ${sentVeri}">
                 <tr>
-                  <td><p th:text="${sv.getDay_created()}"></p></td>
-                  <td><p th:text="${sv.getApprover_name()}"</td>
-                  <td><p th:text="${sv.getDays_smoke_free()}"></p></td>
-                  <td><p th:text="${sv.isIs_approved()}"></p></td>
+                  <td><p th:text="${sv.day_created}"></p></td>
+                  <td><p th:text="${sv.approver_name}"</td>
+                  <td><p th:text="${sv.days_smoke_free}"></p></td>
+                  <td><p th:text="${sv.is_approved}"></p></td>
                 </tr>
               </div>
             </tbody>
@@ -90,14 +88,6 @@
       <script src="/js/dashboard/dashboard.js"></script>
       <th:block th:replace="partials/footer :: main-footer"/>
       <th:block th:replace="partials/searchbar :: navbar-search"/>
-      <script>
-        // Used for links on the tables
-        $(function () {
-          $('table.table tr').click(function () {
-            window.location.href = $(this).data('');
-          });
-        });
-      </script>
     </div>
   </main>
   </th:block>
