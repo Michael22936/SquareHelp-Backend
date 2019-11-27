@@ -5,6 +5,7 @@ import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import com.squarehelp.squarehelp.services.NotificationServices;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,13 @@ public class MessageController {
     private final MessagesRepository messageDao;
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
+    private final NotificationServices notiServices;
 
-    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao){
+    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.smokeDao = smokeDao;
+        this.notiServices = notiServices;
     }
 
     @GetMapping("/message")
@@ -66,6 +69,7 @@ public class MessageController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         messageDao.save(new Messages((int)id,(int) rId, message, user));
+        notiServices.createNotification(user.getUsername(), rId, "msg");
         return "redirect:/profile/" + id;
     }
 }

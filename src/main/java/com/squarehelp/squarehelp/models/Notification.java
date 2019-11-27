@@ -1,5 +1,7 @@
 package com.squarehelp.squarehelp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +24,7 @@ public class Notification {
     private boolean is_viewed;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user_noti;
 

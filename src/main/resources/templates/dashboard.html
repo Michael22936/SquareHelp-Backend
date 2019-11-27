@@ -7,48 +7,6 @@
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
 <main class="container contentBg">
 
-  <!-- Search Modal - (Checks if users list is not Null, then prints the modal) -->
-  <th:block th:if="${ListOfusers != null}">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Pick A User To View Profile</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <table class="table table-hover modal-body table-condensed">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Username</th>
-              <th scope="col">Email</th>
-            </tr>
-            </thead>
-            <tbody th:each="user, iterStat : ${ListOfusers}">
-            <tr class="clickable userRow" th:onclick="|window.location.href='/profile/${user.id}'|">
-              <th scope="row" th:text="${iterStat.count}"></th>
-              <td th:text="${user.username}"></td>
-              <td th:text="${user.email}"></td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Script to launch modal -->
-    <script>
-      setTimeout(function() {
-        $('#exampleModal').modal();
-        console.log("Modal fired!")
-      }, 500);
-    </script>
-  </th:block>
 
   <!-- Dashboard Content -->
   <section class="row contentBg">
