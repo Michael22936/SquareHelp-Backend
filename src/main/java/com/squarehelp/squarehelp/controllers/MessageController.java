@@ -59,6 +59,7 @@ public class MessageController {
         return "message-view-all";
     }
 
+    // View form to create a new message
     @GetMapping("/message/create")
     public String getFindRecipPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -70,12 +71,45 @@ public class MessageController {
         return "message-create";
     }
 
-    @GetMapping("/message/{rId}")
-    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+    // View an conversation with one person
+    @GetMapping("/message/view/{rId}")
+    public String getSingleMessageView(Model model, Long rId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        return "redirect:/message/" + rId + "/" + id + "/send";
+
+        List<Messages> m = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(rId);
+        User recipUser = userDao.findUserById(rId); // this keeps returning null
+
+        System.out.println("recipUsername = " + recipUser); // testing previous line
+
+        /*
+
+                Trying to be able to view single conversation and all the messages related to it.
+
+         */
+
+
+
+// nullpointerexception
+//        if (recipUsername.equals(null)) {
+//            model.addAttribute("recipUsername", "SquareHelper");
+//        } else {
+//            model.addAttribute("recipUsername", recipUsername);
+//        }
+
+        model.addAttribute("msgs", m);
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("users", userDao.getOne(id));
+
+        return "message-view-one";
     }
+
+//    @GetMapping("/message/{rId}")
+//    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long id = user.getId();
+//        return "redirect:/message/" + rId + "/" + id + "/send";
+//    }
 
     @GetMapping("/message/{rId}/send")
     public String sendMessage(Model model, @PathVariable long rId) {

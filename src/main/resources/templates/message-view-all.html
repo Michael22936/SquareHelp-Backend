@@ -1,8 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
-  <link rel="stylesheet" th:href="@{/css/messages.css}" />
   <link rel="stylesheet" href="/css/messages.css" />
-  <title>x Page</title>
+  <title>SquareHelp - Messages</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -24,10 +23,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="u : ${uniqueMsgs}">
-              <td class="col-withDate"><p th:text="${u.getLast_updated()}"></p></td>
-              <td><p th:text="${u.getRecipient_username()}"></p></td>
-            </tr>
+             <div th:each="u : ${uniqueMsgs}">
+               <tr th:onclick="'window.location.href = \'' + @{/message/view/{recipId}(recipId=${u.getRecipient_user_id()})} + '\''"
+                   style="cursor: pointer;">
+                <td class="col-withDate"><p th:text="${u.getLast_updated()}"></p></td>
+                <td><p th:text="${u.getRecipient_username()}"></p></td>
+              </tr>
+             </div>
             </tbody>
           </table>
         </div>
