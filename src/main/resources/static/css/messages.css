@@ -18,3 +18,11 @@
     justify-content: space-around;
     margin-top: 2rem;
 }
+
+.msgWrapper {
+    width: 100%;
+}
+
+.col-withDate {
+    width: 232px;
+}

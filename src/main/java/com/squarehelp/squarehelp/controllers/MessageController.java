@@ -41,14 +41,12 @@ public class MessageController {
         List<Messages> uni = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(id);
         ArrayList<Messages> unique = new ArrayList<>();
 
-        if (uni != null) {
+        if (uni.size() > 0) {
             unique.add(uni.get(0));
 
             for (int j = 0; j < uni.size(); j++) {
                 for (int i = 0; i < unique.size(); i++) {
-                    if (!uni.get(j).getRecipient_username().equalsIgnoreCase(unique.get(i).getRecipient_username())) {
-                        unique.add(uni.get(j));
-                    }
+                    if (!uni.get(j).getRecipient_username().equalsIgnoreCase(unique.get(i).getRecipient_username())) unique.add(uni.get(j));
                 }
             }
         }
