@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.UserDataHandler;
-
 import java.util.List;
-
 import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class NotificationController {
@@ -51,6 +50,10 @@ public class NotificationController {
             notiDao.save(noti);
         }
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", user);
         model.addAttribute("authorId", userDao.getOne(id));

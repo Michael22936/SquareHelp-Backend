@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
+
 @Controller
 public class MessageController {
     private final MessagesRepository messageDao;
@@ -39,6 +41,7 @@ public class MessageController {
         // Get all messages from for current user and add unique messages to another list and pass it to the view.
         List<Messages> uni = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(id);
         ArrayList<Messages> unique = new ArrayList<>();
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         if (uni.size() > 0) {
             unique.add(uni.get(0));
@@ -53,12 +56,12 @@ public class MessageController {
 
         model.addAttribute("uniqueMsgs", unique);
 
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
 
         return "message-view-all";
     }
-
 
     // View an conversation with one person
     @GetMapping("/message/view/{rId}")
@@ -103,13 +106,17 @@ public class MessageController {
         return "message-create";
     }
 
-    // Form to actually compose message and send it
-    @GetMapping("/message/{rId}/send")
-    public String sendMessage(Model model, @PathVariable long rId) {
+    @GetMapping("/message/{rId}")
+    public String sendAMessageToAnotherUser(@PathVariable long rId, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+//        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
+//        return "redirect:/message/" + rId + "/" + id + "/send";
 
         model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("recipient", userDao.getOne(rId));
 
