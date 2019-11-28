@@ -14,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class MessageController {
@@ -36,12 +39,15 @@ public class MessageController {
     public String getSendMessageView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.getOne(id));
         return "message";
     }
-
+    //====   Search bar fetch address
     @GetMapping("/search")
     @ResponseBody
     public List<User> sendMatchingUser(@RequestParam String username){
@@ -51,9 +57,14 @@ public class MessageController {
     }
 
     @GetMapping("/message/{rId}")
-    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+    public String sendAMessageToAnotherUser(@PathVariable long rId, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         return "redirect:/message/" + rId + "/" + id + "/send";
     }
 
@@ -61,6 +72,10 @@ public class MessageController {
     public String sendMessage(Model model, @PathVariable long rId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("user", userDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));

@@ -1,7 +1,9 @@
 package com.squarehelp.squarehelp.controllers;
 
+import com.squarehelp.squarehelp.models.Notification;
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.joda.time.DateTime;
@@ -15,15 +17,18 @@ import java.util.Date;
 import java.util.List;
 
 import static com.squarehelp.squarehelp.util.Calculator.*;
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
+    private  final NotificationRepository notiDao;
 
-    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao) {
+    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/dashboard")
@@ -55,6 +60,10 @@ public class DashboardController {
 
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("user-points", userPointsTotal);

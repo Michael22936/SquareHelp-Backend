@@ -3,6 +3,7 @@ package com.squarehelp.squarehelp.controllers;
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.models.Verification;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import com.squarehelp.squarehelp.repositories.VerificationRepository;
@@ -16,17 +17,20 @@ import java.util.List;
 
 import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class VerificationController {
     private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
     private final VerificationRepository veriDao;
+    private final NotificationRepository notiDao;
 
-    public VerificationController(VerificationRepository veriDao, SmokerInfoRepository smokeDao, UserRepository userDao) {
+    public VerificationController(VerificationRepository veriDao, SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao) {
         this.veriDao = veriDao;
         this.smokeDao = smokeDao;
         this.userDao = userDao;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/verification")
@@ -40,9 +44,13 @@ public class VerificationController {
         List<Verification> sentVeri = veriDao.findAllByOriginator_user_id(id);
         List<Verification> recVeri = veriDao.findAllByApprover_name(user.getUsername());
 
+
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
         model.addAttribute("sentVeri", sentVeri);
         model.addAttribute("recVeri", recVeri);
-
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
@@ -95,9 +103,15 @@ public class VerificationController {
     // The page to host the 'search' route
     @GetMapping("/verification/{user_id}/form")
     public String getVerificationForm(Model model, @PathVariable long user_id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
@@ -116,11 +130,17 @@ public class VerificationController {
     // Actual page to create the form with recipient selected
     @GetMapping("/verification/{user_id}/form/send/{recip}")
     public String getVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         User ru = userDao.findUserById(recip);
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("recipient", ru);
         model.addAttribute("users", userDao.getOne(user_id));
         model.addAttribute("smoke", smokerInfo);
