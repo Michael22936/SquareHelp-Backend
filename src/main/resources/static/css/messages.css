@@ -1,8 +1,20 @@
-
 .searchResultItem{
     cursor: pointer;
 }
 
 #messageUserResults{
     background: white;
+}
+
+.messageSendWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.toFrom {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
 }

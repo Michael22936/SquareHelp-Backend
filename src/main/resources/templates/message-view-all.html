@@ -8,35 +8,26 @@
 <main class="container">
   
   <section class="row contentBg">
-    <!-- Table to display received results results -->
     <div class="recRec">
-      <h3>Recieved requests</h3>
-      <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Expand</a>
-      <div class="collapse show" id="recReqs">
-        <table class="table table-hover table-dark text-center table-condensed">
-          <thead>
+      <h3>Messages</h3>
+      <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary"> <i class="far fa-plus-square"></i> </button>
+      <!-- Table to display unique messages -->
+      <table class="table table-hover table-dark text-center table-condensed">
+        <thead>
           <tr>
-            <th scope="col">Date Created</th>
-            <th scope="col">Approver Name</th>
-            <th scope="col">Days Smoke free</th>
-            <th scope="col">Approved</th>
+            <th scope="col">Last Updated</th>
+            <th scope="col">To</th>
           </tr>
-          </thead>
-          <tbody>
-          <div th:each="m : ${uniqueMsgs}">
-            <tr
-                    th:onclick="'window.location.href = \'' + @{/message/{recipId}/view(recipId=${m.recipient_user_id})} + '\''"
-                style="cursor: pointer;">
-              <td><p th:text="${rv.day_created}"></p></td>
-              <td><p th:text="${rv.approver_name}"></p></td>
-              <td><p th:text="${rv.days_smoke_free}"></p></td>
-              <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
-              <td th:if="${rv.is_approved == false}"><p>No</p></td>
+        </thead>
+        <tbody>
+<!--            <tr th:each="u : ${uniqueMsgs}" th:onclick="'window.location.href = \'' + @{/message/{recipId}/view(recipId=${u.getId()})} + '\'" style="cursor: pointer;">-->
+            <tr th:each="u : ${uniqueMsgs}">
+              <td><p th:text="${u.getLast_updated()}"></p></td>
+              <td><p th:text="${u.getRecipient_username()}"></p></td>
             </tr>
-          </div>
-          </tbody>
-        </table>
-      </div>
+
+        </tbody>
+      </table>
     </div>
   
   </section>
