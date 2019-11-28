@@ -24,10 +24,10 @@
             </thead>
             <tbody>
              <div th:each="u : ${uniqueMsgs}">
-               <tr th:onclick="'window.location.href = \'' + @{/message/view/{recipId}(recipId=${u.getRecipient_user_id()})} + '\''"
+               <tr th:onclick="'window.location.href = \'' + @{/message/view/{recipId}(recipId=${u.getId()})} + '\''"
                    style="cursor: pointer;">
                 <td class="col-withDate"><p th:text="${u.getLast_updated()}"></p></td>
-                <td><p th:text="${u.getRecipient_username()}"></p></td>
+                <td><p th:text="${u.getUsername()}"></p></td>
               </tr>
              </div>
             </tbody>
