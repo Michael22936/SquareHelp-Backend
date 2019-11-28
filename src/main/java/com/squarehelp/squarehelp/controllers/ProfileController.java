@@ -2,6 +2,7 @@ package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -9,16 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class ProfileController {
 
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
+    private final NotificationRepository notifyDao;
 
-    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao) {
+    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao, NotificationRepository notifyDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
+        this.notifyDao = notifyDao;
     }
 
     @GetMapping("/profile/{id}")
@@ -26,6 +30,10 @@ public class ProfileController {
         SmokerInfo smokerInfo = smokeDao.getOne(id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("moneySaved",moneySaved);
@@ -35,8 +43,12 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}/edit")
     public String edit(Model model, @PathVariable long id, Model viewModel) {
-        viewModel.addAttribute("users", userDao.getOne(id));
 
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
+        viewModel.addAttribute("users", userDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokeDao.getOne(id));
 

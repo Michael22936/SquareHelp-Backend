@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
+
 @Controller
 public class MessageController {
     private final MessagesRepository messageDao;
@@ -34,24 +36,20 @@ public class MessageController {
 
 
 
-//    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices){
-//        this.messageDao = messageDao;
-//        this.userDao = userDao;
-//        this.smokeDao = smokeDao;
-//        this.notiServices = notiServices;
-//
-//    }
-
     @GetMapping("/message")
     public String getSendMessageView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.getOne(id));
+
         return "message";
     }
-
+    //====   Search bar fetch address
     @GetMapping("/search")
     @ResponseBody
     public List<User> sendMatchingUser(@RequestParam String username){
@@ -59,33 +57,16 @@ public class MessageController {
         System.out.println(userDao.findByUsernameContaining(username));
         return userDao.findByUsernameContaining(username);
     }
-//=========== Address for notification fetch
-//    @GetMapping("/unreadAlert")
-//    @ResponseBody
-//    public List<Notification> sendMessageCount(){
-////        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal(); // User logged in
-////        long id = user.getId();
-//
-//
-//        List<Notification> yaelUnreadAlertList = notifyDao.findNotificationsUnread(1L); // Yael
-//        System.out.println("Yaels list count = " + yaelUnreadAlertList.size());
-//
-//        for (Notification alert: yaelUnreadAlertList) {
-//            System.out.println("alert boolean = " + alert.getIs_viewed());
-//            System.out.println("alert Recipient = " + alert.getRecipient_user_id());
-//            System.out.println("alert Recipient = " + alert.getUser_noti().getUsername());
-//            System.out.println(alert);
-//
-//        }
-////        System.out.println("notifyDao.findNotificationsUnread(id) size = " + notifyDao.findNotificationsUnread(1L).size());
-////        System.out.println("notifyDao.findAllById(Collections.singleton(id)) = " + notifyDao.findAllById(Collections.singleton(id)));
-//        return notifyDao.findAll();
-//    }
 
     @GetMapping("/message/{rId}")
-    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+    public String sendAMessageToAnotherUser(@PathVariable long rId, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         return "redirect:/message/" + rId + "/" + id + "/send";
     }
 
@@ -93,6 +74,10 @@ public class MessageController {
     public String sendMessage(Model model, @PathVariable long rId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("user", userDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
