@@ -23,12 +23,12 @@ import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificat
 public class DashboardController {
     private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
-    private  final NotificationRepository notifyDao;
+    private  final NotificationRepository notiDao;
 
-    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notifyDao) {
+    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
-        this.notifyDao = notifyDao;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/dashboard")
@@ -61,7 +61,7 @@ public class DashboardController {
         int totalCommunityUsers = avgPointsCalculator(smokerInfo.getPoints(),totalUsers);
 
         //========= Gets the count of unread notifications
-        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));

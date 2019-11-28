@@ -17,12 +17,12 @@ public class ProfileController {
 
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
-    private final NotificationRepository notifyDao;
+    private final NotificationRepository notiDao;
 
-    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao, NotificationRepository notifyDao) {
+    public ProfileController(UserRepository userDao, SmokerInfoRepository smokeDao, NotificationRepository notiDao) {
         this.smokeDao = smokeDao;
         this.userDao = userDao;
-        this.notifyDao = notifyDao;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/profile/{id}")
@@ -31,7 +31,7 @@ public class ProfileController {
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         //========= Gets the count of unread notifications
-        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
@@ -45,7 +45,7 @@ public class ProfileController {
     public String edit(Model model, @PathVariable long id, Model viewModel) {
 
         //========= Gets the count of unread notifications
-        int unreadNotifications = unreadNotificationsCount(notifyDao, id);
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         viewModel.addAttribute("users", userDao.getOne(id));
