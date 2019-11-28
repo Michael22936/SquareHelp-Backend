@@ -28,5 +28,11 @@
 }
 
 .messageAreaBg {
-    color: #333A40;
+    background-color: #333A40;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+.messageText {
+    margin-bottom: .25rem;
 }

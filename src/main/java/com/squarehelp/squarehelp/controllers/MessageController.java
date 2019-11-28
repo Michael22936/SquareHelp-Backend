@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +45,8 @@ public class MessageController {
 
             for (int j = 0; j < uni.size(); j++) {
                 for (int i = 0; i < unique.size(); i++) {
-                    if (!uni.get(j).getRecipient_username().equalsIgnoreCase(unique.get(i).getRecipient_username())) unique.add(uni.get(j));
+//                    if (!uni.get(j).getRecipient_username().equalsIgnoreCase(unique.get(i).getRecipient_username())) unique.add(uni.get(j));
+                    if (uni.get(j).getRecipient_user_id() != unique.get(i).getRecipient_user_id()) unique.add(uni.get(j));
                 }
             }
         }
@@ -59,7 +59,39 @@ public class MessageController {
         return "message-view-all";
     }
 
-    // View form to create a new message
+
+    // View an conversation with one person
+    @GetMapping("/message/view/{rId}")
+    public String getSingleMessageView(Model model, @PathVariable long rId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+
+        List<Messages> m = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(rId);
+
+        // Filter this logged in user and specified recipient conversation only
+        ArrayList<Messages> conversation = new ArrayList<Messages>();
+
+        for (int i = 0; i < m.size(); i++) {
+            if (m.get(i).getRecipient_user_id() == rId && m.get(i).getAuthor_user_id() == user.getId()) {
+                conversation.add(m.get(i));
+            } else if (m.get(i).getRecipient_user_id() == user.getId() && m.get(i).getAuthor_user_id() == rId) {
+                conversation.add(m.get(i));
+            }
+        }
+
+        System.out.println("conversation = " + conversation);
+
+        model.addAttribute("conversation", conversation);
+        model.addAttribute("recip", userDao.getOne(rId));
+        model.addAttribute("msgs", m);
+
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        model.addAttribute("users", user);
+
+        return "message-view-one";
+    }
+
+    // View form to find user to create a new message
     @GetMapping("/message/create")
     public String getFindRecipPage(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -71,46 +103,7 @@ public class MessageController {
         return "message-create";
     }
 
-    // View an conversation with one person
-    @GetMapping("/message/view/{rId}")
-    public String getSingleMessageView(Model model, Long rId) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long id = user.getId();
-
-        List<Messages> m = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(rId);
-        User recipUser = userDao.findUserById(rId); // this keeps returning null
-
-        System.out.println("recipUsername = " + recipUser); // testing previous line
-
-        /*
-
-                Trying to be able to view single conversation and all the messages related to it.
-
-         */
-
-
-
-// nullpointerexception
-//        if (recipUsername.equals(null)) {
-//            model.addAttribute("recipUsername", "SquareHelper");
-//        } else {
-//            model.addAttribute("recipUsername", recipUsername);
-//        }
-
-        model.addAttribute("msgs", m);
-        model.addAttribute("smoke", smokeDao.getOne(id));
-        model.addAttribute("users", userDao.getOne(id));
-
-        return "message-view-one";
-    }
-
-//    @GetMapping("/message/{rId}")
-//    public String sendAMessageToAnotherUser(@PathVariable long rId) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        long id = user.getId();
-//        return "redirect:/message/" + rId + "/" + id + "/send";
-//    }
-
+    // Form to actually compose message and send it
     @GetMapping("/message/{rId}/send")
     public String sendMessage(Model model, @PathVariable long rId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -123,6 +116,7 @@ public class MessageController {
         return "sendMessage";
     }
 
+    // Save new messages from the form to database
     @PostMapping("/message/{rId}/send")
     public String SaveMessage( @PathVariable long rId, @RequestParam String message) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -142,20 +136,20 @@ public class MessageController {
         return "redirect:/message";
     }
 
-    @PostMapping("/messagechat/{oId}")
-    public String getMessageChat(Model model, @PathVariable long oId){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long id = user.getId();
-        Long notification = notiDao.findNotificationsByOriginator_user_idIs(oId);
-        User recip =  userDao.getOne(notification);
-        SmokerInfo smokerInfo = smokeDao.getOne(id);
-        model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("messages", messageDao.findMessagesByRecipient_user_idIs(id));
-        model.addAttribute("smoke", smokerInfo);
-        model.addAttribute("recipId", recip);
-
-        return "messagechat";
-    }
+//    @PostMapping("/messagechat/{oId}")
+//    public String getMessageChat(Model model, @PathVariable long oId){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        long id = user.getId();
+//        Long notification = notiDao.findNotificationsByOriginator_user_idIs(oId);
+//        User recip =  userDao.getOne(notification);
+//        SmokerInfo smokerInfo = smokeDao.getOne(id);
+//        model.addAttribute("users", userDao.getOne(id));
+//        model.addAttribute("messages", messageDao.findMessagesByRecipient_user_idIs(id));
+//        model.addAttribute("smoke", smokerInfo);
+//        model.addAttribute("recipId", recip);
+//
+//        return "messagechat";
+//    }
 
     @GetMapping("/search")
     @ResponseBody

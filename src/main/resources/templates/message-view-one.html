@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
   <link rel="stylesheet" href="/css/messages.css" />
-  <title>SquareHelp - chat with <span th:text="${recipUsername}"></span></title>
+  <title>SquareHelp - chat with <span th:text="${recip.getUsername()}"></span></title>
   </head>
   <body>
   <!-- Navbar -->
@@ -10,12 +10,29 @@
       
       <section class="row contentBg">
         <div class="msgWrapper">
-          <h3>Conversation with <span th:text="${recipUsername}"></span></h3>
+          <h3>Conversation with <span th:text="${recip.getUsername()}"></span></h3>
+          
+          <div class="msgBtnRow">
+            <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
+                    class="far fa-plus-square"></i> </button>
+            <button type="button" onclick="window.location.href = '/message/'"
+                    class="btn btn-outline-primary mb-2"> <i class="fas fa-arrow-left"></i> </button>
+          </div>
           
           <!-- Message area -->
           <div class="messageAreaBg messageArea" id="messageArea">
-            <p class="messageThem"><span>Them: </span> Someone sent you this message!</p>
-            <p class="messageMe"><span>Me: </span>I sent this message!</p>
+            <div class="convoWrapper" th:each="convo : ${conversation}">
+              <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">
+                <span th:text="${convo.getLast_updated()}"></span>
+                <span th:text="${recip.getUsername()}"></span>:
+                <span th:text="${convo.getMessage()}"></span>
+              </p>
+              <p th:if="${convo.getAuthor_user_id() == users.getId()}" class="messageText messageThem">
+                <span th:text="${convo.getLast_updated()}"></span>
+                Me:
+                <strong><span th:text="${convo.getMessage()}"></span></strong>
+              </p>
+            </div>
           </div>
         </div>
         
@@ -24,7 +41,7 @@
           <input type="text" class="form-control" placeholder="Type a message" aria-label="Recipient's username"
                  aria-describedby="basic-addon2" id="messageQuickResponse" name="message">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button"><i class="far fa-paper-plane"></i></button>
+            <button class="btn btn-outline-primary" type="button"><i class="far fa-paper-plane"></i></button>
           </div>
         </div>
       
