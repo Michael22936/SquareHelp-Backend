@@ -21,20 +21,16 @@
                     </thead>
                     <tbody>
                         <div th:each="noti : ${notifications}">
-                            <tr>
-
-                                <td>
-                                    <th:block th:if="${messages}">
-                                    <form th:action="@{'/message/view/' + ${noti.originator_user_id}}"
-                                          method="post">
-                                        <a href="/messagechat" th:text="${noti.notification}">
-                                            <input type="hidden" th:value="${messages}">
-                                        </a>
-                                    </form>
-                                    </th:block>
-                                </td>
-
-                            </tr>
+                            <th:block th:if="${noti.getNotification().contains('message')}">
+                                <tr th:onclick="'window.location.href = \'' + @{/message/} + '\''">
+                                    <td th:text="${noti.notification}"></td>
+                                </tr>
+                            </th:block>
+                            <th:block th:if="${noti.getNotification().contains('verification')}">
+                                <tr th:onclick="'window.location.href = \'' + @{/verification/} + '\''">
+                                    <td th:text="${noti.notification}"></td>
+                                </tr>
+                            </th:block>
                         </div>
                     </tbody>
                 </table>
