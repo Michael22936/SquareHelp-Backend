@@ -6,12 +6,10 @@ public class MessagesUnique {
 
     private long id;
     private String username;
-    private Date last_updated;
 
-    public MessagesUnique(long id, String username, Date last_updated) {
+    public MessagesUnique(long id, String username) {
         this.id = id;
         this.username = username;
-        this.last_updated = last_updated;
     }
 
     public long getId() {
@@ -29,13 +27,4 @@ public class MessagesUnique {
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public Date getLast_updated() {
-        return last_updated;
-    }
-
-    public void setLast_updated(Date last_updated) {
-        this.last_updated = last_updated;
-    }
-
 }

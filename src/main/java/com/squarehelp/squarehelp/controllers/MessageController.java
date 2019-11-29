@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
@@ -37,50 +38,76 @@ public class MessageController {
     public String getSendMessageView(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-
-        // Get all messages from for current user and add unique messages to another list and pass it to the view.
-        List<Messages> msgs = messageDao.findAll();
-        ArrayList<Messages> temp = new ArrayList<>();
-        ArrayList<MessagesUnique> unique = new ArrayList<>();
-
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
-        if (msgs.size() > 0) {
-            for (int i = 0; i < msgs.size(); i++) {
-                if (msgs.get(i).getRecipient_user_id() == id || msgs.get(i).getAuthor_user_id() == id) {
-                    temp.add(msgs.get(i));
-                }
+        // Get all messages from for current user and add unique messages to another list and pass it to the view.
+        // Get all msgs
+        List<Messages> msgs = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(id);
+        ArrayList<MessagesUnique> temp = new ArrayList<MessagesUnique>();
+
+        // Filter for only logged in user
+        for(Messages m : msgs) {
+            if (m.getRecipient_user_id() == id) {
+                temp.add(new MessagesUnique(m.getRecipient_user_id(), userDao.findUserById((long) m.getRecipient_user_id()).getUsername()));
+            } else if (m.getAuthor_user_id() == id) {
+                temp.add(new MessagesUnique(m.getRecipient_user_id(), userDao.findUserById((long) m.getRecipient_user_id()).getUsername()));
             }
         }
 
-        ArrayList<Integer> other = new ArrayList<Integer>();
+        List<MessagesUnique> uniques = new ArrayList<MessagesUnique>();
+        System.out.println("uniques.size() after declaration = " + uniques.size());
+        System.out.println("all messages size:  msgs.size() = " + msgs.size());
 
+        System.out.println("====================Whats in temp");
+        for (MessagesUnique t : temp ) {
+            System.out.println("t.getUsername() = " + t.getUsername());
+        }
+
+        // Create uniques and pass to view
         if (temp.size() > 0) {
-            for (int j = 0; j < temp.size(); j++) {
-                if (temp.get(j).getAuthor_user_id() != id) {
-                    if (other.indexOf(temp.get(j).getAuthor_user_id()) < 0) {
-                        User tempUser = userDao.findUserById((long) temp.get(j).getAuthor_user_id());
+            System.out.println("=====================for loop");
+            for (int i = 0; i < temp.size(); i++) {
+                System.out.println("-- i is " + i);
 
-                        unique.add(new MessagesUnique(
-                                tempUser.getId(),
-                                tempUser.getUsername(),
-                                temp.get(j).getLast_updated()));
-                    }
+                if (uniques.size() == 0) {
+                    System.out.println("- Adding because unique is 0");
+                    uniques.add(temp.get(0));
                 }
-                if (temp.get(j).getRecipient_user_id() != id) {
-                    if (other.indexOf(temp.get(j).getRecipient_user_id()) < 0) {
-                        User tempUser = userDao.findUserById((long) temp.get(j).getAuthor_user_id());
 
-                        unique.add(new MessagesUnique(
-                                tempUser.getId(),
-                                tempUser.getUsername(),
-                                temp.get(j).getLast_updated()));
+                System.out.println("uniques.size() = " + uniques.size());
+
+                if (temp.get(i).getUsername().equals(user.getUsername())) {
+                    System.out.println("- continuing because current user");
+                    continue;
+                }
+
+                for (int j = 0; j < uniques.size(); j++) {
+                    System.out.println("- testing " + temp.get(i).getUsername() + " with " + uniques.get(j).getUsername());
+
+                    if (temp.get(i).getUsername().equals(uniques.get(j).getUsername())) {
+                        System.out.println("- ignoring because usernames match");
+                        break;
+                    } else {
+                        System.out.println(temp.get(i).getUsername() + " != " + uniques.get(j).getUsername());
+
+                        if (temp.get(i).getUsername().equals(user.getUsername())) {
+                            System.out.println("- skipping because is current user!");
+                            break;
+                        }
+
+                        System.out.println("+ adding " + uniques.get(j).getUsername() + " to uniques.");
+                        uniques.add(temp.get(i));
+                        break;
                     }
                 }
             }
         }
 
-        model.addAttribute("uniqueMsgs", unique);
+        System.out.println("=============================");
+        System.out.println("temp.size() = " + temp.size());
+        System.out.println("uniques.size() = " + uniques.size());
+
+        model.addAttribute("uniqueMsgs", uniques);
 
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
@@ -95,15 +122,15 @@ public class MessageController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
-        List<Messages> m = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(rId);
+        List<Messages> m = messageDao.findAll();
 
         // Filter this logged in user and specified recipient conversation only
         ArrayList<Messages> conversation = new ArrayList<Messages>();
 
         for (int i = 0; i < m.size(); i++) {
-            if (m.get(i).getRecipient_user_id() == rId && m.get(i).getAuthor_user_id() == user.getId()) {
+            if (m.get(i).getRecipient_user_id() == rId && m.get(i).getAuthor_user_id() == id) {
                 conversation.add(m.get(i));
-            } else if (m.get(i).getRecipient_user_id() == user.getId() && m.get(i).getAuthor_user_id() == rId) {
+            } else if (m.get(i).getRecipient_user_id() == id && m.get(i).getAuthor_user_id() == rId) {
                 conversation.add(m.get(i));
             }
         }
