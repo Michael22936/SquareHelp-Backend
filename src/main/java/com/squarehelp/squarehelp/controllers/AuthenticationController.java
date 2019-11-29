@@ -1,17 +1,22 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AuthenticationController {
 
     private final UserRepository userDao;
+    private final SmokerInfoRepository smokeDao;
 
-    public AuthenticationController(UserRepository userDao) {
+    public AuthenticationController(UserRepository userDao, SmokerInfoRepository smokeDao) {
         this.userDao = userDao;
+        this.smokeDao = smokeDao;
     }
 
     @GetMapping("/login")
@@ -37,7 +42,11 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
-        return "redirect:/login";
+    public String logout(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("smoke", smokeDao.getOne(id));
+        return "logout";
     }
 }
