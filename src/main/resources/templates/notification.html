@@ -25,7 +25,8 @@
 
                                 <td>
                                     <th:block th:if="${messages}">
-                                    <form th:action="@{'/messagechat/' + ${noti.originator_user_id}}" method="post">
+                                    <form th:action="@{'/message/view/' + ${noti.originator_user_id}}"
+                                          method="post">
                                         <a href="/messagechat" th:text="${noti.notification}">
                                             <input type="hidden" th:value="${messages}">
                                         </a>

@@ -55,57 +55,20 @@ public class MessageController {
         }
 
         List<MessagesUnique> uniques = new ArrayList<MessagesUnique>();
-        System.out.println("uniques.size() after declaration = " + uniques.size());
-        System.out.println("all messages size:  msgs.size() = " + msgs.size());
+        ArrayList<String> tempAL = new ArrayList<String>();
 
-        System.out.println("====================Whats in temp");
         for (MessagesUnique t : temp ) {
-            System.out.println("t.getUsername() = " + t.getUsername());
+            tempAL.add(t.getUsername());
         }
+
+        // Create new list with unique names
+        List<String> tempALDistinct = tempAL.stream().distinct().collect(Collectors.toList());
 
         // Create uniques and pass to view
-        if (temp.size() > 0) {
-            System.out.println("=====================for loop");
-            for (int i = 0; i < temp.size(); i++) {
-                System.out.println("-- i is " + i);
-
-                if (uniques.size() == 0) {
-                    System.out.println("- Adding because unique is 0");
-                    uniques.add(temp.get(0));
-                }
-
-                System.out.println("uniques.size() = " + uniques.size());
-
-                if (temp.get(i).getUsername().equals(user.getUsername())) {
-                    System.out.println("- continuing because current user");
-                    continue;
-                }
-
-                for (int j = 0; j < uniques.size(); j++) {
-                    System.out.println("- testing " + temp.get(i).getUsername() + " with " + uniques.get(j).getUsername());
-
-                    if (temp.get(i).getUsername().equals(uniques.get(j).getUsername())) {
-                        System.out.println("- ignoring because usernames match");
-                        break;
-                    } else {
-                        System.out.println(temp.get(i).getUsername() + " != " + uniques.get(j).getUsername());
-
-                        if (temp.get(i).getUsername().equals(user.getUsername())) {
-                            System.out.println("- skipping because is current user!");
-                            break;
-                        }
-
-                        System.out.println("+ adding " + uniques.get(j).getUsername() + " to uniques.");
-                        uniques.add(temp.get(i));
-                        break;
-                    }
-                }
-            }
+        for (String bb : tempALDistinct) {
+            if (bb.equals(user.getUsername())) continue;
+            uniques.add(new MessagesUnique(userDao.findByUsername(bb).getId(), bb));
         }
-
-        System.out.println("=============================");
-        System.out.println("temp.size() = " + temp.size());
-        System.out.println("uniques.size() = " + uniques.size());
 
         model.addAttribute("uniqueMsgs", uniques);
 
