@@ -7,15 +7,14 @@ import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import com.squarehelp.squarehelp.repositories.VerificationRepository;
+import com.squarehelp.squarehelp.services.NotificationServices;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
-import static com.squarehelp.squarehelp.util.Calculator.avgPointsCalculator;
 import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
@@ -25,12 +24,14 @@ public class VerificationController {
     private final UserRepository userDao;
     private final VerificationRepository veriDao;
     private final NotificationRepository notiDao;
+    private final NotificationServices notiServices;
 
-    public VerificationController(VerificationRepository veriDao, SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao) {
+    public VerificationController(VerificationRepository veriDao, SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao, NotificationServices notiServices) {
         this.veriDao = veriDao;
         this.smokeDao = smokeDao;
         this.userDao = userDao;
         this.notiDao = notiDao;
+        this.notiServices = notiServices;
     }
 
     @GetMapping("/verification")
@@ -165,6 +166,7 @@ public class VerificationController {
         Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user);
 
         veriDao.save(v);
+        notiServices.createNotification(user.getUsername(), recip, "veri");
 
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
