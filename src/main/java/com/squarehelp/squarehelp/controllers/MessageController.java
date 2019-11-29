@@ -204,7 +204,9 @@ public class MessageController {
 
     // Used by message-one-api.js to save responses
     @PostMapping("/message/view/{rId}/quick")
-    public void jsonConversationSave (@PathVariable long rId, @RequestParam String message) {
+    public String jsonConversationSave (@PathVariable long rId, @RequestParam String message) {
+        System.out.println("=========quickly saving message==========");
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
@@ -218,6 +220,8 @@ public class MessageController {
 
         messageDao.save(new Messages((int) id,(int) rId, message, user, recipUsername, sqlDate));
         notiServices.createNotification(user.getUsername(), rId, "msg");
+
+        return "redirect:/message/view/" + rId;
     }
 
     @GetMapping("/search")

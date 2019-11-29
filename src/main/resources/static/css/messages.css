@@ -36,3 +36,7 @@
 .messageText {
     margin-bottom: .25rem;
 }
+
+#qrb {
+    width: 100%;
+}

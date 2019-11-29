@@ -1,7 +1,7 @@
 // This script is for sending quick replys and updating the conversation on messages-view-one.html
 console.log("message-one-api.js loaded");
 
-let response = document.getElementById("messageQuickResponse").value;
+// let response = document.getElementById("messageQuickResponse");
 const send = document.getElementById("sendBtn");
 const messageArea = document.getElementById("messageArea");
 
@@ -33,26 +33,4 @@ const outHTML = () => {
     return html;
 }
 
-const saveResponse = (msg) => {
-    const msgToSave = JSON.stringify({message: msg});
-
-    try {
-        fetch("/message/view/" + recip + "/quick",
-            {
-                method: 'POST',
-                body: msgToSave
-            })
-    } catch (e) {
-        console.error(e);
-    }
-
-    updateConversation();
-    document.getElementById("messageQuickResponse").value = "";
-}
-
-send.addEventListener("click", () => {
-    if (response.length > 0) {
-        saveResponse(response);
-        response = "";
-    }
-});
+setInterval(updateConversation, 10000);
