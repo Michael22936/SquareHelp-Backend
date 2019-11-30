@@ -22,3 +22,22 @@ main {
 .userRow{
     cursor: pointer;
 }
+
+.chartTextStyle{
+    position: absolute;
+    top: 30%;
+    color: black;
+    z-index: 2;
+
+}
+
+.chartText{
+    /*display: none;*/
+    visibility:hidden;
+
+}
+
+.apexcharts-toolbar, .apexcharts-menu-icon{
+    display: none;
+}
+

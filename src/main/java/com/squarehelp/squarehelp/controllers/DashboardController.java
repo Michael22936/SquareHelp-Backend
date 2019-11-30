@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.CalculateStats.*;
 import static com.squarehelp.squarehelp.util.Calculator.*;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
@@ -63,6 +64,16 @@ public class DashboardController {
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
+//        ==== Returns Total Avg points earned by all users. ====
+        String avgTotalPoints = AvgTotalPointsEarnedAllUsers(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalSmokeFreeDays = AvgPointsTotalDaysSmokeFree(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalCigsSavings = AvgTotalSavings(userDao);
+
+        model.addAttribute("avgTotalSavings", avgTotalCigsSavings);
+        model.addAttribute("avgTotalSmokeFreeDays", avgTotalSmokeFreeDays);
+        model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
