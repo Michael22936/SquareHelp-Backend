@@ -33,11 +33,15 @@ main {
 
 .chartText{
     /*display: none;*/
-    visibility:hidden;
+    /*visibility:hidden;*/
 
 }
 
 .apexcharts-toolbar, .apexcharts-menu-icon{
     display: none;
+}
+
+.hideElement{
+    visibility:hidden;
 }
 

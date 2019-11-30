@@ -234,7 +234,7 @@ fetch('/searchAll')
             }
         },
 
-        series: [ trimmedpercentage], // Number inside of dial
+        series: [ 60], // Number inside of dial
         stroke: {
             lineCap: 'round'
         },
@@ -257,10 +257,20 @@ fetch('/searchAll')
 }).then(users => { users
 
     //Load text in gauge
-    let el = document.querySelector('.chartText')
-    el.style.visibility = "visible"; // show element
+    let el = document.querySelector(".chartText");
+    let guageChart1 = document.querySelector("#guageBox1");
+    let guageChart2 = document.querySelector("#guageBox2");
+    // el.style.visibility = "visible"; // show element
+    console.log("Showing the gauge points!!");
 
-
+    setTimeout(function(){
+        // alert("Hello");
+        guageChart1.classList.remove("hideElement");
+        guageChart2.classList.remove("hideElement");
+        // add Animate classes
+        guageChart1.classList.add('animated', 'fadeInUp');
+        guageChart2.classList.add('animated', 'fadeInDown');
+    }, 1000);
 
 }); // end of of 4th fetch .then
 

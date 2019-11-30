@@ -1,8 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
 <title>SquareHelp - Dashboard</title>
-<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
@@ -33,20 +34,23 @@
   </section>
   <!-- =========== Chart  ==============-->
   <section class="row">
+
+<!--    ========== Avg of all users points-->
     <div class="chartbox d-flex flex-column align-items-center">
-      <div class="chartTextStyle d-flex flex-column align-items-center">
-        <h3 class="chartText mb-0">Avg Points </h3>
-        <h3 class="chartText">Earned</h3>
-        <h4 class="chartText" th:text="${avgTotalUsersPoints}"></h4>
+      <div class="chartTextStyle d-flex flex-column align-items-center hideElement" id="guageBox1">
+        <h3 class="chartText  mb-0">Avg Points </h3>
+        <h3 class="chartText ">Earned</h3>
+        <h4 class="chartText " th:text="${avgTotalUsersPoints}"></h4>
       </div>
       <div id="avgPointChart"></div>
     </div>
 
+<!--    Avg of all users smoke free-->
     <div class="chartbox d-flex flex-column align-items-center">
-      <div class="chartTextStyle d-flex flex-column align-items-center">
-        <h3 class="chartText mb-0">Avg Points </h3>
-        <h3 class="chartText">Earned</h3>
-        <h4 class="chartText" th:text="${avgTotalUsersPoints}"></h4>
+      <div class="chartTextStyle d-flex flex-column align-items-center hideElement" id="guageBox2">
+        <h3 class="chartText  mb-0">Avg Days </h3>
+        <h3 class="chartText ">Smoke Free</h3>
+        <h4 class="chartText " th:text="${avgTotalUsersPoints}"></h4>
       </div>
       <div id="avgPointChart2"></div>
     </div>
