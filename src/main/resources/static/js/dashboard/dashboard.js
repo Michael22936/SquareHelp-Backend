@@ -265,8 +265,4 @@ fetch('/searchAll')
 }); // end of of 4th fetch .then
 
 
-
-
-
-
 }) // Load when document is ready END
