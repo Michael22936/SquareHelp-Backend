@@ -127,16 +127,14 @@ public class DashboardController {
         // User community stats
         int totalCommunityUsers = avgPointsCalculator(userInfo.getSmokerInfo().getPoints(),totalUsers);
 
-        model.addAttribute("users", userInfo);
-        model.addAttribute("smoke", userInfo.getSmokerInfo());
-
-
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
+
+        model.addAttribute("users", userInfo);
+        model.addAttribute("smoke", userInfo.getSmokerInfo());
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("smoke", smokerInfo);
         model.addAttribute("user-points", userPointsTotal);
         model.addAttribute("moneySaved", calcMoneySaved(userInfo.getSmokerInfo().getCost_of_cigs_saved(), userInfo.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
