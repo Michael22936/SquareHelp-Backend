@@ -1,0 +1,45 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="partials/head :: main-header"/>
+  <link rel="stylesheet" href="/css/messages.css" />
+  <title>SquareHelp - Messages</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container">
+  
+      <section class="row contentBg">
+        <div class="msgWrapper">
+          <h3>Messages</h3>
+          <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
+                  class="far fa-plus-square"></i> </button>
+      
+          <!-- Table to display unique messages -->
+          <table class="table table-hover table-dark text-center table-condensed">
+            <thead>
+            <tr>
+              <th scope="col">To</th>
+            </tr>
+            </thead>
+            <tbody>
+             <div th:each="u : ${uniqueMsgs}">
+               <tr th:onclick="'window.location.href = \'' + @{/message/view/{recipId}(recipId=${u.getId()})} + '\''"
+                   style="cursor: pointer;">
+                <td><p th:text="${u.getUsername()}"></p></td>
+              </tr>
+             </div>
+            </tbody>
+          </table>
+        </div>
+  
+      </section>
+  
+      <!-- Footer -->
+      <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+      </div>
+
+    </main>
+
+  </body>
+</html>

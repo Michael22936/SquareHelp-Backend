@@ -52,9 +52,12 @@ CREATE TABLE verifications_req (
 DROP TABLE IF EXISTS messages;
 CREATE TABLE messages (
     id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT(20) DEFAULT NULL,
     author_user_id BIGINT(20),
     recipient_user_id BIGINT(20),
-    message TEXT
+    message TEXT,
+    recipient_username VARCHAR(255),
+    last_update Date
 );
 
 DROP TABLE IF EXISTS buddy_sys;
