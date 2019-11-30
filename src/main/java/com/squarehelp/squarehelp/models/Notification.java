@@ -71,9 +71,7 @@ public class Notification {
         this.notification = notification;
     }
 
-    public boolean isIs_viewed() {
-        return is_viewed;
-    }
+    public boolean getIs_viewed() {return is_viewed; }
 
     public void setIs_viewed(boolean is_viewed) {
         this.is_viewed = is_viewed;

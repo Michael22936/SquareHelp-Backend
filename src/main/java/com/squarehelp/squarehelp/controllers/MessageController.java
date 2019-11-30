@@ -1,8 +1,11 @@
 package com.squarehelp.squarehelp.controllers;
 
 import com.squarehelp.squarehelp.models.Messages;
+import com.squarehelp.squarehelp.models.Notification;
+import com.squarehelp.squarehelp.models.SmokerInfo;
 import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.MessagesRepository;
+import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import com.squarehelp.squarehelp.services.NotificationServices;
@@ -11,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+
+import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
 public class MessageController {
@@ -19,24 +25,29 @@ public class MessageController {
     private final UserRepository userDao;
     private final SmokerInfoRepository smokeDao;
     private final NotificationServices notiServices;
+    private final NotificationRepository notiDao;
 
-    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices){
+    public MessageController(MessagesRepository messageDao, UserRepository userDao, SmokerInfoRepository smokeDao, NotificationServices notiServices, NotificationRepository notiDao){
         this.messageDao = messageDao;
         this.userDao = userDao;
         this.smokeDao = smokeDao;
         this.notiServices = notiServices;
+        this.notiDao = notiDao;
     }
 
     @GetMapping("/message")
     public String getSendMessageView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("messages", messageDao.getOne(id));
         return "message";
     }
-
+    //====   Search bar fetch address
     @GetMapping("/search")
     @ResponseBody
     public List<User> sendMatchingUser(@RequestParam String username){
@@ -46,9 +57,14 @@ public class MessageController {
     }
 
     @GetMapping("/message/{rId}")
-    public String sendAMessageToAnotherUser(@PathVariable long rId) {
+    public String sendAMessageToAnotherUser(@PathVariable long rId, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         return "redirect:/message/" + rId + "/" + id + "/send";
     }
 
@@ -56,6 +72,10 @@ public class MessageController {
     public String sendMessage(Model model, @PathVariable long rId) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        //========= Gets the count of unread notifications
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
+
+        model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("user", userDao.getOne(id));
         model.addAttribute("users", userDao.getOne(id));
@@ -72,4 +92,20 @@ public class MessageController {
         notiServices.createNotification(user.getUsername(), rId, "msg");
         return "redirect:/profile/" + id;
     }
+
+    @PostMapping("/messagechat/{oId}")
+    public String getMessageChat(Model model, @PathVariable long oId){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        Long notification = notiDao.findNotificationsByOriginator_user_idIs(oId);
+        User recip =  userDao.getOne(notification);
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
+        model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("messages", messageDao.findMessagesByRecipient_user_idIs(id));
+        model.addAttribute("smoke", smokerInfo);
+        model.addAttribute("recipId", recip);
+
+        return "messagechat";
+    }
+
 }

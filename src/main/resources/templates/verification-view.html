@@ -1,0 +1,49 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - View Verification Page</title>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/verification.css}" />
+  </head>
+  <body>
+  <!-- Navbar -->
+  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container">
+      
+      <section class="row contentBg">
+        <div class="verification-view-wrapper">
+          <h1>View verification</h1>
+          
+          <form th:action="'/verification/' + ${veri.id} + '/view'" class="approve-veri" method="post">
+            <h5>Approver request from: <span th:text="${from.username}"></span></h5>
+            <h5>Approver Name: <span th:text="${veri.getApprover_name()}"></span></h5>
+            <h5>Date Requesting: <span th:text="${veri.getDay_created()}"></span></h5>
+            <h3>Verify this user was smoke free?</h3>
+            <br>
+            <input type="checkbox" checked data-toggle="toggle" id="isApproved" name="isApproved" data-width="150"
+                   data-height="95" data-on="Yes" data-off="No">
+            <br>
+            <button class="btn btn-outline-danger saveBtn mt-2">Save <i class="far fa-save"></i></button>
+          </form>
+        </div>
+
+      </section>
+      
+      <!-- Footer -->
+      <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <script>
+            $(function() {
+                $('#isApproved').bootstrapToggle({
+                    on: 'Yes',
+                    off: 'No',
+                    offstyle: "warning"
+                });
+            })
+        </script>
+      </div>
+    
+    </main>
+  
+  </body>
+</html>

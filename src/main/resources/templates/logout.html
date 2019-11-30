@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="partials/head :: main-header"/>
+<title>Logging out</title>
+</head>
+<body>
+<!-- Navbar -->
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container">
+
+    <section class="row contentBg">
+
+        <h1>Goodbye, <span th:text="${users.username}"></span></h1>
+        <h1>Remember <span th:text="${users.username}"></span>, you are doing an amazing job and make sure to continue to not smoke!</h1>
+        <h2>If you have any question about the company and what we are trying to do please
+            <a href="mailto:squarehelp@hotmail.com">CLICK HERE</a> to contact us. Or
+            <a href="/#aboutus">CLICK HERE</a> to visit our about us page</h2>
+        <p>You will be redirected to login in 10 seconds...</p>
+
+    </section>
+
+    <!-- Footer -->
+    <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+    </div>
+
+</main>
+<script>
+    setTimeout(() => {
+        location.href = "/login";
+    }, 10000);
+</script>
+</body>
+</html>
