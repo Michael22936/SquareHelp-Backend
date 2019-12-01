@@ -1,0 +1,49 @@
+console.log("filestack impl.js loaded");
+
+// Set up the picker
+// var client = filestack.init("api key");
+
+// Helper to overwrite the field input value
+let filestackAPI = $('#filestackAPI').val();
+console.log(filestackAPI);
+
+const client = filestack.init(filestackAPI);
+// client.picker().open();
+var options = {
+    onUploadDone: updateForm,
+    maxSize: 10 * 1024 * 1024,
+    accept: 'image/*',
+    uploadInBackground: false
+};
+var picker = client.picker(options);
+// // Get references to the DOM elements
+var form = document.getElementById('photo');
+var fileInput = document.getElementById('fileupload');
+var btn = document.getElementById('picker');
+var nameBox = document.getElementById('nameBox');
+// // Add our event listeners
+btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    picker.open();
+});
+var photo = "";
+function updateForm (result) {
+    var fileData = result.filesUploaded[0];
+    console.log(fileData);
+    photo = (fileData.url);
+    console.log(fileData.url);
+    fileInput.value = photo;
+
+    // document.getElementById(photoURL);
+    // var photoURL = fileData.url;
+    // console.log(photoURL);
+    // photoURL.attr('id', 'photoURL');
+    // photoURL.attr('name', 'photoURL');
+    // fileInput.value = photos.join('-');
+    //     // Some ugly DOM code to show some data.
+    var name = document.createTextNode(photo);
+    nameBox.appendChild(name);
+    console.log(name);
+    // name.attr('id', 'photoURL');
+    // name.attr('name', 'photoURL');
+}
