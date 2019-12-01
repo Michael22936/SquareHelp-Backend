@@ -16,7 +16,9 @@ CREATE TABLE users (
     phone_number VARCHAR(15),
     date_created DATE,
     last_login VARCHAR(255),
-    gender VARCHAR(255)
+    gender VARCHAR(255),
+    smoker_info_id INT UNSIGNED,
+    profile_pic VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS smoking_info;

@@ -13,7 +13,12 @@
             <section class="row contentBg">
                 <div class="profileWrapper">
                     <div class="profileWrapper-left col-md-4">
-                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+                        <th:block th:if="${users.profilePic == null}">
+                            <img id="profileImg" class="mb-2" src="/img/profile/unknown-user.jpg">
+                        </th:block>
+                        <th:block th:if="${users.profilePic != null"}>
+                            <img id="profileImg" class="mb-2" th:src="${users.profilePic}">
+                        </th:block>
     
                         <th:block th:if="${users.id == #authentication.principal.id}">
                             <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-outline-warning">Edit Profile</a>

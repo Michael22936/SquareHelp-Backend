@@ -29,8 +29,6 @@ public class User {
     private String dob;
     @Column(columnDefinition = "VARCHAR(255")
     private String profilePic;
-
-
     @Column(columnDefinition = "VARCHAR(15) NOT NULL UNIQUE")
     private String phoneNumber;
     @Column(columnDefinition = "DATE")
