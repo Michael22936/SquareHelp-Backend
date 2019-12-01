@@ -6,7 +6,7 @@ USE squareHelp;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     email VARCHAR(255) UNIQUE,
@@ -17,14 +17,13 @@ CREATE TABLE users (
     date_created DATE,
     last_login VARCHAR(255),
     gender VARCHAR(255),
-    smoker_info_id INT UNSIGNED,
     profile_pic VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS smoking_info;
 CREATE TABLE smoking_info (
-    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    user_id INT UNIQUE,
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT UNIQUE,
     day_quit_smoking DATE,
     day_relapse DATE,
     total_days_smoke_free BIGINT(20),
