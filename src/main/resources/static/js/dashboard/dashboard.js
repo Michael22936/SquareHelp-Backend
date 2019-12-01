@@ -5,6 +5,7 @@ let ArrayAllUsersPoints = [];
 let trimmedpercentage = 0;
 let TotalUsersAvgPointsFixed = 0;
 let TotalUsersAvgSmokeFreeDays = 0;
+let TotalUsersAvgCigSavings = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -58,6 +59,13 @@ fetch('/searchAll')
         // Calculate All Users Avg Smoke free Days
          TotalUsersAvgSmokeFreeDays = parseInt( (totalUsersSmokeFree / totalUsers).toFixed() );
 
+         // Calculate All Users Avg Cigs Savings
+        TotalUsersAvgCigSavings = parseInt( (totalUsersCigsSavings / totalUsers).toFixed() );
+
+
+
+        console.log(" ==== totalUsersCigsSavings " + totalUsersCigsSavings)
+        console.log(" ==== TotalUsersAvgCigSavings " + TotalUsersAvgCigSavings + " " + typeof TotalUsersAvgCigSavings)
 
 
 
@@ -99,8 +107,8 @@ fetch('/searchAll')
             }
         },
         colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-        series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,61],
-        labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings'],
+        series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,TotalUsersAvgCigSavings],
+        labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings in USD'],
         legend: {
             show: true,
             floating: true,
