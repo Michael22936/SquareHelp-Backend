@@ -10,12 +10,15 @@
         <main class="container">
             <section class="row contentBg">
                 <div class="editProfileWrapper">
-                    <div class="editProfileWrapper-left col-md-4">
-                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
-                        <input type="file" id="updatePictures" name="pictures" accept="image/jpeg, image/png">
-                    </div>
-                    <div class="editProfileWrapper-right">
-                        <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
+                    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
+<!--                    <form action="https://request-inspector.glitch.me/" method="post" th:object="${users}">-->
+                        <div class="editProfileWrapper-left col-md-4">
+                            <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+    <!--                        <input type="file" id="updatePictures" name="pictures" accept="image/jpeg, image/png">-->
+                            <input id="picker" class="file-input" type="file" accept="image/jpeg, image/png" />
+                            <input type="hidden" id="fileupload" name="profilePic" />
+                        </div>
+                        <div class="editProfileWrapper-right">
                             <h1>Edit Profile</h1>
                             <div>
                                 <label for="username">Edit Username: </label>
@@ -33,8 +36,8 @@
                             <div class="divideDiv mb-2"></div>
     
                             <button class="btn btn-outline-warning">Update</button>
+                        </div>
                         </form>
-                    </div>
                 </div>
             </section>
             
@@ -42,6 +45,8 @@
             <div class="row">
                 <th:block th:replace="partials/footer :: main-footer"/>
                 <th:block th:replace="partials/searchbar :: navbar-search"/>
+                <script src="http://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+                <script src="/js/util/filestack-impl.js"></script>
             </div>
         
         </main>

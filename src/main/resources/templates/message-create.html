@@ -11,7 +11,7 @@
       
       <section class="row contentBg d-flex">
         <form th:action="'/message'" method="post" th:object="${messages}">
-          <h1 class="mb-2">Who do you want to send the message to: </h1>
+          <h1 class="mb-2">Who do you want to send a message to: </h1>
           <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class=" justify-content-center w-75" required>
           <ul class=" rounded list-group w-75" id="messageUserResults">
             <th:block th:object="${users}">
