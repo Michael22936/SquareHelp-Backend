@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,13 +43,14 @@ public class MessageController {
 
         // Get all messages from for current user and add unique messages to another list and pass it to the view.
         // Get all msgs
-        List<Messages> msgs = messageDao.findDistinctByRecipient_user_idOrAuthor_user_id(id);
+        List<Messages> msgs = messageDao.findAll();
+
         ArrayList<MessagesUnique> temp = new ArrayList<MessagesUnique>();
 
         // Filter for only logged in user
         for(Messages m : msgs) {
             if (m.getRecipient_user_id() == id) {
-                temp.add(new MessagesUnique(m.getRecipient_user_id(), userDao.findUserById((long) m.getRecipient_user_id()).getUsername()));
+                temp.add(new MessagesUnique(m.getAuthor_user_id(), userDao.findUserById((long) m.getAuthor_user_id()).getUsername()));
             } else if (m.getAuthor_user_id() == id) {
                 temp.add(new MessagesUnique(m.getRecipient_user_id(), userDao.findUserById((long) m.getRecipient_user_id()).getUsername()));
             }
@@ -58,6 +60,7 @@ public class MessageController {
         ArrayList<String> tempAL = new ArrayList<String>();
 
         for (MessagesUnique t : temp ) {
+            System.out.println("t.getUsername() = " + t.getUsername());
             tempAL.add(t.getUsername());
         }
 
