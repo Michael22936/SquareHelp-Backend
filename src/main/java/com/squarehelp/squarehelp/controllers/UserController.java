@@ -41,6 +41,7 @@ public class UserController {
         user.setDateCreated(d);
         SmokerInfo si = smokeDao.save(smokerInfo);
         user.setSmokerInfo(si);
+        user.setProfilePic(null);
         userDao.save(user);
         return "redirect:/login";
     }

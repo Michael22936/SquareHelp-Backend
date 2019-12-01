@@ -56,12 +56,13 @@ public class ProfileController {
     }
 
     @PostMapping("/profile/{id}/edit")
-    public String updateProfile(@PathVariable long id, @RequestParam String username, @RequestParam String city, @RequestParam String state) {
+    public String updateProfile(@PathVariable long id, @RequestParam String username, @RequestParam String city, @RequestParam String state, @RequestParam String profilePic) {
         User oldUserProfile = userDao.getOne(id);
 
         oldUserProfile.setUsername(username);
         oldUserProfile.setCity(city);
         oldUserProfile.setState(state);
+        oldUserProfile.setProfilePic(profilePic);
 
         userDao.save(oldUserProfile);
 
