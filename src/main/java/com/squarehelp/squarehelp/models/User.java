@@ -27,6 +27,8 @@ public class User {
     @Column(columnDefinition = "DATE")
     // change to local date
     private String dob;
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String profilePic;
     @Column(columnDefinition = "VARCHAR(15) NOT NULL UNIQUE")
     private String phoneNumber;
     @Column(columnDefinition = "DATE")
@@ -81,6 +83,28 @@ public class User {
         this.dateCreated = dateCreated;
         this.lastLogin = lastLogin;
         this.gender = gender;
+    }
+
+    public User(String username, String password, String email, String state, String city, String dob, String profilePic, String phoneNumber, Date dateCreated, String lastLogin, String gender) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.state = state;
+        this.city = city;
+        this.dob = dob;
+        this.profilePic = profilePic;
+        this.phoneNumber = phoneNumber;
+        this.dateCreated = dateCreated;
+        this.lastLogin = lastLogin;
+        this.gender = gender;
+    }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
     }
 
     public long getId() {
