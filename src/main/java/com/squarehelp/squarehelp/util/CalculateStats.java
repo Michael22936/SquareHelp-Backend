@@ -120,7 +120,7 @@ public class CalculateStats {
 
 
 
-        return 5;
+        return days;
     }
 
     public static String parseToJodaTime(String usersTime){

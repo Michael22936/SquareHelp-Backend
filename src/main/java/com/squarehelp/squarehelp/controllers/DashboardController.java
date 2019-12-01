@@ -47,6 +47,8 @@ public class DashboardController {
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
+        System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + smokerInfo.getDay_quit_smoking());
+        System.out.println("===================== start = " + start);
 
         // Get relapse day (if needed)
         Date relapseDate = smokerInfo.getDay_relapse();

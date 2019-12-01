@@ -1,7 +1,9 @@
 // // Script is specific for dashboard.html
+
 let allUsersArray = [];
 let ArrayAllUsersPoints = [];
 let trimmedpercentage = 0;
+let TotalUsersAvgPointsFixed = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -43,12 +45,13 @@ fetch('/searchAll')
 
         }
 
+        // Calculate Avg points by all users
         let TotalUsersAvgPoints = (totalUsersPoints / totalUsers);
-        let singleDigit = TotalUsersAvgPoints.toFixed();
+        TotalUsersAvgPointsFixed = parseInt( TotalUsersAvgPoints.toFixed() );
 
             // Calculate highest points by users
             let mostPoints = Math.max(...ArrayAllUsersPoints);
-        let percentage = (singleDigit * 100 / mostPoints) // TotalAvgPoints / highestUserPoints
+        let percentage = (TotalUsersAvgPointsFixed * 100 / mostPoints) // TotalAvgPoints / highestUserPoints
              trimmedpercentage = parseInt( percentage.toFixed() );
 
         console.log("Gauge percentage: " + percentage + " "+ trimmedpercentage + " "+ typeof trimmedpercentage);
@@ -56,7 +59,7 @@ fetch('/searchAll')
         console.log("Total users : " + totalUsers);
         console.log("Total users points: " + totalUsersPoints);
         console.log("Total users points: " + (totalUsersPoints / totalUsers));
-        console.log("Total users points: " + singleDigit);
+        console.log("Total users points: " + TotalUsersAvgPointsFixed + " " + typeof TotalUsersAvgPointsFixed);
 
 
 
@@ -65,182 +68,69 @@ fetch('/searchAll')
 
 
 // Gradient Radial Bar Chart
-    var options = {
-        chart: {
-            height: 350,
-            type: 'radialBar',
-            toolbar: {
-                show: true
-            }
-        },
-        plotOptions: {
-            radialBar: {
-                startAngle: -135,
-                endAngle: 225,
-                hollow: {
-                    margin: 0,
-                    size: '70%',
-                    background: '#fff',
-                    image: undefined,
-                    imageOffsetX: 0,
-                    imageOffsetY: 0,
-                    position: 'front',
-                    dropShadow: {
-                        enabled: true,
-                        top: 3,
-                        left: 0,
-                        blur: 4,
-                        opacity: 0.24
-                    }
-                },
-                track: {
-                    background: '#fff',
-                    strokeWidth: '67%',
-                    margin: 0, // margin is in pixels
-                    dropShadow: {
-                        enabled: true,
-                        top: -3,
-                        left: 0,
-                        blur: 4,
-                        opacity: 0.35
-                    }
-                },
 
-                dataLabels: {
-                    showOn: 'always',
-                    name: {
-                        offsetY: -10,
-                        show: false, // change
-                        color: '#888',
-                        fontSize: '17px'
-                    },
-                    value: {
-                        formatter: function(val) {
-                            return parseInt(val);
-                        },
-                        color: '#111',
-                        fontSize: '36px',
-                        show: false, // change
-
-                    }
-                }
-            }
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#ABE5A1'],
-                inverseColors: true,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100] // Min and max for dial
-            }
-        },
-
-        series: [ trimmedpercentage], // Number inside of dial
-        stroke: {
-            lineCap: 'round'
-        },
-        // labels: ['Average Points Earned'],
-
-
-    }
-
-    var chart = new ApexCharts(
-        document.querySelector("#avgPointChart"),
-        options
-    );
-
-    chart.render();
 
 
     // ================================== 2nd chart
-// Gradient Radial Bar Chart
+
     var options = {
         chart: {
             height: 350,
             type: 'radialBar',
-            toolbar: {
-                show: true
-            }
         },
         plotOptions: {
             radialBar: {
-                startAngle: -135,
-                endAngle: 225,
+                offsetY: -10,
+                startAngle: 0,
+                endAngle: 270,
                 hollow: {
-                    margin: 0,
-                    size: '70%',
-                    background: '#fff',
+                    margin: 5,
+                    size: '30%',
+                    background: 'transparent',
                     image: undefined,
-                    imageOffsetX: 0,
-                    imageOffsetY: 0,
-                    position: 'front',
-                    dropShadow: {
-                        enabled: true,
-                        top: 3,
-                        left: 0,
-                        blur: 4,
-                        opacity: 0.24
-                    }
                 },
-                track: {
-                    background: '#fff',
-                    strokeWidth: '67%',
-                    margin: 0, // margin is in pixels
-                    dropShadow: {
-                        enabled: true,
-                        top: -3,
-                        left: 0,
-                        blur: 4,
-                        opacity: 0.35
-                    }
-                },
-
                 dataLabels: {
-                    showOn: 'always',
                     name: {
-                        offsetY: -10,
-                        show: false, // change
-                        color: '#888',
-                        fontSize: '17px'
+                        show: false,
+
                     },
                     value: {
-                        formatter: function(val) {
-                            return parseInt(val);
-                        },
-                        color: '#111',
-                        fontSize: '36px',
-                        show: false, // change
-
+                        show: false,
                     }
                 }
             }
         },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shade: 'dark',
-                type: 'horizontal',
-                shadeIntensity: 0.5,
-                gradientToColors: ['#ABE5A1'],
-                inverseColors: true,
-                opacityFrom: 1,
-                opacityTo: 1,
-                stops: [0, 100] // Min and max for dial
+        colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+        series: [TotalUsersAvgPointsFixed,67,61],
+        labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings'],
+        legend: {
+            show: true,
+            floating: true,
+            fontSize: '16px',
+            position: 'left',
+            offsetX: 160,
+            offsetY: 10,
+            labels: {
+                useSeriesColors: true,
+            },
+            markers: {
+                size: 0
+            },
+            formatter: function(seriesName, opts) {
+                return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+            },
+            itemMargin: {
+                horizontal: 1,
             }
         },
-
-        series: [ 60], // Number inside of dial
-        stroke: {
-            lineCap: 'round'
-        },
-        // labels: ['Average Points Earned'],
-
-
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                    show: false
+                }
+            }
+        }]
     }
 
     var chart = new ApexCharts(
@@ -252,25 +142,24 @@ fetch('/searchAll')
 
 
 
-
 // end of 4rd fetch .then
 }).then(users => { users
 
     //Load text in gauge
-    let el = document.querySelector(".chartText");
-    let guageChart1 = document.querySelector("#guageBox1");
-    let guageChart2 = document.querySelector("#guageBox2");
-    // el.style.visibility = "visible"; // show element
-    console.log("Showing the gauge points!!");
-
-    setTimeout(function(){
-        // alert("Hello");
-        guageChart1.classList.remove("hideElement");
-        guageChart2.classList.remove("hideElement");
-        // add Animate classes
-        guageChart1.classList.add('animated', 'fadeInUp');
-        guageChart2.classList.add('animated', 'fadeInDown');
-    }, 500);
+    // let el = document.querySelector(".chartText");
+    // let guageChart1 = document.querySelector("#guageBox1");
+    // let guageChart2 = document.querySelector("#guageBox2");
+    // // el.style.visibility = "visible"; // show element
+    // console.log("Showing the gauge points!!");
+    //
+    // setTimeout(function(){
+    //     // alert("Hello");
+    //     guageChart1.classList.remove("hideElement");
+    //     // guageChart2.classList.remove("hideElement");
+    //     // add Animate classes
+    //     guageChart1.classList.add('animated', 'fadeInUp');
+    //     // guageChart2.classList.add('animated', 'fadeInDown');
+    // }, 500);
 
 }); // end of of 4th fetch .then
 

@@ -51,8 +51,6 @@ public class MessageController {
     @GetMapping("/search")
     @ResponseBody
     public List<User> sendMatchingUser(@RequestParam String username){
-        System.out.println(username);
-        System.out.println(userDao.findByUsernameContaining(username));
         return userDao.findByUsernameContaining(username);
     }
 
