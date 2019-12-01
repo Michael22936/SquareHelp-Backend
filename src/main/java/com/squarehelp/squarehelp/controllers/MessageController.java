@@ -60,7 +60,6 @@ public class MessageController {
         ArrayList<String> tempAL = new ArrayList<String>();
 
         for (MessagesUnique t : temp ) {
-            System.out.println("t.getUsername() = " + t.getUsername());
             tempAL.add(t.getUsername());
         }
 
