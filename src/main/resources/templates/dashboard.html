@@ -1,13 +1,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
 <title>SquareHelp - Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
 <main class="container contentBg">
 
-  
+
+
   <!-- Dashboard Content -->
   <section class="row contentBg">
     <div class="headline">
@@ -29,14 +32,71 @@
       </button></a>
     </div>
   </section>
-  
+  <!-- =========== Chart  ==============-->
+  <section class="">
+
+<!--    ========== Avg of all users points-->
+<!--    <div class="chartbox d-flex flex-column align-items-center">-->
+<!--      <div class="chartTextStyle d-flex flex-column align-items-center hideElement" id="guageBox1">-->
+<!--        <h3 class="chartText  mb-0">Avg Points </h3>-->
+<!--        <h3 class="chartText ">Earned</h3>-->
+<!--        <h4 class="chartText " th:text="${avgTotalUsersPoints}"></h4>-->
+<!--      </div>-->
+<!--      <div id="avgPointChart"></div>-->
+<!--    </div>-->
+
+<!--    Chart 2-->
+<!--    Avg of all users smoke free-->
+<!--    <div class="chartbox ">-->
+<!--      <div class="chartTextStyle d-flex flex-column align-items-center hideElement" id="guageBox2">-->
+<!--        <h3 class="chartText  mb-0">Avg Days </h3>-->
+<!--        <h3 class="chartText ">Smoke Free</h3>-->
+<!--        <h4 class="chartText " th:text="${avgTotalUsersPoints}"></h4>-->
+<!--      </div>-->
+    <div class="card">
+      <h5 class="card-header text-dark"> Community Stats </h5>
+        <div id="avgPointChart2"></div>
+    </div>
+<!--    </div>-->
+  </section>
+
+
+  <!-- Community Stats Cards -->
+  <section class="row contentBg">
+    <div class="card-group">
+
+      <div class="card rounded-circle bg-info " style="max-width: 18rem;">
+        <div class="card-body d-flex flex-column align-items-center">
+          <h5 class="card-title d-inline text-center">Community Average Points Earned: </h5>
+          <h1></h1>
+          <!--          <p class="card-text"><span th:text="${smoke.points}"></span></p>-->
+          <h1 class="d-inline" th:text="${avgTotalUsersPoints}"></h1>
+        </div>
+      </div>
+
+      <div class="card rounded-circle bg-info d-flex flex-column align-items-center" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title d-inline"><p>Community Average Days Smoke Free </p></h5>
+          <h1 class="card-text d-inline"><span th:text="${avgTotalSmokeFreeDays}"></span></h1>
+        </div>
+      </div>
+      <div class="card rounded-circle bg-info d-flex flex-column align-items-center" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title d-inline">Average Cigarette Savings: </h5>
+          <h1 class="card-text d-inline"><span>$</span><span th:text="${avgTotalSavings}"></span></h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Statistic cards -->
   <section class="row contentBg">
     <div class="card-group">
       <div class="card custom-card-style2">
         <div class="card-body">
-          <h5 class="card-title"><p>Average Points Earned: </p></h5>
-          <p class="card-text"><span th:text="${smoke.points}"></span></p>
+          <h5 class="card-title d-inline">Average Points Earned: </h5>
+          <br>
+          <p class="card-text d-inline"><span th:text="${smoke.points}"></span></p>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated (x) mins ago</small>
@@ -62,10 +122,10 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Footer -->
   <section class="row">
-    
+
     <th:block th:replace="partials/footer :: main-footer"/>
     <th:block th:replace="partials/searchbar :: navbar-search"/>
     <script src="/js/dashboard/dashboard.js"></script>
