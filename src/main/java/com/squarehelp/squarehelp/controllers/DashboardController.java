@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String passingDashboard(Model model){
+    public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         int totalUsers = (int) userDao.count();
@@ -70,6 +71,9 @@ public class DashboardController {
         String avgTotalSmokeFreeDays = AvgPointsTotalDaysSmokeFree(userDao);
 //        ==== Returns Avg Days smoke free for all users.
         String avgTotalCigsSavings = AvgTotalSavings(userDao);
+
+//        ====== Generate total days smoke free
+        totalDaysSmokeFree(userDao);
 
         model.addAttribute("avgTotalSavings", avgTotalCigsSavings);
         model.addAttribute("avgTotalSmokeFreeDays", avgTotalSmokeFreeDays);

@@ -253,7 +253,7 @@ fetch('/searchAll')
 
 
 
-// end of 3rd fetch .then
+// end of 4rd fetch .then
 }).then(users => { users
 
     //Load text in gauge
@@ -270,7 +270,7 @@ fetch('/searchAll')
         // add Animate classes
         guageChart1.classList.add('animated', 'fadeInUp');
         guageChart2.classList.add('animated', 'fadeInDown');
-    }, 1000);
+    }, 500);
 
 }); // end of of 4th fetch .then
 
