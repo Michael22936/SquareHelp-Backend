@@ -4,6 +4,7 @@ let allUsersArray = [];
 let ArrayAllUsersPoints = [];
 let trimmedpercentage = 0;
 let TotalUsersAvgPointsFixed = 0;
+let TotalUsersAvgSmokeFreeDays = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 let totalUsersPoints = 0;
 let totalUsers = 0;
 let highestUserPoints = 0;
+let totalUsersSmokeFree = 0;
+let totalUsersCigsSavings = 0;
 
 // Fetch Request for all users
 fetch('/searchAll')
@@ -20,7 +23,7 @@ fetch('/searchAll')
     .then(users =>  {
         allUsersArray = users;
 
-        console.log("Array of all users " + allUsersArray);
+        console.log( allUsersArray);
 
 
 
@@ -30,19 +33,17 @@ fetch('/searchAll')
         function loopThruAllUsers(user) {
             let  username = user.username;
             let userTotalPoints = user.smokerInfo.points;
-            console.log("userTotalPoints typeof " +typeof userTotalPoints);
+            let userTotalDaysSmokeFree = user.smokerInfo.total_days_smoke_free;
+            let userTotalCigsSavings = user.smokerInfo.cost_of_cigs_saved;
             ArrayAllUsersPoints.push(userTotalPoints);
 
-            console.log("=============  FIRE  ================");
-
-            console.log("Username and user points======: " + username + " " + userTotalPoints);
 
             totalUsersPoints += userTotalPoints;
+            totalUsersSmokeFree += userTotalDaysSmokeFree;
+            totalUsersCigsSavings += userTotalCigsSavings;
 
             // User Counter
             totalUsers++;
-
-
         }
 
         // Calculate Avg points by all users
@@ -54,12 +55,9 @@ fetch('/searchAll')
         let percentage = (TotalUsersAvgPointsFixed * 100 / mostPoints) // TotalAvgPoints / highestUserPoints
              trimmedpercentage = parseInt( percentage.toFixed() );
 
-        console.log("Gauge percentage: " + percentage + " "+ trimmedpercentage + " "+ typeof trimmedpercentage);
-        console.log("Most points by user: " + mostPoints);
-        console.log("Total users : " + totalUsers);
-        console.log("Total users points: " + totalUsersPoints);
-        console.log("Total users points: " + (totalUsersPoints / totalUsers));
-        console.log("Total users points: " + TotalUsersAvgPointsFixed + " " + typeof TotalUsersAvgPointsFixed);
+        // Calculate All Users Avg Smoke free Days
+         TotalUsersAvgSmokeFreeDays = parseInt( (totalUsersSmokeFree / totalUsers).toFixed() );
+
 
 
 
@@ -101,7 +99,7 @@ fetch('/searchAll')
             }
         },
         colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-        series: [TotalUsersAvgPointsFixed,67,61],
+        series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,61],
         labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings'],
         legend: {
             show: true,
