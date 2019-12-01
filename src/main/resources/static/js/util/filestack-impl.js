@@ -1,49 +1,40 @@
 console.log("filestack impl.js loaded");
 
 // Set up the picker
-// var client = filestack.init("api key");
+const client = filestack.init("AXimJ9eQiTEaAeo5kJ9tmz");
 
-// Helper to overwrite the field input value
-let filestackAPI = $('#filestackAPI').val();
-console.log(filestackAPI);
+let updateForm = (result) => {
+    let fileData = result.filesUploaded[0];
+    photo = (fileData.url);
+    fileInput.value = photo;
+    updateEditProfilePicture();
+};
 
-const client = filestack.init(filestackAPI);
+let updateEditProfilePicture = () => {
+    editProfileImg.src = fileInput.value;
+}
+
 // client.picker().open();
-var options = {
+const options = {
     onUploadDone: updateForm,
     maxSize: 10 * 1024 * 1024,
     accept: 'image/*',
     uploadInBackground: false
 };
-var picker = client.picker(options);
-// // Get references to the DOM elements
-var form = document.getElementById('photo');
-var fileInput = document.getElementById('fileupload');
-var btn = document.getElementById('picker');
-var nameBox = document.getElementById('nameBox');
+
+let picker = client.picker(options);
+
+// DOM elements
+let form = document.getElementById('photo');
+let fileInput = document.getElementById('fileupload');
+let pictureUploadbtn = document.getElementById('picker');
+// let nameBox = document.getElementById('nameBox');
+let editProfileImg = document.getElementById('profileImg');
+
 // // Add our event listeners
-btn.addEventListener('click', function (e) {
+pictureUploadbtn.addEventListener('click', function (e) {
     e.preventDefault();
     picker.open();
 });
-var photo = "";
-function updateForm (result) {
-    var fileData = result.filesUploaded[0];
-    console.log(fileData);
-    photo = (fileData.url);
-    console.log(fileData.url);
-    fileInput.value = photo;
 
-    // document.getElementById(photoURL);
-    // var photoURL = fileData.url;
-    // console.log(photoURL);
-    // photoURL.attr('id', 'photoURL');
-    // photoURL.attr('name', 'photoURL');
-    // fileInput.value = photos.join('-');
-    //     // Some ugly DOM code to show some data.
-    var name = document.createTextNode(photo);
-    nameBox.appendChild(name);
-    console.log(name);
-    // name.attr('id', 'photoURL');
-    // name.attr('name', 'photoURL');
-}
+var photo = "";

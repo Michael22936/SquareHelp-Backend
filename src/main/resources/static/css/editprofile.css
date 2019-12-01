@@ -22,3 +22,8 @@
 .tdLeft {
     width: 50%;
 }
+
+#profileImg {
+    width: 225px;
+    height: 225px;
+}
