@@ -1,4 +1,5 @@
 package com.squarehelp.squarehelp.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import javax.persistence.*;
 
@@ -26,6 +27,7 @@ public class Verification {
     private boolean is_approved;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user_veq;
 
