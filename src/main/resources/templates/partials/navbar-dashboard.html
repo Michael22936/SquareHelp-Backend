@@ -5,7 +5,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <nav class="navbar navbar-expand-md navbar-dark mb-4 sidebar">
     <div class="navbar-fixed">
       <ul class="nav">
         <li class="nav-item"><a class="text-decoration-none" th:href="@{'/dashboard'}"><h4>SquareHelp</h4></a></li>
@@ -14,23 +14,21 @@
         <li class="nav-item"><a class="nav-link" th:href="@{'/profile/' + ${users.id}}"><i class="fas fa-user"></i></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{'/verification'}"><i class="far fa-file-alt"></i></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{'/message'}"><i class="far fa-envelope"></i></a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{'/notifications'}"><i class="far fa-bell"></i><span th:if="${alertCount > 0 && users.id == #authentication.principal.id}" th:text="${alertCount}" class=" badge badge-primary " id="notifyResult"></span></a></li>
+<!--        <li class="nav-item"><a class="nav-link" th:href="@{'/notifications'}"><i class="far fa-bell"></i><span th:if="${alertCount > 0 && users.id == #authentication.principal.id}" th:text="${alertCount}" class=" badge badge-primary " id="notifyResult"></span></a></li>-->
 
         <li class="nav-item"><a class="nav-link" th:href="@{'/logout'}"><i class="fas fa-sign-out-alt"></i></a></li>
         <li class="nav-item">
-          <div class="input-group">
-            <form th:href="@{'/dashboard/' + ${users.id}}" method="post" style="display: flex;
-                        margin-bottom: 0;">
-              <input type="text" class="form-control" id="navbarSearch" name="searchQuery" placeholder="Search Username..."
-                     aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <!--                            Search Results Dropdown-->
-              <ul class=" rounded list-group " id="dashboardResult"></ul>
-              <div class="input-group-append" style="margin: 0 .5rem;">
-<!--                <button id="searchBtn" class="btn btn-outline-secondary" data-toggle="modal"-->
-<!--                        data-target="#exampleModal" type="submit">Search</button>-->
-              </div>
-            </form>
-          </div>
+<!--          <div class="input-group">-->
+<!--            <form th:href="@{'/dashboard/' + ${users.id}}" method="post" style="display: flex;-->
+<!--                        margin-bottom: 0;">-->
+<!--              <input type="text" class="form-control" id="navbarSearch" name="searchQuery" placeholder="Search Username..."-->
+<!--                     aria-label="Recipient's username" aria-describedby="basic-addon2">-->
+<!--              &lt;!&ndash;                            Search Results Dropdown&ndash;&gt;-->
+<!--              <ul class=" rounded list-group " id="dashboardResult"></ul>-->
+<!--              <div class="input-group-append" style="margin: 0 .5rem;">-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </div>-->
         </li>
       </ul>
     </div>
