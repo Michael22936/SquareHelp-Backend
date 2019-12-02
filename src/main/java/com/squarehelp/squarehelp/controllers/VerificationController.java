@@ -164,8 +164,8 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user);
-
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, user);
+//        int originator_user_id, String approver_name, String day_created, int days_smoke_free, User user_veq
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 
