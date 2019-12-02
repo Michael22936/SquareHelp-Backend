@@ -39,10 +39,10 @@ public class DashboardController {
 //        System.out.println("totalUsers = " + totalUsers);
         User userInfo = userDao.getOne(id);
 
-        int days = 0;
 
 
         // Day counter (int)
+        int days = 0;
 
         // if date_relapsed is not null
             // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
@@ -57,13 +57,15 @@ public class DashboardController {
 
         if(userInfo.getSmokerInfo().getDay_relapse() != null) {
 
+
+
 //            if (userInfo.getSmokerInfo().getDay_relapse().after( (userInfo.getSmokerInfo().getDay_quit_smoking())) ){
 //                days = 0;
 //            }
         }
 
 
-
+        System.out.println("Relapse day = " + userInfo.getSmokerInfo().getDay_relapse());
 
         // if date_quit_smoking is effected by date_relapsed, then date_relapsed and date_quit_smoking should be identical
 
