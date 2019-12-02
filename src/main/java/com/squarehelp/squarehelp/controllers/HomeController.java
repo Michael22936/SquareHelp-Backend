@@ -1,9 +1,9 @@
 package com.squarehelp.squarehelp.controllers;
 
-import com.squarehelp.squarehelp.repositories.UserRepository;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+        import com.squarehelp.squarehelp.repositories.UserRepository;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.ui.Model;
+        import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
