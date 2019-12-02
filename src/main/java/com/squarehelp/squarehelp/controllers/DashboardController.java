@@ -8,12 +8,10 @@ import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.LocalDate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -26,11 +24,12 @@ import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificat
 
 @Controller
 public class DashboardController {
+    private final SmokerInfoRepository smokeDao;
     private final UserRepository userDao;
     private  final NotificationRepository notiDao;
 
-
-    public DashboardController(UserRepository userDao, NotificationRepository notiDao) {
+    public DashboardController(SmokerInfoRepository smokeDao, UserRepository userDao, NotificationRepository notiDao) {
+        this.smokeDao = smokeDao;
         this.userDao = userDao;
         this.notiDao = notiDao;
     }
@@ -39,6 +38,7 @@ public class DashboardController {
     public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
+        User SignedInUser = userDao.findUserById(id);
         int totalUsers = (int) userDao.count();
 //        System.out.println("totalUsers = " + totalUsers);
         User userInfo = userDao.getOne(id);
@@ -80,24 +80,30 @@ public class DashboardController {
         System.out.println("totalUsers = " + totalUsers);
 //        System.out.println("totalPoints = " + totalPoints);
 
+        String userQuitSmokeFreeDay = SignedInUser.getSmokerInfo().getDay_quit_smoking();
+
+//        System.out.println("User day quit smoking = " + user.getSmokerInfo().getDay_quit_smoking());
         // Get lapse of days (from day quit smoking to current date)
         DateTime start = new DateTime(userInfo.getSmokerInfo().getDay_quit_smoking());
+//        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
+        DateTime start = new DateTime( userQuitSmokeFreeDay );
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
         System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + userInfo.getSmokerInfo().getDay_quit_smoking());
         System.out.println("===================== start = " + start);
 
+        // Updates users Smoke info
+        User userSave = userDao.getOne(id);
+        userSave.getSmokerInfo().setTotal_days_smoke_free(days);
+        userDao.save( userSave );
 
+//        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
 
-
-
-
-
-
-
-
-
+        // Get relapse day (if needed)
+        Date relapseDate = SignedInUser.getSmokerInfo().getDay_relapse();
+//        DateTime rStart = new DateTime(relapseDate);
+//        int resetDays = Days.daysBetween(rStart, end).getDays();
 
 
 
@@ -124,17 +130,15 @@ public class DashboardController {
         // Relapse check (int)
         Date relapseDate = userInfo.getSmokerInfo().getDay_relapse();
         int rCheck = relapseCheck(relapseDate, days);
-        if(rCheck == 0){
-            days = 0;
-        }
-        System.out.println("rCheck = " + rCheck);
+        System.out.println("days now = " + days);
 
-        // User points  (clean; 5 per diem)
-        int userPointsTotal = userPointsCalculator(rCheck);
+
+        // Get points for user (5 points per day)
+        int userPointsTotal = userPointsCalculator(SignedInUser.getSmokerInfo().getDay_quit_smoking());
 
 
         // Save to DB
-        userInfo.getSmokerInfo().setTotal_days_smoke_free(rCheck);
+        userInfo.getSmokerInfo().setTotal_days_smoke_free(SignedInUser.getSmokerInfo().getDay_quit_smoking());
 //        smokeDao.save(userInfo.getSmokerInfo());
 //        userDao.save(userInfo.getSmokerInfo());
 
@@ -142,6 +146,7 @@ public class DashboardController {
 
         // User community stats
         int totalCommunityUsers = avgPointsCalculator(userInfo.getSmokerInfo().getPoints(),totalUsers);
+        int totalCommunityUsers = avgPointsCalculator(SignedInUser.getSmokerInfo().getPoints(),totalUsers);
 
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
@@ -162,8 +167,10 @@ public class DashboardController {
         model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
+        model.addAttribute("smoke", user.getSmokerInfo());
         model.addAttribute("user-points", userPointsTotal);
         model.addAttribute("moneySaved", calcMoneySaved(userInfo.getSmokerInfo().getCost_of_cigs_saved(), userInfo.getSmokerInfo().getTotal_days_smoke_free()));
+        model.addAttribute("moneySaved", calcMoneySaved(SignedInUser.getSmokerInfo().getCost_of_cigs_saved(), SignedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";
     }
@@ -175,6 +182,7 @@ public class DashboardController {
 
         model.addAttribute("ListOfusers", searchResults ) ;
         model.addAttribute("users", userDao.getOne(user_id));
+        model.addAttribute("smoke", smokeDao.getOne(user_id));
 
         return "dashboard";
     }
