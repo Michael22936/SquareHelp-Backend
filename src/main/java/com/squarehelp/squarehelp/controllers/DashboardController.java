@@ -13,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.CalculateStats.*;
 import static com.squarehelp.squarehelp.util.Calculator.*;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
@@ -32,7 +34,7 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String passingDashboard(Model model){
+    public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         int totalUsers = (int) userDao.count();
@@ -45,6 +47,8 @@ public class DashboardController {
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
+        System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + smokerInfo.getDay_quit_smoking());
+        System.out.println("===================== start = " + start);
 
         // Get relapse day (if needed)
         Date relapseDate = smokerInfo.getDay_relapse();
@@ -63,6 +67,19 @@ public class DashboardController {
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
+//        ==== Returns Total Avg points earned by all users. ====
+        String avgTotalPoints = AvgTotalPointsEarnedAllUsers(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalSmokeFreeDays = AvgPointsTotalDaysSmokeFree(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalCigsSavings = AvgTotalSavings(userDao);
+
+//        ====== Generate total days smoke free
+        totalDaysSmokeFree(userDao);
+
+        model.addAttribute("avgTotalSavings", avgTotalCigsSavings);
+        model.addAttribute("avgTotalSmokeFreeDays", avgTotalSmokeFreeDays);
+        model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", smokerInfo);
