@@ -23,7 +23,7 @@
           <div class="messageAreaBg messageArea" id="messageArea">
             <div class="convoWrapper" th:each="convo : ${conversation}">
               <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">
-                <span th:text="${convo.getLast_updated()}"></span>
+                <span th:text="${convo.getLast_updated()}" class="dates"></span>
                 <span th:text="${recip.getUsername()}"></span>:
                 <span th:text="${convo.getMessage()}"></span>
               </p>

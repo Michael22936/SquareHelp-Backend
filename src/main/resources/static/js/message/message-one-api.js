@@ -19,6 +19,7 @@ const updateConversation = () => {
             data = res;
             messageArea.innerHTML = "";
             messageArea.innerHTML = outHTML();
+            convertDates();
         });
 }
 
@@ -26,8 +27,8 @@ const outHTML = () => {
     let html = "";
     html += "<div class='convoWrapper'>";
     data.map((e) => {
-        if (e.author_user_id == author) html += "<p class='messageText messageThem'>" + e.last_updated + " Me:<strong> " + e.message + "</strong></p>";
-        if (e.author_user_id == recip) html += "<p class='messageText messageThem'>" + e.last_updated + " " + recipName + ": " + e.message + "</p>";
+        if (e.author_user_id == author) html += "<p class='messageText messageThem'><span class='dates'>" + e.last_updated + "</span> Me:<strong> " + e.message + "</strong></p>";
+        if (e.author_user_id == recip) html += "<p class='messageText messageThem'><span class='dates'>" + e.last_updated + "</span> " + recipName + ": " + e.message + "</p>";
     });
     html += "<div>";
     return html;
