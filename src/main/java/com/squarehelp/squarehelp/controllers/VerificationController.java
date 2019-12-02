@@ -77,28 +77,20 @@ public class VerificationController {
         return "verification-view";
     }
 
-    // Used to save individual verification request
+    // Used to save individual verification request (if isApproved is present)
     @PostMapping("/verification/{veriId}/view")
     public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam String isApproved) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long id = user.getId();
-
         Verification v = veriDao.findById(veriId);
 
-        // Take in string from the form and convert on to boolean of true and save the request.
-        // Do nothing otherwise. (remain false)
-        boolean isApprovedBool = false;
-        if (isApproved.equalsIgnoreCase("on")) isApprovedBool = true;
-
-        if (isApprovedBool) {
-            v.setIs_approved(isApprovedBool);
+        if (isApproved.equalsIgnoreCase("on")) {
+            v.setIs_approved(true);
             veriDao.save(v);
+            return "redirect:/verification/";
+        } else {
+            v.setIs_approved(false);
+            veriDao.save(v);
+            return "redirect:/verification/";
         }
-
-        model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("smoke", smokeDao.getOne(id));
-
-        return "redirect:/verification/";
     }
 
     // The page to host the 'search' route
@@ -120,14 +112,6 @@ public class VerificationController {
         return "verification-form";
     }
 
-    // For finding usernames of recipients of verification form
-    @RequestMapping("/search")
-    @ResponseBody
-    public List<User> sendMatchingUser(@RequestParam String username) {
-        System.out.println(userDao.findByUsernameContaining(username));
-        return userDao.findByUsernameContaining(username);
-    }
-
     // Actual page to create the form with recipient selected
     @GetMapping("/verification/{user_id}/form/send/{recip}")
     public String getVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip) {
@@ -135,11 +119,9 @@ public class VerificationController {
         long id = user.getId();
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
+        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         User ru = userDao.findUserById(recip);
-
-        //========= Gets the count of unread notifications
-        int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("recipient", ru);
@@ -173,4 +155,11 @@ public class VerificationController {
         return "redirect:/verification/";
     }
 
+    // For finding usernames of recipients of verification form
+    @RequestMapping("/search")
+    @ResponseBody
+    public List<User> sendMatchingUser(@RequestParam String username) {
+        System.out.println(userDao.findByUsernameContaining(username));
+        return userDao.findByUsernameContaining(username);
+    }
 }
