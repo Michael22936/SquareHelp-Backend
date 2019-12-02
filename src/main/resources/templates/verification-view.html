@@ -19,29 +19,19 @@
             <h5>Date Requesting: <span th:text="${veri.getDay_created()}" class="dates"></span></h5>
             <h3>Verify this user was smoke free?</h3>
             <br>
-            <input type="checkbox" checked data-toggle="toggle" id="isApproved" name="isApproved" data-width="150"
-                   data-height="95" data-on="Yes" data-off="No">
+            <input type="text" class="d-none" value="" id="isApproved" name="isApproved">
             <br>
-            <button class="btn btn-outline-danger saveBtn mt-2" id="saveBtn">Save <i class="far fa-save"></i></button>
+            <button class="btn btn-outline-info mt-2" id="veriBtn">View Verifications</button>
+            <button class="btn btn-outline-success mt-2" id="yesBtn" type="submit">Yes <i class="far fa-thumbs-up"></i></button>
+            <button class="btn btn-outline-danger mt-2" id="noBtn" type="submit">No <i class="far fa-thumbs-down"></i></button>
           </form>
         </div>
-
       </section>
       
       <!-- Footer -->
       <div class="row">
         <th:block th:replace="partials/footer :: main-footer"/>
         <th:block th:replace="partials/searchbar :: navbar-search"/>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <script>
-            $(function() {
-                $('#isApproved').bootstrapToggle({
-                    on: 'Yes',
-                    off: 'No',
-                    offstyle: "warning"
-                });
-            })
-        </script>
         <script src="/js/verification/verification-view.js"></script>
       </div>
     

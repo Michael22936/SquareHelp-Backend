@@ -1,13 +1,13 @@
 console.log("Verification view.js loaded");
 
-saveBtn = document.getElementById("saveBtn");
-approvedChkBx = document.getElementById("isApproved");
+isApproved = document.getElementById("isApproved");
+yes = document.getElementById("yesBtn");
+no = document.getElementById("no");
 
-saveBtn.addEventListener("click", (e) => {
-    if (approvedChkBx == false) {
-        e.preventDefault();
-        location.href = '/verification';
-    }
+yes.addEventListener("mousedown", () => {
+    isApproved.value = "on";
 });
 
-
+no.addEventListener("mousedown", () => {
+    isApproved.value = "off";
+});
