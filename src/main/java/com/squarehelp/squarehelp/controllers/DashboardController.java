@@ -6,6 +6,7 @@ import com.squarehelp.squarehelp.models.User;
 import com.squarehelp.squarehelp.repositories.NotificationRepository;
 import com.squarehelp.squarehelp.repositories.SmokerInfoRepository;
 import com.squarehelp.squarehelp.repositories.UserRepository;
+import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,7 +46,7 @@ public class DashboardController {
 
 
         // Day counter (int)
-        int days = 0;
+//        int days = 0;
 
         // if date_relapsed is not null
             // if date_relapsed is after date_quit_smoking, assign 0 days and 0 points
@@ -78,14 +79,13 @@ public class DashboardController {
 
         System.out.println("totalUsers = " + totalUsers);
 //        System.out.println("totalPoints = " + totalPoints);
-        SmokerInfo smokerInfo = smokeDao.getOne(id);
 
         // Get lapse of days (from day quit smoking to current date)
-        DateTime start = new DateTime(smokerInfo.getDay_quit_smoking());
+        DateTime start = new DateTime(userInfo.getSmokerInfo().getDay_quit_smoking());
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
         System.out.println("days = " + days);
-        System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + smokerInfo.getDay_quit_smoking());
+        System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + userInfo.getSmokerInfo().getDay_quit_smoking());
         System.out.println("===================== start = " + start);
 
 
@@ -101,11 +101,11 @@ public class DashboardController {
 
 
 
-        LocalDate start = new LocalDate(userInfo.getDateCreated());
+//        LocalDate start = new LocalDate(userInfo.getDateCreated());
         // if date_quit_smoking is after date_created, start should be date_quit_smoking
         // else start is date_created
 
-        LocalDate end = new LocalDate(LocalDate.now());
+//        LocalDate end = new LocalDate(LocalDate.now());
 //        System.out.println("start = " + start.toString());
 //        System.out.println("end.toString() = " + end.toString());
 

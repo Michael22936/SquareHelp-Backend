@@ -22,7 +22,7 @@ public class Calculator {
     }
 
 
-    public static int userPointsCalculator(int day){
+    public static int userPointsCalculator(int day, int user_points){
         int dailyPoints = 5;
 
         if(day != 0){
@@ -30,8 +30,10 @@ public class Calculator {
 
             return out;
         }else {
-            // resets user points to zero
+//              float possible double to divide in half
+//            Integer.((user_points / 2))
             return 0;
+
         }
     }
 
