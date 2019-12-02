@@ -74,7 +74,8 @@
                   <td><p th:text="${sv.day_created}" class="dates"></p></td>
                   <td><p th:text="${sv.approver_name}"</td>
                   <td><p th:text="${sv.days_smoke_free}"></p></td>
-                  <td><p th:text="${sv.is_approved}"></p></td>
+                  <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
+                  <td th:if="${sv.is_approved == false}"><p>No</p></td>
                 </tr>
               </div>
             </tbody>
