@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -105,8 +106,16 @@ public class DashboardController {
     @GetMapping("/searchAll")
     @ResponseBody
     public List<User> sendAllUsers(){
-        System.out.println(userDao.findAll());
-        System.out.println("Json of all USERS sent to JS!");
         return userDao.findAll();
+    }
+
+    @GetMapping("/searchUser")
+    @ResponseBody
+    public List<User> sendSignedInUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        List<User> ListSignedInUser = new ArrayList<>();
+        ListSignedInUser.add(userDao.findUserById(id));
+        return ListSignedInUser;
     }
 }

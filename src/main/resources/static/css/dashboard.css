@@ -23,25 +23,84 @@ main {
     cursor: pointer;
 }
 
-.chartTextStyle{
-    position: absolute;
-    top: 30%;
-    color: black;
-    z-index: 2;
-
-}
-
-.chartText{
-    /*display: none;*/
-    /*visibility:hidden;*/
-
-}
-
 .apexcharts-toolbar, .apexcharts-menu-icon{
     display: none;
 }
 
-.hideElement{
-    visibility:hidden;
+.apexcharts-canvas{
+    position: relative;
+    left: 50px;
+    width: 100%;
+
 }
 
+
+
+.apexcharts-legend{
+    position: relative !important;
+    left: -10px !important;
+    top: 43px !important;
+}
+
+#avgPointChart1, #avgPointChart2{
+    transition:all 1s ease;
+}
+
+#chartCard1{
+    width: 50%;
+    transition:all 1s ease;
+}
+
+#chartCard2{
+    width: 50%;
+    transition:all 1s ease;
+}
+
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    #chartCard1{
+        width: 100%;
+    }
+
+    #chartCard2{
+        width: 100%;
+    }
+}
+
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+    #chartCard1{
+        width: 100%;
+    }
+
+    #chartCard2{
+        width: 100%;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    #chartCard1{
+        width: 100%;
+    }
+
+    #chartCard2{
+        width: 100%;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    body{
+
+    }
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    body{
+
+    }
+}
