@@ -16,7 +16,7 @@
           <form th:action="'/verification/' + ${veri.id} + '/view'" class="approve-veri" method="post">
             <h5>Approver request from: <span th:text="${from.username}"></span></h5>
             <h5>Approver Name: <span th:text="${veri.getApprover_name()}"></span></h5>
-            <h5>Date Requesting: <span th:text="${veri.getDay_created()}"></span></h5>
+            <h5>Date Requesting: <span th:text="${veri.getDay_created()}" class="dates"></span></h5>
             <h3>Verify this user was smoke free?</h3>
             <br>
             <input type="checkbox" checked data-toggle="toggle" id="isApproved" name="isApproved" data-width="150"

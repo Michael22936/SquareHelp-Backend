@@ -11,10 +11,8 @@
             <section class="row contentBg">
                 <div class="editProfileWrapper">
                     <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
-<!--                    <form action="https://request-inspector.glitch.me/" method="post" th:object="${users}">-->
                         <div class="editProfileWrapper-left col-md-4">
                             <img id="profileImg" class="mb-2" src="/img/profile/225.png">
-    <!--                        <input type="file" id="updatePictures" name="pictures" accept="image/jpeg, image/png">-->
                             <input id="picker" class="file-input" type="file" accept="image/jpeg, image/png" />
                             <input type="hidden" id="fileupload" name="profilePic" />
                         </div>

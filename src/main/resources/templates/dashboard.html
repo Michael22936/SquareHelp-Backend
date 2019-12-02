@@ -17,7 +17,7 @@
       <h1>Welcome <span th:text="${users.username}"></span></h1>
       <h3>You are <span th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h3>
       <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-      <h5>Day you quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
+      <h5>Day you quit smoking: <span class="dates" th:text="${smoke.day_quit_smoking}"></span></h5>
     </div>
   </section>
   <section class="row contentBg">

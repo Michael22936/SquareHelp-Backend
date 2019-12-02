@@ -2,6 +2,8 @@
 //  create a span with the class of "dates" and load this file to the page.
 //  Date will automatically be converted.
 
+console.log("convert dates is loaded");
+
 let sqlDates = document.getElementsByClassName("dates");
 
 const changeDateFormat = (dateStr) => {
@@ -18,4 +20,6 @@ const convertDates = () => {
     }
 }
 
-convertDates();
+setTimeout(() => {
+    convertDates();
+}, 100);
