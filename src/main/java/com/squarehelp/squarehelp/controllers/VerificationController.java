@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.Calculator.*;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
@@ -39,6 +39,7 @@ public class VerificationController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         SmokerInfo smokerInfo = smokeDao.getOne(id);
+        User signedInUser = userDao.getOne(id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Get all verification requests
@@ -49,10 +50,15 @@ public class VerificationController {
         // Reset day quit smoking by verification approval
         Integer veriId =  (int) veriDao.count();
         Verification veriApprove = veriDao.findById(veriId);
+        String veriDayCreate = veriApprove.getDay_created();
 
-        veriApproval(veriApprove, userDao, id){
+        // Saves user as verified
+        veriApproval(veriApprove.isIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
 
-        }
+//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
+
+
 
         System.out.println("================================================veriId = " + (veriId));
         System.out.println("================================================veriApprove = " + veriApprove.isIs_approved());

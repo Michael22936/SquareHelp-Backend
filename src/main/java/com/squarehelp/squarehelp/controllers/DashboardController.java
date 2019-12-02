@@ -38,13 +38,14 @@ public class DashboardController {
     public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        User signedInUser = userDao.findUserById(id);
+        User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
         String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
 
         System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
-        // Get lapse of days (from day quit smoking to current date)
+
+        // Initial lapse of days (zero smoke days)
 //        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
         DateTime start = new DateTime( userQuitSmokeFreeDay );
         DateTime end = new DateTime(DateTime.now());
@@ -67,7 +68,9 @@ public class DashboardController {
 
 
         // Get points for user (5 points per day)
-        int userPointsTotal = userPointsCalculator(rCheck);
+        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
+        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
+        userDao.save(signedInUser);
 
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
