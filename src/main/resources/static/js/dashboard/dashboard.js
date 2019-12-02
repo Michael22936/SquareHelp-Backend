@@ -6,6 +6,9 @@ let trimmedpercentage = 0;
 let TotalUsersAvgPointsFixed = 0;
 let TotalUsersAvgSmokeFreeDays = 0;
 let TotalUsersAvgCigSavings = 0;
+let TotalUsersPoints = 0;
+let TotalUsersDaysSmokeFree = 0;
+let TotalUsersSavings = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     let totalUsersPoints = 0;
@@ -15,11 +18,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalUsersCigsSavings = 0;
 
     // Fetch Request for all users
+    fetch('/searchUser')
+        .then(response => response.json())
+        .then(user =>  {
+            TotalUsersPoints = user[0].smokerInfo.points;
+            TotalUsersDaysSmokeFree = user[0].smokerInfo.total_days_smoke_free;
+            TotalUsersSavings = user[0].smokerInfo.cost_of_cigs_saved;
+        });
+
+    // Fetch Request for all users
     fetch('/searchAll')
         .then(response => response.json())
 
         .then(users =>  {
             allUsersArray = users;
+
             // for each loop
             allUsersArray.forEach(loopThruAllUsers);
 
@@ -53,18 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
              // Calculate All Users Avg Cigs Savings
             TotalUsersAvgCigSavings = parseInt( (totalUsersCigsSavings / totalUsers).toFixed() );
 
-
-
-
-
         }).then(users =>  {
             // Start of 3rd Fetch .then
 
-
     // Gradient Radial Bar Chart
-
-
-
         // ================================== 1st chart (Community Stats)
 
         var options = {
@@ -96,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
             series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,TotalUsersAvgCigSavings],
-            labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings in USD'],
+            labels: ['AVG Points Earned', 'AVG Days Smoke Free', 'AVG Savings in USD'],
             legend: {
                 show: true,
                 floating: true,
@@ -164,8 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
             colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-            series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,TotalUsersAvgCigSavings],
-            labels: ['Average Points Earned', 'Average Days Smoke Free', 'Average Savings in USD'],
+            series: [TotalUsersPoints,TotalUsersDaysSmokeFree,TotalUsersSavings],
+            labels: ['Points Earned', 'Days Smoke Free', 'Savings in USD'],
             legend: {
                 show: true,
                 floating: true,
@@ -204,17 +209,9 @@ document.addEventListener("DOMContentLoaded", () => {
         chart.render();
 
 
-
     // end of 4rd fetch .then
     }).then(users => { users
 
-        //Load text in gauge
-        let el = document.querySelector("#avgPointChart2");
-
-        setTimeout(function(){
-        //     // add Animate classes
-        //     el.classList.add('animated', 'fadeInUp');
-        }, 500);
 
     }); // end of of 4th fetch .then
 
