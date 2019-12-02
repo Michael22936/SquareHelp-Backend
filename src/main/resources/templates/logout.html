@@ -4,7 +4,7 @@
 </head>
 <body>
 <!-- Navbar -->
-<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<th:block th:replace="partials/navbar :: main-navbar"/>
 <main class="container">
 
     <section class="row contentBg">
@@ -14,8 +14,12 @@
         <h2>If you have any question about the company and what we are trying to do please
             <a href="mailto:squarehelp@hotmail.com">CLICK HERE</a> to contact us. Or
             <a href="/#aboutus">CLICK HERE</a> to visit our about us page</h2>
-        <p>You will be redirected to login in 10 seconds...</p>
+        <p>You will be redirected to login in <span id="countdowntimer">10</span> <span id="second">seconds</span>...</p>
 
+    </section>
+
+    <section class="row contentBg d-flex justify-content-center">
+        <img src="img/logout/quit_smoking.png" alt="quit_smoking">
     </section>
 
     <!-- Footer -->
@@ -25,9 +29,18 @@
 
 </main>
 <script>
-    setTimeout(() => {
-        location.href = "/login";
-    }, 10000);
+
+var timeleft = 10;
+setInterval(function(){
+timeleft--;
+document.getElementById("countdowntimer").textContent = timeleft;
+if (timeleft <= 1)
+document.getElementById("second").textContent = "second";
+if(timeleft <= 0)
+location.href = "/login";
+},1000);
+
 </script>
 </body>
 </html>
+

@@ -1,6 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
 <title>SquareHelp - Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
@@ -8,13 +10,17 @@
 <main class="container contentBg">
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> edcdcc46cadc0ef53a84fb66ec7d72cb3682d5fd
   <!-- Dashboard Content -->
   <section class="row contentBg">
     <div class="headline">
       <h1>Welcome <span th:text="${users.username}"></span></h1>
       <h3>You are <span th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h3>
       <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-      <h5>Day you quit smoking: <span th:text="${smoke.day_quit_smoking}"></span></h5>
+      <h5>Day you quit smoking: <span class="dates" th:text="${smoke.day_quit_smoking}"></span></h5>
     </div>
   </section>
   <section class="row contentBg">
@@ -29,6 +35,7 @@
       </button></a>
     </div>
   </section>
+<<<<<<< HEAD
 
   <!-- Statistic cards -->
   <section class="row contentBg">
@@ -50,19 +57,23 @@
         <div class="card-footer">
           <small class="text-muted">Last updated (x) mins ago</small>
         </div>
+=======
+  <!-- =========== Chart  ==============-->
+  <section class="row">
+      <div id="chartCard1" class="card  ">
+        <h5 class="card-header text-dark"> Community Stats </h5>
+          <div id="avgPointChart1"></div>
+>>>>>>> edcdcc46cadc0ef53a84fb66ec7d72cb3682d5fd
       </div>
-      <div class="card custom-card-style2">
-        <div class="card-body">
-          <h5 class="card-title">Average Cigarette Cost saved: </h5>
-          <p class="card-text"><span th:text="${smoke.cost_of_cigs_saved}"></span></p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated (x) mins ago</small>
-        </div>
+      <div id="chartCard2" class="card ">
+        <h5 class="card-header text-dark"> <span th:text="${users.username}"></span> Stats </h5>
+          <div id="avgPointChart2"></div>
       </div>
-    </div>
   </section>
+<<<<<<< HEAD
 
+=======
+>>>>>>> edcdcc46cadc0ef53a84fb66ec7d72cb3682d5fd
   <!-- Footer -->
   <section class="row">
 

@@ -13,10 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
+
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.squarehelp.squarehelp.util.CalculateStats.*;
 import static com.squarehelp.squarehelp.util.Calculator.*;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
@@ -32,7 +35,7 @@ public class DashboardController {
     }
 
     @GetMapping("/dashboard")
-    public String passingDashboard(Model model){
+    public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         int totalUsers = (int) userDao.count();
@@ -73,6 +76,17 @@ public class DashboardController {
 
 
 
+        System.out.println("totalUsers = " + totalUsers);
+//        System.out.println("totalPoints = " + totalPoints);
+        SmokerInfo smokerInfo = smokeDao.getOne(id);
+
+        // Get lapse of days (from day quit smoking to current date)
+        DateTime start = new DateTime(smokerInfo.getDay_quit_smoking());
+        DateTime end = new DateTime(DateTime.now());
+        int days = Days.daysBetween(start, end).getDays();
+        System.out.println("days = " + days);
+        System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + smokerInfo.getDay_quit_smoking());
+        System.out.println("===================== start = " + start);
 
 
 
@@ -133,8 +147,19 @@ public class DashboardController {
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 
 
-        model.addAttribute("users", userInfo);
-        model.addAttribute("smoke", userInfo.getSmokerInfo());
+//        ==== Returns Total Avg points earned by all users. ====
+        String avgTotalPoints = AvgTotalPointsEarnedAllUsers(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalSmokeFreeDays = AvgPointsTotalDaysSmokeFree(userDao);
+//        ==== Returns Avg Days smoke free for all users.
+        String avgTotalCigsSavings = AvgTotalSavings(userDao);
+
+//        ====== Generate total days smoke free
+        totalDaysSmokeFree(userDao);
+
+        model.addAttribute("avgTotalSavings", avgTotalCigsSavings);
+        model.addAttribute("avgTotalSmokeFreeDays", avgTotalSmokeFreeDays);
+        model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("user-points", userPointsTotal);
@@ -158,8 +183,16 @@ public class DashboardController {
     @GetMapping("/searchAll")
     @ResponseBody
     public List<User> sendAllUsers(){
-        System.out.println(userDao.findAll());
-        System.out.println("Json of all USERS sent to JS!");
         return userDao.findAll();
+    }
+
+    @GetMapping("/searchUser")
+    @ResponseBody
+    public List<User> sendSignedInUser(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long id = user.getId();
+        List<User> ListSignedInUser = new ArrayList<>();
+        ListSignedInUser.add(userDao.findUserById(id));
+        return ListSignedInUser;
     }
 }

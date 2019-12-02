@@ -13,7 +13,12 @@
             <section class="row contentBg">
                 <div class="profileWrapper">
                     <div class="profileWrapper-left col-md-4">
-                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+                        <th:block th:if="${users.profilePic == null}">
+                            <img id="profileImg" class="mb-2" src="/img/profile/unknown-user.jpg">
+                        </th:block>
+                        <th:block th:if="${users.profilePic != null}">
+                            <img id="profileImg" class="mb-2" th:src="${users.profilePic}">
+                        </th:block>
     
                         <th:block th:if="${users.id == #authentication.principal.id}">
                             <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-outline-warning">Edit Profile</a>
@@ -31,7 +36,7 @@
                             <tbody>
                                 <tr>
                                     <td class="col tdLeft">Day quit smoking:</td>
-                                    <td class="col"><span th:text="${smoke.day_quit_smoking}"></span></td>
+                                    <td class="col"><span th:text="${smoke.day_quit_smoking}" class="dates"></span></td>
                                 </tr>
                                 <tr>
                                     <td>Total days smoke free:</td>
