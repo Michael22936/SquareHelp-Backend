@@ -47,6 +47,11 @@ public class DashboardController {
         DateTime start = new DateTime(smokerInfo.getDay_quit_smoking());
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
+
+        SmokerInfo updateSmokeFreeDays = smokeDao.getOne(id);
+        updateSmokeFreeDays.setTotal_days_smoke_free(days);
+        smokeDao.save( updateSmokeFreeDays );
+
         System.out.println("days = " + days);
         System.out.println("==================== smokerInfo.getDay_quit_smoking() = " + smokerInfo.getDay_quit_smoking());
         System.out.println("===================== start = " + start);
