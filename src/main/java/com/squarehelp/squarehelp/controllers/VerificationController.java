@@ -77,7 +77,7 @@ public class VerificationController {
         return "verification-view";
     }
 
-    // Used to save individual verification request
+    // Used to save individual verification request (if isApproved is present)
     @PostMapping("/verification/{veriId}/view")
     public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam String isApproved) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -88,7 +88,11 @@ public class VerificationController {
         // Take in string from the form and convert on to boolean of true and save the request.
         // Do nothing otherwise. (remain false)
         boolean isApprovedBool = false;
-        if (isApproved.equalsIgnoreCase("on")) isApprovedBool = true;
+        if (isApproved.equalsIgnoreCase("on")) {
+            isApprovedBool = true;
+        } else {
+            return "redirect:/verification/";
+        }
 
         if (isApprovedBool) {
             v.setIs_approved(isApprovedBool);
