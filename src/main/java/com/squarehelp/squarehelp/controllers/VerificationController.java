@@ -46,6 +46,19 @@ public class VerificationController {
         List<Verification> recVeri = veriDao.findAllByApprover_name(user.getUsername());
 
 
+        // Reset day quit smoking by verification approval
+        Integer veriId =  (int) veriDao.count();
+        Verification veriApprove = veriDao.findById(veriId);
+
+        veriApproval(veriApprove, userDao, id){
+
+        }
+
+        System.out.println("================================================veriId = " + (veriId));
+        System.out.println("================================================veriApprove = " + veriApprove.isIs_approved());
+
+
+
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
 

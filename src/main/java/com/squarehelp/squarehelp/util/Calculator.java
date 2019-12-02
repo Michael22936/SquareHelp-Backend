@@ -1,5 +1,8 @@
 package com.squarehelp.squarehelp.util;
 
+import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.repositories.UserRepository;
+
 import java.util.Date;
 
 /*
@@ -46,6 +49,13 @@ public class Calculator {
             return out;
         } else {
             return totalPoints;
+        }
+    }
+
+    public static void veriApproval(Boolean veriApprove, UserRepository userDao, Long id,){
+        if(veriApprove == false){
+            User user = userDao.findUserById(id);
+            user.getSmokerInfo().setDay_quit_smoking();
         }
     }
 
