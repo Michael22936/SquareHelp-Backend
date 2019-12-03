@@ -104,13 +104,16 @@ public class VerificationController {
         Verification v = veriDao.findById(veriId);
 
         if (isApproved.equalsIgnoreCase("on")) {
-            v.setIs_approved("true");
+            v.setIs_approved(true);
+            v.setIs_pending(false);
             veriDao.save(v);
             return "redirect:/verification/";
         } else {
-            v.setIs_approved("false");
+            v.setIs_approved(false);
+            v.setIs_pending(false);
             veriDao.save(v);
             return "redirect:/verification/";
+
         }
     }
 
