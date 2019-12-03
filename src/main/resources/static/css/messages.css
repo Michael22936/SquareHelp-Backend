@@ -25,6 +25,31 @@ tr:hover {
     width: 100%;
 }
 
+.messageConvoItem {
+    margin-right: 10px;
+}
+
+.messageProfilePic {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.messageAreaBg {
+    background-color: grey;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.messageText {
+    margin-bottom: .25rem;
+}
+
+#qrb {
+    width: 100%;
+}
+
 .toFrom {
     display: inline-flex;
     flex-direction: row;
@@ -39,16 +64,3 @@ tr:hover {
     width: 232px;
 }
 
-.messageAreaBg {
-    background-color: #333A40;
-    color: #ffffff;
-    padding: 1rem;
-}
-
-.messageText {
-    margin-bottom: .25rem;
-}
-
-#qrb {
-    width: 100%;
-}

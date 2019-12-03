@@ -27,16 +27,31 @@
             <!-- Message area -->
             <div class="messageAreaBg messageArea" id="messageArea">
               <div class="convoWrapper" th:each="convo : ${conversation}">
-                <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">
-                  <span th:text="${convo.getLast_updated()}" class="dates"></span>
-                  <span th:text="${recip.getUsername()}"></span>:
-                  <span th:text="${convo.getMessage()}"></span>
-                </p>
-                <p th:if="${convo.getAuthor_user_id() == users.getId()}" class="messageText messageThem">
-                  <span th:text="${convo.getLast_updated()}"></span>
-                  Me:
-                  <strong><span th:text="${convo.getMessage()}"></span></strong>
-                </p>
+              
+<!--                <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">-->
+<!--                  <span th:text="${convo.getLast_updated()}" class="messageConvoItem dates"></span>-->
+<!--                  <th:block th:if="${recip.profilePic != null}">-->
+<!--                    <img th:src="${recip.profilePic}" class="messageConvoItem messageProfilePic">-->
+<!--                  </th:block>-->
+<!--                  <th:block th:if="${recip.profilePic == null}">-->
+<!--                    <img src="/img/profile/unknown-user.jpg" class="messageConvoItem messageProfilePic">-->
+<!--                  </th:block>-->
+<!--                  <span th:text="${recip.getUsername()}" class="messageConvoItem"></span>:-->
+<!--                  <span th:text="${convo.getMessage()}" class="messageConvoItem"></span>-->
+<!--                </p>-->
+<!--                -->
+<!--                <p th:if="${convo.getAuthor_user_id() == users.getId()}" class="messageText messageThem">-->
+<!--                  <span th:text="${convo.getLast_updated()}" class="messageConvoItem dates"></span>-->
+<!--                  <th:block th:if="${users.profilePic != null}">-->
+<!--                    <img th:src="${users.profilePic}" class="messageConvoItem messageProfilePic">-->
+<!--                  </th:block>-->
+<!--                  <th:block th:if="${users.profilePic == null}">-->
+<!--                    <img src="/img/profile/unknown-user.jpg" class="messageConvoItem messageProfilePic">-->
+<!--                  </th:block>-->
+<!--                  <span th:text="${users.getUsername()}" class="messageConvoItem"></span>:-->
+<!--                  <span th:text="${convo.getMessage()}" class="messageConvoItem"></span>-->
+<!--                </p>-->
+                
               </div>
             </div>
           </div>
@@ -49,12 +64,35 @@
             </div>
           </form>
         </section>
+  
+        <!-- Section is used to transfer conversation info to message-one-api-->
+        <section>
+          <input type="text" class="d-none" id="author" th:value="${users.id}"></input>
+          <input type="text" class="d-none" id="authorName" th:value="${users.username}"></input>
+  
+          <th:block th:if="${users.profilePic != null}">
+            <input type="text" class="d-none" id="authorPic" th:value="${users.profilePic}"></input>
+          </th:block>
+          <th:block th:if="${users.profilePic == null}">
+            <input type="text" class="d-none" id="authorPic" value="/img/profile/unknown-user.jpg"></input>
+          </th:block>
+          
+          <input type="text" class="d-none" id="recip" th:value="${recip.id}"></input>
+          <input type="text" class="d-none" id="recipUsername" th:value="${recip.username}"></input>
+  
+          <th:block th:if="${recip.profilePic != null}">
+            <input type="text" class="d-none" id="recipPic" th:value="${recip.profilePic}"></input>
+          </th:block>
+          <th:block th:if="${recip.profilePic == null}">
+            <input type="text" class="d-none" id="recipPic" value="/img/profile/unknown-user.jpg"></input>
+          </th:block>
+        </section>
         
         <!-- Footer -->
         <section class="row">
           <th:block th:replace="partials/footer :: main-footer"/>
           <th:block th:replace="partials/searchbar :: navbar-search"/>
-          <script src="/js/dashboard/dashboard.js"></script>
+          <script src="/js/message/message-one-api.js"></script>
         </section>
       </div>
     

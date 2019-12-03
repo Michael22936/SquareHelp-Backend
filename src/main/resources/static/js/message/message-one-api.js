@@ -6,8 +6,12 @@ const send = document.getElementById("sendBtn");
 const messageArea = document.getElementById("messageArea");
 
 const author = document.getElementById("author").value;
+const authorName = document.getElementById("authorName").value;
+const authorPic = document.getElementById("authorPic").value;
+
 const recip = document.getElementById("recip").value;
 const recipName = document.getElementById("recipUsername").value;
+const recipPic = document.getElementById("recipPic").value;
 
 let convo = "";
 let data = [];
@@ -27,11 +31,12 @@ const outHTML = () => {
     let html = "";
     html += "<div class='convoWrapper'>";
     data.map((e) => {
-        if (e.author_user_id == author) html += "<p class='messageText messageThem'><span class='dates'>" + e.last_updated + "</span> Me:<strong> " + e.message + "</strong></p>";
-        if (e.author_user_id == recip) html += "<p class='messageText messageThem'><span class='dates'>" + e.last_updated + "</span> " + recipName + ": " + e.message + "</p>";
+        if (e.author_user_id == author) html += "<p class='messageText messageThem'><span class='messageConvoItem dates'>" + e.last_updated + "</span><img src='" + authorPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem'>" + authorName + "</span><span class='messageConvoItem'>" + e.message + "</span></p>";
+        if (e.author_user_id == recip) html += "<p class='messageText messageThem'><span class='messageConvoItem dates'>" + e.last_updated + "</span><img src='" + recipPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem'>" + recipName + "</span><span class='messageConvoItem'>" + e.message + "</span></p>";
     });
     html += "<div>";
     return html;
 }
 
-setInterval(updateConversation, 10000);
+updateConversation();
+setInterval(updateConversation, 1000);
