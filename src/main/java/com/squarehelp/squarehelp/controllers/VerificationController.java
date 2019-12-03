@@ -55,11 +55,6 @@ public class VerificationController {
         // Saves user as verified
         veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
         System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
-
-//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-
-
-
         System.out.println("================================================veriId = " + (veriId));
         System.out.println("================================================veriApprove = " + veriApprove.getIs_approved());
 
