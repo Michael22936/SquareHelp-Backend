@@ -4,6 +4,7 @@
     <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <title>SquareHelp - Verifications For User</title>
     <link rel="stylesheet" th:href="@{/css/verification.css}" />
+
   </head>
   <body>
     <main class="container">
@@ -20,12 +21,32 @@
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
             <input type="date" name="date" id="date" class="mb-2" style="text-align: center;" required>
-            <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
+            <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
       
       </section>
-      
+
+      <script th:inline="javascript">
+
+        let dateSubmit = document.querySelector(".linkSub");
+        let approvedDays = [[${approvedDays}]];
+        dateSubmit.addEventListener('click', (e) => {
+          console.log("button pressed!!");
+
+          console.log(approvedDays);
+          approvedDays.map(approvedDay => {
+            let inputDate = document.getElementById("date").value;
+            if(inputDate === approvedDay){
+              let out = console.log("same day");
+
+              return out;
+            }
+          })
+
+        });
+      </script>
+
       <!-- Footer -->
       <div class="row">
         <script src="/js/dashboard/dashboard.js"></script>
@@ -34,6 +55,7 @@
       </div>
     
     </main>
-  
+
+
   </body>
 </html>

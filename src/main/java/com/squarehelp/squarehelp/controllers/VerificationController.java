@@ -138,9 +138,11 @@ public class VerificationController {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
+        List<Verification> approveDays = veriDao.findAllApprovedDays();
 
         User ru = userDao.findUserById(recip);
 
+        model.addAttribute("approvedDays", approveDays);
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("recipient", ru);
         model.addAttribute("users", userDao.getOne(user_id));
