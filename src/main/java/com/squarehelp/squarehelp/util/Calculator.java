@@ -66,6 +66,7 @@ public class Calculator {
         int roundPoints = Math.round((currentUserPoints / 2));
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);
+            user.getSmokerInfo().setTotal_days_smoke_free(0);
             veriUser.setIs_changes_updated(true);
 
             System.out.println("=========== Username losing points " + user.getUsername());
