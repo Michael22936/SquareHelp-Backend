@@ -54,12 +54,10 @@ public class CalculateStats {
             String username = user.getUsername();
             int userTotalSmokeFreeDays = user.getSmokerInfo().getTotal_days_smoke_free();
 //            int userPoints = user.getSmokerInfo().getPoints();
-//            System.out.println("================ userSmokeFreeDays = " + username + " " + userTotalSmokeFreeDays);
 
             totalUsersSmokeFreeDays += userTotalSmokeFreeDays;
         }
 
-//            System.out.println("Total Community AVG smoke free days after loop================: " + df.format(totalUsersSmokeFreeDays) );
 
         double totalCommunityAvgSmokeFreeDays = (double)totalUsersSmokeFreeDays / totalUsers ;
 
@@ -76,12 +74,8 @@ public class CalculateStats {
         for (User user : allUsers) {
             String username = user.getUsername();
             int userTotalSaved = user.getSmokerInfo().getCost_of_cigs_saved();
-//            System.out.println("================ userSmokeFreeDays = " + username + " " + userTotalSaved);
-
             totalUsersSavings += userTotalSaved;
         }
-
-//        System.out.println("Total Community AVG smoke free days after loop================: " + df.format(totalUsersSavings) );
 
         double totalCommunityAvgSavings = (double)totalUsersSavings / totalUsers ;
 
@@ -110,16 +104,6 @@ public class CalculateStats {
         Days d = Days.daysBetween( userQuitDateJodaTime, now);
         int days = d.getDays();
 
-
-        System.out.println("=================== Days between start date and todays date: " + days);
-        System.out.println("=========================== Joda now time = " + now);
-//        System.out.println("=========================== userQuiteDateJoda = " + userQuiteDateJoda);
-//        System.out.println("=========================== userQuitDate  " + userQuitDate);
-        System.out.println("============================ userQuitDateJodaTime " + userQuitDateJodaTime);
-//        System.out.println("==============================userQuitDateFormat = " + userQuitDateFormatted);
-
-
-
         return days;
     }
 
@@ -128,9 +112,7 @@ public class CalculateStats {
         String year = usersTime.substring(0, 4);
         String day = usersTime.substring(8, 10);
         String month = usersTime.substring(5, 7);
-//        "dd/MM/yyyy HH:mm:ss");
         String newDate = day + "/" + month + "/" + year + " " + "00:00:00";
-        System.out.println("======================-=-==----=-=-=-=-=-=-=newDate = " + newDate);
         return newDate;
     }
 }
