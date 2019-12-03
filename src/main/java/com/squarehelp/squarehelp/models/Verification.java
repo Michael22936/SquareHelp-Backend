@@ -17,6 +17,9 @@ public class Verification {
     @Column(columnDefinition = "VARCHAR(255)")
     private String approver_name;
 
+    @Column(columnDefinition = "VARCHAR(255)")
+    private String sender_name;
+
     @Column(columnDefinition = "DATE")
     private String day_created;
 
@@ -97,8 +100,13 @@ public class Verification {
 
     public void setIs_changes_updated(Boolean is_changes_updated) {this.is_changes_updated = is_changes_updated; }
 
-    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending, Boolean is_changes_updated) {
+    public String getSender_name() { return sender_name; }
+
+    public void setSender_name(String sender_name) { this.sender_name = sender_name; }
+
+    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending, Boolean is_changes_updated, String sender_name) {
         this.originator_user_id = originator_user_id;
+        this.sender_name = sender_name;
         this.approver_name = approver_name;
         this.day_created = day_created;
         this.days_smoke_free = days_smoke_free;

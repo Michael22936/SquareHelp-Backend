@@ -58,7 +58,7 @@ public class VerificationController {
         String veriDayCreate = veriApprove.getDay_created();
 
         // Saves user as verified
-        veriApproval(veriApprove.getOriginator_user_id(),veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        veriApproval(veriApprove.getOriginator_user_id(),veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, veriApprove.getSender_name());
             System.out.println("================================================ signed in user points = " + signedInUser.getSmokerInfo().getPoints());
         System.out.println("================================================ verified user day quit smoking = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
         System.out.println("=========================================Users Verification Req is pending = " + veriApprove.getIs_pending());
@@ -158,17 +158,21 @@ public class VerificationController {
     @PostMapping("/verification/{user_id}/form/send/{recip}")
     public String postVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip, @RequestParam String date) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User senderUser = userDao.getOne(user.getId());
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Find recipients username (ru)
         User ru = userDao.findUserById(recip);
 
+        // Find Sender username (sender)
+        String senderUsername = senderUser.getUsername();
+
         // Convert user id to int for constructor
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true, false);
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true, false,senderUsername );
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 

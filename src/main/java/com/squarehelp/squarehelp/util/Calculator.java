@@ -54,31 +54,38 @@ public class Calculator {
         }
     }
 
-    public static void veriApproval(int originatorUserId ,Verification veriUser ,Boolean isChangesUpdated, Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
+    public static void veriApproval(int originatorUserId ,Verification veriUser ,Boolean isChangesUpdated, Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, String senderUsername){
         int dailyPoints = 1;
-        int roundPoints = Math.round((uPoints / 2));
         Long userId = (long)originatorUserId;
-        System.out.println("==============================================roundPoints = " + roundPoints);
 
         //     if the request is not pending (false) and was not approved, run this...
         if( isApproved == false && isPending == false && isChangesUpdated == false ){
             User user = userDao.findUserById(userId);
+            String oldUsersSmokeFreeDay2 = user.getSmokerInfo().getDay_quit_smoking();
+            int currentUserPoints = user.getSmokerInfo().getPoints();
+        int roundPoints = Math.round((currentUserPoints / 2));
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);
             veriUser.setIs_changes_updated(true);
+
+            System.out.println("=========== Username losing points " + user.getUsername());
+            System.out.println("===========User Original Day they quit smoking: " + oldUsersSmokeFreeDay2 );
             System.out.println("===========User Day quit smoking set to: " + veriDateCreated );
-            System.out.println("===========User loses: " + roundPoints );
+            System.out.println("===========User Original points : " + currentUserPoints );
+            System.out.println("===========User loses (roundPoints): " + roundPoints );
             System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
 
             userDao.save(user);
         }
         if ( isApproved == true && isPending == false && isChangesUpdated == false){
             User user = userDao.findUserById(userId);
-            int usersPointsPlusOne = (uPoints + dailyPoints);
-            System.out.println("=========== Users original points: " + uPoints);
-            System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );
-            user.getSmokerInfo().setPoints(usersPointsPlusOne);
+            int userCurrentPoints = user.getSmokerInfo().getPoints();
+            int usersPointsPlusOne = (userCurrentPoints + dailyPoints);
             veriUser.setIs_changes_updated(true);
+            user.getSmokerInfo().setPoints(usersPointsPlusOne);
+            System.out.println("=========== Username gaining 1 point " + user.getUsername());
+            System.out.println("=========== Users current points: " + userCurrentPoints);
+            System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );
             System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
             userDao.save(user);
         }
