@@ -14,6 +14,7 @@ main {
 .verification-form-wrapper {
     display: flex;
     flex-direction: column;
+    margin: 1.5rem 0;
 }
 
 .sentReq, .recRec {
@@ -29,8 +30,25 @@ main {
 .verification-view-wrapper {
     display: flex;
     flex-direction: column;
+    margin: 1.5rem 0;
 }
 
 .approve-veri {
     margin-top: 1rem;
+}
+
+#createVeri {
+    margin: 1.5rem 0;
+}
+
+#result a {
+    color: #000000;
+}
+
+.veriFormCreate {
+    justify-content: center;
+}
+
+.verification-form-create-wrapper {
+    margin: 1.5rem 0;
 }

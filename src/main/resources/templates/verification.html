@@ -16,7 +16,8 @@
         <section class="row">
       
           <!-- Button to create verification form -->
-          <a class="btn btn-primary" role="button" th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
+          <a class="btn btn-primary" role="button" id="createVeri"
+             th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
             Verification
               Form</a>
           <br>
