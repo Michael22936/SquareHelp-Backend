@@ -46,6 +46,10 @@ a:visited {
   color: #fff;
 }
 
+main{
+  height: auto;
+}
+
 main, html, body {
   width: 100%;
   height: 100%;
