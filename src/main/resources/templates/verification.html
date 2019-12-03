@@ -1,104 +1,103 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="partials/head :: main-header"/>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <title>SquareHelp - Verifications For User</title>
-    <link rel="stylesheet" th:href="@{/css/verification.css}" />
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - Verifications For User</title>
+  <link rel="stylesheet" href="/css/verification.css" />
   </head>
   <body>
-  <th:block th:else="${users.id != #authentication.principal.id}">
-  <th:block th:if="${users.id == #authentication.principal.id}">
-  <main class="container">
-    <div class="row contentBg">
-      <h1>Verifications</h1>
-    </div>
-    
-    <!-- Button to create verification form -->
-    <div class="row contentBg">
-      <a class="btn btn-primary" role="button" th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
-        Verification
-        Form</a>
-    </div>
-    
-    <section class="row contentBg">
-
-      <!-- Table to display received results results -->
-      <div class="recRec">
-        <h3>Recieved requests</h3>
-        <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
-        </a>
-        <div class="collapse show" id="recReqs">
-          <table class="table table-hover table-dark text-center table-condensed">
-            <thead>
-              <tr>
-                <th scope="col">Date Created</th>
-                <th scope="col">Approver Name</th>
-                <th scope="col">Sender Name</th>
-                <th scope="col">Days Smoke free</th>
-                <th scope="col">Approved</th>
-                <th scope="col">Pending</th>
-              </tr>
-            </thead>
-            <tbody>
-              <div th:each="rv : ${recVeri}">
-                <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
-                  <td><p th:text="${rv.day_created}" class="dates"></p></td>
-                  <td><p th:text="${rv.approver_name}"></p></td>
-                  <td><p th:text="${rv.getSender_name()}"></p></td>
-                  <td><p th:text="${rv.days_smoke_free}"></p></td>
-                  <td><p th:text="${rv.getIs_approved()}"></p></td>
-                  <td><p th:text="${rv.getIs_pending()}"></p></td>
-                </tr>
-              </div>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container contentBg main-panel">
       
-      <!-- Table to display sent results results -->
-      <div class="sentReq">
-        <h3>Sent requests</h3>
-        <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
-           aria-expanded="false"
-           aria-controls="collapseExample">Expand</a>
-        <div class="collapse" id="sentReqs">
-          <table class="table table-hover table-dark text-center table-condensed">
-            <thead>
-            <tr>
-              <th scope="col">Date Created</th>
-              <th scope="col">Approver Name</th>
-              <th scope="col">Sender Name</th>
-              <th scope="col">Days Smoke free</th>
-              <th scope="col">Approved</th>
-              <th scope="col">Pending</th>
-            </tr>
-            </thead>
-            <tbody>
-              <div th:each="sv : ${sentVeri}">
+      <!-- /verification Content -->
+      <div class="contentBg">
+        <section>
+          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
+        
+        <section class="row">
+      
+          <!-- Button to create verification form -->
+          <a class="btn btn-primary" role="button" th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
+            Verification
+              Form</a>
+          <br>
+        
+          <!-- Table to display received results results -->
+          <div class="recRec">
+            <h3>Recieved requests</h3>
+            <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
+            </a>
+            <div class="collapse show" id="recReqs">
+              <table class="table table-hover table-dark text-center table-condensed">
+                <thead>
                 <tr>
-                  <td><p th:text="${sv.day_created}" class="dates"></p></td>
-                  <td><p th:text="${sv.approver_name}"></p></td>
-                  <td><p th:text="${sv.getSender_name()}"></p></td>
-                  <td><p th:text="${sv.days_smoke_free}"></p></td>
-                  <td><p th:text="${sv.getIs_approved()}"></p></td>
-                  <td><p th:text="${sv.getIs_pending()}"></p></td>
+                  <th scope="col">Date Created</th>
+                  <th scope="col">Approver Name</th>
+                  <th scope="col">Sender Name</th>
+                  <th scope="col">Days Smoke free</th>
+                  <th scope="col">Approved</th>
+                  <th scope="col">Pending</th>
                 </tr>
-              </div>
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                <div th:each="rv : ${recVeri}">
+                  <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
+                    <td><p th:text="${rv.day_created}" class="dates"></p></td>
+                    <td><p th:text="${rv.approver_name}"></p></td>
+                    <td><p th:text="${rv.getSender_name()}"></p></td>
+                    <td><p th:text="${rv.days_smoke_free}"></p></td>
+                    <td><p th:text="${rv.getIs_approved()}"></p></td>
+                    <td><p th:text="${rv.getIs_pending()}"></p></td>
+                  </tr>
+                </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      
+          <!-- Table to display sent results results -->
+          <div class="sentReq">
+            <h3>Sent requests</h3>
+            <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample">Expand</a>
+            <div class="collapse" id="sentReqs">
+              <table class="table table-hover table-dark text-center table-condensed">
+                <thead>
+                <tr>
+                  <th scope="col">Date Created</th>
+                  <th scope="col">Approver Name</th>
+                  <th scope="col">Sender Name</th>
+                  <th scope="col">Days Smoke free</th>
+                  <th scope="col">Approved</th>
+                  <th scope="col">Pending</th>
+                </tr>
+                </thead>
+                <tbody>
+                <div th:each="sv : ${sentVeri}">
+                  <tr>
+                    <td><p th:text="${sv.day_created}" class="dates"></p></td>
+                    <td><p th:text="${sv.approver_name}"></p></td>
+                    <td><p th:text="${sv.getSender_name()}"></p></td>
+                    <td><p th:text="${sv.days_smoke_free}"></p></td>
+                    <td><p th:text="${sv.getIs_approved()}"></p></td>
+                    <td><p th:text="${sv.getIs_pending()}"></p></td>
+                  </tr>
+                </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        
+        </section>
+        
+        <!-- Footer -->
+        <section class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+          <th:block th:replace="partials/searchbar :: navbar-search"/>
+          <script src="/js/message/message-one-api.js"></script>
+        </section>
       </div>
-  
-    </section>
     
-    <!-- Footer -->
-    <div class="row">
-      <script src="/js/dashboard/dashboard.js"></script>
-      <th:block th:replace="partials/footer :: main-footer"/>
-      <th:block th:replace="partials/searchbar :: navbar-search"/>
-    </div>
-  </main>
-  </th:block>
-  </th:block>
+    </main>
   </body>
 </html>
