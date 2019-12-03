@@ -49,12 +49,23 @@ public class VerificationController {
 
         // Verify day quit smoking
         Integer veriId =  (int) veriDao.count();
+        if (veriId == 0){
+        System.out.println("============== Empty Verifications_req table ");
+        System.out.println("================================================VeriDao Count = " + (veriId));
+        }else{
+            System.out.println("================================================VeriDao Count = " + (veriId));
         Verification veriApprove = veriDao.findById(veriId);
         String veriDayCreate = veriApprove.getDay_created();
 
-            // Verifies and saves user
-            veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        // Saves user as verified
+        veriApproval(veriApprove.getOriginator_user_id(),veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, veriApprove.getSender_name());
+            System.out.println("================================================ signed in user points = " + signedInUser.getSmokerInfo().getPoints());
+        System.out.println("================================================ verified user day quit smoking = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
+        System.out.println("=========================================Users Verification Req is pending = " + veriApprove.getIs_pending());
+        System.out.println("================================================veriApprove is_approved = " + veriApprove.getIs_approved());
+        }
 
+//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
 
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
@@ -145,19 +156,21 @@ public class VerificationController {
     @PostMapping("/verification/{user_id}/form/send/{recip}")
     public String postVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip, @RequestParam String date) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User senderUser = userDao.getOne(user.getId());
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Find recipients username (ru)
         User ru = userDao.findUserById(recip);
 
+        // Find Sender username (sender)
+        String senderUsername = senderUser.getUsername();
+
         // Convert user id to int for constructor
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, smokerInfo.getTotal_days_smoke_free(), null, user);
-
-
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true, false,senderUsername );
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 

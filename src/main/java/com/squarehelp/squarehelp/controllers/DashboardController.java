@@ -41,9 +41,9 @@ public class DashboardController {
         User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
-        // Verified approval user
         String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
 
+        System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
 
         // Runs day lapse
         String userDayQuitSmoking = signedInUser.getSmokerInfo().getDay_quit_smoking();
@@ -56,11 +56,7 @@ public class DashboardController {
         userSave.getSmokerInfo().setTotal_days_smoke_free(days);
         userDao.save( userSave );
 
-
-        // Get points for user (1 point per day)
-        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
-//        userDao.save(signedInUser);
+//        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
 
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
@@ -83,7 +79,7 @@ public class DashboardController {
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", signedInUser.getSmokerInfo());
-        model.addAttribute("user-points", userPointsTotal);
+        model.addAttribute("user-points", signedInUser.getSmokerInfo().getPoints());
         model.addAttribute("moneySaved", calcMoneySaved(signedInUser.getSmokerInfo().getCost_of_cigs_saved(), signedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";
