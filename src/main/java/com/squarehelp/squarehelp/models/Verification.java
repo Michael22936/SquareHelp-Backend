@@ -24,7 +24,10 @@ public class Verification {
     private int days_smoke_free;
 
     @Column(columnDefinition = "BOOLEAN")
-    private String is_approved;
+    private Boolean is_approved;
+
+    @Column(columnDefinition = "BOOLEAN")
+    private Boolean is_pending;
 
 
     @ManyToOne
@@ -75,30 +78,28 @@ public class Verification {
         this.days_smoke_free = days_smoke_free;
     }
 
-    public String getIs_approved() {
+    public Boolean getIs_approved() {
         return is_approved;
     }
 
-    public void setIs_approved(String is_approved) {
+    public void setIs_approved(Boolean is_approved) {
         this.is_approved = is_approved;
     }
 
-    //    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, boolean is_approved, User user_veq) {
-//        this.originator_user_id = originator_user_id;
-//        this.approver_name = approver_name;
-//        this.day_created = day_created;
-//        this.days_smoke_free = days_smoke_free;
-//        this.is_approved = is_approved;
-//        this.user_veq = user_veq;
-//    }
+    public Boolean getIs_pending() { return is_pending; }
 
-    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, String is_approved, User user_veq) {
+    public void setIs_pending(Boolean is_pending) { this.is_pending = is_pending; }
+
+
+
+    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending) {
         this.originator_user_id = originator_user_id;
         this.approver_name = approver_name;
         this.day_created = day_created;
         this.days_smoke_free = days_smoke_free;
         this.is_approved = is_approved;
         this.user_veq = user_veq;
+        this.is_pending = is_pending;
     }
 
     public User getUser_veq() {
