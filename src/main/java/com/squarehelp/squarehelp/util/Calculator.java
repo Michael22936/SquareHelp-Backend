@@ -54,18 +54,30 @@ public class Calculator {
         }
     }
 
-    public static void veriApproval(Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
+    public static void veriApproval(Verification veriUser ,Boolean isChangesUpdated, Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
         int dailyPoints = 1;
         int roundPoints = Math.round((uPoints / 2));
 
-//        if(veriApprove == true ){
-//            return;
-//        }
-        //     if the request is not pending and was not approved, run this...
-        if(isPending != true && isApproved == false){
+        //     if the request is not pending (false) and was not approved, run this...
+        if( isApproved == false && isPending == false && isChangesUpdated == false ){
             User user = userDao.findUserById(id);
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);
+            veriUser.setIs_changes_updated(true);
+            System.out.println("===========User Day quit smoking set to: " + veriDateCreated );
+            System.out.println("===========User loses: " + roundPoints );
+            System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
+
+            userDao.save(user);
+        }
+        if ( isApproved == true && isPending == false && isChangesUpdated == false){
+            User user = userDao.findUserById(id);
+            int usersPointsPlusOne = (uPoints + 1);
+            System.out.println("=========== Users original points: " + uPoints);
+            System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );
+            user.getSmokerInfo().setPoints(usersPointsPlusOne);
+            veriUser.setIs_changes_updated(true);
+            System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
             userDao.save(user);
         }
     }

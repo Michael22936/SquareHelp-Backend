@@ -58,7 +58,7 @@ public class VerificationController {
         String veriDayCreate = veriApprove.getDay_created();
 
         // Saves user as verified
-        veriApproval( veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        veriApproval(veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
         System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
         System.out.println("=========================================Users Verification Req is pending = " + veriApprove.getIs_pending());
         System.out.println("================================================veriApprove is_approved = " + veriApprove.getIs_approved());
@@ -98,20 +98,22 @@ public class VerificationController {
     }
 
     // Used to save individual verification request (if isApproved is present)
-//    @PostMapping("/verification/{veriId}/view")
-//    public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam String isApproved) {
-//        Verification v = veriDao.findById(veriId);
-//
-//        if (isApproved.equalsIgnoreCase("on")) {
-//            v.setIs_approved("true");
-//            veriDao.save(v);
-//            return "redirect:/verification/";
-//        } else {
-//            v.setIs_approved("false");
-//            veriDao.save(v);
-//            return "redirect:/verification/";
-//        }
-//    }
+    @PostMapping("/verification/{veriId}/view")
+    public String saveOneVerification(Model model, @PathVariable int veriId, @RequestParam String isApproved) {
+        Verification v = veriDao.findById(veriId);
+
+        if (isApproved.equalsIgnoreCase("on")) {
+            v.setIs_approved(true);
+            v.setIs_pending(false);
+            veriDao.save(v);
+            return "redirect:/verification/";
+        } else {
+            v.setIs_approved(false);
+            v.setIs_pending(false);
+            veriDao.save(v);
+            return "redirect:/verification/";
+        }
+    }
 
     // The page to host the 'search' route
     @GetMapping("/verification/{user_id}/form")
@@ -165,10 +167,7 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true);
-//       (int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending) {
-
-
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true, false);
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 

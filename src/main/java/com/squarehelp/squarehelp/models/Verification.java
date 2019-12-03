@@ -29,6 +29,9 @@ public class Verification {
     @Column(columnDefinition = "BOOLEAN")
     private Boolean is_pending;
 
+    @Column(columnDefinition = "BOOLEAN")
+    private Boolean is_changes_updated;
+
 
     @ManyToOne
     @JsonIgnore
@@ -90,9 +93,11 @@ public class Verification {
 
     public void setIs_pending(Boolean is_pending) { this.is_pending = is_pending; }
 
+    public Boolean getIs_changes_updated() { return is_changes_updated; }
 
+    public void setIs_changes_updated(Boolean is_changes_updated) {this.is_changes_updated = is_changes_updated; }
 
-    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending) {
+    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, Boolean is_approved, User user_veq, Boolean is_pending, Boolean is_changes_updated) {
         this.originator_user_id = originator_user_id;
         this.approver_name = approver_name;
         this.day_created = day_created;
@@ -100,6 +105,7 @@ public class Verification {
         this.is_approved = is_approved;
         this.user_veq = user_veq;
         this.is_pending = is_pending;
+        this.is_changes_updated = is_changes_updated;
     }
 
     public User getUser_veq() {
