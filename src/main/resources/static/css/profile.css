@@ -33,4 +33,9 @@
 
 .table{
     background-color: gray !important;
+    color: #ffffff !important;
+}
+
+main{
+    height: auto;
 }

@@ -5,13 +5,11 @@
 }
 
 .editProfileWrapper-left {
-    display: flex;
-    flex-direction: column;
     max-width: 255px;
 }
 
 .editProfileWrapper-right {
-    width: 100%;
+    min-width: 30.5%;
 }
 
 .divideDiv {
@@ -27,3 +25,22 @@
     width: 225px;
     height: 225px;
 }
+
+.formLayout{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+main{
+    height: auto;
+}
+
+.widthTd{
+    width: 122px;
+}
+
+.mb-2{
+    margin-top: .5rem !important;
+}
+
