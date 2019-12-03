@@ -21,7 +21,7 @@
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
             <input type="date" name="date" id="date" class="mb-2" style="text-align: center;" required>
-            <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
+            <button type="button" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
       
@@ -29,7 +29,7 @@
 
       <script th:inline="javascript">
 
-        let dateSubmit = document.querySelector(".linkSub");
+        let dateSubmit = document.querySelector("#date");
         let approvedDays = [[${approvedDays}]];
         dateSubmit.addEventListener('click', (e) => {
           console.log("button pressed!!");

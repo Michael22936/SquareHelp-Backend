@@ -175,6 +175,9 @@ public class VerificationController {
 
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
+
+        System.out.println("=============================================================POst Recieved!!!!");
+
         return "redirect:/verification/";
     }
 
