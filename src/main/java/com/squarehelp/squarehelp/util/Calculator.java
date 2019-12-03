@@ -81,8 +81,18 @@ public class Calculator {
             User user = userDao.findUserById(userId);
             int userCurrentPoints = user.getSmokerInfo().getPoints();
             int usersPointsPlusOne = (userCurrentPoints + dailyPoints);
+            int userCurrentSFDays = user.getSmokerInfo().getTotal_days_smoke_free();
+            int SFDaysPlusOne = (userCurrentSFDays + dailyPoints);
+
             veriUser.setIs_changes_updated(true);
             user.getSmokerInfo().setPoints(usersPointsPlusOne);
+            user.getSmokerInfo().setTotal_days_smoke_free(SFDaysPlusOne);
+            System.out.println("=========== Current Smoke free days = " + userCurrentSFDays);
+            System.out.println("=========== Current smoke free days plus one = " + SFDaysPlusOne);
+
+
+
+
             System.out.println("=========== Username gaining 1 point " + user.getUsername());
             System.out.println("=========== Users current points: " + userCurrentPoints);
             System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );

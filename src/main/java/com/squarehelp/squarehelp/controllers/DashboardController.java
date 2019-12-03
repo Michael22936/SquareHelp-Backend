@@ -46,25 +46,16 @@ public class DashboardController {
         System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
 
         // Initial lapse of days (zero smoke days)
-//        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
-        DateTime start = new DateTime( userQuitSmokeFreeDay );
-        DateTime end = new DateTime(DateTime.now());
-        int days = Days.daysBetween(start, end).getDays();
+//        DateTime start = new DateTime( userQuitSmokeFreeDay );
+//        DateTime end = new DateTime(DateTime.now());
+//        int days = Days.daysBetween(start, end).getDays();
 
-        // Updates users Smoke info
-        User userSave = userDao.getOne(id);
-        userSave.getSmokerInfo().setTotal_days_smoke_free(days);
-        userDao.save( userSave );
+        // Updates users smoke free days
+//        User userSave = userDao.getOne(id);
+//        userSave.getSmokerInfo().setTotal_days_smoke_free(days);
+//        userDao.save( userSave );
 
 //        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
-
-        // Get relapse day (if needed)
-        Date relapseDate = signedInUser.getSmokerInfo().getDay_relapse();
-//        DateTime rStart = new DateTime(relapseDate);
-//        int resetDays = Days.daysBetween(rStart, end).getDays();
-
-        int rCheck = relapseCheck(relapseDate, days);
-        System.out.println("days now = " + days);
 
 
         // Get points for user (5 points per day)
