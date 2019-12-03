@@ -38,13 +38,14 @@ public class DashboardController {
     public String passingDashboard(Model model) throws ParseException {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
-        User SignedInUser = userDao.findUserById(id);
+        User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
-        String userQuitSmokeFreeDay = SignedInUser.getSmokerInfo().getDay_quit_smoking();
+        String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
 
-//        System.out.println("User day quit smoking = " + user.getSmokerInfo().getDay_quit_smoking());
-        // Get lapse of days (from day quit smoking to current date)
+        System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
+
+        // Initial lapse of days (zero smoke days)
 //        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
         DateTime start = new DateTime( userQuitSmokeFreeDay );
         DateTime end = new DateTime(DateTime.now());
@@ -58,7 +59,7 @@ public class DashboardController {
 //        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
 
         // Get relapse day (if needed)
-        Date relapseDate = SignedInUser.getSmokerInfo().getDay_relapse();
+        Date relapseDate = signedInUser.getSmokerInfo().getDay_relapse();
 //        DateTime rStart = new DateTime(relapseDate);
 //        int resetDays = Days.daysBetween(rStart, end).getDays();
 
@@ -67,9 +68,11 @@ public class DashboardController {
 
 
         // Get points for user (5 points per day)
-        int userPointsTotal = userPointsCalculator(rCheck);
+        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
+        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
+        userDao.save(signedInUser);
 
-        int totalCommunityUsers = avgPointsCalculator(SignedInUser.getSmokerInfo().getPoints(),totalUsers);
+        int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
@@ -89,9 +92,9 @@ public class DashboardController {
         model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("smoke", user.getSmokerInfo());
+        model.addAttribute("smoke", signedInUser.getSmokerInfo());
         model.addAttribute("user-points", userPointsTotal);
-        model.addAttribute("moneySaved", calcMoneySaved(SignedInUser.getSmokerInfo().getCost_of_cigs_saved(), SignedInUser.getSmokerInfo().getTotal_days_smoke_free()));
+        model.addAttribute("moneySaved", calcMoneySaved(signedInUser.getSmokerInfo().getCost_of_cigs_saved(), signedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";
     }

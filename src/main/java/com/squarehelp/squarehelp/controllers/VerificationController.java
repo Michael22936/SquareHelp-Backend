@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.squarehelp.squarehelp.util.Calculator.calcMoneySaved;
+import static com.squarehelp.squarehelp.util.Calculator.*;
 import static com.squarehelp.squarehelp.util.UnreadNotifications.unreadNotificationsCount;
 
 @Controller
@@ -39,11 +39,30 @@ public class VerificationController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
         SmokerInfo smokerInfo = smokeDao.getOne(id);
+        User signedInUser = userDao.getOne(id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Get all verification requests
         List<Verification> sentVeri = veriDao.findAllByOriginator_user_id(id);
         List<Verification> recVeri = veriDao.findAllByApprover_name(user.getUsername());
+
+
+        // Reset day quit smoking by verification approval
+        Integer veriId =  (int) veriDao.count();
+        Verification veriApprove = veriDao.findById(veriId);
+        String veriDayCreate = veriApprove.getDay_created();
+
+        // Saves user as verified
+        veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
+
+//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
+
+
+
+        System.out.println("================================================veriId = " + (veriId));
+        System.out.println("================================================veriApprove = " + veriApprove.getIs_approved());
+
 
 
         //========= Gets the count of unread notifications
@@ -83,11 +102,11 @@ public class VerificationController {
         Verification v = veriDao.findById(veriId);
 
         if (isApproved.equalsIgnoreCase("on")) {
-            v.setIs_approved(true);
+            v.setIs_approved("true");
             veriDao.save(v);
             return "redirect:/verification/";
         } else {
-            v.setIs_approved(false);
+            v.setIs_approved("false");
             veriDao.save(v);
             return "redirect:/verification/";
         }
@@ -145,7 +164,8 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user);
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, null, user);
+
 
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");

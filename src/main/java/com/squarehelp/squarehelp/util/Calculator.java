@@ -1,5 +1,9 @@
 package com.squarehelp.squarehelp.util;
 
+import com.squarehelp.squarehelp.models.User;
+import com.squarehelp.squarehelp.models.Verification;
+import com.squarehelp.squarehelp.repositories.UserRepository;
+
 import java.util.Date;
 
 /*
@@ -22,16 +26,17 @@ public class Calculator {
     }
 
 
-    public static int userPointsCalculator(int day){
-        int dailyPoints = 5;
+    public static int userPointsCalculator(int day, int uPoints){
+        int dailyPoints = 1;
 
         if(day != 0){
             int out = dailyPoints * day;
 
             return out;
         }else {
-            // resets user points to zero
-            return 0;
+           int roundPoints = Math.round((uPoints / 2));
+
+            return roundPoints;
         }
     }
 
@@ -46,6 +51,22 @@ public class Calculator {
             return out;
         } else {
             return totalPoints;
+        }
+    }
+
+    public static void veriApproval(String veriApprove, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
+        int dailyPoints = 1;
+        int roundPoints = Math.round((uPoints / 2));
+
+        if(veriApprove == null || veriApprove.isEmpty()){
+            return;
+        }
+
+        if(veriApprove.equals("false")){
+            User user = userDao.findUserById(id);
+            user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
+            user.getSmokerInfo().setPoints(roundPoints);
+            userDao.save(user);
         }
     }
 
