@@ -2,6 +2,10 @@ main {
     height: auto;
 }
 
+h5 {
+    margin-bottom: 2rem;
+}
+
 .custom-card-style {
     background: grey;
     /*color: grey;*/
@@ -51,4 +55,10 @@ main {
 
 .verification-form-create-wrapper {
     margin: 1.5rem 0;
+}
+
+#profileImg {
+    width: 225px;
+    height: 225px;
+    margin-bottom: 2rem !important;
 }

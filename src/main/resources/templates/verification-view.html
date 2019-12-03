@@ -13,19 +13,26 @@
           <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
         </section>
         
-        <section class="row veriFormCreate">
+        <section class="row veriFormCreate text-center">
       
           <div class="verification-view-wrapper">
             <h1>View verification</h1>
         
             <form th:action="'/verification/' + ${veri.id} + '/view'" class="approve-veri" method="post">
-              <h5>Approver request from: <span th:text="${from.username}"></span></h5>
-              <h5>Approver Name: <span th:text="${veri.getApprover_name()}"></span></h5>
+              <h2 th:text="${from.username}"></h2>
+              <br/>
+              <th:block th:if="${from.profilePic == null}">
+                <img id="profileImg" class="mb-2" src="/img/profile/unknown-user.jpg">
+              </th:block>
+              <th:block th:if="${from.profilePic != null}">
+                <img id="profileImg" class="mb-2" th:src="${from.profilePic}"/>
+              </th:block>
+              <br/>
               <h5>Date Requesting: <span th:text="${veri.getDay_created()}" class="dates"></span></h5>
-              <h3>Verify this user was smoke free?</h3>
-              <br>
+              <h5>Verify <span th:text="${from.username}"></span> was smoke free?</h5>
+              <br/>
               <input type="text" class="d-none" value="" id="isApproved" name="isApproved">
-              <br>
+              <br/>
               <button class="btn btn-outline-info mt-2" id="veriBtn">View Verifications</button>
               <button class="btn btn-outline-success mt-2" id="yesBtn" type="submit">Yes <i class="far fa-thumbs-up"></i></button>
               <button class="btn btn-outline-danger mt-2" id="noBtn" type="submit">No <i class="far fa-thumbs-down"></i></button>
