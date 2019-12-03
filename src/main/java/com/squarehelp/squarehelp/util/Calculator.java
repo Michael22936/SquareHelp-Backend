@@ -26,21 +26,6 @@ public class Calculator {
     }
 
 
-//    public static int userPointsCalculator(int day, int uPoints){
-//        int dailyPoints = 1;
-//
-//        if(day != 0){
-//            int out = dailyPoints * day;
-//
-//            return out;
-//        }else {
-//           int roundPoints = Math.round((uPoints / 2));
-//
-//            return roundPoints;
-//        }
-//    }
-
-
     public static int avgPointsCalculator(int totalPoints, int totalUsers) {
         double d1 = totalPoints;
         double d2 = totalUsers;
@@ -69,13 +54,6 @@ public class Calculator {
             user.getSmokerInfo().setTotal_days_smoke_free(0);
             veriUser.setIs_changes_updated(true);
 
-            System.out.println("=========== Username losing points " + user.getUsername());
-            System.out.println("===========User Original Day they quit smoking: " + oldUsersSmokeFreeDay2 );
-            System.out.println("===========User Day quit smoking set to: " + veriDateCreated );
-            System.out.println("===========User Original points : " + currentUserPoints );
-            System.out.println("===========User loses (roundPoints): " + roundPoints );
-            System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
-
             userDao.save(user);
         }
         if ( isApproved == true && isPending == false && isChangesUpdated == false){
@@ -88,16 +66,7 @@ public class Calculator {
             veriUser.setIs_changes_updated(true);
             user.getSmokerInfo().setPoints(usersPointsPlusOne);
             user.getSmokerInfo().setTotal_days_smoke_free(SFDaysPlusOne);
-            System.out.println("=========== Current Smoke free days = " + userCurrentSFDays);
-            System.out.println("=========== Current smoke free days plus one = " + SFDaysPlusOne);
 
-
-
-
-            System.out.println("=========== Username gaining 1 point " + user.getUsername());
-            System.out.println("=========== Users current points: " + userCurrentPoints);
-            System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );
-            System.out.println("===========Verifications is Changes updated: " + veriUser.getIs_changes_updated() );
             userDao.save(user);
         }
     }

@@ -41,28 +41,6 @@ public class DashboardController {
         User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
-        String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
-
-        System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
-
-        // Initial lapse of days (zero smoke days)
-//        DateTime start = new DateTime( userQuitSmokeFreeDay );
-//        DateTime end = new DateTime(DateTime.now());
-//        int days = Days.daysBetween(start, end).getDays();
-
-        // Updates users smoke free days
-//        User userSave = userDao.getOne(id);
-//        userSave.getSmokerInfo().setTotal_days_smoke_free(days);
-//        userDao.save( userSave );
-
-//        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
-
-
-        // Get points for user (5 points per day)
-//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-//        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
-//        userDao.save(signedInUser);
-
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
         //========= Gets the count of unread notifications
