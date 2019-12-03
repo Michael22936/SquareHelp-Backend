@@ -12,19 +12,19 @@
     <div class="row contentBg">
       <h1>Verifications</h1>
     </div>
-    
+
     <!-- Button to create verification form -->
     <div class="row contentBg">
       <a class="btn btn-primary" role="button" th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
         Verification
         Form</a>
     </div>
-    
+
     <section class="row contentBg">
 
       <!-- Table to display received results results -->
       <div class="recRec">
-        <h3>Recieved requests</h3>
+        <h3>Verified requests</h3>
         <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
         </a>
         <div class="collapse show" id="recReqs">
@@ -43,17 +43,19 @@
                   <td><p th:text="${rv.day_created}" class="dates"></p></td>
                   <td><p th:text="${rv.approver_name}"></p></td>
                   <td><p th:text="${rv.days_smoke_free}"></p></td>
-                  <td><p th:text="${rv.getIs_approved()}"></p></td>
+                  <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
+                  <td th:if="${rv.is_approved == false}"><p>No</p></td>
+                  <td><p th:text="${rv.is_approved == null}">Pending</p></td>
                 </tr>
               </div>
             </tbody>
           </table>
         </div>
       </div>
-      
+
       <!-- Table to display sent results results -->
       <div class="sentReq">
-        <h3>Sent requests</h3>
+        <h3>Pending requests</h3>
         <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
            aria-expanded="false"
            aria-controls="collapseExample">Expand</a>
@@ -73,16 +75,18 @@
                   <td><p th:text="${sv.day_created}" class="dates"></p></td>
                   <td><p th:text="${sv.approver_name}"</td>
                   <td><p th:text="${sv.days_smoke_free}"></p></td>
-                  <td><p th:text="${sv.getIs_approved()}"></p></td>
+                  <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
+                  <td th:if="${sv.is_approved == false}"><p>No</p></td>
+                  <td><p th:text="${sv.is_approved == null}">Pending</p></td>
                 </tr>
               </div>
             </tbody>
           </table>
         </div>
       </div>
-  
+
     </section>
-    
+
     <!-- Footer -->
     <div class="row">
       <script src="/js/dashboard/dashboard.js"></script>
