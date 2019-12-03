@@ -83,14 +83,13 @@ public class Verification {
         this.is_approved = is_approved;
     }
 
-    //    public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, boolean is_approved, User user_veq) {
-//        this.originator_user_id = originator_user_id;
-//        this.approver_name = approver_name;
-//        this.day_created = day_created;
-//        this.days_smoke_free = days_smoke_free;
-//        this.is_approved = is_approved;
-//        this.user_veq = user_veq;
-//    }
+    public User getUser_veq() {
+        return user_veq;
+    }
+
+    public void setUser_veq(User user_veq) {
+        this.user_veq = user_veq;
+    }
 
     public Verification(int originator_user_id, String approver_name, String day_created, int days_smoke_free, String is_approved, User user_veq) {
         this.originator_user_id = originator_user_id;
@@ -101,11 +100,4 @@ public class Verification {
         this.user_veq = user_veq;
     }
 
-    public User getUser_veq() {
-        return user_veq;
-    }
-
-    public void setUser_veq(User user_veq) {
-        this.user_veq = user_veq;
-    }
 }

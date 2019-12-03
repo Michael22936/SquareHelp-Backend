@@ -16,15 +16,6 @@ public class Calculator {
         return (cigCost * totSmokeFree);
     }
 
-    public static int relapseCheck(Date relapseDate, int days){
-        if(relapseDate != null){
-            int reset = 0;
-            return reset;
-        }else {
-            return days;
-        }
-    }
-
 
     public static int userPointsCalculator(int day, int uPoints){
         int dailyPoints = 1;
@@ -55,8 +46,9 @@ public class Calculator {
     }
 
     public static void veriApproval(String veriApprove, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
-        int dailyPoints = 1;
+        int dailyPoint = 1;
         int roundPoints = Math.round((uPoints / 2));
+
 
         if(veriApprove == null || veriApprove.isEmpty()){
             return;
@@ -66,6 +58,12 @@ public class Calculator {
             User user = userDao.findUserById(id);
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);
+            userDao.save(user);
+        }
+
+        if(veriApprove.equals("true")){
+            User user = userDao.findUserById(id);
+            user.getSmokerInfo().setPoints(uPoints + dailyPoint);
             userDao.save(user);
         }
     }

@@ -56,21 +56,11 @@ public class DashboardController {
         userSave.getSmokerInfo().setTotal_days_smoke_free(days);
         userDao.save( userSave );
 
-//        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
 
-        // Get relapse day (if needed)
-        Date relapseDate = signedInUser.getSmokerInfo().getDay_relapse();
-//        DateTime rStart = new DateTime(relapseDate);
-//        int resetDays = Days.daysBetween(rStart, end).getDays();
-
-        int rCheck = relapseCheck(relapseDate, days);
-        System.out.println("days now = " + days);
-
-
-        // Get points for user (5 points per day)
+        // Get points for user (1 point per day)
         int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
         signedInUser.getSmokerInfo().setPoints(userPointsTotal);
-        userDao.save(signedInUser);
+//        userDao.save(signedInUser);
 
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 

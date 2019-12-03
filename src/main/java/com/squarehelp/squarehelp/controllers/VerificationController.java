@@ -52,17 +52,8 @@ public class VerificationController {
         Verification veriApprove = veriDao.findById(veriId);
         String veriDayCreate = veriApprove.getDay_created();
 
-        // Saves user as verified
+        // Verifies and saves user
         veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
-        System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
-
-//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-
-
-
-        System.out.println("================================================veriId = " + (veriId));
-        System.out.println("================================================veriApprove = " + veriApprove.getIs_approved());
-
 
 
         //========= Gets the count of unread notifications
@@ -164,7 +155,7 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, null, user);
+        Verification v = new Verification(uid, ru.getUsername(), date, smokerInfo.getTotal_days_smoke_free(), null, user);
 
 
         veriDao.save(v);
