@@ -41,13 +41,13 @@ public class DashboardController {
         User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
+        // Verified approval user
         String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
 
-        System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
 
-        // Initial lapse of days (zero smoke days)
-//        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
-        DateTime start = new DateTime( userQuitSmokeFreeDay );
+        // Runs day lapse
+        String userDayQuitSmoking = signedInUser.getSmokerInfo().getDay_quit_smoking();
+        DateTime start = new DateTime(userDayQuitSmoking);
         DateTime end = new DateTime(DateTime.now());
         int days = Days.daysBetween(start, end).getDays();
 
