@@ -1,0 +1,17 @@
+img{
+    max-block-size: 400px;
+    margin-left: 90px !important;
+}
+
+.contactUs{
+    color: blue !important;
+}
+
+.aboutUs{
+    color: blue !important;
+}
+
+
+main{
+    height: auto !important;
+}

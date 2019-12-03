@@ -1,53 +1,64 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:replace="partials/head :: main-header"/>
-    <link rel="stylesheet" th:href="@{/css/editprofile.css}"/>
-    <title>SquareHelp - Edit Profile Page</title>
-    </head>
-    <body>
-        <!-- Navbar -->
-        <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-        
-        <main class="container">
-            <section class="row contentBg">
-                <div class="editProfileWrapper">
-                    <form th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
-                        <div class="editProfileWrapper-left col-md-4">
-                            <img id="profileImg" class="mb-2" src="/img/profile/225.png">
-                            <input id="picker" class="file-input" type="file" accept="image/jpeg, image/png" />
-                            <input type="hidden" id="fileupload" name="profilePic" />
-                        </div>
-                        <div class="editProfileWrapper-right">
-                            <h1>Edit Profile</h1>
-                            <div>
-                                <label for="username">Edit Username: </label>
-                                <input type="text" id="username" th:field="*{username}" th:value="${users.username}">
-                            </div>
-                            <div>
-                                <label for="city">Edit City: </label>
-                                <input type="text" id="city" th:field="*{city}" th:value="${users.city}">
-                            </div>
-                            <div>
-                                <label for="state">Edit State: </label>
-                                <input type="text" id="state" th:field="*{state}" th:value="${users.state}">
-                            </div>
-                
-                            <div class="divideDiv mb-2"></div>
-    
-                            <button class="btn btn-outline-warning">Update</button>
-                        </div>
-                        </form>
-                </div>
-            </section>
-            
-            <!-- Footer -->
-            <div class="row">
-                <th:block th:replace="partials/footer :: main-footer"/>
-                <th:block th:replace="partials/searchbar :: navbar-search"/>
-                <script src="http://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-                <script src="/js/util/filestack-impl.js"></script>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - x</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" th:href="@{/css/editprofile.css}" />
+</head>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg main-panel">
+
+    <!-- Dashboard Content -->
+    <div class="contentBg">
+        <section>
+            <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
+
+        <section class="row">
+            <div class="editProfileWrapper">
+                <form class="formLayout" th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
+                    <div class="editProfileWrapper-left col-md-4">
+                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+                        <input id="picker" class="file-input" type="file" accept="image/jpeg, image/png" />
+                        <input type="hidden" id="fileupload" name="profilePic" />
+                    </div>
+                    <div class="editProfileWrapper-right">
+                        <h1>Edit Profile</h1>
+                        <table>
+                        <tr>
+                            <td class="widthTd">Edit Username: </td>
+                            <td><label for="username"></label></td>
+                            <td><input type="text" id="username" th:field="*{username}" th:value="${users.username}"></td>
+                        </tr>
+                        <tr>
+                            <td>Edit City: </td>
+                            <td><label for="city"></label></td>
+                            <td><input class="tableGap" type="text" id="city" th:field="*{city}" th:value="${users.city}"></td>
+                        </tr>
+                        <tr>
+                            <td>Edit State: </td>
+                            <td><label for="state"></label></td>
+                            <td><input type="text" id="state" th:field="*{state}" th:value="${users.state}"></td>
+                        </tr>
+                        </table>
+
+                        <div class="divideDiv mb-2"></div>
+
+                        <button class="btn btn-warning">Update</button>
+                    </div>
+                </form>
             </div>
-        
-        </main>
-    
-    </body>
+        </section>
+
+        <!-- Footer -->
+        <section class="row">
+            <th:block th:replace="partials/footer :: main-footer"/>
+            <th:block th:replace="partials/searchbar :: navbar-search"/>
+            <script src="/js/dashboard/dashboard.js"></script>
+        </section>
+    </div>
+
+</main>
+</body>
 </html>
