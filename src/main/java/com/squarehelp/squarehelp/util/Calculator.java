@@ -54,11 +54,15 @@ public class Calculator {
         }
     }
 
-    public static void veriApproval(Boolean veriApprove, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
+    public static void veriApproval(String veriApprove, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
         int dailyPoints = 1;
         int roundPoints = Math.round((uPoints / 2));
 
-        if(veriApprove == false){
+        if(veriApprove == null || veriApprove.isEmpty()){
+            return;
+        }
+
+        if(veriApprove.equals("false")){
             User user = userDao.findUserById(id);
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);

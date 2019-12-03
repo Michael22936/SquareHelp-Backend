@@ -53,7 +53,7 @@ public class VerificationController {
         String veriDayCreate = veriApprove.getDay_created();
 
         // Saves user as verified
-        veriApproval(veriApprove.isIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+        veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
         System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
 
 //        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
@@ -61,7 +61,7 @@ public class VerificationController {
 
 
         System.out.println("================================================veriId = " + (veriId));
-        System.out.println("================================================veriApprove = " + veriApprove.isIs_approved());
+        System.out.println("================================================veriApprove = " + veriApprove.getIs_approved());
 
 
 
@@ -102,11 +102,11 @@ public class VerificationController {
         Verification v = veriDao.findById(veriId);
 
         if (isApproved.equalsIgnoreCase("on")) {
-            v.setIs_approved(true);
+            v.setIs_approved("true");
             veriDao.save(v);
             return "redirect:/verification/";
         } else {
-            v.setIs_approved(false);
+            v.setIs_approved("false");
             veriDao.save(v);
             return "redirect:/verification/";
         }
@@ -164,8 +164,9 @@ public class VerificationController {
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, user);
-//        int originator_user_id, String approver_name, String day_created, int days_smoke_free, User user_veq
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, null, user);
+
+
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 
