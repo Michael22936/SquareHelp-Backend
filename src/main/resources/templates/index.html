@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
   <link rel="stylesheet" th:href="@{/css/index.css}"/>
   <title>Index Page</title>
@@ -23,8 +23,8 @@
   
   <body>
     <!-- Jumbotron-->
-    <div class="jumbotron jumbotron-fluid mb-0">
-      <div class="container">
+<main class="container">
+
         <h1 class="display-4">SquareHelp</h1>
         <p class="lead">Begin your journey today.</p>
         <div class="cta-btn">
@@ -32,9 +32,9 @@
             <a class="btn btn-primary btn-lg" href="/register" role="button">Register</a>
           </p>
         </div>
-      </div>
-    </div>
 
+
+    </main>
     <div class="row">
       <th:block th:replace="partials/footer :: main-footer"/>
     </div>
