@@ -68,9 +68,9 @@ public class DashboardController {
 
 
         // Get points for user (5 points per day)
-        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
-        userDao.save(signedInUser);
+//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
+//        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
+//        userDao.save(signedInUser);
 
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
@@ -93,7 +93,7 @@ public class DashboardController {
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", signedInUser.getSmokerInfo());
-        model.addAttribute("user-points", userPointsTotal);
+        model.addAttribute("user-points", signedInUser.getSmokerInfo().getPoints());
         model.addAttribute("moneySaved", calcMoneySaved(signedInUser.getSmokerInfo().getCost_of_cigs_saved(), signedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";

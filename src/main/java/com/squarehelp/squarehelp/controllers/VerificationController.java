@@ -53,13 +53,14 @@ public class VerificationController {
         System.out.println("============== Empty Verifications_req table ");
         System.out.println("================================================VeriDao Count = " + (veriId));
         }else{
-
+            System.out.println("================================================VeriDao Count = " + (veriId));
         Verification veriApprove = veriDao.findById(veriId);
         String veriDayCreate = veriApprove.getDay_created();
 
         // Saves user as verified
-        veriApproval(veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
-        System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
+        veriApproval(veriApprove.getOriginator_user_id(),veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
+            System.out.println("================================================ signed in user points = " + signedInUser.getSmokerInfo().getPoints());
+        System.out.println("================================================ verified user day quit smoking = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
         System.out.println("=========================================Users Verification Req is pending = " + veriApprove.getIs_pending());
         System.out.println("================================================veriApprove is_approved = " + veriApprove.getIs_approved());
         }

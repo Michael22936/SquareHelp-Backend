@@ -26,19 +26,19 @@ public class Calculator {
     }
 
 
-    public static int userPointsCalculator(int day, int uPoints){
-        int dailyPoints = 1;
-
-        if(day != 0){
-            int out = dailyPoints * day;
-
-            return out;
-        }else {
-           int roundPoints = Math.round((uPoints / 2));
-
-            return roundPoints;
-        }
-    }
+//    public static int userPointsCalculator(int day, int uPoints){
+//        int dailyPoints = 1;
+//
+//        if(day != 0){
+//            int out = dailyPoints * day;
+//
+//            return out;
+//        }else {
+//           int roundPoints = Math.round((uPoints / 2));
+//
+//            return roundPoints;
+//        }
+//    }
 
 
     public static int avgPointsCalculator(int totalPoints, int totalUsers) {
@@ -54,13 +54,15 @@ public class Calculator {
         }
     }
 
-    public static void veriApproval(Verification veriUser ,Boolean isChangesUpdated, Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
+    public static void veriApproval(int originatorUserId ,Verification veriUser ,Boolean isChangesUpdated, Boolean isApproved, Boolean isPending, UserRepository userDao, Long id, String veriDateCreated, int uPoints){
         int dailyPoints = 1;
         int roundPoints = Math.round((uPoints / 2));
+        Long userId = (long)originatorUserId;
+        System.out.println("==============================================roundPoints = " + roundPoints);
 
         //     if the request is not pending (false) and was not approved, run this...
         if( isApproved == false && isPending == false && isChangesUpdated == false ){
-            User user = userDao.findUserById(id);
+            User user = userDao.findUserById(userId);
             user.getSmokerInfo().setDay_quit_smoking(veriDateCreated);
             user.getSmokerInfo().setPoints(roundPoints);
             veriUser.setIs_changes_updated(true);
@@ -71,8 +73,8 @@ public class Calculator {
             userDao.save(user);
         }
         if ( isApproved == true && isPending == false && isChangesUpdated == false){
-            User user = userDao.findUserById(id);
-            int usersPointsPlusOne = (uPoints + 1);
+            User user = userDao.findUserById(userId);
+            int usersPointsPlusOne = (uPoints + dailyPoints);
             System.out.println("=========== Users original points: " + uPoints);
             System.out.println("===========User WINS 1 points: " + usersPointsPlusOne );
             user.getSmokerInfo().setPoints(usersPointsPlusOne);
