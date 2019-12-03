@@ -56,6 +56,8 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        state = copy.state;
+
     }
 
     public User(long id, String username, String password, String email, String state, String city, String dob, String phoneNumber, Date dateCreated, String lastLogin, String gender) {

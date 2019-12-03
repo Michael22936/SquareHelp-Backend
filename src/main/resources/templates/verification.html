@@ -33,8 +33,10 @@
               <tr>
                 <th scope="col">Date Created</th>
                 <th scope="col">Approver Name</th>
+                <th scope="col">Sender Name</th>
                 <th scope="col">Days Smoke free</th>
                 <th scope="col">Approved</th>
+                <th scope="col">Pending</th>
               </tr>
             </thead>
             <tbody>
@@ -42,9 +44,10 @@
                 <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
                   <td><p th:text="${rv.day_created}" class="dates"></p></td>
                   <td><p th:text="${rv.approver_name}"></p></td>
+                  <td><p th:text="${rv.getSender_name()}"></p></td>
                   <td><p th:text="${rv.days_smoke_free}"></p></td>
-                  <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
-                  <td th:if="${rv.is_approved == false}"><p>No</p></td>
+                  <td><p th:text="${rv.getIs_approved()}"></p></td>
+                  <td><p th:text="${rv.getIs_pending()}"></p></td>
                 </tr>
               </div>
             </tbody>
@@ -64,18 +67,21 @@
             <tr>
               <th scope="col">Date Created</th>
               <th scope="col">Approver Name</th>
+              <th scope="col">Sender Name</th>
               <th scope="col">Days Smoke free</th>
               <th scope="col">Approved</th>
+              <th scope="col">Pending</th>
             </tr>
             </thead>
             <tbody>
               <div th:each="sv : ${sentVeri}">
                 <tr>
                   <td><p th:text="${sv.day_created}" class="dates"></p></td>
-                  <td><p th:text="${sv.approver_name}"</td>
+                  <td><p th:text="${sv.approver_name}"></p></td>
+                  <td><p th:text="${sv.getSender_name()}"></p></td>
                   <td><p th:text="${sv.days_smoke_free}"></p></td>
-                  <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
-                  <td th:if="${sv.is_approved == false}"><p>No</p></td>
+                  <td><p th:text="${sv.getIs_approved()}"></p></td>
+                  <td><p th:text="${sv.getIs_pending()}"></p></td>
                 </tr>
               </div>
             </tbody>
