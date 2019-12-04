@@ -20,7 +20,7 @@
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
             <input type="date" name="date" id="date" class="mb-2 datePicker form-control " style="text-align: center;" required oninput="checkDate()">
-            <div id="invalidDate" class="">Opps! You have entered a date that has been approved.</div>
+            <div id="invalidDate" class="">Opps! You have entered a date that has already been approved.</div>
             <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
@@ -31,11 +31,9 @@
 
         let dateSubmit = document.querySelector(".datePicker");
         const userApprovedDaysList = [[${approvedDaysList}]];
-        console.log(userApprovedDaysList);
 
         function checkDate(){
-            let inputDate = document.getElementById("date").value;
-
+          let inputDate = document.getElementById("date").value;
           loopThruApprovedDates(inputDate);
         }
 
@@ -43,6 +41,12 @@
         function loopThruApprovedDates(datePickerInput) {
 
           for (let i = 0; i < userApprovedDaysList.length; i++ ){
+
+            if (userApprovedDaysList[i].day_created !== datePickerInput){
+              document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
+              document.getElementById("submit").style.display = "block"; // Show submit button
+              document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
+            }
 
             // Users date matches one of the approved dates in array.
             if (userApprovedDaysList[i].day_created === datePickerInput){
@@ -54,16 +58,7 @@
 
               // Hides the Submit button
               document.getElementById("submit").style.display = "none";
-
-
-              break;
-            }
-
-            if (userApprovedDaysList[i].day_created !== datePickerInput){
-              document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
-              document.getElementById("submit").style.display = "block"; // Show submit button
-              document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
-
+              // Stop loop
               break;
             }
 
