@@ -3,7 +3,7 @@
 <title>SquareHelp - Create a message</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+<link rel="stylesheet" th:href="@{/css/messages.css}" />
 </head>
 <body>
 <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
@@ -17,7 +17,7 @@
 
     <section class="row">
       <form th:action="'/message'" method="post" th:object="${messages}">
-        <h1 class="mb-2">Who do you want to send a message to: </h1>
+        <h1 id="whoToSend" class="mb-2">Who do you want to send a message to: </h1>
         <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class=" justify-content-center w-75" required>
         <ul class=" rounded list-group w-75" id="messageUserResults">
           <th:block th:object="${users}">
