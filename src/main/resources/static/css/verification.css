@@ -52,3 +52,15 @@ main {
 .verification-form-create-wrapper {
     margin: 1.5rem 0;
 }
+
+.invalid-tooltip{
+    position: relative;
+    top: -10px;
+    display: none !important;
+    /*// add class when the approved date match user input.*/
+}
+
+.is-invalid{
+    /*// add class when the approved date match user input.*/
+}
+

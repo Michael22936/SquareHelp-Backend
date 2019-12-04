@@ -19,7 +19,8 @@
             <input type="text" name="user_id" th:value="${users.getId()}" class="d-none"/>
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
-            <input type="date" name="date" id="date" class="mb-2 datePicker" style="text-align: center;" required oninput="checkDate()">
+            <input type="date" name="date" id="date" class="mb-2 datePicker form-control " style="text-align: center;" required oninput="checkDate()">
+            <div id="invalidDate" class="invalid-tooltip">Opps! You have entered a date that has been approved.</div>
             <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
@@ -42,35 +43,36 @@
 
         function checkDate(){
             let inputDate = document.getElementById("date").value;
-            console.log("date Pickers Value : " + inputDate);
+            console.log("date Pickers Value : " + inputDate + " " + typeof inputDate);
+            console.log("Input is not empty!!! :)");
+          loopThruApprovedDates(inputDate);
 
+        }
 
-            if(inputDate === 10 ){
+        function loopThruApprovedDates(inputDate) {
+          userApprovedDaysList.map(approvedDay => {
+            console.log(approvedDay); // 2019/11/12
+            console.log("===days approved : " + approvedDay.day_created);
+            if(inputDate === approvedDay.day_created ){
 
-              console.log("=*=*=*=*=*=*=*==*= Matched 10!")
+              console.log("=*=*=*=*=*=*=*==*= Matched input date with: " + approvedDay.day_created + " ❌❌❌");
+
+              // Adds red border to input and red X
+              document.getElementById("date").classList.add("is-invalid");
+
+              // Shows the invalid date tooltip message
+              document.getElementById("invalidDate").style.display = "block!important";
+
+              // Hides the Submit button
+              document.getElementById("submit").style.display = "none";
+
             }
 
-          console.log("Input is not empty!!! :)")
+          });
+
         }
 
 
-          // console.log("===sender name: " + userObjSignedIn.[0].username);
-        userApprovedDaysList.map(approvedDay => {
-
-          console.log(approvedDay);
-
-          console.log("===days approved : " + approvedDay.day_created);
-        //
-        //
-        //     // if(inputDate === approvedDay  ){
-        //     //   console.log("===== Date MATCHED " + approvedDay);
-        //     //    console.log("same day");
-        //     //
-        //     //
-        //     // }
-        //   });
-
-            });
       </script>
 
 
