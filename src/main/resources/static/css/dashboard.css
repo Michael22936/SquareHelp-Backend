@@ -68,6 +68,10 @@ main {
     footer{
         padding: 0 !important;
     }
+
+    .apexcharts-canvas{
+        left: 25px !important;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
