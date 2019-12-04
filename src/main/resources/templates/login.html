@@ -27,16 +27,21 @@
     .btn {
       width: 100%;
     }
+    
+    footer {
+      margin-top: 0rem;
+    }
   </style>
 
   <title>Login Page</title>
   <link rel="stylesheet" th:href="@{/css/login.css}" />
+  <link rel="stylesheet" th:href="@{/css/navbarlogin.css}" />
   </head>
 
   <body>
 
   <!-- Navbar -->
-  <th:block th:replace="partials/navbar :: main-navbar"/>
+  <th:block th:replace="partials/navbar-login :: login-navbar"/>
 
   <div class="container">
     <div th:if="${param.error}">

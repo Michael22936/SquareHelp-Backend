@@ -27,3 +27,15 @@
     width: 225px;
     height: 225px;
 }
+.editB{
+    color: #000;
+ }
+
+.table{
+    background-color: gray !important;
+    color: #ffffff !important;
+}
+
+main{
+    height: auto;
+}

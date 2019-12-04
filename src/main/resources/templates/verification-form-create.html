@@ -1,17 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="partials/head :: main-header"/>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <title>SquareHelp - Verifications For User</title>
-    <link rel="stylesheet" th:href="@{/css/verification.css}" />
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - Verifications Create Form</title>
+  <link rel="stylesheet" href="/css/verification.css" />
   </head>
   <body>
-    <main class="container">
-      <div class="row contentBg">
-        <h1>Verification Request</h1>
-      </div>
+  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container contentBg main-panel">
       
-      <section class="row contentBg">
+      <!-- /verification Content -->
+      <div class="contentBg">
+        <section>
+          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
         
         <form th:action="@{/verification/{uid}/form/send/{rid}(uid=${users.getId()},rid=${recipient.getId()})}"
               method="post">
@@ -19,18 +19,70 @@
             <input type="text" name="user_id" th:value="${users.getId()}" class="d-none"/>
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
-            <input type="date" name="date" id="date" class="mb-2" style="text-align: center;" required>
-            <button type="submit" id="submit" class="btn btn-outline-primary">Submit</button>
+            <input type="date" name="date" id="date" class="mb-2 datePicker form-control " style="text-align: center;" required oninput="checkDate()">
+            <div id="invalidDate" class="">Opps! You have entered a date that has been approved.</div>
+            <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
-      
+
       </section>
-      
-      <!-- Footer -->
-      <div class="row">
-        <script src="/js/dashboard/dashboard.js"></script>
-        <th:block th:replace="partials/footer :: main-footer"/>
-        <th:block th:replace="partials/searchbar :: navbar-search"/>
+
+      <script th:inline="javascript">
+
+        let dateSubmit = document.querySelector(".datePicker");
+        const userApprovedDaysList = [[${approvedDaysList}]];
+        console.log(userApprovedDaysList);
+
+        function checkDate(){
+            let inputDate = document.getElementById("date").value;
+
+          loopThruApprovedDates(inputDate);
+        }
+
+
+        function loopThruApprovedDates(datePickerInput) {
+
+          for (let i = 0; i < userApprovedDaysList.length; i++ ){
+
+            // Users date matches one of the approved dates in array.
+            if (userApprovedDaysList[i].day_created === datePickerInput){
+              // Adds red border to input and red X
+              document.getElementById("date").classList.add("is-invalid");
+
+              // Shows the invalid date tooltip message
+              document.getElementById("invalidDate").style.display = "block";
+
+              // Hides the Submit button
+              document.getElementById("submit").style.display = "none";
+
+
+              break;
+            }
+
+            if (userApprovedDaysList[i].day_created !== datePickerInput){
+              document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
+              document.getElementById("submit").style.display = "block"; // Show submit button
+              document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
+
+              break;
+            }
+
+          } // End of for loop
+
+        } // End test function
+
+      </script>
+
+
+
+<!--        </section>-->
+
+        <!-- Footer -->
+        <section class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+          <th:block th:replace="partials/searchbar :: navbar-search"/>
+          <script src="/js/verification/verification-form.js"></script>
+        </section>
       </div>
     
     </main>

@@ -22,4 +22,10 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/aboutus")
+    public String aboutUsPage(Model model){
+        model.addAttribute("users", userDao.findAll());
+        return "aboutUs";
+    }
+
 }

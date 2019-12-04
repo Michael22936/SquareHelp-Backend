@@ -67,3 +67,5 @@ CREATE TABLE buddy_sys (
   originator_user_id BIGINT(20),
   recipient_user_id BIGINT(20)
 );
+
+

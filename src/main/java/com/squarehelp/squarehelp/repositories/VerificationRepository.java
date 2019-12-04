@@ -22,4 +22,10 @@ public interface VerificationRepository extends JpaRepository<Verification, Long
     // Find one verifications by id
     @Query(value = "SELECT id, originator_user_id, approver_name, day_created, days_smoke_free, is_approved, user_id, is_pending, is_changes_updated, sender_name FROM verifications_req WHERE id = :veriId", nativeQuery = true)
     Verification findById(@Param("veriId") int veriId);
+
+
+    // Find all approved days in verifications table
+    @Query(value = "SELECT id, originator_user_id, approver_name, day_created, days_smoke_free, is_approved, user_id, is_pending, is_changes_updated, sender_name FROM verifications_req WHERE is_approved = TRUE", nativeQuery = true)
+    List<Verification> findAllApprovedDays();
+
 }

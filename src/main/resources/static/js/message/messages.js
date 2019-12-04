@@ -28,7 +28,7 @@ $('#searchUserMessage').keyup(function () {
             let url = '/message/' + user.id + '/send' ;
             console.log(url);
             $('#messageUserResults').append('<form class=" searchResultItem list-group-item list-group-item-action link-class" action="'+url+'" method="post">' +
-                '<a class=" text-decoration-none messageLi"' + ' href=' + url + '  >' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</a></form>');
+                '<a class="text-dark text-decoration-none messageLi"' + ' href=' + url + '  >' + user.id + " " + user.username + " " + user.city + ", " + user.state +'</a></form>');
             console.log(user.username);
             } // End filterMsgUsers
         }

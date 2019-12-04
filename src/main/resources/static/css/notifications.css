@@ -1,4 +1,7 @@
 /* Styling is specific to notifications.html */
+main {
+    height: auto;
+}
 
 table {
     cursor: pointer;
@@ -19,4 +22,8 @@ table {
 #subTableLinks li {
     list-style-type: none;
     margin-right: 1rem;
+}
+
+.noti {
+    width: 100%;
 }
