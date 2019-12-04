@@ -98,9 +98,11 @@ input {
 
 .contentBg {
   padding: 1rem 3rem 1rem 3rem;
-  background: #212121;
+  background: #fff;
+  min-height: 80%;
   border-radius: 5px;
 }
+
 
 .main-panel {
   display: flex;
@@ -169,11 +171,6 @@ footer ul {
 footer ul li {
   padding: 0;
   list-style-type: none;
-}
-
-.contentBg {
-  padding: 1rem 3rem 1rem 3rem;
-  background: #fff;
 }
 
 #smallNav{
