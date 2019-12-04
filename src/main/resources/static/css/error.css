@@ -1,0 +1,17 @@
+.nav{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.nav-item{
+    color: white;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+.main-panel{
+    left: 150px;
+}
