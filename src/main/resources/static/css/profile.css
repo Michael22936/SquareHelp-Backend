@@ -39,3 +39,52 @@
 main{
     height: auto;
 }
+
+#smB{
+    display: none;
+}
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+    body {
+        background: green;
+    }
+
+    .main-panel {
+        position: initial;
+        margin-top: 0;
+    }
+
+    #largeNav {
+        display: none;
+    }
+
+    #smallNav {
+        display: flex !important;
+    }
+
+    .notiSearch {
+        width: 100%;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-group form {
+        width: 100%;
+    }
+
+    #navbarSearch {
+        width: 100% !important;
+    }
+.profileWrapper{
+    display: flex !important;
+    flex-direction: column;
+}
+
+#bigB{
+    display: none;
+}
+}
