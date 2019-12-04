@@ -98,9 +98,10 @@ input {
 
 .contentBg {
   padding: 1rem 3rem 1rem 3rem;
-  background: #212121;
+  background: #fff;
   border-radius: 5px;
 }
+
 
 .main-panel {
   display: flex;
@@ -171,11 +172,6 @@ footer ul li {
   list-style-type: none;
 }
 
-.contentBg {
-  padding: 1rem 3rem 1rem 3rem;
-  background: #fff;
-}
-
 #smallNav{
   display: none;
 }
@@ -214,6 +210,10 @@ footer ul li {
 
   #navbarSearch {
     width: 100% !important;
+  }
+
+  .contentBg {
+    min-height: 80%;
   }
 
 }

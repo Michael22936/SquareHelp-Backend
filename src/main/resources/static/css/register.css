@@ -13,3 +13,13 @@
   width: max-content !important;
   height:auto !important;
 }
+
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+  footer{
+
+  }
+
+}
