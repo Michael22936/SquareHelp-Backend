@@ -14,3 +14,7 @@ nav-wrapper {
     background: white;
     width: max-content;
 }
+
+#smallNav {
+    display: none;
+}
