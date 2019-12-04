@@ -3,7 +3,7 @@
 <link rel="stylesheet" th:href="@{/css/navbarlogin.css}" />
 
 <th:block th:fragment="register-navbar">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <nav id="largeNav" class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="navbar-fixed">
             <ul class="nav">
                 <li class="nav-item">
@@ -14,5 +14,17 @@
                 </li>
             </ul>
         </div>
+    </nav>
+
+    <nav id="smallNav" class="navbar navbar-dark bg-black">
+        <a class="text-decoration-none" th:href="@{'/'}"><h4>SquareHelp</h4></a>
+
+        <ul class="nav">
+
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+
+        </ul>
     </nav>
 </th:block>

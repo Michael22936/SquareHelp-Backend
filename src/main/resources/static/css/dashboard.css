@@ -64,6 +64,10 @@ main {
     #chartCard2{
         width: 100%;
     }
+
+    footer{
+        padding: 0 !important;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
