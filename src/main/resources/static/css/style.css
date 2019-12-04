@@ -99,7 +99,6 @@ input {
 .contentBg {
   padding: 1rem 3rem 1rem 3rem;
   background: #fff;
-  min-height: 80%;
   border-radius: 5px;
 }
 
@@ -211,6 +210,10 @@ footer ul li {
 
   #navbarSearch {
     width: 100% !important;
+  }
+
+  .contentBg {
+    min-height: 80%;
   }
 
 }
