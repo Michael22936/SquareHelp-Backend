@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
-<title>SquareHelp - x</title>
+<title>SquareHelp - ERROR</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
@@ -11,12 +11,30 @@
     color: black !important;
   }
 </style>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav id="largeNav" class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="navbar-fixed">
     <ul class="nav">
       <li class="nav-item">
         <a class="text-decoration-none"><h4>SquareHelp</h4></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav id="smallNav" class="navbar navbar-dark bg-black">
+  <a class="text-decoration-none" th:href="@{'/'}"><h4>SquareHelp</h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample01">
+    <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="/login">Login</a>
       </li>

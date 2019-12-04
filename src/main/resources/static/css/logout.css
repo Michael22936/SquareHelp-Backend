@@ -15,3 +15,53 @@ img{
 main{
     height: auto !important;
 }
+
+footer{
+    margin-top: 0 !important;
+}
+
+@media (max-width: 992px) {
+
+    body {
+        background: green;
+    }
+
+    .main-panel {
+        position: initial;
+        margin-top: 0;
+    }
+
+    #largeNav {
+        display: none;
+    }
+
+    #smallNav {
+        display: flex !important;
+    }
+
+    .notiSearch {
+        width: 100%;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-group form {
+        width: 100%;
+    }
+
+    #navbarSearch {
+        width: 100% !important;
+    }
+
+    img{
+        max-block-size: 190px;
+        margin-left: -109px !important;
+    }
+
+    footer{
+        margin-top: 0 !important;
+        padding: 0 !important;
+    }
+}
