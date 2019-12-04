@@ -15,18 +15,6 @@ nav-wrapper {
     width: max-content;
 }
 
-@media (max-width: 992px) {
-
-    body {
-        background: green;
-    }
-
-    .main-panel {
-
-    }
-
-    #largeNav {
-        display: none;
-    }
-
+#smallNav {
+    display: none;
 }

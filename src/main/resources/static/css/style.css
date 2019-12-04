@@ -17,6 +17,10 @@
   z-index: 999;
 }
 
+.bg-black {
+  background: #000000;
+}
+
 /* Basic Page Elements */
 
 * {
@@ -46,9 +50,6 @@ a:visited {
   color: #fff;
 }
 
-main{
-  height: auto;
-}
 
 main, html, body {
   width: 100%;
@@ -57,8 +58,12 @@ main, html, body {
   margin: 0px;
 }
 
+main{
+  height: auto;
+}
+
 body {
-  background: url("/img/index-bg.png");
+  /*background: url("/img/index-bg.png");*/
   background: #eee;
   color: #000;
 }
@@ -180,10 +185,31 @@ footer ul li {
 
   .main-panel {
     position: initial;
+    margin-top: 0;
   }
 
   #largeNav {
     display: none;
+  }
+
+  #smallNav {
+    display: flex !important;
+  }
+
+  .notiSearch {
+    width: 100%;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .input-group form {
+    width: 100%;
+  }
+
+  #navbarSearch {
+    width: 100% !important;
   }
 
 }
