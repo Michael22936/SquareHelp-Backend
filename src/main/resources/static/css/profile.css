@@ -87,4 +87,15 @@ main{
 #bigB{
     display: none;
 }
+
+#smB{
+    display: flex !important;
+}
+
+.contentBg{
+    padding: 10px !important;
+}
+.col-md-4{
+    padding-left: 0 !important;
+}
 }
