@@ -20,7 +20,7 @@
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
             <input type="date" name="date" id="date" class="mb-2 datePicker form-control " style="text-align: center;" required oninput="checkDate()">
-            <div id="invalidDate" class="invalid-tooltip">Opps! You have entered a date that has been approved.</div>
+            <div id="invalidDate" class="">Opps! You have entered a date that has been approved.</div>
             <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
@@ -33,19 +33,20 @@
 
         const userApprovedDaysList = [[${approvedDaysList}]];
         console.log(userApprovedDaysList);
-        // const approvedDaysList = [[${approvedDays}]];
-        // const userObjSignedIn = [[${signedInUser}]];
-        // dateSubmit.addEventListener('keyup', (e) => {
-        //   console.log("key pressed!!");
 
-          // console.log(approvedDaysList);
-          // console.log(userObjSignedIn);
+        // let inputDatePicker = document.getElementById("date").addEventListener()
+
+
+
 
         function checkDate(){
             let inputDate = document.getElementById("date").value;
             console.log("date Pickers Value : " + inputDate + " " + typeof inputDate);
             console.log("Input is not empty!!! :)");
-          loopThruApprovedDates(inputDate);
+          // loopThruApprovedDates(inputDate);
+          test(inputDate);
+
+          // document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
 
         }
 
@@ -57,21 +58,70 @@
 
               console.log("=*=*=*=*=*=*=*==*= Matched input date with: " + approvedDay.day_created + " ❌❌❌");
 
+
               // Adds red border to input and red X
               document.getElementById("date").classList.add("is-invalid");
 
               // Shows the invalid date tooltip message
-              document.getElementById("invalidDate").style.display = "block!important";
+              document.getElementById("invalidDate").style.display = "block";
 
               // Hides the Submit button
               document.getElementById("submit").style.display = "none";
 
+            }
+            if(inputDate !== approvedDay.day_created){
+              // document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
+              // document.getElementById("submit").style.display = "block"; // Show submit button
+              // document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
+
+              console.log("=*+*+=======*********===Input is not approved date");
+              removeErrorElements()
             }
 
           });
 
         }
 
+        function test(datePickerInput) {
+
+
+          for (let i = 0; i < userApprovedDaysList.length; i++ ){
+            // console.log(userApprovedDaysList[i].day_created);
+
+            // Users date matches one of the approved dates in array.
+            if (userApprovedDaysList[i].day_created === datePickerInput){
+              // Adds red border to input and red X
+              document.getElementById("date").classList.add("is-invalid");
+
+              // Shows the invalid date tooltip message
+              document.getElementById("invalidDate").style.display = "block";
+
+              // Hides the Submit button
+              document.getElementById("submit").style.display = "none";
+
+              console.log("=*=*=*=*=*=*=*==*= Matched input date with: " + userApprovedDaysList[i].day_created + " ❌❌❌");
+
+              break;
+            }
+
+            if (userApprovedDaysList[i].day_created !== datePickerInput){
+              document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
+              document.getElementById("submit").style.display = "block"; // Show submit button
+              document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
+              console.log("===================== User date is not a MATCH, remove error message");
+              break;
+            }
+
+          } // End of for loop
+
+        } // End test function
+
+        function removeErrorElements() {
+          document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
+          document.getElementById("submit").style.display = "block"; // Show submit button
+          document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
+
+        }
 
       </script>
 

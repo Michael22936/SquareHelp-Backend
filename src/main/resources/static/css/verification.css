@@ -53,14 +53,27 @@ main {
     margin: 1.5rem 0;
 }
 
-.invalid-tooltip{
+#invalidDate{
+    display: none;
     position: relative;
     top: -10px;
-    display: none !important;
+    z-index: 5;
+    max-width: 100%;
+    padding: .25rem .5rem;
+    margin-top: .1rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    color: #fff;
+    background-color: rgba(220,53,69,.9);
+    /*background-color: red;*/
+    border-radius: .25rem;
+
     /*// add class when the approved date match user input.*/
 }
 
-.is-invalid{
-    /*// add class when the approved date match user input.*/
+#submit{
+    display: block;
 }
+
+
 
