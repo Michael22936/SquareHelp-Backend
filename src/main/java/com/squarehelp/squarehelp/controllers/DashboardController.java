@@ -41,37 +41,6 @@ public class DashboardController {
         User signedInUser = userDao.getOne(id);
         int totalUsers = (int) userDao.count();
 
-        String userQuitSmokeFreeDay = signedInUser.getSmokerInfo().getDay_quit_smoking();
-
-        System.out.println("User day quit smoking = " + userQuitSmokeFreeDay);
-
-        // Initial lapse of days (zero smoke days)
-//        DateTime userDayQuitSmoking = user.getSmokerInfo().getDay_quit_smoking();
-        DateTime start = new DateTime( userQuitSmokeFreeDay );
-        DateTime end = new DateTime(DateTime.now());
-        int days = Days.daysBetween(start, end).getDays();
-
-        // Updates users Smoke info
-        User userSave = userDao.getOne(id);
-        userSave.getSmokerInfo().setTotal_days_smoke_free(days);
-        userDao.save( userSave );
-
-//        System.out.println("===================== Math = " + user.getSmokerInfo().getPoints() / 2);
-
-        // Get relapse day (if needed)
-        Date relapseDate = signedInUser.getSmokerInfo().getDay_relapse();
-//        DateTime rStart = new DateTime(relapseDate);
-//        int resetDays = Days.daysBetween(rStart, end).getDays();
-
-        int rCheck = relapseCheck(relapseDate, days);
-        System.out.println("days now = " + days);
-
-
-        // Get points for user (5 points per day)
-        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
-        signedInUser.getSmokerInfo().setPoints(userPointsTotal);
-        userDao.save(signedInUser);
-
         int totalCommunityUsers = avgPointsCalculator(signedInUser.getSmokerInfo().getPoints(),totalUsers);
 
         //========= Gets the count of unread notifications
@@ -93,7 +62,7 @@ public class DashboardController {
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
         model.addAttribute("smoke", signedInUser.getSmokerInfo());
-        model.addAttribute("user-points", userPointsTotal);
+        model.addAttribute("user-points", signedInUser.getSmokerInfo().getPoints());
         model.addAttribute("moneySaved", calcMoneySaved(signedInUser.getSmokerInfo().getCost_of_cigs_saved(), signedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);
         return "dashboard";

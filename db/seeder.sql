@@ -27,3 +27,7 @@ insert into buddy_sys(originator_user_id, recipient_user_id) VALUE (1,1);
 SELECT id, recipient_user_id, originator_user_id, notification, is_viewed FROM notifications WHERE originator_user_id = :id AND is_viewed = false;
 
 SELECT COUNT(user_id) FROM notifications WHERE recipient_user_id = :id AND is_viewed = false;
+
+
+SELECT day_created FROM verifications_req WHERE is_approved = TRUE;
+

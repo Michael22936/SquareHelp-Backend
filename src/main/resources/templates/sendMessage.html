@@ -1,35 +1,50 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:replace="partials/head :: main-header"/>
-    <link rel="stylesheet" th:href="@{/css/messages.css}" />
-    <title>SquareHelp - Create a message</title>
-    </head>
-    <body>
-        <!-- Navbar -->
-        <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-        
-        <main class="container">
-            <section class="row contentBg">
-                <div class="messageSendWrapper">
-                    <div class="toFrom">
-                        <h3>To: <span th:text="${recipient.username}"></span></h3>
-                        <h3>From: <span th:text="${users.username}"></span></h3>
-                    </div>
-                
-                    <form th:action="'/message/' + ${recipient.id} + '/send'" method="post" >
-                        <h5>Message:</h5>
-                        <textarea name="message" id="message" cols="10" rows="3" maxlength="255" class="mb-4"
-                                  minlength="1" required="" style="width: 100%;"></textarea>
-                        <button type="submit" class="btn btn-outline-primary">Send Message</button>
-                    </form>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - Send a message</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<style>
+    form textarea{
+        width: 100% !important;
+    }
+</style>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg main-panel">
+
+    <!-- Dashboard Content -->
+    <div class="contentBg">
+        <section>
+            <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
+
+        <section class="row">
+            <div class="messageSendWrapper">
+                <div class="toFrom">
+                    <h3>To: <span th:text="${recipient.username}"></span></h3>
+                    <h3>From: <span th:text="${users.username}"></span></h3>
                 </div>
-            </section>
-            
-            <!-- Footer -->
-            <div class="row">
-                <th:block th:replace="partials/footer :: main-footer"/>
-                <th:block th:replace="partials/searchbar :: navbar-search"/>
-                <script th:src="@{/js/message/messages.js}"></script>
+
+                <form th:action="'/message/' + ${recipient.id} + '/send'" method="post" >
+                    <h5>Message:</h5>
+                    <textarea name="message" id="message" cols="50" rows="3" maxlength="255" class="mb-4"
+                              minlength="1" required="">
+                    </textarea>
+                    <button type="submit" class="btn btn-outline-primary">Send Message</button>
+                </form>
             </div>
-        </main>
-    </body>
+        </section>
+
+        <!-- Footer -->
+        <section class="row">
+            <th:block th:replace="partials/footer :: main-footer"/>
+            <th:block th:replace="partials/searchbar :: navbar-search"/>
+            <script th:src="@{/js/message/messages.js}"></script>
+        </section>
+    </div>
+
+</main>
+</body>
 </html>

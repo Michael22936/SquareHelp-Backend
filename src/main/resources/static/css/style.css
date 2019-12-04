@@ -17,11 +17,39 @@
   z-index: 999;
 }
 
+.bg-black {
+  background: #000000;
+}
+
 /* Basic Page Elements */
 
 * {
   box-sizing: border-box;
 }
+
+a:link {
+
+}
+
+a:hover {
+
+}
+
+a:active{
+
+}
+
+a:visited {
+
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+  color: #fff;
+}
+
 
 main, html, body {
   width: 100%;
@@ -30,10 +58,14 @@ main, html, body {
   margin: 0px;
 }
 
+main{
+  height: auto;
+}
+
 body {
-  background: url("/img/index-bg.png");
-  background: #000;
-  color: #fff;
+  /*background: url("/img/index-bg.png");*/
+  background: #eee;
+  color: #000;
 }
 
 h3 {
@@ -42,6 +74,10 @@ h3 {
 
 input {
   color: #000;
+}
+
+.input-group {
+  width: auto;
 }
 
 /* Page Content */
@@ -63,6 +99,43 @@ input {
 .contentBg {
   padding: 1rem 3rem 1rem 3rem;
   background: #212121;
+  border-radius: 5px;
+}
+
+.main-panel {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  left: 250px;
+  position: fixed;
+  margin-top: 2rem;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 200px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  background-color: #000;
+}
+
+.notiSearch {
+  display: inline-flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.navbar-fixed {
+  height: 100% !important;
+}
+
+.nav {
+  flex-direction: column !important;
 }
 
 /* footer */
@@ -72,9 +145,18 @@ footer {
   flex-direction: row;
   justify-content: center;
   padding: 1rem 3rem 1rem 3rem;
-  background: #212121;
+  background: #fff;
   margin-bottom: 1rem;
   width: 100%;
+  margin-top: 10rem;
+}
+
+footer a {
+  color: #212121 !important;
+}
+
+footer a:hover {
+  color: #5a5a5a !important;
 }
 
 footer ul {
@@ -91,5 +173,47 @@ footer ul li {
 
 .contentBg {
   padding: 1rem 3rem 1rem 3rem;
-  background: #212121;
+  background: #fff;
+}
+
+#smallNav{
+  display: none;
+}
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+  body {
+    background: green;
+  }
+
+  .main-panel {
+    position: initial;
+    margin-top: 0;
+  }
+
+  #largeNav {
+    display: none;
+  }
+
+  #smallNav {
+    display: flex !important;
+  }
+
+  .notiSearch {
+    width: 100%;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .input-group form {
+    width: 100%;
+  }
+
+  #navbarSearch {
+    width: 100% !important;
+  }
+
 }

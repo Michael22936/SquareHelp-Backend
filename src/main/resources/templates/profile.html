@@ -1,16 +1,21 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:replace="partials/head :: main-header"/>
-    <link rel="stylesheet" th:href="@{/css/profile.css}"/>
-    <title>Profile Page</title>
-    </head>
-    
-    <body>
-        <!-- Navbar -->
-        <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-        
-        <main class="container">
-            
-            <section class="row contentBg">
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - x</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" th:href="@{/css/profile.css}" />
+</head>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg main-panel">
+
+    <!-- Dashboard Content -->
+    <div class="contentBg">
+        <section>
+            <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
+
+        <section class="row">
                 <div class="profileWrapper">
                     <div class="profileWrapper-left col-md-4">
                         <th:block th:if="${users.profilePic == null}">
@@ -19,50 +24,53 @@
                         <th:block th:if="${users.profilePic != null}">
                             <img id="profileImg" class="mb-2" th:src="${users.profilePic}">
                         </th:block>
-    
+
                         <th:block th:if="${users.id == #authentication.principal.id}">
-                            <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-outline-warning">Edit Profile</a>
+                            <a th:href="@{'/profile/' + ${users.id} + '/edit'}"><button type="button" class="btn btn-warning">Edit Profile</button>
+                            </a>
                         </th:block>
-                        
+
                     </div>
                     <div class="profileWrapper-right">
                         <h1><span th:text="${users.username}"></span></h1>
                         <h3><span th:text="${smoke.points}"></span> points</h3>
                         <h5><span th:text="${users.city}"></span>, <span th:text="${users.state}"></span></h5>
-            
+
                         <div class="divideDiv mb-2"></div>
-            
+
                         <table class="table table-dark">
                             <tbody>
-                                <tr>
-                                    <td class="col tdLeft">Day quit smoking:</td>
-                                    <td class="col"><span th:text="${smoke.day_quit_smoking}" class="dates"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Total days smoke free:</td>
-                                    <td><span th:text="${smoke.total_days_smoke_free}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Average price of cigs:</td>
-                                    <td>$<span th:text="${smoke.cost_of_cigs_saved}"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Total amount saved:</td>
-                                    <td><span th:text="${moneySaved}"></span></td>
-                                </tr>
+                            <tr>
+                                <td class="col tdLeft">Day quit smoking:</td>
+                                <td class="col"><span th:text="${smoke.day_quit_smoking}" class="dates"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Total days smoke free:</td>
+                                <td><span th:text="${smoke.total_days_smoke_free}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Average price of cigs:</td>
+                                <td>$<span th:text="${smoke.cost_of_cigs_saved}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Total amount saved:</td>
+                                <td><span th:text="${moneySaved}"></span></td>
+                            </tr>
                             </tbody>
                         </table>
-                        
+
                     </div>
                 </div>
+        </section>
 
-            </section>
-            
-            <!-- Footer -->
-            <div class="row">
-                <th:block th:replace="partials/footer :: main-footer"/>
-                <th:block th:replace="partials/searchbar :: navbar-search"/>
-            </div>
-        </main>
-    </body>
+        <!-- Footer -->
+        <section class="row">
+            <th:block th:replace="partials/footer :: main-footer"/>
+            <th:block th:replace="partials/searchbar :: navbar-search"/>
+            <script src="/js/dashboard/dashboard.js"></script>
+        </section>
+    </div>
+
+</main>
+</body>
 </html>

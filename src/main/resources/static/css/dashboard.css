@@ -34,8 +34,6 @@ main {
 
 }
 
-
-
 .apexcharts-legend{
     position: relative !important;
     left: -10px !important;
@@ -65,6 +63,14 @@ main {
 
     #chartCard2{
         width: 100%;
+    }
+
+    footer{
+        padding: 0 !important;
+    }
+
+    .apexcharts-canvas{
+        left: 25px !important;
     }
 }
 

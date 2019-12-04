@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.squarehelp.squarehelp.util.Calculator.*;
@@ -49,16 +50,18 @@ public class VerificationController {
 
         // Reset day quit smoking by verification approval
         Integer veriId =  (int) veriDao.count();
-        Verification veriApprove = veriDao.findById(veriId);
-        String veriDayCreate = veriApprove.getDay_created();
+        if (veriId == 0){
+            // no action
+        }else{
+            Verification veriApprove = veriDao.findById(veriId);
+            String veriDayCreate = veriApprove.getDay_created();
 
-        // Saves user as verified
-        veriApproval(veriApprove.getIs_approved(), userDao, id, veriDayCreate, signedInUser.getSmokerInfo().getPoints());
-        System.out.println("================================================ verified user = " + signedInUser.getSmokerInfo().getDay_quit_smoking());
-        System.out.println("================================================veriId = " + (veriId));
-        System.out.println("================================================veriApprove = " + veriApprove.getIs_approved());
+            // Saves user as verified
+            veriApproval(veriApprove.getOriginator_user_id(),veriApprove, veriApprove.getIs_changes_updated() ,veriApprove.getIs_approved() ,veriApprove.getIs_pending(), userDao, id, veriDayCreate, veriApprove.getSender_name());
 
+        }
 
+//        int userPointsTotal = userPointsCalculator(days, signedInUser.getSmokerInfo().getPoints());
 
         //========= Gets the count of unread notifications
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
@@ -97,11 +100,13 @@ public class VerificationController {
         Verification v = veriDao.findById(veriId);
 
         if (isApproved.equalsIgnoreCase("on")) {
-            v.setIs_approved("true");
+            v.setIs_approved(true);
+            v.setIs_pending(false);
             veriDao.save(v);
             return "redirect:/verification/";
         } else {
-            v.setIs_approved("false");
+            v.setIs_approved(false);
+            v.setIs_pending(false);
             veriDao.save(v);
             return "redirect:/verification/";
         }
@@ -134,9 +139,30 @@ public class VerificationController {
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
+        List<Verification> approveDays = veriDao.findAllApprovedDays();
+        List<Verification> filteredApproveDays = new ArrayList<>();
+
+
+        for (Verification approvalDay : approveDays){
+            User signedinUser = userDao.findUserById(id);
+            String userSignedIn = signedinUser.getUsername();
+            String senderName =  approvalDay.getSender_name();
+            if( userSignedIn.equalsIgnoreCase(senderName)  ){
+                filteredApproveDays.add(approvalDay);
+            }
+        }
+
+        System.out.println("=============================filteredApproveDays.toString() = " + filteredApproveDays.toString());
+        System.out.println("=============================Original array list " + approveDays.toString());
+
 
         User ru = userDao.findUserById(recip);
 
+        System.out.println("=======================user being pulled from the PathVariable " + userDao.getOne(user_id).getUsername() );
+
+//        model.addAttribute("signedInUser", UserSignedInList);
+//        model.addAttribute("approvedDays", approveDays);
+        model.addAttribute("approvedDaysList", filteredApproveDays);
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("recipient", ru);
         model.addAttribute("users", userDao.getOne(user_id));
@@ -149,24 +175,29 @@ public class VerificationController {
     @PostMapping("/verification/{user_id}/form/send/{recip}")
     public String postVerificationFormSend(Model model, @PathVariable long user_id, @PathVariable long recip, @RequestParam String date) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User senderUser = userDao.getOne(user.getId());
         SmokerInfo smokerInfo = smokeDao.getOne(user_id);
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
 
         // Find recipients username (ru)
         User ru = userDao.findUserById(recip);
 
+        // Find Sender username (sender)
+        String senderUsername = senderUser.getUsername();
+
         // Convert user id to int for constructor
         int uid = Integer.parseInt(String.valueOf(user_id));
 
         // Create verification and notification
-        Verification v = new Verification(uid, ru.getUsername(), date, 1, null, user);
-
-
+        Verification v = new Verification(uid, ru.getUsername(), date, 1, false, user, true, false,senderUsername );
         veriDao.save(v);
         notiServices.createNotification(user.getUsername(), recip, "veri");
 
         model.addAttribute("smoke", smokerInfo);
         model.addAttribute("moneySaved", moneySaved);
+
+        System.out.println("=============================================================POst Recieved!!!!");
+
         return "redirect:/verification/";
     }
 
@@ -178,3 +209,6 @@ public class VerificationController {
         return userDao.findByUsernameContaining(username);
     }
 }
+
+
+

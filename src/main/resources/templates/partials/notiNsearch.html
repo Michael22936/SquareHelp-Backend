@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<th:block th:fragment="notiNsearch">
+  <div class="row">
+    
+    <div class="notiSearch">
+      <div class="input-group">
+        <form th:href="@{'/dashboard/' + ${users.id}}" method="post" style="display: flex;
+                          margin-bottom: 0;">
+          <input type="text" class="form-control" id="navbarSearch" name="searchQuery"
+                 placeholder="Search Username..."
+                 aria-label="Recipient's username" aria-describedby="basic-addon2" style="width: auto;">
+          <!-- Search Results Dropdown -->
+          <ul class=" rounded list-group " id="dashboardResult"></ul>
+          <div class="input-group-append" style="margin: 0 .5rem;"></div>
+        </form>
+      </div>
+      
+      <a class="nav-link" th:href="@{'/notifications'}" style="color: #000000;"><i class="far fa-bell"></i><span
+              th:if="${alertCount > 0 && users.id == #authentication.principal.id}" th:text="${alertCount}" class=" badge badge-primary " id="notifyResult"></span></a>
+    </div>
+    
+  </div>
+
+</th:block>
+
+
+
+
+

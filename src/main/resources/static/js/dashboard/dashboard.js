@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             plotOptions: {
                 radialBar: {
                     offsetY: -10,
-                    startAngle: 0,
+                    startAngle: 40,
                     endAngle: 270,
                     hollow: {
                         margin: 5,
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
             responsive: [{
-                breakpoint: 480,
+                breakpoint: undefined,
                 options: {
                     legend: {
                         show: false
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
             plotOptions: {
                 radialBar: {
                     offsetY: -10,
-                    startAngle: 0,
+                    startAngle: 40,
                     endAngle: 270,
                     hollow: {
                         margin: 5,
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             },
             responsive: [{
-                breakpoint: 480,
+                breakpoint: undefined,
                 options: {
                     legend: {
                         show: false

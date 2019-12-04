@@ -1,34 +1,40 @@
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
-  <th:block th:replace="partials/head :: main-header"/>
-  <link rel="stylesheet" th:href="@{/css/messages.css}" />
-  <title>SquareHelp - Create a message</title>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    
-    <main class="container">
-      
-      <section class="row contentBg d-flex">
-        <form th:action="'/message'" method="post" th:object="${messages}">
-          <h1 class="mb-2">Who do you want to send a message to: </h1>
-          <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class=" justify-content-center w-75" required>
-          <ul class=" rounded list-group w-75" id="messageUserResults">
-            <th:block th:object="${users}">
-              <input type="text" name="aId" th:field="*{id}" class="d-none">
-            </th:block>
-          </ul>
-        </form>
-      </section>
-      
-      <!-- Footer -->
-      <div class="row">
-        <th:block th:replace="partials/footer :: main-footer"/>
-        <th:block th:replace="partials/searchbar :: navbar-search"/>
-        <script th:src="@{/js/message/messages.js}"></script>
-      </div>
-    
-    </main>
-    
-  </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - Create a message</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+</head>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg main-panel">
+
+  <!-- Dashboard Content -->
+  <div class="contentBg">
+    <section>
+      <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+    </section>
+
+    <section class="row">
+      <form th:action="'/message'" method="post" th:object="${messages}">
+        <h1 class="mb-2">Who do you want to send a message to: </h1>
+        <input type="text" placeholder="Enter Username..."  name="username" id="searchUserMessage" class=" justify-content-center w-75" required>
+        <ul class=" rounded list-group w-75" id="messageUserResults">
+          <th:block th:object="${users}">
+            <input type="text" name="aId" th:field="*{id}" class="d-none">
+          </th:block>
+        </ul>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <section class="row">
+      <th:block th:replace="partials/footer :: main-footer"/>
+      <th:block th:replace="partials/searchbar :: navbar-search"/>
+      <script th:src="@{/js/message/messages.js}"></script>
+    </section>
+  </div>
+
+</main>
+</body>
 </html>

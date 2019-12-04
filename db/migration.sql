@@ -47,7 +47,8 @@ CREATE TABLE verifications_req (
     approver_name VARCHAR(255),
     day_created DATE,
     days_smoke_free INT(10),
-    is_approved BOOLEAN
+    is_approved BOOLEAN,
+    is_pending BOOLEAN
 );
 
 DROP TABLE IF EXISTS messages;
@@ -66,3 +67,5 @@ CREATE TABLE buddy_sys (
   originator_user_id BIGINT(20),
   recipient_user_id BIGINT(20)
 );
+
+
