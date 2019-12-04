@@ -1,33 +1,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="partials/head :: main-header"/>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <title>SquareHelp - Create New Verification</title>
-    <link rel="stylesheet" th:href="@{/css/verification.css}" />
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - Verifications Search For User</title>
+  <link rel="stylesheet" href="/css/verification.css" />
   </head>
   <body>
-    <main class="container">
-      <section class="row contentBg">
-        <h1>Create new Verification</h1>
-      </section>
+    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container contentBg main-panel">
       
-      <section class="row contentBg">
-        <div class="verification-form-wrapper">
-          <h3>Who do you want to send the verification request to?</h3><br/>
-          <input type="text" placeholder="Enter Username..."  name="username" id="search">
-          <ul class="list-group" id="result"></ul>
-        </div>
+      <!-- /verification Content -->
+      <div class="contentBg">
+        <section>
+          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
         
-      </section>
+        <section class="row veriFormCreate">
       
-      <!-- Footer -->
-      <div class="row">
-        <th:block th:replace="partials/footer :: main-footer"/>
-        <th:block th:replace="partials/searchbar :: navbar-search"/>
-        <script src="/js/verification/verification-form.js"></script>
+          <div class="verification-form-wrapper">
+            <h3>Who do you want to send the verification request to?</h3>
+            <br>
+            <input type="text" placeholder="Enter Username..."  name="username" id="search">
+            <ul class="list-group" id="result"></ul>
+          </div>
+        
+        </section>
+        
+        <!-- Footer -->
+        <section class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+          <th:block th:replace="partials/searchbar :: navbar-search"/>
+          <script src="/js/verification/verification-form.js"></script>
+        </section>
       </div>
     
     </main>
-    
   </body>
 </html>

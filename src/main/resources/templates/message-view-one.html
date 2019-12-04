@@ -1,66 +1,75 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - Messages</title>
   <link rel="stylesheet" href="/css/messages.css" />
-  <title>SquareHelp - chat with <span th:text="${recip.getUsername()}"></span></title>
   </head>
   <body>
-  <!-- Navbar -->
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-  <main class="container">
+    <main class="container contentBg main-panel">
       
-      <section class="row contentBg">
-        <div class="msgWrapper">
-          <h3>Conversation with <span th:text="${recip.getUsername()}"></span></h3>
-          
-          <div class="msgBtnRow">
-            <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
-                    class="far fa-plus-square"></i> </button>
-            <button type="button" onclick="window.location.href = '/message/'"
-                    class="btn btn-outline-primary mb-2"> <i class="fas fa-arrow-left"></i> </button>
-          </div>
-          
-          <!-- Message area -->
-          <div class="messageAreaBg messageArea" id="messageArea">
-            <div class="convoWrapper" th:each="convo : ${conversation}">
-              <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">
-                <span th:text="${convo.getLast_updated()}" class="dates"></span>
-                <span th:text="${recip.getUsername()}"></span>:
-                <span th:text="${convo.getMessage()}"></span>
-              </p>
-              <p th:if="${convo.getAuthor_user_id() == users.getId()}" class="messageText messageThem">
-                <span th:text="${convo.getLast_updated()}"></span>
-                Me:
-                <strong><span th:text="${convo.getMessage()}"></span></strong>
-              </p>
+      <!-- /message/view Content -->
+      <div class="contentBg">
+        <section>
+          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
+        
+        <section class="row">
+          <div class="msgWrapper">
+            <h3>Conversation with <span th:text="${recip.getUsername()}"></span></h3>
+        
+            <div class="msgBtnRow">
+              <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
+                      class="far fa-plus-square"></i> </button>
+              <button type="button" onclick="window.location.href = '/message/'"
+                      class="btn btn-outline-primary mb-2"> <i class="fas fa-arrow-left"></i> </button>
+            </div>
+        
+            <!-- Message area -->
+            <div class="messageAreaBg messageArea" id="messageArea">
+              <div class="convoWrapper" th:each="convo : ${conversation}"></div>
             </div>
           </div>
-        </div>
+      
+          <!-- Quick response bar -->
+          <form th:action="'/message/view/' + ${recip.id} + '/quick'" method="post" id="qrb">
+            <div class="input-group mb-3 form-group">
+              <input type="text" placeholder="Type a message" name="message" class="form-control">
+              <button type="submit" class="btn btn-outline-primary"><i class="far fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </section>
+  
+        <!-- Section is used to transfer conversation info to message-one-api-->
+        <section>
+          <input type="text" class="d-none" id="author" th:value="${users.id}"></input>
+          <input type="text" class="d-none" id="authorName" th:value="${users.username}"></input>
+  
+          <th:block th:if="${users.profilePic != null}">
+            <input type="text" class="d-none" id="authorPic" th:value="${users.profilePic}"></input>
+          </th:block>
+          <th:block th:if="${users.profilePic == null}">
+            <input type="text" class="d-none" id="authorPic" value="/img/profile/unknown-user.jpg"></input>
+          </th:block>
+          
+          <input type="text" class="d-none" id="recip" th:value="${recip.id}"></input>
+          <input type="text" class="d-none" id="recipUsername" th:value="${recip.username}"></input>
+  
+          <th:block th:if="${recip.profilePic != null}">
+            <input type="text" class="d-none" id="recipPic" th:value="${recip.profilePic}"></input>
+          </th:block>
+          <th:block th:if="${recip.profilePic == null}">
+            <input type="text" class="d-none" id="recipPic" value="/img/profile/unknown-user.jpg"></input>
+          </th:block>
+        </section>
         
-        <!-- Quick response bar -->
-        <form th:action="'/message/view/' + ${recip.id} + '/quick'" method="post" id="qrb">
-          <div class="input-group mb-3 form-group">
-            <input type="text" placeholder="Type a message" name="message" class="form-control">
-            <button type="submit" class="btn btn-outline-primary"><i class="far fa-paper-plane"></i></button>
-          </div>
-        </form>
-      
-      </section>
-      
-      <!-- Section is used to transfer conversation info to message-one-api-->
-      <section>
-        <input type="text" class="d-none" id="author" th:value="${users.id}"></input>
-        <input type="text" class="d-none" id="recip" th:value="${recip.id}"></input>
-        <input type="text" class="d-none" id="recipUsername" th:value="${recip.username}"></input>
-      </section>
-    
-      <!-- Footer -->
-      <div class="row">
-        <th:block th:replace="partials/footer :: main-footer"/>
-        <th:block th:replace="partials/searchbar :: navbar-search"/>
-        <script src="/js/message/message-one-api.js"></script>
+        <!-- Footer -->
+        <section class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+          <th:block th:replace="partials/searchbar :: navbar-search"/>
+          <script src="/js/message/message-one-api.js"></script>
+        </section>
       </div>
     
-  </main>
-  
+    </main>
   </body>
 </html>

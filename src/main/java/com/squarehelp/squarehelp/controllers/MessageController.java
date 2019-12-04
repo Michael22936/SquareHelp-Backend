@@ -87,6 +87,8 @@ public class MessageController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long id = user.getId();
 
+        User loggedInUser = userDao.getOne(id);
+
         List<Messages> m = messageDao.findAll();
 
         // Filter this logged in user and specified recipient conversation only
@@ -105,7 +107,7 @@ public class MessageController {
         model.addAttribute("msgs", m);
 
         model.addAttribute("smoke", smokeDao.getOne(id));
-        model.addAttribute("users", user);
+        model.addAttribute("users", loggedInUser);
 
         return "message-view-one";
     }

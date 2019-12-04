@@ -1,3 +1,11 @@
+main {
+    height: auto;
+}
+
+h5 {
+    margin-bottom: 2rem;
+}
+
 .custom-card-style {
     background: grey;
     /*color: grey;*/
@@ -10,6 +18,7 @@
 .verification-form-wrapper {
     display: flex;
     flex-direction: column;
+    margin: 1.5rem 0;
 }
 
 .sentReq, .recRec {
@@ -25,8 +34,31 @@
 .verification-view-wrapper {
     display: flex;
     flex-direction: column;
+    margin: 1.5rem 0;
 }
 
 .approve-veri {
     margin-top: 1rem;
+}
+
+#createVeri {
+    margin: 1.5rem 0;
+}
+
+#result a {
+    color: #000000;
+}
+
+.veriFormCreate {
+    justify-content: center;
+}
+
+.verification-form-create-wrapper {
+    margin: 1.5rem 0;
+}
+
+#profileImg {
+    width: 225px;
+    height: 225px;
+    margin-bottom: 2rem !important;
 }
