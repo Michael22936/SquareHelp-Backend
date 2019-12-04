@@ -143,6 +143,15 @@ footer {
   background: #fff;
   margin-bottom: 1rem;
   width: 100%;
+  margin-top: 10rem;
+}
+
+footer a {
+  color: #212121 !important;
+}
+
+footer a:hover {
+  color: #5a5a5a !important;
 }
 
 footer ul {

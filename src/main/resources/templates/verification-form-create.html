@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <th:block th:replace="partials/head :: main-header"/>
-  <title>SquareHelp - Verifications For User</title>
+  <title>SquareHelp - Verifications Create Form</title>
   <link rel="stylesheet" href="/css/verification.css" />
   </head>
   <body>
@@ -35,8 +35,7 @@
 
         function checkDate(){
             let inputDate = document.getElementById("date").value;
-            console.log("date Pickers Value : " + inputDate + " " + typeof inputDate);
-            console.log("Input is not empty!!! :)");
+
           loopThruApprovedDates(inputDate);
         }
 
@@ -56,7 +55,6 @@
               // Hides the Submit button
               document.getElementById("submit").style.display = "none";
 
-              console.log("=*=*=*=*=*=*=*==*= Matched input date with: " + userApprovedDaysList[i].day_created + " ❌❌❌");
 
               break;
             }
@@ -65,7 +63,7 @@
               document.getElementById("date").classList.remove("is-invalid"); // Hide red border and X for input
               document.getElementById("submit").style.display = "block"; // Show submit button
               document.getElementById("invalidDate").style.display = "none"; // Hide invalid date error message
-              console.log("===================== User date is not a MATCH, remove error message");
+
               break;
             }
 
