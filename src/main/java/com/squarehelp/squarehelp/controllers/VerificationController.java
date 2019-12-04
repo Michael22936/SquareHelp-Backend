@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.squarehelp.squarehelp.util.Calculator.*;
@@ -139,10 +140,29 @@ public class VerificationController {
         int moneySaved = calcMoneySaved(smokerInfo.getCost_of_cigs_saved(), smokerInfo.getTotal_days_smoke_free());
         int unreadNotifications = unreadNotificationsCount(notiDao, id);
         List<Verification> approveDays = veriDao.findAllApprovedDays();
+        List<Verification> filteredApproveDays = new ArrayList<>();
+
+
+        for (Verification approvalDay : approveDays){
+            User signedinUser = userDao.findUserById(id);
+            String userSignedIn = signedinUser.getUsername();
+            String senderName =  approvalDay.getSender_name();
+            if( userSignedIn.equalsIgnoreCase(senderName)  ){
+                filteredApproveDays.add(approvalDay);
+            }
+        }
+
+        System.out.println("=============================filteredApproveDays.toString() = " + filteredApproveDays.toString());
+        System.out.println("=============================Original array list " + approveDays.toString());
+
 
         User ru = userDao.findUserById(recip);
 
-        model.addAttribute("approvedDays", approveDays);
+        System.out.println("=======================user being pulled from the PathVariable " + userDao.getOne(user_id).getUsername() );
+
+//        model.addAttribute("signedInUser", UserSignedInList);
+//        model.addAttribute("approvedDays", approveDays);
+        model.addAttribute("approvedDaysList", filteredApproveDays);
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("recipient", ru);
         model.addAttribute("users", userDao.getOne(user_id));

@@ -1,18 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <th:block th:replace="partials/head :: main-header"/>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <title>SquareHelp - Verifications For User</title>
-    <link rel="stylesheet" th:href="@{/css/verification.css}" />
-
+  <th:block th:replace="partials/head :: main-header"/>
+  <title>SquareHelp - Verifications For User</title>
+  <link rel="stylesheet" href="/css/verification.css" />
   </head>
   <body>
-    <main class="container">
-      <div class="row contentBg">
-        <h1>Verification Request</h1>
-      </div>
+  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+    <main class="container contentBg main-panel">
       
-      <section class="row contentBg">
+      <!-- /verification Content -->
+      <div class="contentBg">
+        <section>
+          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+        </section>
         
         <form th:action="@{/verification/{uid}/form/send/{rid}(uid=${users.getId()},rid=${recipient.getId()})}"
               method="post">
@@ -20,42 +19,73 @@
             <input type="text" name="user_id" th:value="${users.getId()}" class="d-none"/>
             <input type="text" name="recip" th:value="${recipient.getId()}" class="d-none"/>
             <label for="date"><h5>Enter the date you did not smoke?</h5></label>
-            <input type="date" name="date" id="date" class="mb-2" style="text-align: center;" required>
-            <button type="button" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
+            <input type="date" name="date" id="date" class="mb-2 datePicker" style="text-align: center;" required oninput="checkDate()">
+            <button type="submit" id="submit" class="btn btn-outline-primary linkSub">Submit</button>
           </div>
         </form>
-      
+
       </section>
 
       <script th:inline="javascript">
 
-        let dateSubmit = document.querySelector("#date");
-        let approvedDays = [[${approvedDays}]];
-        dateSubmit.addEventListener('click', (e) => {
-          console.log("button pressed!!");
+        let dateSubmit = document.querySelector(".datePicker");
 
-          console.log(approvedDays);
-          approvedDays.map(approvedDay => {
+        const userApprovedDaysList = [[${approvedDaysList}]];
+        console.log(userApprovedDaysList);
+        // const approvedDaysList = [[${approvedDays}]];
+        // const userObjSignedIn = [[${signedInUser}]];
+        // dateSubmit.addEventListener('keyup', (e) => {
+        //   console.log("key pressed!!");
+
+          // console.log(approvedDaysList);
+          // console.log(userObjSignedIn);
+
+        function checkDate(){
             let inputDate = document.getElementById("date").value;
-            if(inputDate === approvedDay){
-              let out = console.log("same day");
+            console.log("date Pickers Value : " + inputDate);
 
-              return out;
+
+            if(inputDate === 10 ){
+
+              console.log("=*=*=*=*=*=*=*==*= Matched 10!")
             }
-          })
 
-        });
+          console.log("Input is not empty!!! :)")
+        }
+
+
+          // console.log("===sender name: " + userObjSignedIn.[0].username);
+        userApprovedDaysList.map(approvedDay => {
+
+          console.log(approvedDay);
+
+          console.log("===days approved : " + approvedDay.day_created);
+        //
+        //
+        //     // if(inputDate === approvedDay  ){
+        //     //   console.log("===== Date MATCHED " + approvedDay);
+        //     //    console.log("same day");
+        //     //
+        //     //
+        //     // }
+        //   });
+
+            });
       </script>
 
-      <!-- Footer -->
-      <div class="row">
-        <script src="/js/dashboard/dashboard.js"></script>
-        <th:block th:replace="partials/footer :: main-footer"/>
-        <th:block th:replace="partials/searchbar :: navbar-search"/>
+
+
+<!--        </section>-->
+
+        <!-- Footer -->
+        <section class="row">
+          <th:block th:replace="partials/footer :: main-footer"/>
+          <th:block th:replace="partials/searchbar :: navbar-search"/>
+          <script src="/js/verification/verification-form.js"></script>
+        </section>
       </div>
     
     </main>
-
-
+  
   </body>
 </html>

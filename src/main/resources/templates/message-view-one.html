@@ -26,33 +26,7 @@
         
             <!-- Message area -->
             <div class="messageAreaBg messageArea" id="messageArea">
-              <div class="convoWrapper" th:each="convo : ${conversation}">
-              
-<!--                <p th:if="${convo.getAuthor_user_id() == recip.getId()}" class="messageText messageThem">-->
-<!--                  <span th:text="${convo.getLast_updated()}" class="messageConvoItem dates"></span>-->
-<!--                  <th:block th:if="${recip.profilePic != null}">-->
-<!--                    <img th:src="${recip.profilePic}" class="messageConvoItem messageProfilePic">-->
-<!--                  </th:block>-->
-<!--                  <th:block th:if="${recip.profilePic == null}">-->
-<!--                    <img src="/img/profile/unknown-user.jpg" class="messageConvoItem messageProfilePic">-->
-<!--                  </th:block>-->
-<!--                  <span th:text="${recip.getUsername()}" class="messageConvoItem"></span>:-->
-<!--                  <span th:text="${convo.getMessage()}" class="messageConvoItem"></span>-->
-<!--                </p>-->
-<!--                -->
-<!--                <p th:if="${convo.getAuthor_user_id() == users.getId()}" class="messageText messageThem">-->
-<!--                  <span th:text="${convo.getLast_updated()}" class="messageConvoItem dates"></span>-->
-<!--                  <th:block th:if="${users.profilePic != null}">-->
-<!--                    <img th:src="${users.profilePic}" class="messageConvoItem messageProfilePic">-->
-<!--                  </th:block>-->
-<!--                  <th:block th:if="${users.profilePic == null}">-->
-<!--                    <img src="/img/profile/unknown-user.jpg" class="messageConvoItem messageProfilePic">-->
-<!--                  </th:block>-->
-<!--                  <span th:text="${users.getUsername()}" class="messageConvoItem"></span>:-->
-<!--                  <span th:text="${convo.getMessage()}" class="messageConvoItem"></span>-->
-<!--                </p>-->
-                
-              </div>
+              <div class="convoWrapper" th:each="convo : ${conversation}"></div>
             </div>
           </div>
       
