@@ -1,47 +1,67 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
     <th:block th:replace="partials/head :: main-header"/>
+    <title>SquareHelp - Notifications</title>
     <link rel="stylesheet" th:href="@{/css/notifications.css}" />
-    <title>Notifications Page</title>
     </head>
-    <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <body>
-        <main class="container">
-            
-            <section class="row contentBg">
-                <div class="row">
-                    <h1>Notifications</h1>
-                </div>
+        <body>
+        <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+            <main class="container contentBg main-panel">
                 
-                <!-- Table to display notifications -->
-                <table class="table table-hover table-dark text-center table-condensed">
-                    <thead>
-                        <tr>
-                            <th scope="col">Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <div th:each="noti : ${notifications}">
-                            <th:block th:if="${noti.getNotification().contains('message')}">
-                                <tr th:onclick="'window.location.href = \'' + @{/message/} + '\''">
-                                    <td th:text="${noti.notification}"></td>
-                                </tr>
-                            </th:block>
-                            <th:block th:if="${noti.getNotification().contains('verification')}">
-                                <tr th:onclick="'window.location.href = \'' + @{/verification/} + '\''">
-                                    <td th:text="${noti.notification}"></td>
-                                </tr>
-                            </th:block>
+                <!-- /notification Content -->
+                <div class="contentBg">
+                    <section>
+                        <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+                    </section>
+                    
+                    <section class="row veriFormCreate">
+                        
+                        <h1>Notifications</h1>
+                        
+                        <!-- Table to display notifications -->
+                        <div class="noti" th:if="${notifications.size() > 0}">
+                            <table class="table table-hover text-center table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <div th:each="noti : ${notifications}">
+                                        <th:block th:if="${noti.getNotification().contains('message')}">
+                                            <tr th:onclick="'window.location.href = \'' + @{/message/} + '\''">
+                                                <td th:text="${noti.notification}"></td>
+                                            </tr>
+                                        </th:block>
+                                        <th:block th:if="${noti.getNotification().contains('verification')}">
+                                            <tr th:onclick="'window.location.href = \'' + @{/verification/} + '\''">
+                                                <td th:text="${noti.notification}"></td>
+                                            </tr>
+                                        </th:block>
+                                    </div>
+                                </tbody>
+                            </table>
                         </div>
-                    </tbody>
-                </table>
-            </section>
+                        <div class="noti" th:if="${notifications.size() == 0}">
+                            <small class="text-muted text-center">You have no notifications yet.</small>
+                            <br>
+                            <small class="text-muted text-center"><a class="text-dark" href="/aboutus">Read more
+                                about Squarehelp here</a>. Ask someone to
+                                <a class="text-dark" href="/message">send you a message</a>. Send someone a <a
+                                        class="text-dark"
+                                        href="/verification">verification request</a>.
+                            </small>
+                        </div>
+                        
+                    </section>
+                    
+                    <!-- Footer -->
+                    <section class="row">
+                        <th:block th:replace="partials/footer :: main-footer"/>
+                        <th:block th:replace="partials/searchbar :: navbar-search"/>
+                        <script src="/js/verification/verification-form.js"></script>
+                    </section>
+                </div>
             
-            <!-- Footer -->
-            <div class="row">
-                <th:block th:replace="partials/footer :: main-footer"/>
-                <th:block th:replace="partials/searchbar :: navbar-search"/>
-            </div>
-            
-        </main>
-    </body>
+            </main>
+        </body>
 </html>
