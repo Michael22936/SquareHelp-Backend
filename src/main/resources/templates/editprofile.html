@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
-<title>SquareHelp - x</title>
+<title>SquareHelp - Edit Profile</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <link rel="stylesheet" th:href="@{/css/editprofile.css}" />
@@ -19,9 +19,14 @@
             <div class="editProfileWrapper">
                 <form class="formLayout" th:action="'/profile/' + ${users.id} + '/edit'" th:method="post" th:object="${users}">
                     <div class="editProfileWrapper-left col-md-4">
-                        <img id="profileImg" class="mb-2" src="/img/profile/225.png">
+                        <th:block th:if="${users.profilePic == null}">
+                            <img id="profileImg" class="mb-2" src="/img/profile/unknown-user.jpg">
+                        </th:block>
+                        <th:block th:if="${users.profilePic != null}">
+                            <img id="profileImg" class="mb-2" th:src="${users.profilePic}">
+                        </th:block>
                         <input id="picker" class="file-input" type="file" accept="image/jpeg, image/png" />
-                        <input type="hidden" id="fileupload" name="profilePic" />
+                        <input type="hidden" id="fileupload" name="profilePic" th:value="${users.profilePic}" />
                     </div>
                     <div class="editProfileWrapper-right">
                         <h1>Edit Profile</h1>
@@ -39,9 +44,67 @@
                         <tr>
                             <td>Edit State: </td>
                             <td><label for="state"></label></td>
-                            <td><input type="text" id="state" th:field="*{state}" th:value="${users.state}"></td>
+                            <td> <div class="form-group">
+                                    <select id="state" name="state" class="form-control" th:field="*{state}">
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX" selected>Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                            </td>
                         </tr>
                         </table>
+
+                        <!-- Select Basic -->
+
 
                         <div class="divideDiv mb-2"></div>
 
@@ -55,7 +118,8 @@
         <section class="row">
             <th:block th:replace="partials/footer :: main-footer"/>
             <th:block th:replace="partials/searchbar :: navbar-search"/>
-            <script src="/js/dashboard/dashboard.js"></script>
+            <script src="http://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+            <script src="/js/util/filestack-impl.js"></script>
         </section>
     </div>
 
