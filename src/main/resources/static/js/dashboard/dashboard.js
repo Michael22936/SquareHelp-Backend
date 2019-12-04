@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Calculate highest points by users
             let mostPoints = Math.max(...ArrayAllUsersPoints);
-            let percentage = (TotalUsersAvgPointsFixed * 100 / mostPoints) // TotalAvgPoints / highestUserPoints
+            let percentage = (TotalUsersAvgPointsFixed * 100 / mostPoints); // TotalAvgPoints / highestUserPoints
             trimmedpercentage = parseInt( percentage.toFixed() );
 
             // Calculate All Users Avg Smoke free Days
