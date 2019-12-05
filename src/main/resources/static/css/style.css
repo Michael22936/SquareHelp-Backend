@@ -143,13 +143,14 @@ input {
 
 .divideDiv {
   height: 3px;
-  border: gray 2px solid;
+  border: black 2px solid;
   width: 100%;
+  margin-bottom: 1rem !important;
 }
 
 footer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: 1rem 3rem 1rem 3rem;
   background: #fff;
