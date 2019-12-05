@@ -2,6 +2,21 @@ main {
     height: auto;
 }
 
+h5 {
+    margin-bottom: 1rem;
+}
+
+footer {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.main-panel {
+    left: 0;
+    margin-left: 220px;
+    position: inherit;
+}
+
 .headline {
     display: flex;
     flex-direction: column;
@@ -19,8 +34,12 @@ main {
     margin: 0 auto;
 }
 
-.userRow{
+.userRow {
     cursor: pointer;
+}
+
+.actions {
+    margin-bottom: 1rem;
 }
 
 .apexcharts-toolbar, .apexcharts-menu-icon{
@@ -31,7 +50,6 @@ main {
     position: relative;
     left: 50px;
     width: 100%;
-
 }
 
 .apexcharts-legend{
@@ -53,6 +71,55 @@ main {
     width: 50%;
     transition:all 1s ease;
 }
+
+@media (max-width: 992px) {
+    .contentBg {
+        padding: 10px;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .main-panel {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .actions {
+        width: 100% !important;
+    }
+
+    .mBtn {
+        width: 100%;
+        margin-top: .5rem;
+    }
+
+    footer {
+        margin-top: 3rem;
+    }
+
+    body {
+        width: 100% !important;
+    }
+
+    main {
+        width: 100% !important;
+    }
+
+    .card {
+        margin-top: 1rem;
+    }
+
+    .smokeFreePop {
+        font-size: 3rem;
+    }
+
+    .headline {
+        margin-top: .8rem;
+    }
+}
+
 
 
 /*// Extra small devices (portrait phones, less than 576px)*/
