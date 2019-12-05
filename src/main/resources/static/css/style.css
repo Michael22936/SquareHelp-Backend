@@ -141,9 +141,16 @@ input {
 
 /* footer */
 
+.divideDiv {
+  height: 3px;
+  border: black 2px solid;
+  width: 100%;
+  margin-bottom: 1rem !important;
+}
+
 footer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: 1rem 3rem 1rem 3rem;
   background: #fff;
@@ -154,10 +161,12 @@ footer {
 
 footer a {
   color: #212121 !important;
+  text-decoration: underline !important;
 }
 
 footer a:hover {
-  color: #5a5a5a !important;
+  color: #8a8a8a !important;
+  text-decoration: underline !important;
 }
 
 footer ul {
@@ -218,6 +227,10 @@ footer ul li {
 
   .contentBg {
     min-height: 80%;
+  }
+
+  footer {
+    padding: 10px;
   }
 
 }

@@ -36,7 +36,7 @@
               <div class="col-md-6">
                 <input id="Username" name="Username" type="text" placeholder="" class="form-control input-md"
                        th:field="*{username}" required="">
-                <span class="help-block">Enter a username</span>
+                <span class="help-block">Enter a username</span><span class="req">*</span>
               </div>
             </div>
       
@@ -46,7 +46,7 @@
               <div class="col-md-6">
                 <input id="password" name="password" type="password" placeholder="" class="form-control input-md"
                        th:field="*{password}" required="">
-                <span class="help-block">Enter a password</span>
+                <span class="help-block">Enter a password</span><span class="req">*</span>
               </div>
             </div>
       
@@ -56,7 +56,7 @@
               <div class="col-md-6">
                 <input id="email" name="email" type="email" placeholder="" class="form-control input-md"
                        th:field="*{email}" required="">
-                <span class="help-block">Enter a valid email</span>
+                <span class="help-block">Enter a valid email</span><span class="req">*</span>
               </div>
             </div>
             
@@ -65,8 +65,8 @@
               <label class="col-md-6 control-label" for="email">Date of Birth</label>
               <div class="col-md-6">
                 <input id="dob" type="date" placeholder="" class="form-control input-md" th:field="*{dob}"
-                       required="">
-                <span class="help-block">Enter your birthday</span>
+                       required>
+                <span class="help-block">Enter your birthday</span><span class="req">*</span>
               </div>
             </div>
       
@@ -75,8 +75,8 @@
               <label class="col-md-6 control-label" for="phone">Phone Number</label>
               <div class="col-md-6">
                 <input id="phone" name="phone" type="number" placeholder="" class="form-control input-md"
-                       th:field="*{phoneNumber}" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10">
-                <span class="help-block">Enter a phone number</span>
+                       th:field="*{phoneNumber}" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" required>
+                <span class="help-block">Enter a phone number</span><span class="req">*</span>
               </div>
             </div>
             
@@ -84,7 +84,7 @@
             <div class="form-group">
               <label class="col-md-6 control-label" for="city">City</label>
               <div class="col-md-6">
-                <input id="city" name="city" type="text" placeholder="" class="form-control input-md" required="">
+                <input id="city" name="city" type="text" placeholder="" class="form-control input-md">
                 <span class="help-block">Enter a city</span>
               </div>
             </div>

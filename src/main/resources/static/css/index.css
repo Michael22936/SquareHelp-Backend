@@ -9,6 +9,10 @@
     max-width: none;
 }
 
+main {
+    padding-top: 10%;
+}
+
 .centerText{
     min-width: 50%;
     padding-top: 10rem;
@@ -34,22 +38,35 @@
     justify-content: center;
 }
 
-footer{
+.jumboWrapper {
+    background: rgba(0,0,0,0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 50%;
+    margin: auto;
+}
+
+footer {
     background-color: #000000 !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
-footer a{
+footer a {
     color: white !important;
 }
 
-#mobileIndex{
+#mobileIndex {
     display: none;
 }
 
-#largeIndex{
+#largeIndex {
     display: flex;
+    background: #000000 !important;
+}
+
+#divideDiv {
+    display: none;
 }
 
 /* Mobile view (992px max width) */
@@ -94,6 +111,10 @@ footer a{
     }
 
     #largeIndex{
+        display: none;
+    }
+
+    #divideDiv {
         display: none;
     }
 }
