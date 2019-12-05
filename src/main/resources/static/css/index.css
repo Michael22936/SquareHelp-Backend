@@ -50,6 +50,7 @@ footer a{
 
 #largeIndex{
     display: flex;
+    background: #000000 !important;
 }
 
 /* Mobile view (992px max width) */

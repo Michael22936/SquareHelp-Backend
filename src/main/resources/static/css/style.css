@@ -141,6 +141,12 @@ input {
 
 /* footer */
 
+.divideDiv {
+  height: 3px;
+  border: gray 2px solid;
+  width: 100%;
+}
+
 footer {
   display: flex;
   flex-direction: row;
@@ -154,10 +160,12 @@ footer {
 
 footer a {
   color: #212121 !important;
+  text-decoration: underline !important;
 }
 
 footer a:hover {
-  color: #5a5a5a !important;
+  color: #8a8a8a !important;
+  text-decoration: underline !important;
 }
 
 footer ul {
