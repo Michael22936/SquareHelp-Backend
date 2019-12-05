@@ -18,3 +18,13 @@ nav-wrapper {
 #smallNav {
     display: none;
 }
+
+#quitCoin {
+    color: #ffffff;
+    margin-left: 1rem;
+}
+
+#divideDivNavbar {
+    border: white 2px solid;
+    margin-top: 1rem;
+}
