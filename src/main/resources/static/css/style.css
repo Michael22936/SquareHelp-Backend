@@ -187,6 +187,10 @@ footer ul li {
     background: green;
   }
 
+  footer {
+    padding: 10px;
+  }
+
   .main-panel {
     position: initial;
     margin-top: 0;
