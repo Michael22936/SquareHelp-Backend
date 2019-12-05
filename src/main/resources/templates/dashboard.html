@@ -17,19 +17,20 @@
     <section class="row">
       <div class="headline">
         <h1>Welcome <span th:text="${users.username}"></span></h1>
-        <h3>You are <span th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h3>
+        <h5>You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free
+          .</h5>
         <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-        <h5>Day you quit smoking: <span class="dates" th:text="${smoke.day_quit_smoking}"></span></h5>
+        <h5>You quit smoking: <span class="dates" th:text="${smoke.day_quit_smoking}"></span></h5>
       </div>
     </section>
     <section class="row">
       <div class="actions">
-        <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary">Create a
+        <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary mBtn">Create a
           verification
           request</button></a>
-        <a th:href="@{'/message'}"><button type="button" class="btn btn-outline-primary">View your
+        <a th:href="@{'/message'}"><button type="button" class="btn btn-outline-primary mBtn">View your
           messages</button></a>
-        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-outline-primary">Check for
+        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-outline-primary mBtn">Check for
           notifications
         </button></a>
       </div>
