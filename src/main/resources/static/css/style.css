@@ -216,4 +216,8 @@ footer ul li {
     min-height: 80%;
   }
 
+  footer {
+    padding: 10px;
+  }
+
 }
