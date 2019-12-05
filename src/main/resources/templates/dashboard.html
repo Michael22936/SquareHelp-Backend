@@ -17,10 +17,9 @@
     <section class="row">
       <div class="headline">
         <h1>Welcome <span th:text="${users.username}"></span></h1>
-        <h5>You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free
-          .</h5>
+        <h5>You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
         <h5>You have earned <span th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-        <h5>You quit smoking: <span class="dates" th:text="${smoke.day_quit_smoking}"></span></h5>
+        <h5>You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
       </div>
     </section>
     <section class="row">
@@ -51,9 +50,9 @@
   
   <!-- Footer -->
   <section class="row">
-
     <th:block th:replace="partials/footer :: main-footer"/>
     <th:block th:replace="partials/searchbar :: navbar-search"/>
+    <script src="/js/util/moment.min.js"></script>
     <script src="/js/dashboard/dashboard.js"></script>
   </section>
 
