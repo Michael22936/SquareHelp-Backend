@@ -12,9 +12,9 @@ footer {
 }
 
 .main-panel {
-    left: 0;
+    /*left: 0;*/
     margin-left: 220px;
-    position: inherit;
+    /*position: inherit;*/
 }
 
 .headline {
@@ -72,6 +72,81 @@ footer {
     transition:all 1s ease;
 }
 
+#profilePic{
+    width: 16em;
+    height: 16em;
+    border-radius: 50%;
+    margin-right: 2.5em;
+}
+
+.row{
+    margin-bottom: 2em;
+}
+
+#userInfoContainer{
+    display: flex;
+    flex-wrap: unset;
+}
+
+
+
+.smokeFreePop {
+    /*font-size: 3rem;*/
+    font-size: xx-large;
+    color: red;
+}
+
+.pointsPop{
+    font-size: xx-large;
+    color: red;
+}
+
+.dashboard-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+}
+
+#username-info{
+    width: 100%;
+}
+
+#calIcon{
+    position: relative;
+    top: -31px;
+    font-size: 2em;
+}
+
+.badge-img{
+    width: 2em;
+    height: 3em;
+    position: relative;
+    top: 11px;
+
+}
+
+#smokeIcon{
+    position: relative;
+    bottom: -40px;
+    font-size: 2em;
+}
+
+.userInfoBox{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#headline-text1{
+    margin-bottom: 2em;
+}
+
+#headline-text2{
+    margin-bottom: 2.2em;
+}
+
+
 @media (max-width: 992px) {
     .contentBg {
         padding: 10px;
@@ -111,9 +186,7 @@ footer {
         margin-top: 1rem;
     }
 
-    .smokeFreePop {
-        font-size: 3rem;
-    }
+
 
     .headline {
         margin-top: .8rem;
