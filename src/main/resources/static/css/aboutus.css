@@ -51,6 +51,14 @@ p{
     margin-bottom: 0;
 }
 
+.navbar{
+    display: flex !important;
+}
+
+ul{
+    justify-content: flex-end;
+}
+
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
