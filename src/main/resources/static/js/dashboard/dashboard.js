@@ -215,5 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }); // end of of 4th fetch .then
 
+    // Convert date to a pretty readable date.
+    // Using moment.js
+    let d = document.getElementById("dayQuit");
+    d.innerText = moment(d.value).format("MMMM D, YYYY");
 
 }) // Load when document is ready END
