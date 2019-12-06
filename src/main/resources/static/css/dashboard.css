@@ -72,6 +72,17 @@ footer {
     transition:all 1s ease;
 }
 
+#profilePic{
+    width: 16em;
+    height: 16em;
+    border-radius: 50%;
+    margin-right: 5em;
+}
+
+.row{
+    margin-bottom: 2em;
+}
+
 @media (max-width: 992px) {
     .contentBg {
         padding: 10px;
