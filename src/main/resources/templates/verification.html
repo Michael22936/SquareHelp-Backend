@@ -1,116 +1,208 @@
 <html xmlns:th="http://www.thymeleaf.org">
-  <th:block th:replace="partials/head :: main-header"/>
-  <title>SquareHelp - Verifications</title>
-  <link rel="stylesheet" href="/css/verification.css" />
-  </head>
-  <body>
-  <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <main class="container contentBg main-panel">
-      
-      <!-- /verification Content -->
-      <div class="contentBg">
+<th:block th:replace="partials/head :: main-header"/>
+<title>SquareHelp - Verifications</title>
+<link rel="stylesheet" href="/css/verification.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
+<main class="container contentBg main-panel">
+
+    <!-- /verification Content -->
         <section>
-          <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
+            <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
         </section>
-        
+
         <section class="row">
-      
-          <!-- Button to create verification form -->
-          <a class="btn btn-primary" role="button" id="createVeri"
-             th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
-            Verification
-              Form</a>
-          <br>
-        
-          <!-- Table to display received results results -->
-          <div class="recRec">
+
+            <!-- Button to create verification form -->
+            <a class="btn btn-primary" role="button" id="createVeri"
+               th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
+                Verification
+                Form</a>
+            <br>
+
+            <!-- Table to display received results results -->
+            <div class="recRec reqDesktopView">
+                <h3>Recieved requests</h3>
+                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
+                </a>
+                <div class="collapse show" id="recReqs">
+                    <table class="table table-hover text-dark text-center table-condensed table-responsive">
+                        <thead>
+                        <tr>
+                            <th scope="col">Verify Date</th>
+                            <th scope="col">Approver Name</th>
+                            <th scope="col">Sender Name</th>
+                            <th scope="col">Days Smoke free</th>
+                            <th scope="col">Approved</th>
+                            <th scope="col">Pending</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="rv : ${recVeri}">
+                            <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
+                                <td><p th:text="${rv.day_created}" class="dates"></p></td>
+                                <td><p th:text="${rv.approver_name}"></p></td>
+                                <td><p th:text="${rv.getSender_name()}"></p></td>
+                                <td><p th:text="${rv.days_smoke_free}"></p></td>
+                                <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
+                                <td th:if="${rv.is_approved == false}"><p>No</p></td>
+                                <td th:if="${rv.getIs_pending() == true}"><p>Yes</p></td>
+                                <td th:if="${rv.getIs_pending() == false}"><p>No</p></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table to display sent results results -->
+            <div class="sentReq reqDesktopView">
+                <h3>Sent requests</h3>
+                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
+                   aria-expanded="false"
+                   aria-controls="collapseExample">Expand</a>
+                <div class="collapse" id="sentReqs">
+                    <table class="table table-hover text-dark text-center table-condensed table-responsive">
+                        <thead>
+                        <tr>
+                            <th scope="col">Verify Date</th>
+                            <th scope="col">Approver Name</th>
+                            <th scope="col">Sender Name</th>
+                            <th scope="col">Days Smoke free</th>
+                            <th scope="col">Approved</th>
+                            <th scope="col">Pending</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <div th:each="sv : ${sentVeri}">
+                            <tr th:if="${sv.getIs_pending() == false}">
+                                <td><p th:text="${sv.day_created}" class="dates"></p></td>
+                                <td><p th:text="${sv.approver_name}"></p></td>
+                                <td><p th:text="${sv.getSender_name()}"></p></td>
+                                <td><p th:text="${sv.days_smoke_free}"></p></td>
+                                <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
+                                <td th:if="${sv.is_approved == false}"><p>No</p></td>
+                                <td><p>No</p></td>
+                            </tr>
+                            <tr th:if="${sv.getIs_pending() == true}" style="background: lightgray;">
+                                <td><p th:text="${sv.day_created}" class="dates"></p></td>
+                                <td><p th:text="${sv.approver_name}"></p></td>
+                                <td><p th:text="${sv.getSender_name()}"></p></td>
+                                <td><p th:text="${sv.days_smoke_free}"></p></td>
+                                <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
+                                <td th:if="${sv.is_approved == false}"><p>No</p></td>
+                                <td><p>Yes</p></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+                    <!--  Recieved Requests cards-->
+        <div class="recRec reqMobileView">
             <h3>Recieved requests</h3>
             <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
             </a>
-            <div class="collapse show" id="recReqs">
-              <table class="table table-hover text-dark text-center table-condensed table-responsive">
-                <thead>
-                <tr>
-                  <th scope="col">Date Created</th>
-                  <th scope="col">Approver Name</th>
-                  <th scope="col">Sender Name</th>
-                  <th scope="col">Days Smoke free</th>
-                  <th scope="col">Approved</th>
-                  <th scope="col">Pending</th>
-                </tr>
-                </thead>
-                <tbody>
-                <div th:each="rv : ${recVeri}">
-                  <tr th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
-                    <td><p th:text="${rv.day_created}" class="dates"></p></td>
-                    <td><p th:text="${rv.approver_name}"></p></td>
-                    <td><p th:text="${rv.getSender_name()}"></p></td>
-                    <td><p th:text="${rv.days_smoke_free}"></p></td>
-                    <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
-                    <td th:if="${rv.is_approved == false}"><p>No</p></td>
-                    <td th:if="${rv.getIs_pending() == true}"><p>Yes</p></td>
-                    <td th:if="${rv.getIs_pending() == false}"><p>No</p></td>
-                  </tr>
+                <div class="collapse show" id="recReqs">
+                    <div th:each="rv : ${recVeri}" class="mobile-card">
+                        <div class="verReq-items">
+                            <div class="verReq-card1">
+                            <h3>Verify Date</h3>
+                            <p th:text="${rv.day_created}" class="dates"></p>
+                            </div>
+                            <div class="verReq-card2">
+                                <h4>Approver Name</h4>
+                                <p th:text="${rv.approver_name}"></p>
+                            </div>
+                            <div class="verReq-card3">
+                                <h4>Sender Name</h4>
+                                <p th:text="${rv.getSender_name()}"></p>
+                            </div>
+                            <div class="verReq-card4">
+                                <h4>Approved</h4>
+                                <th:block th:if="${rv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                <th:block th:if="${rv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
+                            </div>
+                            <div class="verReq-card5">
+                                <h4>Pending</h4>
+                                <th:block th:if="${rv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                <th:block th:if="${rv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </tbody>
-              </table>
             </div>
-          </div>
-      
-          <!-- Table to display sent results results -->
-          <div class="sentReq">
+
+
+
+
+        <!--  Sent Requests cards-->
+        <div class="recRec reqMobileView">
             <h3>Sent requests</h3>
-            <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
-               aria-expanded="false"
-               aria-controls="collapseExample">Expand</a>
-            <div class="collapse" id="sentReqs">
-              <table class="table table-hover text-dark text-center table-condensed table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col">Date Created</th>
-                    <th scope="col">Approver Name</th>
-                    <th scope="col">Sender Name</th>
-                    <th scope="col">Days Smoke free</th>
-                    <th scope="col">Approved</th>
-                    <th scope="col">Pending</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                  <div th:each="sv : ${sentVeri}">
-                    <tr th:if="${sv.getIs_pending() == false}">
-                      <td><p th:text="${sv.day_created}" class="dates"></p></td>
-                      <td><p th:text="${sv.approver_name}"></p></td>
-                      <td><p th:text="${sv.getSender_name()}"></p></td>
-                      <td><p th:text="${sv.days_smoke_free}"></p></td>
-                      <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
-                      <td th:if="${sv.is_approved == false}"><p>No</p></td>
-                      <td><p>No</p></td>
-                    </tr>
-                    <tr th:if="${sv.getIs_pending() == true}" style="background: lightgray;">
-                      <td><p th:text="${sv.day_created}" class="dates"></p></td>
-                      <td><p th:text="${sv.approver_name}"></p></td>
-                      <td><p th:text="${sv.getSender_name()}"></p></td>
-                      <td><p th:text="${sv.days_smoke_free}"></p></td>
-                      <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
-                      <td th:if="${sv.is_approved == false}"><p>No</p></td>
-                      <td><p>Yes</p></td>
-                    </tr>
-                  </div>
-                </tbody>
-              </table>
+            <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button">Collapse
+            </a>
+
+
+            <div class="collapse show" id="sentReqs">
+                    <div th:each="sv : ${sentVeri}" class="mobile-card">
+<!--                        <div class="card">-->
+                            <div th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${sv.getId()})} + '\''" style="cursor: pointer;" class="verReq-items">
+                                <div class="verReq-card1">
+                                    <h3>Verify Date</h3>
+                                    <p th:text="${sv.day_created}" class="dates"></p>
+                                </div>
+                                <div class="verReq-card2">
+                                    <h4>Approver Name</h4>
+                                    <p th:text="${sv.approver_name}"></p>
+                                </div>
+                                <div class="verReq-card3">
+                                    <h4>Sender Name</h4>
+                                    <p th:text="${sv.getSender_name()}"></p>
+                                </div>
+                                <div class="verReq-card4">
+                                    <h4>Approved</h4>
+                                    <th:block th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                    <th:block th:if="${sv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
+                                <div class="verReq-card5">
+                                    <h4>Pending</h4>
+                                    <th:block th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                    <th:block th:if="${sv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
+                            </div>
+<!--                        </div>-->
+                    </div>
+             </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+                </div>
+
             </div>
-          </div>
-        
+
         </section>
-        
+
         <!-- Footer -->
         <section class="row">
-          <th:block th:replace="partials/footer :: main-footer"/>
-          <th:block th:replace="partials/searchbar :: navbar-search"/>
-          <script src="/js/message/message-one-api.js"></script>
+            <th:block th:replace="partials/footer :: main-footer"/>
+            <th:block th:replace="partials/searchbar :: navbar-search"/>
+            <script src="/js/message/message-one-api.js"></script>
         </section>
-      </div>
-    
-    </main>
-  </body>
+    </div>
+
+</main>
+</body>
 </html>
