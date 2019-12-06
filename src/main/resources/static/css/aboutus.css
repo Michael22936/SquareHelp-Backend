@@ -64,6 +64,13 @@ ul{
     display: flex;
     justify-content: space-evenly;
 }
+
+.img{
+    margin-top: 3px;
+    width: 43px;
+    height: 43px;
+    border-radius: 5px;
+}
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
@@ -105,5 +112,10 @@ ul{
         display: flex;
         justify-content: space-evenly;
     }
-
+    .img{
+        margin-top: 3px;
+        width: 43px;
+        height: 43px;
+        border-radius: 5px;
+    }
 }
