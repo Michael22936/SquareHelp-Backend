@@ -117,4 +117,9 @@ footer a {
     #divideDiv {
         display: none;
     }
+
+    .bg-dark{
+        background-color: black !important;
+        height: 50px;
+    }
 }
