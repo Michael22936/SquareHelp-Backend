@@ -50,3 +50,11 @@ h3{
 p{
     margin-bottom: 0;
 }
+
+.navbar{
+    display: flex !important;
+}
+
+ul{
+    justify-content: flex-end;
+}
