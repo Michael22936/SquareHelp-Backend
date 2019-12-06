@@ -188,10 +188,6 @@ footer ul li {
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
-  body {
-    background: green;
-  }
-
   footer {
     padding: 10px;
   }
