@@ -59,6 +59,11 @@ ul{
     justify-content: flex-end;
 }
 
+.icons{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
