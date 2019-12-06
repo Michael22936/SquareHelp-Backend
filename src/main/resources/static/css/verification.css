@@ -152,7 +152,6 @@ h5 {
         display: block;
         margin-bottom: 4px;
 
-
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         padding: 16px;
         text-align: center;
@@ -165,48 +164,68 @@ h5 {
         flex-wrap: wrap;
     }
 
+    .verReq-items p{
+        flex-grow: 2;
+    }
+
+    .m-item1{
+        margin-right: 67px;
+    }
+
+    .m-item2{
+        margin-right: 70px;
+    }
+
+    .m-item3{
+        margin-right: 62px;
+    }
     .verReq-card1{
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         border: 1px solid grey;
-        border-radius: 12px;
+        padding: 2px;
     }
 
     .verReq-card2{
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         border: 1px solid grey;
-        border-radius: 12px;
+        padding: 2px;
     }
 
     .verReq-card3{
         display:flex;
-        flex-direction: ;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         border: 1px solid grey;
-        border-radius: 12px;
+        padding: 2px;
     }
 
     .verReq-card4{
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         border: 1px solid grey;
-        border-radius: 12px;
+        padding: 2px;
     }
 
     .verReq-card5{
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         border: 1px solid grey;
-        border-radius: 12px;
+        padding: 2px;
     }
 }

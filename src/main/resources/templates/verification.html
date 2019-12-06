@@ -113,26 +113,30 @@
                         <div th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;">
                         <div class="verReq-items">
                             <div class="verReq-card1">
-                            <h3>Verify Date</h3>
+                            <h3>Verify Date:</h3>
                             <p th:text="${rv.day_created}" class="dates"></p>
                             </div>
                             <div class="verReq-card2">
-                                <h4>Approver Name</h4>
+                                <h4>Approver Name:</h4>
                                 <p th:text="${rv.approver_name}"></p>
                             </div>
                             <div class="verReq-card3">
-                                <h4>Sender Name</h4>
+                                <h4>Sender Name:</h4>
                                 <p th:text="${rv.getSender_name()}"></p>
                             </div>
                             <div class="verReq-card4">
-                                <h4>Approved</h4>
+                                <h4>Approved:</h4>
+                                <div class="m-item1">
                                 <th:block th:if="${rv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
                                 <th:block th:if="${rv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
                             </div>
                             <div class="verReq-card5">
-                                <h4>Pending</h4>
+                                <h4>Pending:</h4>
+                                <div class="m-item2">
                                 <th:block th:if="${rv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
                                 <th:block th:if="${rv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,44 +156,36 @@
 
             <div class="collapse show" id="sentReqs">
                     <div th:each="sv : ${sentVeri}" class="mobile-card">
+                        <div class="verReq-items">
                             <div class="verReq-card1">
-                                <h3>Verify Date</h3>
+                                <h3>Verify Date:</h3>
                                 <p th:text="${sv.day_created}" class="dates"></p>
                             </div>
                             <div class="verReq-card2">
-                                <h4>Approver Name</h4>
+                                <h4>Approver Name:</h4>
                                 <p th:text="${sv.approver_name}"></p>
                             </div>
                             <div class="verReq-card3">
-                                <h4>Sender Name</h4>
+                                <h4>Sender Name:</h4>
                                 <p th:text="${sv.getSender_name()}"></p>
                             </div>
                             <div class="verReq-card4">
-                                <h4>Approved</h4>
+                                <h4>Approved:</h4>
+                                <div class="m-item1">
                                 <th:block th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
                                 <th:block th:if="${sv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
                             </div>
                             <div class="verReq-card5">
-                                <h4>Pending</h4>
+                                <h4>Pending:</h4>
+                                <div class="m-item3">
                                 <th:block th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
                                 <th:block th:if="${sv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
                             </div>
-                    </div>
-             </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
+                        </div>
+                 </div>
             </div>
-
-        </section>
 
         <!-- Footer -->
         <section class="row">
