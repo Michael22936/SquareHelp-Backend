@@ -50,3 +50,49 @@ h3{
 p{
     margin-bottom: 0;
 }
+
+.navbar{
+    display: flex !important;
+}
+
+ul{
+    justify-content: flex-end;
+}
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+    .bg-dark {
+        background-color: black !important;
+        height: 50px !important;
+    }
+
+    .contentBg {
+        padding: 10px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+        margin: auto auto 1rem auto;
+    }
+
+    .card_view {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card-img {
+        height: 292px;
+        width: 292px;
+    }
+
+    .whoIs {
+        margin: auto;
+    }
+
+    .whoIs-links {
+        margin-bottom: 2rem;
+    }
+
+}

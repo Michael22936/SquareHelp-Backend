@@ -89,6 +89,10 @@ footer a {
         display: flex !important;
     }
 
+    .jumboWrapper {
+        width: auto;
+    }
+
     .notiSearch {
         width: 100%;
     }
@@ -116,5 +120,10 @@ footer a {
 
     #divideDiv {
         display: none;
+    }
+
+    .bg-dark{
+        background-color: black !important;
+        height: 50px;
     }
 }
