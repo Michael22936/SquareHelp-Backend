@@ -2,7 +2,7 @@ console.log("Verification view.js loaded");
 
 isApproved = document.getElementById("isApproved");
 yes = document.getElementById("yesBtn");
-no = document.getElementById("no");
+no = document.getElementById("noBtn");
 
 yes.addEventListener("mousedown", () => {
     isApproved.value = "on";
