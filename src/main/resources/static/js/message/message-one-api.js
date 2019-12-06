@@ -15,15 +15,21 @@ const recipPic = document.getElementById("recipPic").value;
 
 let convo = "";
 let data = [];
+let outPut = "";
+let oldOutPut = "";
 
 const updateConversation = () => {
     fetch("/message/view/" + recip + "/quick")
         .then(res => res.json())
         .then(res => {
             data = res;
-            messageArea.innerHTML = "";
-            messageArea.innerHTML = outHTML();
-            convertDates();
+            outPut = outHTML();
+            if (oldOutPut != outPut) {
+                messageArea.innerHTML = "";
+                messageArea.innerHTML = outPut;
+                oldOutPut = outPut;
+                convertDates();
+            }
         });
 }
 
