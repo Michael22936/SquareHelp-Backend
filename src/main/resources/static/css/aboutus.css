@@ -95,4 +95,10 @@ ul{
         margin-bottom: 2rem;
     }
 
+    .icons{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
 }
