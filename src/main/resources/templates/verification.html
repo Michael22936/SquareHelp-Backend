@@ -9,7 +9,6 @@
 <main class="container contentBg main-panel">
 
     <!-- /verification Content -->
-    <div class="contentBg">
         <section>
             <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
         </section>
@@ -32,7 +31,7 @@
                     <table class="table table-hover text-dark text-center table-condensed table-responsive">
                         <thead>
                         <tr>
-                            <th scope="col">Date Created</th>
+                            <th scope="col">Verify Date</th>
                             <th scope="col">Approver Name</th>
                             <th scope="col">Sender Name</th>
                             <th scope="col">Days Smoke free</th>
@@ -68,7 +67,7 @@
                     <table class="table table-hover text-dark text-center table-condensed table-responsive">
                         <thead>
                         <tr>
-                            <th scope="col">Date Created</th>
+                            <th scope="col">Verify Date</th>
                             <th scope="col">Approver Name</th>
                             <th scope="col">Sender Name</th>
                             <th scope="col">Days Smoke free</th>
@@ -111,9 +110,9 @@
             </a>
                 <div class="collapse show" id="recReqs">
                     <div th:each="rv : ${recVeri}" class="mobile-card">
-                        <div th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;" class="verReq-items">
+                        <div class="verReq-items">
                             <div class="verReq-card1">
-                            <h3>Date Created</h3>
+                            <h3>Verify Date</h3>
                             <p th:text="${rv.day_created}" class="dates"></p>
                             </div>
                             <div class="verReq-card2">
@@ -126,19 +125,19 @@
                             </div>
                             <div class="verReq-card4">
                                 <h4>Approved</h4>
-                                <th:block th:if="${rv.is_approved == true}"><p>Yes</p></th:block>
-                                <th:block th:if="${rv.is_approved == false}"><p>No</p></th:block>
+                                <th:block th:if="${rv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                <th:block th:if="${rv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
                             </div>
                             <div class="verReq-card5">
                                 <h4>Pending</h4>
-                                <th:block th:if="${rv.getIs_pending() == true}"><p>Yes</p></th:block>
-                                <th:block th:if="${rv.getIs_pending() == false}"><p>No</p></th:block>
+                                <th:block th:if="${rv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                <th:block th:if="${rv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
 
 
 
@@ -147,37 +146,42 @@
             <h3>Sent requests</h3>
             <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button">Collapse
             </a>
-            <div class="collapse show" id="sentReqs">
 
-                <div th:each="sv : ${sentVeri}" class="mobile-card">
-                    <div th:if="${sv.getIs_pending() == false}" class="verReq-items">
-                    <div class="verReq-card1">
-                        <h3>Date Created</h3>
-                        <p th:text="${sv.day_created}" class="dates"></p>
+
+            <div class="collapse show" id="sentReqs">
+                    <div th:each="sv : ${sentVeri}" class="mobile-card">
+<!--                        <div class="card">-->
+                            <div th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${sv.getId()})} + '\''" style="cursor: pointer;" class="verReq-items">
+                                <div class="verReq-card1">
+                                    <h3>Verify Date</h3>
+                                    <p th:text="${sv.day_created}" class="dates"></p>
+                                </div>
+                                <div class="verReq-card2">
+                                    <h4>Approver Name</h4>
+                                    <p th:text="${sv.approver_name}"></p>
+                                </div>
+                                <div class="verReq-card3">
+                                    <h4>Sender Name</h4>
+                                    <p th:text="${sv.getSender_name()}"></p>
+                                </div>
+                                <div class="verReq-card4">
+                                    <h4>Approved</h4>
+                                    <th:block th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                    <th:block th:if="${sv.is_approved == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
+                                <div class="verReq-card5">
+                                    <h4>Pending</h4>
+                                    <th:block th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
+                                    <th:block th:if="${sv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></th:block>
+                                </div>
+                            </div>
+<!--                        </div>-->
                     </div>
-                    <div class="verReq-card2">
-                        <h4>Approver Name</h4>
-                        <p th:text="${sv.approver_name}"></p>
-                    </div>
-                    <div class="verReq-card3">
-                        <h4>Sender Name</h4>
-                        <p th:text="${sv.getSender_name()}"></p>
-                    </div>
-                    <div class="verReq-card4">
-                        <h4>Approved</h4>
-                        <th:block th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></th:block>
-                        <th:block th:if="${sv.is_approved == false}"><p>No</p></th:block>
-                    </div>
-                    <div class="verReq-card5">
-                        <h4>Pending</h4>
-                        <th:block th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></th:block>
-                        <th:block th:if="${sv.getIs_pending() == false}"><p>No</p></th:block>
-                    </div>
-                    </div>
-                   </div>
-                 </div>
              </div>
+
+
         </div>
+
 
 
 

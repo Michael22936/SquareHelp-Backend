@@ -94,12 +94,21 @@ h5 {
     display: none;
 }
 
-
+.main-panel{
+    position: relative !important;
+    left: 100px !important;
+}
 
 
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
+
+    .main-panel{
+        position: relative !important;
+        left: 0px !important;
+    }
+
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
@@ -140,6 +149,7 @@ h5 {
     .mobile-card{
         border: 1px solid grey;
         display: block;
+        margin-bottom: 4px;
 
 
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
