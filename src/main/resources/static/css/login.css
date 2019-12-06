@@ -17,3 +17,13 @@
 input {
     color: #000;
 }
+
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+    .contentBg {
+        padding: 10px;
+    }
+
+}
