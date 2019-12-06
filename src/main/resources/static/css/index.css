@@ -89,6 +89,10 @@ footer a {
         display: flex !important;
     }
 
+    .jumboWrapper {
+        width: auto;
+    }
+
     .notiSearch {
         width: 100%;
     }
