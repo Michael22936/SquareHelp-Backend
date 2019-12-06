@@ -148,6 +148,7 @@ h5 {
 
     .mobile-card{
         border: 1px solid grey;
+        border-radius: 12px;
         display: block;
         margin-bottom: 4px;
 
@@ -170,37 +171,42 @@ h5 {
         align-items: center;
         width: 100%;
         border: 1px solid grey;
+        border-radius: 12px;
     }
 
     .verReq-card2{
         display:flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
         border: 1px solid grey;
+        border-radius: 12px;
     }
 
     .verReq-card3{
         display:flex;
-        flex-direction: column;
+        flex-direction: ;
         align-items: center;
-        width: 50%;
+        width: 100%;
         border: 1px solid grey;
+        border-radius: 12px;
     }
 
     .verReq-card4{
         display:flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
         border: 1px solid grey;
+        border-radius: 12px;
     }
 
     .verReq-card5{
         display:flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
         border: 1px solid grey;
+        border-radius: 12px;
     }
 }
