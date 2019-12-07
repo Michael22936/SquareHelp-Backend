@@ -20,6 +20,7 @@
       <div class="userInfoBox">
         <!--      Logged in username-->
         <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
+
         <div class="dashboard-icons">
           <!--        Calendar icon-->
           <i class="fas fa-calendar-alt" id="calIcon"></i>
@@ -36,12 +37,12 @@
         <div class="headline">
           <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
           <h5 id="headline-text2">You have earned <span class="pointsPop" th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-          <h5>You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
+          <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
         </div>
       </div>
 
     </section>
-    <section class="row">
+    <section class="row" id="userInfoBtns">
       <div class="actions">
         <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary mBtn">Create a
           verification

@@ -233,6 +233,10 @@ footer {
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+    .contentBg{
+        position: inherit;
+    }
+
     #chartCard1{
         width: 100%;
     }
@@ -244,14 +248,69 @@ footer {
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    body{
-
+    .contentBg{
+        left: 0;
+        width: auto;
     }
+
+    .main-panel{
+        margin-top: 0;
+        margin-left: 200px;
+    }
+
+    #userInfoContainer{
+        position: relative;
+        right: 50px;
+    }
+
+    #userInfoBtns{
+        position: relative;
+        right: 50px;
+    }
+
+
+    #profilePic{
+        width: 13em;
+        height: 13em;
+    }
+
+    #username-info{
+        order: 1;
+    }
+
+    .dashboard-icons{
+        order: 2;
+    }
+
+    .headline{
+        order: 3;
+    }
+
+    h5{
+        font-size: 1rem;
+    }
+    #headline-text3{
+        margin-top: .75em;
+    }
+
+    #smokeIcon {
+        bottom: -30px;
+    }
+
+    #calIcon {
+        top: -30px;
+    }
+
+    .badge-img {
+        top: 4px;
+    }
+
+
 }
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-    body{
+ body{
 
-    }
+ }
 }
