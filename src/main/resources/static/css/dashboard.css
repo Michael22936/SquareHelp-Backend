@@ -152,8 +152,11 @@ footer {
 }
 
 .magictime {
-    -webkit-animation-duration: 1.8s;
-    animation-duration: 1.8s;
+    /*-webkit-animation-duration: 1.8s;*/
+    /*animation-duration: 1.8s;*/
+
+    -webkit-animation-duration: 2.1s;
+    animation-duration: 2.1s;
 }
 
 
@@ -185,9 +188,16 @@ footer {
         margin-top: 3rem;
     }
 
-    body {
-        width: 100% !important;
+    html{
+        overflow-x: hidden;
     }
+
+    body {
+        /*width: 100% !important;*/
+        width: 100vw !important;
+        overflow-x: hidden;
+    }
+
 
     main {
         width: 100% !important;
@@ -209,6 +219,10 @@ footer {
         left: 30px;
     }
 
+    .pointsPop, .smokeFreePop{
+        font-weight: 500;
+    }
+
     #headline-text3{
         margin-top: 1em;
     }
@@ -224,6 +238,7 @@ footer {
 
     h5{
         font-size: 0.80rem;
+        font-weight: 800;
     }
 
     .dashboard-icons{

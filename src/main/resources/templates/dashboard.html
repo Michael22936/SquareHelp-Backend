@@ -26,14 +26,14 @@
           <!--        Calendar icon-->
           <i class="fas fa-calendar-alt magictime puffIn " id="calIcon"></i>
           <!--        Badges images-->
-          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img magictime vanishIn " th:if="${ smoke.getPoints() >= 75 }">
-          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img magictime vanishIn "
+          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() >= 75 }">
+          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img magictime puffIn "
                th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
-          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img magictime vanishIn "
+          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img magictime puffIn "
                th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
-          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img magictime vanishIn " th:if="${ smoke.getPoints() <= 24 }">
+          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() <= 24 }">
           <!--        Quit Smoking icon-->
-          <i class="fas fa-smoking-ban magictime vanishIn " id="smokeIcon"></i>
+          <i class="fas fa-smoking-ban magictime puffIn " id="smokeIcon"></i>
         </div>
 
         <div class="headline">

@@ -227,10 +227,10 @@ document.addEventListener("DOMContentLoaded", () => {
         selector2.classList.remove('magictime', 'puffIn');
 
         const selector3 = document.querySelector('.badge-img');
-        selector3.classList.remove('magictime', 'vanishIn');
+        selector3.classList.remove('magictime', 'puffIn');
 
         const selector4 = document.querySelector('#smokeIcon');
-        selector4.classList.remove('magictime', 'vanishIn');
+        selector4.classList.remove('magictime', 'puffIn');
     }, 2500);
 
     setTimeout(function(){
@@ -248,6 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
         selector4.classList.add('animated', 'wobble');
 
 
-    }, 4000);
+    }, 5500);
 
 }); // Load when document is ready END
