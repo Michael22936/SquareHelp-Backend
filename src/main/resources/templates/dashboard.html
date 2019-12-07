@@ -3,6 +3,7 @@
 <title>SquareHelp - Dashboard</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" href="/css/magic.min.css">
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
@@ -14,8 +15,8 @@
     <section>
       <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
     </section>
-    <section class="row" id="userInfoContainer">
-      <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic">
+    <section class="row  " id="userInfoContainer">
+      <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic" class="magictime swashIn">
 
       <div class="userInfoBox">
         <!--      Logged in username-->
@@ -23,16 +24,16 @@
 
         <div class="dashboard-icons">
           <!--        Calendar icon-->
-          <i class="fas fa-calendar-alt" id="calIcon"></i>
+          <i class="fas fa-calendar-alt magictime puffIn " id="calIcon"></i>
           <!--        Badges images-->
-          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img" th:if="${ smoke.getPoints() >= 75 }">
-          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img"
+          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img magictime vanishIn " th:if="${ smoke.getPoints() >= 75 }">
+          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img magictime vanishIn "
                th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
-          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img"
+          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img magictime vanishIn "
                th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
-          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img" th:if="${ smoke.getPoints() <= 24 }">
+          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img magictime vanishIn " th:if="${ smoke.getPoints() <= 24 }">
           <!--        Quit Smoking icon-->
-          <i class="fas fa-smoking-ban" id="smokeIcon"></i>
+          <i class="fas fa-smoking-ban magictime vanishIn " id="smokeIcon"></i>
         </div>
 
         <div class="headline">

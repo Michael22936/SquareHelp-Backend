@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             }]
-        }
+        };
 
         var chart = new ApexCharts(
             document.querySelector("#avgPointChart2"),
@@ -220,4 +220,34 @@ document.addEventListener("DOMContentLoaded", () => {
     let d = document.getElementById("dayQuit");
     d.innerText = moment(d.value).format("MMMM D, YYYY");
 
-}) // Load when document is ready END
+    // Animation Magic
+
+    setTimeout(function(){
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.remove('magictime', 'puffIn');
+
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.remove('magictime', 'vanishIn');
+
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.remove('magictime', 'vanishIn');
+    }, 2500);
+
+    setTimeout(function(){
+
+        // const selector = document.querySelector('#profilePic');
+        // selector.classList.add('magictime','swashIn');
+
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.add('animated', 'wobble');
+
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.add('animated','wobble');
+
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.add('animated', 'wobble');
+
+
+    }, 4000);
+
+}); // Load when document is ready END

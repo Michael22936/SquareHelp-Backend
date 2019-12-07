@@ -151,6 +151,11 @@ footer {
     right: 48px;
 }
 
+.magictime {
+    -webkit-animation-duration: 1.8s;
+    animation-duration: 1.8s;
+}
+
 
 @media (max-width: 992px) {
     .contentBg {
