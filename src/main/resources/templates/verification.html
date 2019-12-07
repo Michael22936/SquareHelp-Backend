@@ -152,8 +152,8 @@
                                 <td><p th:text="${sv.day_created}" class="dates"></p></td>
                             </tr>
                             <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td>Sender: </td>
-                                <td><p th:text="${sv.getSender_name()}"></p></td>
+                                <td>Approver: </td>
+                                <td><p th:text="${sv.getApprover_name()}"></p></td>
                             </tr>
                             <tr class="w-100" th:if="${sv.getIs_pending() == false}">
                                 <td>Days Smoke free: </td>
