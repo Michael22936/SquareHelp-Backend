@@ -2,3 +2,7 @@
     display: inline-flex !important;
     flex-direction: row !important;
 }
+
+#largeNav{
+    background-color: black !important;
+}
