@@ -36,8 +36,8 @@ const outHTML = () => {
     let html = "";
     html += "<div class='convoWrapper'>";
     data.map((e) => {
-        if (e.author_user_id == author) html += "<p class='messageText bg-info'><span class='messageConvoItem'>" + e.message + "</span><span class='messageConvoItem'>" + authorName + ":</span><img src='" + authorPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem dates'>" + e.last_updated + "</span></p>";
-        if (e.author_user_id == recip) html += "<p class='messageText messageThem'><span class='messageConvoItem dates'>" + e.last_updated + "</span><img src='" + recipPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem'>:" + recipName + "</span><span class='messageConvoItem'>" + e.message + "</span></p>";
+        if (e.author_user_id == author) html += "<p class='messageText bg-info'><span class='messageConvoItem'>" + e.message + "</span><span class='messageConvoItem messageConvoName'>" + authorName + "</span><img src='" + authorPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem dates'>" + e.last_updated + "</span></p>";
+        if (e.author_user_id == recip) html += "<p class='messageText messageThem'><span class='messageConvoItem dates'>" + e.last_updated + "</span><img src='" + recipPic + "' class='messageConvoItem messageProfilePic'><span class='messageConvoItem messageConvoName'>" + recipName + "</span><span class='messageConvoItem'>" + e.message + "</span></p>";
     });
     html += "<div>";
     return html;

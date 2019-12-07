@@ -41,6 +41,10 @@ form textarea {
     margin-right: 10px;
 }
 
+.messageConvoName {
+    font-style: italic;
+}
+
 .messageProfilePic {
     width: 15px;
     height: 15px;
@@ -90,6 +94,8 @@ form textarea {
     border-radius: 20px;
     padding: 5px 5px 7px 10px;
     width: fit-content;
+    margin-left: auto;
+    background: #b8e0e6 !important;
 }
 
 .convoWrapper {
