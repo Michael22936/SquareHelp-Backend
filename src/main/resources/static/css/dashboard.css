@@ -155,6 +155,7 @@ footer {
 @media (max-width: 992px) {
     .contentBg {
         padding: 10px;
+        left: 0;
     }
 
     .container {
@@ -191,11 +192,57 @@ footer {
         margin-top: 1rem;
     }
 
-
+    #profilePic{
+        width: 9em;
+        height: 9em;
+        margin: 0;
+    }
 
     .headline {
         margin-top: .8rem;
+        position: relative;
+        left: 30px;
     }
+
+    #headline-text3{
+        margin-top: 1em;
+    }
+
+    #userInfoContainer{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #username-info{
+        text-align: center;
+    }
+
+    h5{
+        font-size: 0.80rem;
+    }
+
+    .dashboard-icons{
+        position: relative;
+        left: 33px;
+    }
+
+    #calIcon{
+        font-size: 1.5em;
+        top: -23px;
+    }
+
+    .badge-img{
+        width: 1.5em;
+        height: 2.3em;
+        top: 13px;
+    }
+
+    #smokeIcon{
+        font-size: 1.5em;
+        bottom: -41px;
+    }
+
+
 }
 
 
