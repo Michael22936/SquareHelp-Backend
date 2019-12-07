@@ -53,6 +53,7 @@ p{
 
 .navbar{
     display: flex !important;
+    background-color: black !important;
 }
 
 ul{
