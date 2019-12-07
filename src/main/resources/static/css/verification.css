@@ -99,7 +99,13 @@ h5 {
     left: 100px !important;
 }
 
+.recMobile{
+    display: none;
+}
 
+.sentMobile{
+    display: none;
+}
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
@@ -107,6 +113,16 @@ h5 {
     .main-panel{
         position: relative !important;
         left: 0px !important;
+    }
+
+    .recivedMobile{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sentMobile{
+        display: flex;
+        flex-direction: column;
     }
 
 
@@ -159,48 +175,24 @@ h5 {
 
     }
 
-    .verReq-items{
-        display: flex;
-        flex-wrap: wrap;
+    .recRec{
+        display: none;
     }
 
-    .verReq-card1{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        border: 1px solid grey;
+    .sentReq{
+        display: none;
     }
 
-    .verReq-card2{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        border: 1px solid grey;
+    table{
+        border: black 2px solid !important;
+        border-radius: 5px !important;
     }
 
-    .verReq-card3{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        border: 1px solid grey;
+    section{
+        margin: auto !important;
     }
 
-    .verReq-card4{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        border: 1px solid grey;
-    }
-
-    .verReq-card5{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        border: 1px solid grey;
+    footer{
+        margin-top: 0 !important;
     }
 }
