@@ -30,6 +30,7 @@
                th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
           <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img"
                th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
+          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img" th:if="${ smoke.getPoints() <= 24 }">
           <!--        Quit Smoking icon-->
           <i class="fas fa-smoking-ban" id="smokeIcon"></i>
         </div>
