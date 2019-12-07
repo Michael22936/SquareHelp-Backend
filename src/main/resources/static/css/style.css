@@ -102,15 +102,18 @@ input {
   border-radius: 5px;
 }
 
+.contentBgChild {
+    top: 0;
+}
+
 .shContainer {
     width: 80%;
 }
 
 .main-panel {
-  display: flex;
   justify-content: center;
   flex-direction: column;
-  left: 250px;
+  left: 0px;
   margin-top: 2rem;
   margin-left: 250px;
   min-height: 90%;
