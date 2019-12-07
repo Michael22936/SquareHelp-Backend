@@ -76,22 +76,10 @@ h5 {
     display: block;
 }
 
-
-
-
-
 #profileImg {
     width: 225px;
     height: 225px;
     margin-bottom: 2rem !important;
-}
-
-.reqDesktopView{
-    display: block;
-}
-
-.reqMobileView{
-    display: none;
 }
 
 .main-panel{
@@ -99,13 +87,10 @@ h5 {
     left: 100px !important;
 }
 
-.recMobile{
+.recMobile, .sentMobile{
     display: none;
 }
 
-.sentMobile{
-    display: none;
-}
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
@@ -115,16 +100,14 @@ h5 {
         left: 0px !important;
     }
 
-    .recMobile{
+    .recReq, .sentReq{
+        display: none;
+    }
+
+    .recMobile, .sentMobile{
         display: flex;
         flex-direction: column;
     }
-
-    .sentMobile{
-        display: flex;
-        flex-direction: column;
-    }
-
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
@@ -150,39 +133,6 @@ h5 {
         border-color: #80bdff;
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-    }
-
-
-
-    .reqDesktopView{
-        display: none;
-    }
-
-    .reqMobileView{
-        display: block;
-    }
-
-    .mobile-card{
-        display: flex;
-        flex-direction: row;
-        border: 1px solid grey;
-        border-radius: 12px;
-        display: block;
-        margin-bottom: 4px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        text-align: center;
-        background-color: #f1f1f1;
-
-    }
-
-
-    .recRec{
-        display: none;
-    }
-
-    .sentReq{
-        display: none;
     }
 
     table{
