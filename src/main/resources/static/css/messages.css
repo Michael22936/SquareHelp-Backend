@@ -2,6 +2,10 @@ main {
     height: auto;
 }
 
+footer {
+    margin-top: 0;
+}
+
 tr:hover {
     color: #ffffff !important;
 }

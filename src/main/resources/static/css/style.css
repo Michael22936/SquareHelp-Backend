@@ -102,14 +102,18 @@ input {
   border-radius: 5px;
 }
 
+.shContainer {
+    width: 80%;
+}
 
 .main-panel {
   display: flex;
   justify-content: center;
   flex-direction: column;
   left: 250px;
-  position: fixed;
   margin-top: 2rem;
+  margin-left: 250px;
+  min-height: 90%;
 }
 
 .sidebar {
@@ -223,6 +227,12 @@ footer ul li {
 
   .contentBg {
     min-height: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentBgChild {
+      padding: 1rem 3rem 1rem 3rem;
   }
 
   footer {
