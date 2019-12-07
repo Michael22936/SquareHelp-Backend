@@ -115,7 +115,7 @@ h5 {
         left: 0px !important;
     }
 
-    .recivedMobile{
+    .recMobile{
         display: flex;
         flex-direction: column;
     }
