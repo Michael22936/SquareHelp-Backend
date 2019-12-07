@@ -16,14 +16,17 @@
         <section class="row">
 
             <!-- Button to create verification form -->
+            <div>
             <a class="btn btn-primary" role="button" id="createVeri"
                th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
                 Verification
                 Form</a>
+            </div>
             <br>
 
+
             <!-- DESKTOP :: Table to display received request results -->
-            <div class="recReq">
+            <div class="recRec">
                 <h3>Received requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
                 </a>
