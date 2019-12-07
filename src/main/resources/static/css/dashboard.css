@@ -115,7 +115,7 @@ footer {
 
 #calIcon{
     position: relative;
-    top: -31px;
+    top: -39px;
     font-size: 2em;
 }
 
@@ -123,13 +123,13 @@ footer {
     width: 2em;
     height: 3em;
     position: relative;
-    top: 11px;
+    top: 2px;
 
 }
 
 #smokeIcon{
     position: relative;
-    bottom: -40px;
+    bottom: -36px;
     font-size: 2em;
 }
 
@@ -144,6 +144,11 @@ footer {
 
 #headline-text2{
     margin-bottom: 2.2em;
+}
+
+.contentBg{
+    position: relative;
+    right: 48px;
 }
 
 
