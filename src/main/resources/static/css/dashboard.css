@@ -12,9 +12,9 @@ footer {
 }
 
 .main-panel {
-    left: 0;
+    /*left: 0;*/
     margin-left: 220px;
-    position: inherit;
+    /*position: inherit;*/
 }
 
 .headline {
@@ -72,9 +72,90 @@ footer {
     transition:all 1s ease;
 }
 
+#profilePic{
+    width: 16em;
+    height: 16em;
+    border-radius: 50%;
+    margin-right: 2.5em;
+}
+
+.row{
+    margin-bottom: 2em;
+}
+
+#userInfoContainer{
+    display: flex;
+    flex-wrap: unset;
+}
+
+
+
+.smokeFreePop {
+    /*font-size: 3rem;*/
+    font-size: xx-large;
+    color: red;
+}
+
+.pointsPop{
+    font-size: xx-large;
+    color: red;
+}
+
+.dashboard-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1em;
+}
+
+#username-info{
+    width: 100%;
+}
+
+#calIcon{
+    position: relative;
+    top: -39px;
+    font-size: 2em;
+}
+
+.badge-img{
+    width: 2em;
+    height: 3em;
+    position: relative;
+    top: 2px;
+
+}
+
+#smokeIcon{
+    position: relative;
+    bottom: -36px;
+    font-size: 2em;
+}
+
+.userInfoBox{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#headline-text1{
+    margin-bottom: 2em;
+}
+
+#headline-text2{
+    margin-bottom: 2.2em;
+}
+
+.contentBg{
+    position: relative;
+    right: 48px;
+}
+
+
 @media (max-width: 992px) {
     .contentBg {
         padding: 10px;
+        left: 0;
     }
 
     .container {
@@ -111,13 +192,57 @@ footer {
         margin-top: 1rem;
     }
 
-    .smokeFreePop {
-        font-size: 3rem;
+    #profilePic{
+        width: 9em;
+        height: 9em;
+        margin: 0;
     }
 
     .headline {
         margin-top: .8rem;
+        position: relative;
+        left: 30px;
     }
+
+    #headline-text3{
+        margin-top: 1em;
+    }
+
+    #userInfoContainer{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #username-info{
+        text-align: center;
+    }
+
+    h5{
+        font-size: 0.80rem;
+    }
+
+    .dashboard-icons{
+        position: relative;
+        left: 33px;
+    }
+
+    #calIcon{
+        font-size: 1.5em;
+        top: -23px;
+    }
+
+    .badge-img{
+        width: 1.5em;
+        height: 2.3em;
+        top: 13px;
+    }
+
+    #smokeIcon{
+        font-size: 1.5em;
+        bottom: -41px;
+    }
+
+
 }
 
 
@@ -155,6 +280,10 @@ footer {
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
 
+    .contentBg{
+        position: inherit;
+    }
+
     #chartCard1{
         width: 100%;
     }
@@ -166,14 +295,69 @@ footer {
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    body{
-
+    .contentBg{
+        left: 0;
+        width: auto;
     }
+
+    .main-panel{
+        margin-top: 0;
+        margin-left: 200px;
+    }
+
+    #userInfoContainer{
+        position: relative;
+        right: 50px;
+    }
+
+    #userInfoBtns{
+        position: relative;
+        right: 50px;
+    }
+
+
+    #profilePic{
+        width: 13em;
+        height: 13em;
+    }
+
+    #username-info{
+        order: 1;
+    }
+
+    .dashboard-icons{
+        order: 2;
+    }
+
+    .headline{
+        order: 3;
+    }
+
+    h5{
+        font-size: 1rem;
+    }
+    #headline-text3{
+        margin-top: .75em;
+    }
+
+    #smokeIcon {
+        bottom: -30px;
+    }
+
+    #calIcon {
+        top: -30px;
+    }
+
+    .badge-img {
+        top: 4px;
+    }
+
+
 }
 
 /*// Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
-    body{
+ body{
 
-    }
+ }
 }

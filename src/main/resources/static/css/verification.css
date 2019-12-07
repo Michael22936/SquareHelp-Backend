@@ -99,7 +99,13 @@ h5 {
     left: 100px !important;
 }
 
+.recMobile{
+    display: none;
+}
 
+.sentMobile{
+    display: none;
+}
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
@@ -107,6 +113,16 @@ h5 {
     .main-panel{
         position: relative !important;
         left: 0px !important;
+    }
+
+    .recMobile{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sentMobile{
+        display: flex;
+        flex-direction: column;
     }
 
 
@@ -160,78 +176,25 @@ h5 {
 
     }
 
-    .verReq-titles{
-        display: flex;
-        flex-wrap: wrap;
+
+    .recRec{
+        display: none;
     }
 
-    .verReq-values{
-        display: flex;
-        flex-wrap: wrap;
+    .sentReq{
+        display: none;
     }
 
-    /*.verReq-titles p{*/
-    /*    flex-grow: 2;*/
-    /*}*/
-
-    .m-item1{
-        margin-right: 67px;
+    table{
+        border: black 2px solid !important;
+        border-radius: 5px !important;
     }
 
-    .m-item2{
-        margin-right: 70px;
+    section{
+        margin: auto !important;
     }
 
-    .m-item3{
-        margin-right: 62px;
-    }
-
-    .verReq-1{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        border-bottom: 1px solid grey;
-        padding: 2px;
-    }
-
-    .verReq-2{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        border-bottom: 1px solid grey;
-        padding: 2px;
-    }
-
-    .verReq-3{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        border-bottom: 1px solid grey;
-        padding: 2px;
-    }
-
-    .verReq-4{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        border-bottom: 1px solid grey;
-        padding: 2px;
-    }
-
-    .verReq-5{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        width: 50%;
-        padding: 2px;
+    footer{
+        margin-top: 0 !important;
     }
 }
