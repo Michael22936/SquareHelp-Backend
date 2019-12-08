@@ -1,4 +1,3 @@
-console.log("filestack impl.js loaded");
 
 // Set up the picker
 const client = filestack.init("AXimJ9eQiTEaAeo5kJ9tmz");
