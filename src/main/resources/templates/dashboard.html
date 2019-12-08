@@ -15,62 +15,50 @@
     <section>
       <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
     </section>
-    <section class="row  " id="userInfoContainer">
-      <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic" class="magictime swashIn">
 
-      <div class="userInfoBox">
-        <!--      Logged in username-->
-        <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
-
-        <div class="dashboard-icons">
-          <!--        Calendar icon-->
-          <i class="fas fa-calendar-alt magictime puffIn " id="calIcon"></i>
-          <!--        Badges images-->
-          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() >= 75 }">
-          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img magictime puffIn "
-               th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
-          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img magictime puffIn "
-               th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
-          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() <= 24 }">
-          <!--        Quit Smoking icon-->
-          <i class="fas fa-smoking-ban magictime puffIn " id="smokeIcon"></i>
-        </div>
-
-        <div class="headline">
-          <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
-          <h5 id="headline-text2">You have earned <span class="pointsPop" th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-          <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
-        </div>
-      </div>
-
-    </section>
 
 <!--    ============================================Testing grid (Start)-->
 
-<section class="grid-container">
-  <div class="cell1">
-    <img src="https://via.placeholder.com/220" alt="">
-  </div>
-  <div class="cell2">
-    <img src="https://via.placeholder.com/75" alt="">
-  </div>
-  <div class="cell3">
-    <img src="https://via.placeholder.com/270" alt="">
+    <div class="row">
+      <section class="grid-container">
+        <div class="cell1">
+          <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic" class="magictime swashIn">
+        </div>
+        <div class="cell2">
+          <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
+        </div>
+        <div class="cell3 infoData-cell">
 
-    <div class="infoData-cell">
-      <div class="infoData-icon"></div>
-      <div class="infoData-text"></div>
-      <div class="infoData-icon"></div>
-      <div class="infoData-text"></div>
-      <div class="infoData-icon"></div>
-      <div class="infoData-text"></div>
 
+          <div class="infoData-icon1">
+            <!--        Calendar icon-->
+            <i class="fas fa-calendar-alt magictime puffIn " id="calIcon"></i>
+          </div>
+          <div class="infoData-text1">
+            <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
+          </div>
+          <div class="infoData-icon2">
+            <!--        Badges images-->
+            <img src="/img/dashboard/gold.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() >= 75 }">
+            <img src="/img/dashboard/silver.png" alt="badge" class="badge-img magictime puffIn "
+                 th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
+            <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img magictime puffIn "
+                 th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
+            <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img magictime puffIn " th:if="${ smoke.getPoints() <= 24 }">
+          </div>
+          <div class="infoData-text2">
+            <h5 id="headline-text2">You have earned <span class="pointsPop" th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
+          </div>
+          <div class="infoData-icon3">
+            <!--        Quit Smoking icon-->
+            <i class="fas fa-smoking-ban magictime puffIn " id="smokeIcon"></i>
+          </div>
+          <div class="infoData-text3">
+            <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
+          </div>
+        </div>
+      </section>
     </div>
-
-  </div>
-
-
-</section>
 
 
 <!--    ============================================Testing grid (End)-->
