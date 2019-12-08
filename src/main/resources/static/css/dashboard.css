@@ -262,6 +262,43 @@ footer {
         bottom: -41px;
     }
 
+    .grid-container{
+        /*grid-template-columns: auto; // I think these should be set to 100% width */
+        grid-template-rows: 230px 80px 275px ;
+        background-color: lightpink;
+    }
+
+    .cell1{
+        background-color: #80bdff;
+        grid-row: 1 / span 2;
+        grid-column: 1 / span 2;
+    }
+
+    .cell2{
+        background-color: lightcoral;
+        grid-row: 1 / span 2;
+        grid-column: 2 / span 3;
+    }
+
+    .cell3{
+        background-color: lightgreen;
+        grid-row: 1 / span 2;
+        grid-column: 3 / span 4;
+    }
+
+    .infoData-cell{
+        background-color: lightgreen;
+        grid-template-columns: 80px auto;
+        grid-template-rows: 115px 115px 115px ;
+    }
+
+    .infoData-icon{
+        background-color: lightpink;
+    }
+
+    .infoData-text{
+        background-color: lightblue;
+    }
 
 }
 
