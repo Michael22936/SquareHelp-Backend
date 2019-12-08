@@ -149,8 +149,8 @@ input {
 /* footer */
 
 .divideDiv {
-  height: 3px;
-  border: black 2px solid;
+  height: 1px;
+  border: #DFDFDF 1px solid;
   width: 100%;
   margin-bottom: 1rem !important;
 }

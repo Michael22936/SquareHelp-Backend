@@ -25,6 +25,7 @@ nav-wrapper {
 }
 
 #divideDivNavbar {
-    border: white 2px solid;
+    border: #f8f8f887 1px solid;
     margin-top: 1rem;
+    height: 1px;
 }
