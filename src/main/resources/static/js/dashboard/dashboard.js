@@ -222,6 +222,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Animation Magic
 
+    // 1st animation calendar icon
+    setTimeout(function(){
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.add('magictime', 'puffIn');
+        selector2.style.display = "block";
+
+    }, 1000);
+
+    // 2nd animation badge icon
+    setTimeout(function(){
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.add('magictime', 'puffIn');
+        selector3.style.display = "block";
+
+    }, 1700);
+
+    // 3rd animation quit smoking icon
+    setTimeout(function(){
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.add('magictime', 'puffIn');
+        selector4.style.display = "block";
+
+    }, 2400);
+
+        // Removes the 1 round of animation classes
     setTimeout(function(){
         const selector2 = document.querySelector('#calIcon');
         selector2.classList.remove('magictime', 'puffIn');
@@ -231,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const selector4 = document.querySelector('#smokeIcon');
         selector4.classList.remove('magictime', 'puffIn');
-    }, 2500);
+    }, 3500);
 
     setTimeout(function(){
 
@@ -248,6 +273,6 @@ document.addEventListener("DOMContentLoaded", () => {
         selector4.classList.add('animated', 'wobble');
 
 
-    }, 5500);
+    }, 7000);
 
 }); // Load when document is ready END
