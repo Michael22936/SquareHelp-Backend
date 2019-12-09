@@ -56,8 +56,10 @@ footer{
     }
 
     img{
-        max-block-size: 159px;
-        margin-left: -88px !important;
+        max-block-size: 121px;
+        margin-left: -72px !important;
+        display: none !important;
+        visibility: hidden !important;
     }
 
     footer{
