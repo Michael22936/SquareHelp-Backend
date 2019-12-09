@@ -26,6 +26,7 @@ main {
     display: flex !important;
     flex-direction: row !important;
     color: white;
+    max-height: 46px;
 }
 
 .display-4{
@@ -63,6 +64,7 @@ footer a {
 #largeIndex {
     display: flex;
     background: #000000 !important;
+    max-height: 46px;
 }
 
 #divideDiv {

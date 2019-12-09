@@ -3,6 +3,7 @@
 <title>SquareHelp - Dashboard</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" href="/css/magic.min.css">
 <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 </head>
 <body>
@@ -14,43 +15,62 @@
     <section>
       <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
     </section>
-    <section class="row" id="userInfoContainer">
-      <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic">
 
-      <div class="userInfoBox">
-        <!--      Logged in username-->
-        <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
 
-        <div class="dashboard-icons">
-          <!--        Calendar icon-->
-          <i class="fas fa-calendar-alt" id="calIcon"></i>
-          <!--        Badges images-->
-          <img src="/img/dashboard/gold.png" alt="badge" class="badge-img" th:if="${ smoke.getPoints() >= 75 }">
-          <img src="/img/dashboard/silver.png" alt="badge" class="badge-img"
-               th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
-          <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img"
-               th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
-          <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img" th:if="${ smoke.getPoints() <= 24 }">
-          <!--        Quit Smoking icon-->
-          <i class="fas fa-smoking-ban" id="smokeIcon"></i>
+<!--    ============================================Testing grid (Start)-->
+
+    <div class="row">
+      <section class="grid-container">
+        <div class="cell1">
+          <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic" class="magictime swashIn">
         </div>
-
-        <div class="headline">
-          <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
-          <h5 id="headline-text2">You have earned <span class="pointsPop" th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
-          <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
+        <div class="cell2">
+          <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
         </div>
-      </div>
+        <div class="cell3 infoData-cell">
 
-    </section>
+
+          <div class="infoData-icon1">
+            <!--        Calendar icon-->
+            <i class="fas fa-calendar-alt " id="calIcon"></i>
+          </div>
+          <div class="infoData-text1">
+            <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
+          </div>
+          <div class="infoData-icon2">
+            <!--        Badges images-->
+            <img src="/img/dashboard/gold.png" alt="badge" class="badge-img  " th:if="${ smoke.getPoints() >= 75 }">
+            <img src="/img/dashboard/silver.png" alt="badge" class="badge-img  "
+                 th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
+            <img src="/img/dashboard/bronze.png" alt="badge" class="badge-img  "
+                 th:if="${ smoke.getPoints() >= 25} and ${ smoke.getPoints() <= 49} ">
+            <img src="/img/dashboard/defaultBadge.png" alt="badge" class="badge-img  " th:if="${ smoke.getPoints() <= 24 }">
+          </div>
+          <div class="infoData-text2">
+            <h5 id="headline-text2">You have earned <span class="pointsPop" th:text="${smoke.getPoints()}"></span> points for not smoking!</h5>
+          </div>
+          <div class="infoData-icon3">
+            <!--        Quit Smoking icon-->
+            <i class="fas fa-smoking-ban  " id="smokeIcon"></i>
+          </div>
+          <div class="infoData-text3">
+            <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.day_quit_smoking}"></span></h5>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+<!--    ============================================Testing grid (End)-->
+
     <section class="row" id="userInfoBtns">
       <div class="actions">
-        <a th:href="@{'/verification'}"><button type="button" class="btn btn-outline-primary mBtn">Create a
+        <a th:href="@{'/verification'}" class="dashboard-btn"><button type="button" class="btn btn-warning">Create a
           verification
           request</button></a>
-        <a th:href="@{'/message'}"><button type="button" class="btn btn-outline-primary mBtn">View your
+        <a th:href="@{'/message'}" class="dashboard-btn"><button type="button" class="btn btn-warning">View your
           messages</button></a>
-        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-outline-primary mBtn">Check for
+        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-warning">Check for
           notifications
         </button></a>
       </div>

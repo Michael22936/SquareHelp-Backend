@@ -26,10 +26,6 @@
     color: blue !important;
 }
 
-.main-panel{
-    left: -95px !important;
-}
-
 .nav{
     display: flex !important;
     flex-direction: row !important;
@@ -37,6 +33,7 @@
 
 .contentBg{
     padding: .5rem 3rem .5rem 3rem;
+    right: 0 !important;
 }
 
 main{
@@ -56,6 +53,10 @@ p{
     background-color: black !important;
 }
 
+.main-panel {
+    margin: 2rem auto 2rem auto;
+}
+
 ul{
     justify-content: flex-end;
 }
@@ -72,6 +73,7 @@ ul{
     height: 43px;
     border-radius: 5px;
 }
+
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
@@ -82,10 +84,6 @@ ul{
 
     .contentBg {
         padding: 10px;
-    }
-
-    .main-panel{
-        left: 0px !important;
     }
 
     .card {

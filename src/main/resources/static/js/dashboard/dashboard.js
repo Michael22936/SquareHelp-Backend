@@ -99,7 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            // colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            colors: ['#148000', '#1ab7ea', '#32CD32'],
             series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,TotalUsersAvgCigSavings],
             labels: ['AVG Points Earned', 'AVG Days Smoke Free', 'AVG Savings in USD'],
             legend: {
@@ -168,7 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            // colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            colors: ['#148000', '#1ab7ea', '#32CD32'],
             series: [TotalUsersPoints,TotalUsersDaysSmokeFree,TotalUsersSavings],
             labels: ['Points Earned', 'Days Smoke Free', 'Savings in USD'],
             legend: {
@@ -199,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             }]
-        }
+        };
 
         var chart = new ApexCharts(
             document.querySelector("#avgPointChart2"),
@@ -220,4 +222,59 @@ document.addEventListener("DOMContentLoaded", () => {
     let d = document.getElementById("dayQuit");
     d.innerText = moment(d.value).format("MMMM D, YYYY");
 
-}) // Load when document is ready END
+    // Animation Magic
+
+    // 1st animation calendar icon
+    setTimeout(function(){
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.add('magictime', 'puffIn');
+        selector2.style.display = "block";
+
+    }, 1000);
+
+    // 2nd animation badge icon
+    setTimeout(function(){
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.add('magictime', 'puffIn');
+        selector3.style.display = "block";
+
+    }, 1700);
+
+    // 3rd animation quit smoking icon
+    setTimeout(function(){
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.add('magictime', 'puffIn');
+        selector4.style.display = "block";
+
+    }, 2400);
+
+        // Removes the 1 round of animation classes
+    setTimeout(function(){
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.remove('magictime', 'puffIn');
+
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.remove('magictime', 'puffIn');
+
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.remove('magictime', 'puffIn');
+    }, 3500);
+
+    setTimeout(function(){
+
+        // const selector = document.querySelector('#profilePic');
+        // selector.classList.add('magictime','swashIn');
+
+        const selector2 = document.querySelector('#calIcon');
+        selector2.classList.add('animated', 'wobble');
+
+        const selector3 = document.querySelector('.badge-img');
+        selector3.classList.add('animated','wobble');
+
+        const selector4 = document.querySelector('#smokeIcon');
+        selector4.classList.add('animated', 'wobble');
+
+
+    }, 7000);
+
+}); // Load when document is ready END

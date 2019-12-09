@@ -42,7 +42,8 @@ h5 {
 }
 
 #createVeri {
-    margin: 1.5rem 0;
+    margin: 1.5rem ;
+    height: fit-content;
 }
 
 #result a {
@@ -82,30 +83,52 @@ h5 {
     margin-bottom: 2rem !important;
 }
 
-.main-panel{
-    position: relative !important;
-    left: 0px !important;
+.reqDesktopView{
+    display: block;
 }
 
-.recMobile, .sentMobile{
+.reqMobileView{
     display: none;
 }
 
+.main-panel{
+    position: relative !important;
+}
+
+.recMobile{
+    display: none;
+}
+
+.sentMobile{
+    display: none;
+}
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
-    .recRec, .sentReq{
-        display: none;
+    .main-panel{
+        position: relative !important;
+        left: 0px !important;
     }
 
-    .recMobile, .sentMobile{
+    .recMobile{
         display: flex;
         flex-direction: column;
     }
 
+    .sentMobile{
+        display: flex;
+        flex-direction: column;
+    }
+
+
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
+    }
+
+    .veriCards-box{
+        justify-content: center;
+        flex-direction: column;
     }
 
     footer{
@@ -130,6 +153,32 @@ h5 {
         box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
     }
 
+    .reqDesktopView{
+        display: none;
+    }
+
+    .reqMobileView{
+        display: block;
+    }
+
+    .mobile-card{
+        border: 1px solid grey;
+        display: block;
+        margin-bottom: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+    }
+
+    .recRec{
+        display: none;
+    }
+
+    .sentReq{
+        display: none;
+    }
+
     table{
         border: black 2px solid !important;
         border-radius: 5px !important;
@@ -142,5 +191,4 @@ h5 {
     footer{
         margin-top: 0 !important;
     }
-
 }
