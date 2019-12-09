@@ -6,18 +6,18 @@
   <body>
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
     <main class="container contentBg main-panel">
-      
+
       <!-- /verification Content -->
       <div class="contentBg">
         <section>
           <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
         </section>
-        
+
         <section class="row veriFormCreate text-center">
-      
+
           <div class="verification-view-wrapper">
             <h1>View verification</h1>
-        
+
             <form th:action="'/verification/' + ${veri.id} + '/view'" class="approve-veri" method="post">
               <h2 th:text="${from.username}"></h2>
               <br/>
@@ -38,9 +38,9 @@
               <button class="btn btn-outline-danger mt-2" id="noBtn" type="submit">No <i class="far fa-thumbs-down"></i></button>
             </form>
           </div>
-        
+
         </section>
-        
+
         <!-- Footer -->
         <section class="row">
           <th:block th:replace="partials/footer :: main-footer"/>
@@ -48,7 +48,7 @@
           <script src="/js/verification/verification-view.js"></script>
         </section>
       </div>
-    
+
     </main>
   </body>
 </html>
