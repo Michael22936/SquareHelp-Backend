@@ -25,7 +25,7 @@
           <img th:src="${users.profilePic}" alt="User Profile Pic" id="profilePic" class="magictime swashIn">
         </div>
         <div class="cell2">
-          <h1 id="username-info">Welcome <span th:text="${users.username}"></span></h1>
+          <h1 id="username-info">Welcome, <span th:text="${users.username}"></span></h1>
         </div>
         <div class="cell3 infoData-cell">
 
@@ -54,9 +54,13 @@
             <i class="fas fa-smoking-ban  " id="smokeIcon"></i>
           </div>
           <div class="infoData-text3">
+<<<<<<< HEAD
             <h5 id="headline-text3">You quit smoking: <span class="" id="dayQuit"
                                                             th:text="${smoke.day_quit_smoking}"></span></h5>
             <h3 id="dayQuit2" th:text="${smoke.day_quit_smoking}"></h3>
+=======
+            <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.getDay_quit_smoking()}"></span></h5>
+>>>>>>> 26b1d99dedd9078b91dd3415dd9a2ac30fb8077e
           </div>
         </div>
       </section>
@@ -67,12 +71,12 @@
 
     <section class="row" id="userInfoBtns">
       <div class="actions">
-        <a th:href="@{'/verification'}" class="dashboard-btn"><button type="button" class="btn btn-warning">Create a
+        <a th:href="@{'/verification'}" class="dashboard-btn"><button type="button" class="btn btn-primary">Create a
           verification
           request</button></a>
-        <a th:href="@{'/message'}" class="dashboard-btn"><button type="button" class="btn btn-warning">View your
+        <a th:href="@{'/message'}" class="dashboard-btn"><button type="button" class="btn btn-primary">View your
           messages</button></a>
-        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-warning">Check for
+        <a th:href="@{'/notifications'}"><button type="button" class="btn btn-primary">Check for
           notifications
         </button></a>
       </div>
