@@ -1,124 +1,121 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="partials/head :: main-header"/>
-<title>About Us</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
-<link rel="stylesheet" th:href="@{/css/aboutus.css}" />
-</head>
-<body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
-    <a class="text-decoration-none" href="/"><h4>SquareHelp</h4></a>
-    <div class="navbar-fixed">
-        <ul class="nav">
-            <li class="nav-item navbar-right">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item navbar-right">
-                <a class="nav-link" href="/register">Register</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-<main class="container contentBg main-panel">
-        <!-- About Section -->
-        <section class="row">
-            <div class="whoIs contentBg">
-                <a name="aboutus"></a>
-                <h3>About Us</h3>
-                <div class="card_view">
-
-                    <!-- Michael -->
-                    <div class="card">
-                        <img class="card-img mb-4" src="/img/index/member-michael.jpg">
-                        <div class="icons">
-                        <a class="whoIs-links" href="https://alumni.codeup.com/students/706">
-                            <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/Michael22936"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/michaelvmcdonnell/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Matt -->
-                    <div class="card">
-                        <img class="card-img mb-4" src="/img/index/member-matt.jpeg">
-                        <div class="icons">
-                        <a class="whoIs-links" href="https://alumni.codeup.com/students/703">
-                            <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/mattlopez4011"><i
-                                    class="fab fa-github-square fa-3x"></i>
-                        </a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/matt-lopez4011/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Yael -->
-                    <div class="card">
-                        <img class="card-img mb-4" src="/img/index/member-yael.jpeg">
-                        <div class="icons">
-                        <a class="whoIs-links" href="https://alumni.codeup.com/students/719">
-                            <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/yaelBrown"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/yaelrbrown/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Mitchell -->
-                    <div class="card">
-                        <img class="card-img mb-4" src="/img/index/member-mitchell.jpeg">
-                        <div class="icons">
-                        <a class="whoIs-links" href="https://alumni.codeup.com/students/698">
-                            <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
-                        </a>
-                        <a class="whoIs-links" href="https://github.com/MitchellArnold"><i
-                                class="fab fa-github-square fa-3x"></i></a>
-                        <a class="whoIs-links" href="https://www.linkedin.com/in/mitchell-g-arnold/"><i
-                                class="fab fa-linkedin fa-3x"></i></a>
-                        </div>
-                    </div>
-
-                </div>
+    <th:block th:replace="partials/head :: main-header"/>
+    <title>About Us</title>
+    <link rel="stylesheet" th:href="@{/css/aboutus.css}" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
+            <a class="text-decoration-none" href="/"><h4>SquareHelp</h4></a>
+            <div class="navbar-fixed">
+                <ul class="nav">
+                    <li class="nav-item navbar-right">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item navbar-right">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                </ul>
             </div>
-        </section>
-
-        <!-- AboutUs Content -->
-        <section class="row">
-            <div class="whatIs contentBg">
-                <h3>What is SquareHelp?</h3>
-                <p>SquareHelp is a tool designed for the smoker who needs extra motivation to quit smoking. SquareHelp will
-                    allow a
-                    user to have full-access to the member community of individuals who are on also on the same journey.
-                    SquareHelp can meet the smoker where they are at in their journey to quitting and remind them they are not in this alone.
-                </p>
-            </div>
-        </section>
-
-        <!-- Help me -->
-        <section class="row">
-            <div class="helpMe contentBg">
-                <h3>How can SquareHelp help me?</h3>
-                <p>When a user signs up for SquareHelp, they will be required to enter their weekly smoking habits. This
-                    information is used to remind them how much money they saved on cigarettes. As a user of SquareHelp
-                    they will be able to make verification requests to other users to verify that they are still nicotine
-                    free. After a number of days of positive verifications of request, the user will collect points and these
-                    points will be used to redeem for gift cards and other perks at retailers.</p>
-            </div>
-        </section>
-    
-        <!-- Footer -->
-        <section class="row">
-            <th:block th:replace="partials/footer :: main-footer"/>
-        </section>
-
-</main>
-</body>
+        </nav>
+        
+        <main class="container contentBg main-panel">
+                <!-- About Section -->
+                <section class="row">
+                    <div class="whoIs contentBg">
+                        <a name="aboutus"></a>
+                        <h3>About Us</h3>
+                        <div class="card_view">
+        
+                            <!-- Michael -->
+                            <div class="card">
+                                <img class="card-img mb-4" src="/img/index/member-michael.jpg">
+                                <div class="icons">
+                                <a class="whoIs-links" href="https://alumni.codeup.com/students/706">
+                                    <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
+                                </a>
+                                <a class="whoIs-links" href="https://github.com/Michael22936"><i
+                                        class="fab fa-github-square fa-3x"></i></a>
+                                <a class="whoIs-links" href="https://www.linkedin.com/in/michaelvmcdonnell/"><i
+                                        class="fab fa-linkedin fa-3x"></i></a>
+                                </div>
+                            </div>
+        
+                            <!-- Matt -->
+                            <div class="card">
+                                <img class="card-img mb-4" src="/img/index/member-matt.jpeg">
+                                <div class="icons">
+                                <a class="whoIs-links" href="https://alumni.codeup.com/students/703">
+                                    <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
+                                </a>
+                                <a class="whoIs-links" href="https://github.com/mattlopez4011"><i
+                                            class="fab fa-github-square fa-3x"></i>
+                                </a>
+                                <a class="whoIs-links" href="https://www.linkedin.com/in/matt-lopez4011/"><i
+                                        class="fab fa-linkedin fa-3x"></i></a>
+                                </div>
+                            </div>
+        
+                            <!-- Yael -->
+                            <div class="card">
+                                <img class="card-img mb-4" src="/img/index/member-yael.jpeg">
+                                <div class="icons">
+                                <a class="whoIs-links" href="https://alumni.codeup.com/students/719">
+                                    <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
+                                </a>
+                                <a class="whoIs-links" href="https://github.com/yaelBrown"><i
+                                        class="fab fa-github-square fa-3x"></i></a>
+                                <a class="whoIs-links" href="https://www.linkedin.com/in/yaelrbrown/"><i
+                                        class="fab fa-linkedin fa-3x"></i></a>
+                                </div>
+                            </div>
+        
+                            <!-- Mitchell -->
+                            <div class="card">
+                                <img class="card-img mb-4" src="/img/index/member-mitchell.jpeg">
+                                <div class="icons">
+                                <a class="whoIs-links" href="https://alumni.codeup.com/students/698">
+                                    <img class="img" src="/img/aboutus/blue-codeup-logo.png" alt="codeup">
+                                </a>
+                                <a class="whoIs-links" href="https://github.com/MitchellArnold"><i
+                                        class="fab fa-github-square fa-3x"></i></a>
+                                <a class="whoIs-links" href="https://www.linkedin.com/in/mitchell-g-arnold/"><i
+                                        class="fab fa-linkedin fa-3x"></i></a>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                </section>
+        
+                <!-- AboutUs Content -->
+                <section class="row">
+                    <div class="whatIs contentBg">
+                        <h3>What is SquareHelp?</h3>
+                        <p>SquareHelp is a tool designed for the smoker who needs extra motivation to quit smoking. SquareHelp will
+                            allow a
+                            user to have full-access to the member community of individuals who are on also on the same journey.
+                            SquareHelp can meet the smoker where they are at in their journey to quitting and remind them they are not in this alone.
+                        </p>
+                    </div>
+                </section>
+        
+                <!-- Help me -->
+                <section class="row">
+                    <div class="helpMe contentBg">
+                        <h3>How can SquareHelp help me?</h3>
+                        <p>When a user signs up for SquareHelp, they will be required to enter their weekly smoking habits. This
+                            information is used to remind them how much money they saved on cigarettes. As a user of SquareHelp
+                            they will be able to make verification requests to other users to verify that they are still nicotine
+                            free. After a number of days of positive verifications of request, the user will collect points and these
+                            points will be used to redeem for gift cards and other perks at retailers.</p>
+                    </div>
+                </section>
+            
+                <!-- Footer -->
+                <section class="row">
+                    <th:block th:replace="partials/footer :: main-footer"/>
+                </section>
+        
+        </main>
+    </body>
 </html>
