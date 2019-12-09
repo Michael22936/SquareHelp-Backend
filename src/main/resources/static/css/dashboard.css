@@ -211,7 +211,7 @@ footer {
 }
 
 #headline-text1{
-    margin-bottom: 2em;
+    /*margin-bottom: 2em;*/
 }
 
 #headline-text2{
@@ -248,14 +248,17 @@ footer {
     }
 
     .actions {
-        width: 100% !important;
+        /*width: 100% !important;*/
+        width: fit-content;
         display: flex;
-        flex-direction: column;
-        margin-left: 22%;
+        /*flex-direction: column;*/
+        /*margin-left: 22%;*/
+        margin: 0 auto;
     }
 
     .dashboard-btn{
         margin-bottom: 5px;
+        margin-right: 5px;
     }
 
     .mBtn {
@@ -440,6 +443,14 @@ footer {
         font-size: .9rem;
         font-weight: 300;
         margin-bottom: 0;
+    }
+
+    .actions{
+        flex-direction: column;
+    }
+
+    .infoData-text3{
+        align-self: center;
     }
 }
 
