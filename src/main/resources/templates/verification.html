@@ -110,30 +110,29 @@
             <!-- MOBILE :: Mini-table to display received request results -->
             <div class="recMobile">
                 <h3>Received requests</h3>
-                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recMobile" role="button">Collapse
-                </a>
+                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recMobile" role="button">Collapse</a>
                 <div class="collapse show" id="recMobile">
                     <div  th:each="rv : ${recVeri}">
                         <table th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;" class="table table-hover text-dark text-center table-condensed">
-                            <tr th:if="${rv.getIs_pending() == false}">
-                                <td class="text-left">Verify Date: </td>
+                            <tr>
+                                <td class="w-100 text-left">Verify Date: </td>
                                 <td><p th:text="${rv.day_created}" class="dates"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td class="text-left">Sender: </td>
+                            <tr>
+                                <td class="w-100 text-left">Sender: </td>
                                 <td><p th:text="${rv.getSender_name()}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td class="text-left">Days Smoke free: </td>
+                            <tr>
+                                <td class="w-100 text-left">Days Smoke free: </td>
                                 <td><p th:text="${rv.days_smoke_free}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td class="text-left">Approved</td>
+                            <tr>
+                            <td class="w-100 text-left">Approved</td>
                                 <td th:if="${rv.is_approved == true}"><p><i class="fas fa-check"></i></p></td>
                                 <td th:if="${rv.is_approved == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td class="text-left">Pending</td>
+                            <tr>
+                                <td class="w-100 text-left">Pending</td>
                                 <td th:if="${rv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></td>
                                 <td th:if="${rv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
@@ -150,25 +149,25 @@
                 <div class="collapse show" id="sentMobile">
                     <div  th:each="sv : ${sentVeri}">
                         <table class="table table-hover text-dark text-center table-condensed">
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}" >
-                                <td class="text-left">Verify Date: </td>
+                            <tr>
+                                <td class="w-100 text-left">Verify Date: </td>
                                 <td><p th:text="${sv.day_created}" class="dates"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td class="text-left">Approver: </td>
+                            <tr>
+                                <td class="w-100 text-left">Approver: </td>
                                 <td><p th:text="${sv.getApprover_name()}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td class="text-left">Days Smoke free: </td>
+                            <tr>
+                                <td class="w-100 text-left">Days Smoke free: </td>
                                 <td><p th:text="${sv.days_smoke_free}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td class="text-left">Approved</td>
+                            <tr>
+                                <td class="w-100 text-left">Approved</td>
                                 <td th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></td>
                                 <td th:if="${sv.is_approved == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td class="text-left">Pending</td>
+                            <tr>
+                                <td class="w-100 text-left">Pending</td>
                                 <td th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></td>
                                 <td th:if="${sv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
@@ -176,8 +175,6 @@
                     </div>
                 </div>
             </div>
-
-
         </section>
     </div>
 
