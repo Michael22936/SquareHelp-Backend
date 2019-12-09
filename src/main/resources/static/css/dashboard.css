@@ -194,15 +194,18 @@ footer {
 
 #calIcon{
     font-size: 2em;
+    display: none;
 }
 
 .badge-img{
     width: 2em;
     height: 3em;
+    display: none;
 }
 
 #smokeIcon{
     font-size: 2em;
+    display: none;
 }
 
 .userInfoBox{

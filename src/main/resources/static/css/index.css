@@ -4,9 +4,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
-    height: 43rem;
+    /*height: 43rem;*/
     color: white;
     max-width: none;
+    height: 88vh;
 }
 
 main {
@@ -51,6 +52,8 @@ footer {
     background-color: #000000 !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    position: absolute;
+    bottom: 0;
 }
 
 footer a {
@@ -69,6 +72,19 @@ footer a {
 
 #divideDiv {
     display: none;
+}
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    footer{
+        position: fixed;
+        bottom: 0;
+    }
+
+    .container{
+        height: 80vh;
+        position: relative;
+    }
 }
 
 /* Mobile view (992px max width) */
