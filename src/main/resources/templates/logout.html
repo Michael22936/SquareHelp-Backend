@@ -20,7 +20,6 @@
                 <p>If you have any question about the company and what we are trying to do please
                     <a class="contactUs" href="mailto:squarehelp@hotmail.com">CLICK HERE</a> to contact us. Or
                     <a class="aboutUs" href="/#aboutus">CLICK HERE</a> to visit our about us page</p>
-            <p>You will be redirected to login in <span id="countdowntimer">3</span> <span id="second">seconds</span>...</p>
             </div>
             <img class="row contentBg d-flex justify-content-center" src="img/logout/quit_smoking.png" alt="quit_smoking">
         </section>
@@ -38,15 +37,10 @@
 
 <script>
 
-    var timeleft = 3;
+
     setInterval(function(){
-        timeleft--;
-        document.getElementById("countdowntimer").textContent = timeleft;
-        if (timeleft <= 1)
-            document.getElementById("second").textContent = "second";
-        if(timeleft <= 0)
             location.href = "/aboutus";
-    },1000);
+    },3000);
 
 </script>
 </body>
