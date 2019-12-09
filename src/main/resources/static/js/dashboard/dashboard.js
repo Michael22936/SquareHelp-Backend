@@ -99,7 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            // colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            colors: ['#148000', '#1ab7ea', '#32CD32'],
             series: [TotalUsersAvgPointsFixed,TotalUsersAvgSmokeFreeDays,TotalUsersAvgCigSavings],
             labels: ['AVG Points Earned', 'AVG Days Smoke Free', 'AVG Savings in USD'],
             legend: {
@@ -168,7 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             },
-            colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            // colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
+            colors: ['#148000', '#1ab7ea', '#32CD32'],
             series: [TotalUsersPoints,TotalUsersDaysSmokeFree,TotalUsersSavings],
             labels: ['Points Earned', 'Days Smoke Free', 'Savings in USD'],
             legend: {

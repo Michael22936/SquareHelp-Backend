@@ -172,12 +172,12 @@ footer {
 .smokeFreePop {
     /*font-size: 3rem;*/
     font-size: xx-large;
-    color: red;
+    color: dodgerblue;
 }
 
 .pointsPop{
     font-size: xx-large;
-    color: red;
+    color: green;
 }
 
 .dashboard-icons{
@@ -428,6 +428,12 @@ footer {
     .apexcharts-canvas{
         left: 25px !important;
     }
+
+    h5{
+        font-size: .9rem;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
 }
 
 /*// Small devices (landscape phones, 576px and up)*/
@@ -461,10 +467,20 @@ footer {
         width: 95%;
         margin: 0 auto;
     }
+
+    .divideDiv{
+        height: 1px;
+        border: black 1px solid;
+    }
 }
 
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .divideDiv{
+        height: 1px;
+        border: black 1px solid;
+    }
     .contentBg{
         left: 0;
         width: auto;
