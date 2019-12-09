@@ -146,6 +146,10 @@ input {
   flex-direction: column !important;
 }
 
+#navbarLogoIdx {
+  width: 140px;
+}
+
 /* footer */
 
 .divideDiv {
