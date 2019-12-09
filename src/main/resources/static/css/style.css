@@ -102,14 +102,21 @@ input {
   border-radius: 5px;
 }
 
+.contentBgChild {
+    top: 0;
+}
+
+.shContainer {
+    width: 80%;
+}
 
 .main-panel {
-  display: flex;
   justify-content: center;
   flex-direction: column;
-  left: 250px;
-  position: fixed;
+  left: 0px;
   margin-top: 2rem;
+  margin-left: 250px;
+  min-height: 90%;
 }
 
 .sidebar {
@@ -142,8 +149,8 @@ input {
 /* footer */
 
 .divideDiv {
-  height: 3px;
-  border: black 2px solid;
+  height: 1px;
+  border: #DFDFDF 1px solid;
   width: 100%;
   margin-bottom: 1rem !important;
 }
@@ -156,7 +163,6 @@ footer {
   background: #fff;
   margin-bottom: 1rem;
   width: 100%;
-  margin-top: 10rem;
 }
 
 footer a {
@@ -195,6 +201,8 @@ footer ul li {
   .main-panel {
     position: initial;
     margin-top: 0;
+    margin-left: 0;
+    width: 100%;
   }
 
   #largeNav {
@@ -223,6 +231,12 @@ footer ul li {
 
   .contentBg {
     min-height: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contentBgChild {
+      padding: 1rem 3rem 1rem 3rem;
   }
 
   footer {
