@@ -84,7 +84,7 @@ h5 {
 
 .main-panel{
     position: relative !important;
-    left: 100px !important;
+    left: 0px !important;
 }
 
 .recMobile, .sentMobile{
@@ -94,11 +94,6 @@ h5 {
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
-
-    .main-panel{
-        position: relative !important;
-        left: 0px !important;
-    }
 
     .recRec, .sentReq{
         display: none;

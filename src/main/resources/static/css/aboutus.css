@@ -27,7 +27,7 @@
 }
 
 .main-panel{
-    left: 135px !important;
+    left: -95px !important;
 }
 
 .nav{
@@ -82,6 +82,10 @@ ul{
 
     .contentBg {
         padding: 10px;
+    }
+
+    .main-panel{
+        left: 0px !important;
     }
 
     .card {

@@ -13,7 +13,7 @@ footer {
 
 .main-panel {
     /*left: 0;*/
-    margin-left: 0 !important;
+    /*margin-left: 0 !important;*/
     /*position: inherit;*/
 }
 
@@ -148,7 +148,7 @@ footer {
 
 .contentBg{
     position: relative;
-    right: 48px;
+    right: 0px !important;
 }
 
 
