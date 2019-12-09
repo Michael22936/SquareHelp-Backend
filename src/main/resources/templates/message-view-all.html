@@ -5,7 +5,7 @@
   </head>
   <body>
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <main class="container contentBg main-panel">
+    <main class="shContainer contentBg main-panel">
       
       <!-- /message Content -->
       <div class="contentBg">
@@ -16,8 +16,7 @@
         <section class="row">
           <div class="msgWrapper">
             <h3>Messages</h3>
-            <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
-                    class="far fa-plus-square"></i> </button>
+            <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> Create New Message </button>
         
             <!-- Table to display unique messages -->
             <table class="table table-hover text-center table-condensed">

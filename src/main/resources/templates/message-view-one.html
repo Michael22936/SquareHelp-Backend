@@ -5,10 +5,10 @@
   </head>
   <body>
   <th:block th:replace="partials/navbar-dashboard :: dashboard-navbar"/>
-    <main class="container contentBg main-panel">
+    <main class="shContainer contentBg main-panel">
       
       <!-- /message/view Content -->
-      <div class="contentBg">
+      <div class="contentBgChild">
         <section>
           <th:block th:replace="partials/notiNsearch :: notiNsearch"/>
         </section>
@@ -18,15 +18,15 @@
             <h3>Conversation with <span th:text="${recip.getUsername()}"></span></h3>
         
             <div class="msgBtnRow">
-              <button type="button" onclick="window.location.href = '/message/create'" class="btn btn-outline-primary mb-2"> <i
-                      class="far fa-plus-square"></i> </button>
+              <button type="button" onclick="window.location.href = '/message/create'"
+                      class="btn btn-outline-primary mb-2"> Create New Message </button>
               <button type="button" onclick="window.location.href = '/message/'"
-                      class="btn btn-outline-primary mb-2"> <i class="fas fa-arrow-left"></i> </button>
+                      class="btn btn-outline-primary mb-2"> View List of Messages </button>
             </div>
         
             <!-- Message area -->
             <div class="messageAreaBg messageArea" id="messageArea">
-              <div class="convoWrapper" th:each="convo : ${conversation}"></div>
+              <div class="convoWrapper"></div>
             </div>
           </div>
       

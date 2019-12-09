@@ -155,8 +155,8 @@
                                 <td><p th:text="${sv.day_created}" class="dates"></p></td>
                             </tr>
                             <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td class="text-left">Sender: </td>
-                                <td><p th:text="${sv.getSender_name()}"></p></td>
+                                <td>Approver: </td>
+                                <td><p th:text="${sv.getApprover_name()}"></p></td>
                             </tr>
                             <tr class="w-100" th:if="${sv.getIs_pending() == false}">
                                 <td class="text-left">Days Smoke free: </td>
@@ -179,6 +179,7 @@
 
 
         </section>
+    </div>
 
         <!-- Footer -->
         <section class="row">
@@ -186,7 +187,7 @@
             <th:block th:replace="partials/searchbar :: navbar-search"/>
             <script src="/js/message/message-one-api.js"></script>
         </section>
-    </div>
+
 
 </main>
 </body>
