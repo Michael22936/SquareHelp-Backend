@@ -1,4 +1,4 @@
-// // Script is specific for dashboard.html
+// Script is specific for dashboard.html
 
 let allUsersArray = [];
 let ArrayAllUsersPoints = [];
@@ -217,11 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }); // end of of 4th fetch .then
 
-    // Convert date to a pretty readable date.
-    // Using moment.js
-    let d = document.getElementById("dayQuit");
-    d.innerText = moment(d.value).format("MMMM D, YYYY");
-
     // Animation Magic
 
     // 1st animation calendar icon
@@ -276,5 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     }, 7000);
+
 
 }); // Load when document is ready END
