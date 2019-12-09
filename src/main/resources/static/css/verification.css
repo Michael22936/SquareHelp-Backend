@@ -42,7 +42,8 @@ h5 {
 }
 
 #createVeri {
-    margin: 1.5rem 0;
+    margin: 1.5rem ;
+    height: fit-content;
 }
 
 #result a {
@@ -123,6 +124,11 @@ h5 {
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
+    }
+
+    .veriCards-box{
+        justify-content: center;
+        flex-direction: column;
     }
 
     footer{
