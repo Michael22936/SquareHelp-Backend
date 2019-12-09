@@ -26,6 +26,10 @@
     height: 225px;
 }
 
+.main-panel {
+    margin-left: 487px;
+}
+
 .formLayout{
     display: flex;
     flex-direction: row;

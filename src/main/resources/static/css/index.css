@@ -54,6 +54,10 @@ footer {
     margin-bottom: 0 !important;
     position: absolute;
     bottom: 0;
+
+}
+.footer-text{
+    font-size: 25px;
 }
 
 footer a {
@@ -84,6 +88,10 @@ footer a {
     .container{
         height: 80vh;
         position: relative;
+    }
+
+    .footer-text{
+        font-size: 15px;
     }
 }
 
