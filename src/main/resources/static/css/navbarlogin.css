@@ -7,7 +7,7 @@
     background-color: black !important;
 }
 
-#navbarLogoIdxMobile {
+#navbarLogoIdxMobile, #shLogoNavbar {
     width: 30%;
 }
 
@@ -17,6 +17,6 @@
     }
 
     #navbarLogoIdxMobile {
-        width: 100%;
+        width: 114px;
     }
 }
