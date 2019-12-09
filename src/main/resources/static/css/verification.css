@@ -15,6 +15,10 @@ h5 {
     background: darkslategray;
 }
 
+.main-panel {
+    margin-left: 487px;
+}
+
 .verification-form-wrapper {
     display: flex;
     flex-direction: column;

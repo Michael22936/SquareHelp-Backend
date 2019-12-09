@@ -16,6 +16,15 @@
     justify-content: space-around;
 }
 
+.card-text{
+    font-size: 2.2em;
+}
+
+.about-text{
+    text-align: center;
+    font-size: 3em;
+}
+
 .card-img {
     border-radius: 50%;
     height: 100%;
