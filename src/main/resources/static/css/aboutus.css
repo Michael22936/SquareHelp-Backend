@@ -74,6 +74,11 @@ ul{
     border-radius: 5px;
 }
 
+.card {
+    padding-top: 10px;
+    font-style: italic;
+}
+
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
@@ -98,8 +103,9 @@ ul{
     }
 
     .card-img {
-        height: 292px;
-        width: 292px;
+        height: 280px;
+        width: 280px;
+        margin: 0 10px;
     }
 
     .whoIs {
