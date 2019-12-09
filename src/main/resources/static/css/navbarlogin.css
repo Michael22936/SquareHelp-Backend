@@ -1,8 +1,22 @@
-.nav{
+.nav {
     display: inline-flex !important;
     flex-direction: row !important;
 }
 
-#largeNav{
+#largeNav {
     background-color: black !important;
+}
+
+#navbarLogoIdxMobile {
+    width: 30%;
+}
+
+@media (max-width: 992px) {
+    #shLogoNavbar {
+        width: 114px;
+    }
+
+    #navbarLogoIdxMobile {
+        width: 100%;
+    }
 }
