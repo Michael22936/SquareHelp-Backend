@@ -4,10 +4,10 @@
   <footer>
     <div id="divideDiv" class="divideDiv"></div>
     <ul>
-      <li><a href="/"><p>Home</p></a></li>
-      <li><a href="/aboutus"><p>About us</p></a></li>
-      <li><a href="mailto:squarehelp@hotmail.com"><p>Contact us</p></a></li>
-      <li><a href="/register"><p>Start Today</p></a></li>
+      <li><a href="/"><p class="footer-text">Home</p></a></li>
+      <li><a href="/aboutus"><p class="footer-text">About us</p></a></li>
+      <li><a href="mailto:squarehelp@hotmail.com"><p class="footer-text">Contact us</p></a></li>
+      <li><a href="/register"><p class="footer-text">Start Today</p></a></li>
     </ul>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
         const changeDateFormat = (dateStr) => {
             let temp = dateStr.split("-");
             return temp[1] + "-" + temp[2] + "-" + temp[0];
-        }
+        };
 
         const convertDates = () => {
             let temp = "";
@@ -28,7 +28,7 @@
                 sqlDates[i].innerHTML = temp;
                 temp = "";
             }
-        }
+        };
         
         document.addEventListener("DOMContentLoaded", () => {
             convertDates();
