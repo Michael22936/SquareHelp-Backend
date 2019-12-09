@@ -249,6 +249,13 @@ footer {
 
     .actions {
         width: 100% !important;
+        display: flex;
+        flex-direction: column;
+        margin-left: 22%;
+    }
+
+    .dashboard-btn{
+        margin-bottom: 5px;
     }
 
     .mBtn {
