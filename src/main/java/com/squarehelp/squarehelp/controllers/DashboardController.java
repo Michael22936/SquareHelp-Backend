@@ -61,7 +61,8 @@ public class DashboardController {
         model.addAttribute("avgTotalUsersPoints", avgTotalPoints );
         model.addAttribute("alertCount", unreadNotifications); // shows count for unread notifications
         model.addAttribute("users", userDao.getOne(id));
-        model.addAttribute("smoke", signedInUser.getSmokerInfo());
+//        model.addAttribute("smoke", signedInUser.getSmokerInfo());
+        model.addAttribute("smoke", smokeDao.getOne(id));
         model.addAttribute("user-points", signedInUser.getSmokerInfo().getPoints());
         model.addAttribute("moneySaved", calcMoneySaved(signedInUser.getSmokerInfo().getCost_of_cigs_saved(), signedInUser.getSmokerInfo().getTotal_days_smoke_free()));
         model.addAttribute("communityCount", totalCommunityUsers);

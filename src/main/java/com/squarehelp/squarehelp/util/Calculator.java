@@ -56,6 +56,7 @@ public class Calculator {
 
             userDao.save(user);
         }
+//         if the request is approved
         if ( isApproved == true && isPending == false && isChangesUpdated == false){
             User user = userDao.findUserById(userId);
             int userCurrentPoints = user.getSmokerInfo().getPoints();
