@@ -54,13 +54,7 @@
             <i class="fas fa-smoking-ban  " id="smokeIcon"></i>
           </div>
           <div class="infoData-text3">
-<<<<<<< HEAD
-            <h5 id="headline-text3">You quit smoking: <span class="" id="dayQuit"
-                                                            th:text="${smoke.day_quit_smoking}"></span></h5>
-            <h3 id="dayQuit2" th:text="${smoke.day_quit_smoking}"></h3>
-=======
             <h5 id="headline-text3">You quit smoking: <span class="dates" id="dayQuit" th:text="${smoke.getDay_quit_smoking()}"></span></h5>
->>>>>>> 26b1d99dedd9078b91dd3415dd9a2ac30fb8077e
           </div>
         </div>
       </section>
@@ -102,9 +96,11 @@
     <script src="/js/util/moment.min.js"></script>
     <script src="/js/dashboard/dashboard.js"></script>
     <script th:inline="javascript">
-        let d = document.getElementById("dayQuit");
-        let e = [[${smoke.day_quit_smoking}]];
-        d.innerText = moment(e).format("MMMM D, YYYY");
+      let d = document.getElementById("dayQuit");
+      let e = [[${smoke.day_quit_smoking}]];
+      setTimeout(() => {
+          d.innerText = moment(e).format("MMMM D, YYYY");
+      }, 200);
     </script>
   </section>
 
