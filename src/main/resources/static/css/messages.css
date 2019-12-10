@@ -118,6 +118,9 @@ form textarea {
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
+    body {
+        background: none;
+    }
 
     .contentBg {
         padding: 10px;
@@ -149,4 +152,11 @@ form textarea {
     .msgWrapper {
         margin-top: 1.5rem;
     }
+
+    .main-panel {
+        position: initial;
+        margin-top: 0;
+        margin-left: 0;
+    }
+
 }

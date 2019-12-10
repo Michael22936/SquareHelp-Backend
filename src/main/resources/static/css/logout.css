@@ -23,12 +23,13 @@ footer{
 @media (max-width: 992px) {
 
     body {
-        background: green;
+        background: none;
     }
 
     .main-panel {
         position: initial;
         margin-top: 0;
+        margin-left: 0;
     }
 
     #largeNav {
