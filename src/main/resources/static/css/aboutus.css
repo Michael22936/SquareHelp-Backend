@@ -109,6 +109,7 @@ ul{
         width: 100%;
         height: auto;
         margin: auto auto 1rem auto;
+        padding: 15px;
     }
 
     .card_view {
@@ -141,4 +142,24 @@ ul{
         height: 43px;
         border-radius: 5px;
     }
+
+    .row-noMargin{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
 }
+
+
+    /*// Extra small devices (portrait phones, less than 576px)*/
+    @media (max-width: 575.98px) {
+        .contentBg{
+            /*padding: 25px;*/
+            margin-top: 0;
+        }
+
+        .card{
+            padding: 15px;
+        }
+
+    }
