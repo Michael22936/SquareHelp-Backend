@@ -125,6 +125,11 @@ h4 {
     padding: 0px;
 }
 
+.btn{
+    color: white !important;
+    background: #0098FF !important;
+}
+
 
 
 /*// Extra small devices (portrait phones, less than 576px)*/

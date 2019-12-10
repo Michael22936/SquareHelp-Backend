@@ -27,7 +27,7 @@
 
             <!-- DESKTOP :: Table to display received request results -->
             <div class="recRec">
-                <h3>Received requests</h3>
+                <h3>Received Requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
                 </a>
                 <div class="collapse show" id="recReqs">
@@ -62,7 +62,7 @@
 
             <!-- DESKTOP :: Table to display sent request results -->
             <div class="sentReq">
-                <h3>Sent requests</h3>
+                <h3>Sent Requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
                    aria-expanded="false"
                    aria-controls="collapseExample">Expand</a>
@@ -109,7 +109,7 @@
 
             <!-- MOBILE :: Mini-table to display received request results -->
             <div class="recMobile">
-                <h3>Received requests</h3>
+                <h3>Received Requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recMobile" role="button">Collapse</a>
                 <div class="collapse show" id="recMobile">
                     <div  th:each="rv : ${recVeri}">
@@ -143,7 +143,7 @@
 
             <!-- MOBILE :: Mini-table to display sent request results -->
             <div class="sentMobile">
-                <h3>Sent requests</h3>
+                <h3>Sent Requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentMobile" role="button">Collapse
                 </a>
                 <div class="collapse show" id="sentMobile">
@@ -157,7 +157,7 @@
                                 <td class="w-100 text-left">Approver: </td>
                                 <td><p th:text="${sv.getApprover_name()}"></p></td>
                             </tr>
-                            <tr>s
+                            <tr>
                                 <td class="w-100 text-left">Days Smoke free: </td>
                                 <td><p th:text="${sv.days_smoke_free}"></p></td>
                             </tr>
