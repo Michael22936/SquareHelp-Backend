@@ -53,4 +53,8 @@ input {
         width: 70%;
     }
 
+    #smallNav {
+        justify-content: start;
+    }
+
 }
