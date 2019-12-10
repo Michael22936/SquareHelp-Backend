@@ -112,7 +112,7 @@ h5 {
 
     .main-panel{
         position: relative !important;
-        left: 0px !important;
+        margin-left: 0px !important;
     }
 
     .recMobile{
