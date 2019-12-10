@@ -54,7 +54,7 @@
                             </tr>
                             <tr>
                                 <td>Total amount saved:</td>
-                                <td><span th:text="${moneySaved}"></span></td>
+                                <td>$<span th:text="${moneySaved}"></span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -62,8 +62,7 @@
                     </div>
                 </div>
             <th:block th:if="${users.id == #authentication.principal.id}">
-                <a th:href="@{'/profile/' + ${users.id} + '/edit'}"><button id="smB" type="button" class="btn btn-warning">Edit Profile</button>
-                </a>
+                <a th:href="@{'/profile/' + ${users.id} + '/edit'}" class="btn btn-warning editProfileBtn" id="smB">Edit Profile</a>
             </th:block>
         </section>
 

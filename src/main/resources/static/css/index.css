@@ -125,27 +125,31 @@ h4 {
     padding: 0px;
 }
 
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
 
-
-/*// Extra small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) {
-    footer{
-        position: fixed;
-        bottom: 0;
+    .card-img{
+        width: 310px !important;
+        height: 310px!important;
     }
 
-    .container{
-        height: 80vh;
-        position: relative;
+    .card{
+        width: 372px;
+        height: 440px;
     }
 
-    .footer-text{
-        font-size: 15px;
+    .nav-link{
+        color: white;
     }
+
 }
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
+
+    body{
+        grid-template-rows: 50px 100% 100px;
+    }
 
     .main-panel {
         position: initial;
@@ -202,5 +206,27 @@ h4 {
         font-size: 1.30rem;
         font-weight: 300;
         text-align: center;
+    }
+}
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+
+    body{
+        grid-template-rows: 50px 100% 100px;
+    }
+
+    footer{
+        position: fixed;
+        bottom: 0;
+    }
+
+    .container{
+        /*height: 80vh;*/
+        position: relative;
+    }
+
+    .footer-text{
+        font-size: 15px;
     }
 }
