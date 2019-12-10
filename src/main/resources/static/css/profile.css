@@ -5,7 +5,9 @@
 }
 
 .main-panel {
-    margin-left: 487px;
+    /*margin-left: 487px;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .profileWrapper-left {
@@ -53,6 +55,7 @@ main{
 
     body {
         background: none;
+        display: block;
     }
 
     .main-panel {
