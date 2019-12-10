@@ -29,3 +29,15 @@ nav-wrapper {
     margin-top: 1rem;
     height: 1px;
 }
+
+#sidebarLogo {
+    width: 100px;
+}
+
+#sidebarLogoMobile {
+    width: 40px;
+}
+
+.nav-link{
+    font-size: 20px;
+}

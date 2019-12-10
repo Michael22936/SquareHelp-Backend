@@ -16,13 +16,16 @@
         <section class="row veriCards-box">
 
             <!-- Button to create verification form -->
+            <div>
             <a class="btn btn-primary" role="button" id="createVeri"
                th:href="@{'/verification/' + ${users.getId()} + '/form'}">Create
                 Verification
                 Form</a>
+            </div>
             <br>
 
-            <!-- Table to display received results results -->
+
+            <!-- DESKTOP :: Table to display received request results -->
             <div class="recRec">
                 <h3>Received requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recReqs" role="button">Collapse
@@ -57,7 +60,7 @@
                 </div>
             </div>
 
-            <!-- Table to display sent results results -->
+            <!-- DESKTOP :: Table to display sent request results -->
             <div class="sentReq">
                 <h3>Sent requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentReqs" role="button"
@@ -104,42 +107,41 @@
             </div>
 
 
-
-
+            <!-- MOBILE :: Mini-table to display received request results -->
             <div class="recMobile">
                 <h3>Received requests</h3>
-                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recMobile" role="button">Collapse
-                </a>
+                <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#recMobile" role="button">Collapse</a>
                 <div class="collapse show" id="recMobile">
-                        <div  th:each="rv : ${recVeri}">
-                    <table th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;" class="table table-hover text-dark text-center table-condensed">
-                        <tr th:if="${rv.getIs_pending() == false}">
-                            <td>Verify Date: </td>
-                            <td><p th:text="${rv.day_created}" class="dates"></p></td>
-                        </tr>
-                        <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                            <td>Sender: </td>
-                            <td><p th:text="${rv.getSender_name()}"></p></td>
-                        </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td>Days Smoke free: </td>
+                    <div  th:each="rv : ${recVeri}">
+                        <table th:onclick="'window.location.href = \'' + @{/verification/{rvId}/view(rvId=${rv.getId()})} + '\''" style="cursor: pointer;" class="table table-hover text-dark text-center table-condensed">
+                            <tr>
+                                <td class="w-100 text-left">Verify Date: </td>
+                                <td><p th:text="${rv.day_created}" class="dates"></p></td>
+                            </tr>
+                            <tr>
+                                <td class="w-100 text-left">Sender: </td>
+                                <td><p th:text="${rv.getSender_name()}"></p></td>
+                            </tr>
+                            <tr>
+                                <td class="w-100 text-left">Days Smoke free: </td>
                                 <td><p th:text="${rv.days_smoke_free}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td>Approved</td>
-                                <td th:if="${rv.is_approved == true}"><p>Yes</p></td>
-                                <td th:if="${rv.is_approved == false}"><p>No</p></td>
+                            <tr>
+                            <td class="w-100 text-left">Approved</td>
+                                <td th:if="${rv.is_approved == true}"><p><i class="fas fa-check"></i></p></td>
+                                <td th:if="${rv.is_approved == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${rv.getIs_pending() == false}">
-                                <td>Pending</td>
-                                <td th:if="${rv.getIs_pending() == true}"><p>Yes</p></td>
-                                <td th:if="${rv.getIs_pending() == false}"><p>No</p></td>
+                            <tr>
+                                <td class="w-100 text-left">Pending</td>
+                                <td th:if="${rv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></td>
+                                <td th:if="${rv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
-                    </table>
-                </div>
+                        </table>
+                    </div>
                 </div>
             </div>
 
+            <!-- MOBILE :: Mini-table to display sent request results -->
             <div class="sentMobile">
                 <h3>Sent requests</h3>
                 <a class="btn btn-secondary btn-sm mb-2 expandBtn" data-toggle="collapse" href="#sentMobile" role="button">Collapse
@@ -147,34 +149,34 @@
                 <div class="collapse show" id="sentMobile">
                     <div  th:each="sv : ${sentVeri}">
                         <table class="table table-hover text-dark text-center table-condensed">
-                            <tr th:if="${sv.getIs_pending() == false}">
-                                <td>Verify Date: </td>
+                            <tr>
+                                <td class="w-100 text-left">Verify Date: </td>
                                 <td><p th:text="${sv.day_created}" class="dates"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td>Approver: </td>
+                            <tr>
+                                <td class="w-100 text-left">Approver: </td>
                                 <td><p th:text="${sv.getApprover_name()}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td>Days Smoke free: </td>
+                            <tr>s
+                                <td class="w-100 text-left">Days Smoke free: </td>
                                 <td><p th:text="${sv.days_smoke_free}"></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td>Approved</td>
-                                <td th:if="${sv.is_approved == true}"><p>Yes</p></td>
-                                <td th:if="${sv.is_approved == false}"><p>No</p></td>
+                            <tr>
+                                <td class="w-100 text-left">Approved</td>
+                                <td th:if="${sv.is_approved == true}"><p><i class="fas fa-check"></i></p></td>
+                                <td th:if="${sv.is_approved == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
-                            <tr class="w-100" th:if="${sv.getIs_pending() == false}">
-                                <td>Pending</td>
-                                <td th:if="${sv.getIs_pending() == true}"><p>Yes</p></td>
-                                <td th:if="${sv.getIs_pending() == false}"><p>No</p></td>
+                            <tr>
+                                <td class="w-100 text-left">Pending</td>
+                                <td th:if="${sv.getIs_pending() == true}"><p><i class="fas fa-check"></i></p></td>
+                                <td th:if="${sv.getIs_pending() == false}"><p><i class="fas fa-times"></i></p></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
-
         </section>
+    </div>
 
         <!-- Footer -->
         <section class="row">
@@ -182,7 +184,7 @@
             <th:block th:replace="partials/searchbar :: navbar-search"/>
             <script src="/js/message/message-one-api.js"></script>
         </section>
-    </div>
+
 
 </main>
 </body>
