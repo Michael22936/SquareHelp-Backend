@@ -536,7 +536,7 @@ footer {
 
     .divideDiv{
         height: 1px;
-        border: black 1px solid;
+        border: #dfdfdf 1px solid;
     }
     .contentBg{
         left: 0;
