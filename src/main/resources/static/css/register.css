@@ -1,4 +1,7 @@
 /* Styling is specific to register.ejs page */
+body{
+  display: block;
+}
 
 #genderRadioWrapper {
   margin-top: 5rem;

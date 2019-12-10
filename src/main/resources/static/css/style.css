@@ -66,6 +66,29 @@ body {
   /*background: url("/img/index-bg.png");*/
   background: #eee;
   color: #000;
+
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 1fr ;
+  overflow-x: hidden;
+}
+
+#largeNav{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.container{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  height: max-content;
+}
+
+.footer-row{
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 h3 {
@@ -206,6 +229,10 @@ footer ul li {
     padding: 10px;
   }
 
+  #navbarLogoIdxMobile {
+    width: 35px;
+  }
+
   .main-panel {
     position: initial;
     margin-top: 0;
@@ -219,6 +246,10 @@ footer ul li {
 
   #smallNav {
     display: flex !important;
+  }
+
+  #jumbotronLogo {
+    width: 80%;
   }
 
   .notiSearch {
@@ -249,6 +280,7 @@ footer ul li {
 
   footer {
     padding: 10px;
+    height: 120px;
   }
 
 }

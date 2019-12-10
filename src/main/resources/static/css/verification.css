@@ -16,7 +16,10 @@ h5 {
 }
 
 .main-panel {
-    margin-left: 487px;
+    /*margin-left: 487px;*/
+    margin-right: auto;
+    margin-left: auto;
+
 }
 
 .verification-form-wrapper {
@@ -112,6 +115,7 @@ h5 {
 
     body {
         background: none;
+        display: block;
     }
 
     .main-panel {
@@ -131,6 +135,8 @@ h5 {
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
+        grid-column: 2 / 3 !important;
+        grid-row: 1 / 2 !important;
     }
 
     .veriCards-box{
