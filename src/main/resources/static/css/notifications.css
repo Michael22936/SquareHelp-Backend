@@ -29,5 +29,21 @@ table {
 }
 
 .main-panel {
-    margin-left: 487px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media (max-width: 992px) {
+    body{
+        display: block;
+    }
+
+    .h1-noti{
+        margin-top: 70px;
+    }
+
+    #sidebarLogoMobile{
+        width: 40px;
+    }
 }
