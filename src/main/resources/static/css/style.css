@@ -66,28 +66,6 @@ body {
   /*background: url("/img/index-bg.png");*/
   background: #eee;
   color: #000;
-
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 100% 100px;
-  overflow-x: hidden;
-}
-
-#largeNav{
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
-.container{
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-}
-
-.footer-row{
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-  margin-left: 0;
-  margin-right: 0;
 }
 
 h3 {
