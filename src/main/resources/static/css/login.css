@@ -1,5 +1,9 @@
 /* Styling is specific to login.html */
 
+body{
+    display: block;
+}
+
 form {
     display: flex;
     flex-direction: column;
