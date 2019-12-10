@@ -28,6 +28,7 @@ main {
     flex-direction: row !important;
     color: white;
     max-height: 46px;
+    padding-bottom: 53px !important;
 }
 
 .display-4{
@@ -44,6 +45,13 @@ main {
     background: rgba(0,0,0,0.8);
     padding: 2rem;
     border-radius: 15px;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#jumbotronLogo {
     width: 50%;
     margin: auto;
 }
@@ -70,13 +78,28 @@ footer a {
 
 #largeIndex {
     display: flex;
+    flex-direction: row;
     background: #000000 !important;
-    max-height: 46px;
+    max-height: 60px;
+    font-size: 25px;
 }
 
 #divideDiv {
     display: none;
 }
+
+h4 {
+    font-size: 25px;
+    margin-bottom: 0 !important;
+    padding: 8px 16px;
+    line-height: 0;
+}
+
+.navbar-brand{
+    padding: 0px;
+}
+
+
 
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {

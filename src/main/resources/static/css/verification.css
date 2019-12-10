@@ -110,10 +110,14 @@ h5 {
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
-    .main-panel{
+    body {
+        background: none;
+    }
+
+    .main-panel {
         position: relative !important;
         margin-left: 0px !important;
-}
+    }
 
     .recMobile{
         display: flex;
@@ -124,7 +128,6 @@ h5 {
         display: flex;
         flex-direction: column;
     }
-
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;

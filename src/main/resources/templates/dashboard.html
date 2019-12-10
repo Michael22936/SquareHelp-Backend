@@ -38,7 +38,7 @@
             <h5 id="headline-text1">You are <span class="smokeFreePop" th:text="${smoke.getTotal_days_smoke_free()}"></span> days smoke free.</h5>
           </div>
           <div class="infoData-icon2">
-            <!--        Badges images-->
+            <!-- Badges images -->
             <img src="/img/dashboard/gold.png" alt="badge" class="badge-img  " th:if="${ smoke.getPoints() >= 75 }">
             <img src="/img/dashboard/silver.png" alt="badge" class="badge-img  "
                  th:if="${ smoke.getPoints() >= 50} and ${ smoke.getPoints() <= 74} ">
@@ -95,6 +95,13 @@
     <th:block th:replace="partials/searchbar :: navbar-search"/>
     <script src="/js/util/moment.min.js"></script>
     <script src="/js/dashboard/dashboard.js"></script>
+    <script th:inline="javascript">
+      let d = document.getElementById("dayQuit");
+      let e = [[${smoke.day_quit_smoking}]];
+      setTimeout(() => {
+          d.innerText = moment(e).format("MMMM D, YYYY");
+      }, 100);
+    </script>
   </section>
 
 </main>
