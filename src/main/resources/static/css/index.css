@@ -16,10 +16,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
-    /*height: 43rem;*/
     color: white;
     max-width: none;
-    /*height: 88vh;*/
     height: 100vh;
     grid-column: 1/2;
     grid-row: 2/3;
@@ -33,7 +31,6 @@ body{
 footer{
     grid-column: 1/2;
     grid-row: 3/4;
-
 }
 
 main {
@@ -86,10 +83,9 @@ footer {
     background-color: #000000 !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    /*position: absolute;*/
     bottom: 0;
-
 }
+
 .footer-text{
     font-size: 25px;
 }
@@ -130,8 +126,6 @@ h4 {
     background: #0098FF !important;
 }
 
-
-
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
     footer{
@@ -140,7 +134,7 @@ h4 {
     }
 
     .container{
-        height: 80vh;
+        height: 100%;
         position: relative;
     }
 
@@ -200,7 +194,7 @@ h4 {
 
     .bg-dark{
         background-color: black !important;
-        height: 50px;
+        height: 60px;
     }
 
     .lead {

@@ -1,44 +1,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <th:block th:replace="partials/head :: main-header"/>
-  <link rel="stylesheet" th:href="@{/css/index.css}"/>
-  <title>Welcome to SquareHelp</title>
-  </head>
-
-  <!-- Navbar (specific for index) -->
-  <nav id="largeIndex" class="navbar navbar-expand-md justify-content-between">
-    <a class="text-decoration-none navbar-brand text-white"><img id="navbarLogoIdx" src="/img/Logo/shNavbarBrandLogo.png"></a>
-    
-    <div class="navbar-fixed">
-      <ul class="nav">
-        <li class="nav-item navbar-right">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item navbar-right">
-          <a class="nav-link" href="/register">Register</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <nav id="mobileIndex" class="navbar navbar-expand-md navbar-dark bg-dark">
-      <div class="navbar-fixed">
-          <ul class="nav">
-              <li class="nav-item">
-                  <img id="navbarLogoIdxMobile" src="/img/Logo/shNavbarBrandLogo.png">
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/register">Register</a>
-              </li>
-          </ul>
-      </div>
-  </nav>
+    <th:block th:replace="partials/head :: main-header"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <title>Welcome to SquareHelp</title>
+    </head>
   
-  <body>
+    <!-- Navbar (specific for index) -->
+    <nav id="largeIndex" class="navbar navbar-expand-md justify-content-between">
+      <a class="text-decoration-none navbar-brand text-white"><img id="navbarLogoIdx" src="/img/Logo/shNavbarBrandLogo.png"></a>
+      
+      <div class="navbar-fixed">
+        <ul class="nav">
+          <li class="nav-item navbar-right">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item navbar-right">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+          <li class="nav-item navbar-right">
+            <a class="nav-link" href="/aboutus">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  
+    <nav id="mobileIndex" class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-fixed">
+            <ul class="nav">
+                <li class="nav-item">
+                    <img id="navbarLogoIdxMobile" src="/img/Logo/shNavbarBrandLogo.png">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutus">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <body>
     <!-- Jumbotron-->
-<main class="container">
+    <main class="container">
 
         <div class="centerText jumboWrapper">
             <img id="jumbotronLogo" src="/img/Logo/shLogo.png">
@@ -49,13 +55,8 @@
               </p>
             </div>
         </div>
-
-
-    </main>
-    <div class="footerRow">
-      <th:block th:replace="partials/footer :: main-footer"/>
-    </div>
   
+    </main>
   </body>
 </html>
 
