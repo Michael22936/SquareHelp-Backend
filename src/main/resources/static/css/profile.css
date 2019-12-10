@@ -58,6 +58,7 @@ main{
     .main-panel {
         position: initial;
         margin-top: 0;
+        margin-left: 0;
     }
 
     #largeNav {

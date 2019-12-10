@@ -153,4 +153,10 @@ form textarea {
     .msgWrapper {
         margin-top: 1.5rem;
     }
+
+    .main-panel {
+        position: initial;
+        margin-top: 0;
+        margin-left: 0;
+    }
 }
