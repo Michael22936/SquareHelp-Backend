@@ -27,7 +27,9 @@
 }
 
 .main-panel {
-    margin-left: 487px;
+    /*margin-left: 487px;*/
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .formLayout{

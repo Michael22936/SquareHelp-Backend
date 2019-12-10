@@ -5,6 +5,11 @@
     flex-wrap: wrap;
 }
 
+.container{
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .card {
     margin: .5em;
     background: transparent;
@@ -87,6 +92,10 @@ ul{
 .card {
     padding-top: 10px;
     font-style: italic;
+}
+
+body{
+    display: block;
 }
 
 /* Mobile view (992px max width) */

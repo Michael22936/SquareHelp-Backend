@@ -15,7 +15,9 @@ th {
 }
 
 .main-panel{
-    margin-left: 293px;
+    /*margin-left: 293px;*/
+    margin-right: auto;
+    margin-left: auto;
 }
 
 td p {
