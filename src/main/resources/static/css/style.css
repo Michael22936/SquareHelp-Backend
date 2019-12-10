@@ -206,6 +206,10 @@ footer ul li {
     padding: 10px;
   }
 
+  #navbarLogoIdxMobile {
+    width: 35px;
+  }
+
   .main-panel {
     position: initial;
     margin-top: 0;
@@ -219,6 +223,10 @@ footer ul li {
 
   #smallNav {
     display: flex !important;
+  }
+
+  #jumbotronLogo {
+    width: 80%;
   }
 
   .notiSearch {
@@ -249,6 +257,7 @@ footer ul li {
 
   footer {
     padding: 10px;
+    height: 120px;
   }
 
 }
