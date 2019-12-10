@@ -18,8 +18,9 @@
         <section class="row">
             <div class="messageSendWrapper">
                 <div class="toFrom">
-                    <h3>To: <span th:text="${recipient.username}"></span></h3>
-                    <h3>From: <span th:text="${users.username}"></span></h3>
+                    <h3>Send a message</h3>
+                    <h5>To: <span th:text="${recipient.username}"></span></h5>
+                    <h5>From: <span th:text="${users.username}"></span></h5>
                 </div>
 
                 <form th:action="'/message/' + ${recipient.id} + '/send'" method="post" >
