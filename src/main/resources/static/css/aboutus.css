@@ -34,6 +34,7 @@ body{
     border-radius: 50%;
     height: 100%;
     width: 100%;
+    padding: 10px 10px;
 }
 
 .whoIs-links {
