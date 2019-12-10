@@ -14,10 +14,25 @@
 
 .main-panel{
     margin: 2rem auto 2rem auto;
+    min-height: 0;
+}
+
+.errorWrapper {
+    min-height: 580px;
+    display: flex;
+}
+
+#errorTxt {
+    margin: auto;
+    color: #dfdfdf;
 }
 
 #smallNav{
     display: none;
+}
+
+#largeNav, #smallNav {
+    background: #000000;
 }
 
 @media (max-width: 992px) {
@@ -35,20 +50,8 @@
         display: flex !important;
     }
 
-    .notiSearch {
-        width: 100%;
-    }
+    #navbarLogoErrMobile {
 
-    .input-group {
-        width: 100%;
-    }
-
-    .input-group form {
-        width: 100%;
-    }
-
-    #navbarSearch {
-        width: 100% !important;
     }
 
     img {

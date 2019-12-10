@@ -5,7 +5,7 @@
   </head>
 
   <!-- Navbar (specific for index) -->
-  <nav id="largeIndex" class="navbar navbar-expand-md justify-content-between">
+  <nav id="largeNav" class="navbar navbar-expand-md justify-content-between">
     <a class="text-decoration-none navbar-brand text-white"><img id="navbarLogoIdx" src="/img/Logo/shNavbarBrandLogo.png"></a>
   
     <div class="navbar-fixed">
@@ -20,12 +20,10 @@
     </div>
   </nav>
 
-  <nav id="mobileIndex" class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav id="smallNav" class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-fixed">
+      <img id="navbarLogoErrMobile" src="/img/Logo/shNavbarBrandLogo.png">
       <ul class="nav">
-        <li class="nav-item">
-          <img id="navbarLogoIdxMobile" src="/img/Logo/shNavbarBrandLogo.png">
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
@@ -40,10 +38,8 @@
     <main class="container contentBg main-panel">
       
       <section class="row">
-        <div class="container">
-          <div class="row">
-            <h1>Error please try again</h1>
-          </div>
+        <div class="container errorWrapper">
+          <h1 id="errorTxt">Error please try again</h1>
         </div>
       </section>
       
