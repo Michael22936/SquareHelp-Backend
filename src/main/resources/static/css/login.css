@@ -1,5 +1,11 @@
 /* Styling is specific to login.html */
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .loginWrapper {
     margin: auto;
     width: 100%;
@@ -18,12 +24,21 @@ input {
     color: #000;
 }
 
+#loginLogo {
+    width: 30%;
+    margin: auto;
+}
+
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
     .contentBg {
         padding: 10px;
+    }
+
+    #loginLogo {
+        width: 70%;
     }
 
 }

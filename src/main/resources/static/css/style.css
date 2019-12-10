@@ -146,6 +146,14 @@ input {
   flex-direction: column !important;
 }
 
+#navbarLogoIdx {
+  width: 40px;
+}
+
+#navbarLogoIdxMobile {
+  width: 114px;
+}
+
 /* footer */
 
 .divideDiv {
