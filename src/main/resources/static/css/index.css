@@ -188,4 +188,10 @@ body{
         background-color: black !important;
         height: 50px;
     }
+
+    .lead {
+        font-size: 1.30rem;
+        font-weight: 300;
+        text-align: center;
+    }
 }
