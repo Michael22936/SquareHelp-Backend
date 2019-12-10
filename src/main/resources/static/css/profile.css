@@ -50,17 +50,22 @@ main{
     display: none;
 }
 
+.editProfileBtn{
+    display: none;
+}
+
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
     body {
         background: none;
+        display: block;
     }
 
     .main-panel {
         position: initial;
         margin-top: 0;
-        margin-left: 0;
+        /*margin-left: 0;*/
     }
 
     #largeNav {
@@ -89,6 +94,19 @@ main{
 .profileWrapper{
     display: flex !important;
     flex-direction: column;
+    align-items: center;
+}
+
+.profileWrapper-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editProfileBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #bigB{
@@ -105,4 +123,13 @@ main{
 .col-md-4{
     padding-left: 0 !important;
 }
+}
+
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 660px) {
+
+
+
+
 }

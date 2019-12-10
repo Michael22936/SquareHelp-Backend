@@ -18,6 +18,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 25px;
 }
 
 .card-text{
@@ -47,7 +48,8 @@ body{
 }
 
 .contentBg{
-    padding: .5rem 3rem .5rem 3rem;
+    /*padding: .5rem 3rem .5rem 3rem;*/
+    /*padding: 0 !important;*/
     right: 0 !important;
 }
 
@@ -66,6 +68,7 @@ p{
 .navbar{
     display: flex !important;
     background-color: black !important;
+    height: 60px;
 }
 
 .main-panel {
@@ -94,6 +97,37 @@ ul{
     font-style: italic;
 }
 
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    /*.card-img{*/
+    /*    width: 310px;*/
+    /*    height: 310px;*/
+    /*}*/
+
+    .card{
+        width: 36%;
+    }
+
+
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .card-img{
+        width: 310px !important;
+        height: 310px!important;
+    }
+
+    .card{
+        width: 372px;
+        height: 440px;
+    }
+
+}
+
+
+
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
 
@@ -110,6 +144,7 @@ ul{
         width: 100%;
         height: auto;
         margin: auto auto 1rem auto;
+        padding: 15px;
     }
 
     .card_view {
@@ -142,4 +177,25 @@ ul{
         height: 43px;
         border-radius: 5px;
     }
+
+    .row-noMargin{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
 }
+
+
+    /*// Extra small devices (portrait phones, less than 576px)*/
+    @media (max-width: 575.98px) {
+        .contentBg{
+            /*padding: 25px;*/
+            margin-top: 0;
+        }
+
+        .card{
+            padding: 15px;
+        }
+
+    }
+
