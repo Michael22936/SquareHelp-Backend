@@ -1,6 +1,15 @@
-#logoutCigs {
-    max-block-size: 400px;
-    margin-left: 90px !important;
+#logoutCigs{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+html{
+    overflow-x: hidden;
+}
+
+body{
+    /*display: block;*/
 }
 
 .main-panel {
@@ -26,7 +35,7 @@ main{
 footer{
     margin-top: 0 !important;
 }
-
+/*less than 992px*/
 @media (max-width: 992px) {
 
     body {
@@ -37,7 +46,6 @@ footer{
     .main-panel {
         position: initial;
         margin-top: 0;
-        margin-left: 0;
     }
 
     #largeNav {
@@ -65,14 +73,31 @@ footer{
     }
 
     img{
-        max-block-size: 121px;
-        margin-left: -72px !important;
-        display: none !important;
-        visibility: hidden !important;
+        /*max-block-size: 121px;*/
+        /*margin-left: -72px !important;*/
+        /*display: none !important;*/
+        /*visibility: hidden !important;*/
     }
 
     footer{
         margin-top: 0 !important;
         padding: 0 !important;
+    }
+
+    #logoutCigs{
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .container{
+        max-width: max-content;
+    }
+}
+
+/*// Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    #logoutCigs{
+        display: none !important;
     }
 }

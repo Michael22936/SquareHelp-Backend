@@ -121,6 +121,8 @@ h5 {
     .main-panel {
         position: relative !important;
         margin-left: 0px !important;
+        display: flex;
+        justify-content: flex-start;
     }
 
     .recMobile{

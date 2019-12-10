@@ -3,6 +3,10 @@
     flex-direction: row !important;
 }
 
+body{
+    display: block;
+}
+
 .nav-item{
     color: white;
 }
@@ -36,6 +40,8 @@
 }
 
 @media (max-width: 992px) {
+
+
 
     .main-panel {
         position: initial;

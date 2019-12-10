@@ -58,6 +58,9 @@ main{
 
 /* Mobile view (992px max width) */
 @media (max-width: 992px) {
+    html{
+        overflow-x: hidden;
+    }
 
     body {
 
