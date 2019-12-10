@@ -133,6 +133,8 @@ h5 {
 
     .contentBg{
         padding: 1rem 1rem 1rem 1rem;
+        grid-column: 2 / 3 !important;
+        grid-row: 1 / 2 !important;
     }
 
     .veriCards-box{
