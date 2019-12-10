@@ -121,6 +121,16 @@ h4 {
     padding: 0px;
 }
 
+<<<<<<< HEAD
+=======
+.btn{
+    color: white !important;
+    background: #0098FF !important;
+}
+
+
+
+>>>>>>> master
 /*// Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
     footer{
