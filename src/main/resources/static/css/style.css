@@ -64,7 +64,7 @@ main{
 
 body {
   /*background: url("/img/index-bg.png");*/
-  background: #eee;
+  background: black;
   color: #000;
 
   display: grid;
