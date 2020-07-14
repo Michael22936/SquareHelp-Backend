@@ -1,10 +1,11 @@
-<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
 <title>Community</title>
+<link rel="stylesheet" th:href="@{/css/navbarlogin.css}" />
 </head>
 <body>
 <!-- Navbar -->
-<th:block th:replace="partials/navbar :: main-navbar"/>
+<th:block th:replace="partials/navbar-login :: login-navbar"/>
 <main class="container">
 
     <section class="row contentBg">
