@@ -11,15 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 public class CommunityController {
-    private final UserRepository userDao;
-    private final SmokerInfoRepository smokeDao;
-
-    public CommunityController(UserRepository userDao, SmokerInfoRepository smokeDao){
-        this.smokeDao = smokeDao;
-        this.userDao = userDao;
-    }
-
-    @GetMapping("/community")
+    @GetMapping("/com")
     @ResponseBody
     public String CommunityPage(){
 
