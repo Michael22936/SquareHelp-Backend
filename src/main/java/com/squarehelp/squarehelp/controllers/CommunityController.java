@@ -18,10 +18,7 @@ public class CommunityController {
 
     @GetMapping("/community")
     public String CommunityPage(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        long id = user.getId();
-        model.addAttribute("users", userDao.findAll());
-        model.addAttribute("smokeinfo", smokeDao.findAll());
+
         return "community";
     }
 

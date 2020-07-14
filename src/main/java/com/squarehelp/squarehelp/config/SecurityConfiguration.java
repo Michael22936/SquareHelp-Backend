@@ -61,8 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/profile/{id}",
                         "/message/{id}",
                         "/notifications/{id}",
-                        "/verification/{id}",
-                        "/community"// only authenticated users can create ads
+                        "/verification/{id}"// only authenticated users can create ads
                          // only authenticated users can edit ads
                 )
                 .authenticated()

@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Community</title>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<th:block th:replace="partials/head :: main-header"/>
+<title>Community</title>
 </head>
 <body>
-<h1>community</h1>
+<!-- Navbar -->
+<th:block th:replace="partials/navbar :: main-navbar"/>
+<main class="container">
+
+    <section class="row contentBg">
+        <h1>Hello world</h1>
+    </section>
+
+    <!-- Footer -->
+    <div class="row">
+        <th:block th:replace="partials/footer :: main-footer"/>
+    </div>
+
+</main>
+
 </body>
 </html>
