@@ -25,7 +25,7 @@ public class CommunityController {
     @GetMapping("/community")
     public String CommunityPage(Model model){
 
-        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("user", userDao.findAll());
 
         return "community";
     }
