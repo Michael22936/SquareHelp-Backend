@@ -1,8 +1,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
-<title>Login Page</title>
+<title>Community Page</title>
 <link rel="stylesheet" th:href="@{/css/login.css}" />
 <link rel="stylesheet" th:href="@{/css/navbarlogin.css}" />
+
+<style>
+    .loginWrapper{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
 </head>
 
 <body>
@@ -11,12 +19,6 @@
 <th:block th:replace="partials/navbar-login :: login-navbar"/>
 
 <div class="container">
-    <div th:if="${param.error}">
-        Invalid Username and Password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
 
     <!-- Login Form -->
     <section class="row contentBg">
