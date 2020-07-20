@@ -20,15 +20,22 @@
 
 <div class="container">
 
-    <!-- Login Form -->
     <section class="row contentBg">
         <div class="loginWrapper contentBg">
 
                 <img id="loginLogo" src="/img/Logo/shLogo.png">
 
         </div>
+        <div>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="col"><h4 th:text="${users.username}"></h4></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
-
 </div>
 </body>
 </html>
