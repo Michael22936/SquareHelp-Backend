@@ -27,8 +27,15 @@
 
         </div>
         <div>
-                    <h4 th:text="${user}">hello</h4>
+            <table>
+                    <tbody>
+                        <tr th:each="user : ${username}">
+                            <td th:text="${user.username}">
 
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
         </div>
     </section>
 </div>
