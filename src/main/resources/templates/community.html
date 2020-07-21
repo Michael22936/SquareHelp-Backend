@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="partials/head :: main-header"/>
 <title>Community Page</title>
+<link rel="stylesheet" th:href="@{/css/dashboard.css}" />
 <link rel="stylesheet" th:href="@{/css/login.css}" />
 <link rel="stylesheet" th:href="@{/css/navbarlogin.css}" />
 
@@ -44,6 +45,10 @@
                 </tbody>
             </table>
         </div>
+    </section>
+    <section class="row">
+        <script src="/js/util/moment.min.js"></script>
+        <script src="/static/js/dashboard/dashboard.js"></script>
     </section>
 </div>
 </body>
