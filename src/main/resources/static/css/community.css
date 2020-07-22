@@ -1,0 +1,65 @@
+/* Styling is specific to login.html */
+
+.contentBg{
+    position: relative;
+    right: 48px;
+}
+
+body{
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginWrapper {
+    margin: auto;
+    width: 100%;
+}
+
+.login-form-1{
+    padding: 5%;
+    margin: auto;
+}
+
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+
+form h3 {
+    margin-bottom: 0;
+}
+
+input {
+    color: #000;
+}
+
+#loginLogo {
+    width: 30%;
+    margin: auto;
+}
+
+.btn {
+    width: 100%;
+}
+
+/* Mobile view (992px max width) */
+@media (max-width: 992px) {
+
+    .contentBg {
+        padding: 10px;
+    }
+
+    #loginLogo {
+        width: 70%;
+    }
+
+    #smallNav {
+        justify-content: start;
+    }
+
+}
